@@ -54,8 +54,8 @@ record of it and cannot be re-derived.
 - **Filters** — method, target stage, status, pesticide, and all 12 district
   regions; filters drive the map, the calendar strip and the stats together
 - **Honest statistics** — distinguishes *treatments* from *distinct zones*, and
-  *distinct-zone area* from *treatment-area sum*, so repeated sprays of the
-  same zone are never passed off as new ground covered
+  says plainly that neither area figure is a treated footprint (the district's
+  zones overlap, so both add the same ground more than once)
 - **Click any zone** for area name, date, method, pesticides, boundary
   description, status, district zone code, area in km², and a link to the
   district's original map
@@ -201,6 +201,19 @@ themselves.
   a completed status is the district's own, not independent confirmation.
 - **Zone polygons are the district's own drawings**, at whatever precision
   they chose in Google My Maps. They are not parcel-accurate.
+- **Spray zones overlap, so no area figure here is a footprint.** 334 zone
+  pairs sit more than 90% inside another, and four pairs are byte-identical
+  polygons published under different map ids. Summing zone areas for the whole
+  archive gives ~2,498 km², where the true union is closer to **918 km²**. The
+  UI labels its figures for what they actually compute ("Zone areas summed",
+  "Treatment-area sum"); computing a real union would need a polygon-clipping
+  library, which this project deliberately does not carry.
+- **Colour by product shows one product per operation.** Most ground
+  operations apply two pesticides as a tank mix. The map picks one by a fixed
+  precedence so a mix always draws the same colour; the popup and the zone list
+  name every product applied. (Choosing by the district's own word order, as an
+  earlier version did, made the animation flip colour across 2022–23 purely
+  because the wording of the alerts changed.)
 - **The dataset is not a health or exposure record.** It shows where the
   district said it would spray and when. It says nothing about drift,
   deposition, or actual exposure.
@@ -216,7 +229,19 @@ Built to WCAG 2.1 AA targets:
   (`aria-valuetext`), not a raw index
 - The calendar strip is a `grid` with a **roving tabindex** — exactly one
   tabbable cell at a time rather than 2557 tab stops — with arrow/week/month/
-  Home/End navigation, and each cell names its date and operation count
+  Home/End navigation, and each cell names its date and operation count. The
+  playhead carries `aria-current="date"` and the trail window `aria-selected`,
+  so "which day is now" is available non-visually
+- **A "Zones in view" list** gives a keyboard and screen-reader route to every
+  operation record. The polygons are drawn to a canvas, so they are pixels
+  rather than focusable nodes; without the list, which zones were sprayed, with
+  what, and whether an operation was *cancelled* would all be pointer-only
+- Page Up / Page Down on the scrubber really do step a week — a native range
+  steps ~1/10 of its span (~36 days here), so the behaviour is implemented
+  rather than the instruction reworded
+- **Reflows at 400% zoom.** Below 480px the fixed full-screen layout becomes an
+  ordinary scrolling document; at the 320×256 test viewport every focusable
+  control is reachable
 - `aria-live` announcements are throttled and suppressed during playback; at 4×
   the date changes ~15 times a second and would otherwise make the page
   unusable with a screen reader
