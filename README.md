@@ -1,0 +1,228 @@
+# San Joaquin Mosquito Spray Timelapse
+
+Interactive timelapse of every mosquito spray operation the San Joaquin County
+Mosquito & Vector Control District has published — **823 operations across
+2020–2026**, animated day by day over a full calendar year and looping.
+
+The district publishes each spray zone as a Google My Maps link on its
+[Spray Alerts & Maps](https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps)
+page. This project turns those scattered links into a single archived,
+searchable, animated map.
+
+```
+[ 823 operations ] x [ 311 spray zones ] x [ 7 years ] x [ 6 pesticides ]
+        animated over the calendar year, looping, filterable
+```
+
+Built to answer: *where does the county actually spray, with what, and when?*
+
+## The interesting problem
+
+**The district's page only retains about two months of operations.** Once an
+entry rolls off, it is gone from the web.
+
+Two facts make a multi-year archive possible anyway:
+
+1. The Wayback Machine has snapshots of that page going back years, and each
+   snapshot contains its own rolling ~2-month archive.
+2. **Google My Maps documents outlive the page that linked them.** A map id
+   scraped from a 2020 snapshot still returns KML today.
+
+So the Wayback Machine supplies the `(date, area, map-id)` tuples and Google
+still supplies the geometry. That is where 745 of the 823 operations come from
+— 19 archived snapshots — and it is why the timelapse has years of history at
+launch rather than after a year of scraping.
+
+Everything scraped is committed to `data/`. That directory is **not a cache**:
+once the district's page drops an entry, this archive is the only remaining
+record of it and cannot be re-derived.
+
+## Features
+
+- **Year-long timelapse** — scrub or play Jan 1 → Dec 31 of any year (2020–2026)
+  or the whole 7-year span, looping continuously
+- **Trail decay** — each spray stays visible for an adjustable window (1–30
+  days) and fades with age, so the animation shows accumulation instead of
+  flicker. Plus a cumulative mode
+- **Skip empty stretches** — roughly half of every calendar year has zero
+  operations because the district does not spray in winter. Playback can skip
+  the dead runs while the scrubber and calendar keep showing the true full
+  year, so real seasonality is never mistaken for missing data
+- **Calendar heat strip** — every day of the period as a cell colored by
+  operation count; click (or arrow-key) to jump. Seasonality at a glance
+- **Color by** application method, target stage, or pesticide
+- **Filters** — method, target stage, status, pesticide, and all 12 district
+  regions; filters drive the map, the calendar strip and the stats together
+- **Honest statistics** — distinguishes *treatments* from *distinct zones*, and
+  *distinct-zone area* from *treatment-area sum*, so repeated sprays of the
+  same zone are never passed off as new ground covered
+- **Click any zone** for area name, date, method, pesticides, boundary
+  description, status, district zone code, area in km², and a link to the
+  district's original map
+- **Auto-refreshing** — a scheduled GitHub Action rescans the page, pulls
+  shapes for any map it has not seen, and rebuilds the timeline
+
+## Stack
+
+| Layer      | Tech                                                     |
+|------------|----------------------------------------------------------|
+| Data fetch | Python 3.14, `requests`, `beautifulsoup4`                |
+| Shapes     | Google My Maps KML export → GeoJSON (stdlib `xml.etree`) |
+| Backfill   | Wayback Machine CDX API                                  |
+| Server     | `http.server` subclass with a `POST /refresh` endpoint   |
+| Frontend   | Leaflet 1.9.4 from CDN, single file, no build step       |
+| Tiles      | Carto Dark Matter (OpenStreetMap)                        |
+
+No npm, no bundler, no build step. Two pure-Python dependencies; nothing
+compiles.
+
+## Quick start
+
+Prereqs: **Python 3.14** (3.11+ works), Windows / macOS / Linux.
+
+```bash
+git clone <this repo>
+cd sj-mosquito-maps
+
+py -3.14 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt        # Windows
+source .venv/bin/activate && pip install -r requirements.txt   # macOS/Linux
+
+python serve.py
+# open http://localhost:8000/
+```
+
+`data/` is committed, so the map works immediately after cloning — no fetch
+required.
+
+To refresh it yourself:
+
+```bash
+python fetch_data.py              # rescan the live page (~15 s)
+python fetch_data.py --backfill   # also sweep the Wayback Machine
+python verify_data.py             # archive integrity checks
+```
+
+Or hit the refresh button in the UI, which does the same thing server-side.
+
+## How it works
+
+```
+sjmvcd/parse.py     spray-alerts HTML  ->  operation records
+sjmvcd/shapes.py    maps/d/kml?mid=..  ->  GeoJSON polygons
+sjmvcd/backfill.py  Wayback CDX        ->  historical operations
+sjmvcd/archive.py   append-only merge  ->  data/operations.json
+```
+
+Each stage is failure-isolated: a stage that fails records its error into
+`data/manifest.json` and the run continues. A flaky upstream never costs the
+other stages, and never truncates the archive.
+
+The merge distinguishes two kinds of field:
+
+- **Lifecycle fields** (`status`, `section`) — the operation genuinely changed;
+  a scheduled spray becomes complete.
+- **Derived fields** (products, times, area names…) — our *reading* of source
+  text that has not changed. A better parser is allowed to correct these on
+  re-observation, but only when the incoming value is non-empty, so a
+  regression can fail to improve a record and can never blank one.
+
+That distinction is load-bearing. Without it a parser bug is welded into the
+archive permanently, because the original text only exists on a page that rolls
+over every two months. It is what allowed a real bug — six years of rows where
+sentence fragments like `"depending on weather"` had been stored as pesticide
+names — to be repaired in place.
+
+## File layout
+
+```
+fetch_data.py         CLI entry point; runs the stages, writes data/
+verify_data.py        Archive integrity checks (also a CI gate)
+serve.py              Static server + POST /refresh subprocess shim
+index.html            The entire frontend. Single file, no build step
+sjmvcd/               Fetch/parse/merge package
+data/                 COMMITTED archive:
+  operations.json       823 operations
+  shapes.geojson        310 polygons, keyed by Google map id
+  manifest.json         run summary for the banner
+  .cache/               raw archived HTML (gitignored, regenerable)
+```
+
+## Automation
+
+`.github/workflows/refresh-data.yml` runs every 6 hours: it rescans the page,
+fetches shapes for any map id it has not seen before, rebuilds the timeline,
+and commits `data/` if anything changed. A weekly run also sweeps the Wayback
+Machine to self-heal any gap left by a paused or broken scheduler.
+
+Because the archive is irreplaceable, the job refuses to damage it:
+
+- it **fails rather than commits** if `operations.json` came back smaller than
+  it went in, and
+- it runs `verify_data.py`, which checks closed vocabularies, id derivation,
+  date plausibility, ring closure, in-county coordinates, and that every
+  operation still resolves to a polygon.
+
+Those checks were validated against nine deliberately corrupted archives —
+leaked prose in the product list, swapped lon/lat, an unclosed ring, a
+duplicated id, a blanked required field. All nine were caught.
+
+> The workflow is written and validated but **has never run**: this repo has no
+> remote yet. It will start on the first push to GitHub.
+
+## Data sources
+
+| Layer            | Source                                                    |
+|------------------|-----------------------------------------------------------|
+| Spray operations | [SJCMVCD Spray Alerts & Maps](https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps) |
+| Spray zone shapes| Google My Maps KML export (`maps/d/kml?mid=…`)            |
+| Historical pages | [Wayback Machine](https://web.archive.org/) CDX API       |
+| Basemap          | Carto Dark Matter / OpenStreetMap                          |
+
+Spray zone geometry and operation details are published by the San Joaquin
+County Mosquito & Vector Control District. Tiles © OpenStreetMap contributors
+© CARTO. The scrapers identify themselves by User-Agent and rate-limit
+themselves.
+
+## Limitations (honest list)
+
+- **One map is gone for good.** Map id `1PG7iZX-…` 404s on every Google
+  endpoint, so 2 operations from 2020 have no polygon. They are still counted
+  and are disclosed in the UI. The id is listed explicitly in `verify_data.py`
+  so a *new* unresolvable id still fails the build instead of blending in.
+- **Coverage is uneven before 2025.** History depends on how often the Wayback
+  Machine happened to crawl the page. 2022 has 58 operations and 2025 has 194;
+  that gap is snapshot luck, not a change in spraying. Any year-over-year
+  comparison is unsound.
+- **Winter is genuinely empty, not missing.** Jan–Apr and Dec have zero
+  operations across all seven years. The district does not spray then.
+- **Announced, not verified.** Every record is what the district *published*
+  ahead of an operation. Sprays are cancelled for weather (14 are marked so);
+  a completed status is the district's own, not independent confirmation.
+- **Zone polygons are the district's own drawings**, at whatever precision
+  they chose in Google My Maps. They are not parcel-accurate.
+- **The dataset is not a health or exposure record.** It shows where the
+  district said it would spray and when. It says nothing about drift,
+  deposition, or actual exposure.
+
+## Accessibility
+
+Built to WCAG 2.1 AA targets:
+
+- Semantic landmarks, skip link, visible `:focus-visible` rings
+- `prefers-reduced-motion` suppresses autoplay; the map stays fully usable as a
+  static, scrubbable map
+- The scrubber is a real `<input type="range">` and announces a date
+  (`aria-valuetext`), not a raw index
+- The calendar strip is a `grid` with a **roving tabindex** — exactly one
+  tabbable cell at a time rather than 2557 tab stops — with arrow/week/month/
+  Home/End navigation, and each cell names its date and operation count
+- `aria-live` announcements are throttled and suppressed during playback; at 4×
+  the date changes ~15 times a second and would otherwise make the page
+  unusable with a screen reader
+- Color encodings use CVD-safe palettes and are always backed by text; status
+  additionally carries a non-color signal
+
+## License
+
+[MIT](LICENSE).
