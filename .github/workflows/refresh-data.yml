@@ -117,6 +117,13 @@ jobs:
             echo "No new operations this run (normal outside spray season)."
           fi
 
+      # The guard above only proves the archive did not shrink. This proves it
+      # is not the right size but wrong: closed vocabularies, id derivation,
+      # date sanity, ring closure, in-county coordinates, and that every
+      # operation still resolves to a polygon.
+      - name: Verify archive integrity
+        run: python verify_data.py
+
       - name: Detect changes in data/
         id: diff
         run: |
