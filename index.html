@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description"
+        content="Animated timelapse of every published San Joaquin County Mosquito and Vector Control District spray operation, 2020 to present, looping through the full calendar year." />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0e13" />
+  <title>San Joaquin County mosquito spray timelapse</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    /* ---------------------------------------------------------------
+       Dark theme, committed (no light mode) — same palette as the
+       sibling ca-grid-weather-map project:
+         page bg #0b0e13 / panel rgba(20,24,32,.95) / body #e8eaed
+         secondary #c8ccd1 / key #b3c7d6 / accent #9ad7ff
+         hairline #3a4250 / focus ring #fde725
+       --------------------------------------------------------------- */
+    html, body { height: 100%; margin: 0; padding: 0; background: #0b0e13; }
+    body {
+      color: #e8eaed;
+      font: 13px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    main { flex: 1 1 auto; position: relative; min-height: 0; display: block; }
+    #map { position: absolute; inset: 0; background: #0b0e13; }
+
+    /* Skip link — invisible until focused. WCAG 2.4.1 (Bypass blocks). */
+    .skip-link {
+      position: absolute; left: 8px; top: -100px; z-index: 2000;
+      background: #fde725; color: #111; padding: 8px 14px; border-radius: 4px;
+      font: 600 14px system-ui, sans-serif; text-decoration: none;
+    }
+    .skip-link:focus { top: 8px; outline: 2px solid #fff; outline-offset: 2px; }
+
+    /* Visible focus ring — WCAG 2.4.7, keyboard users only. */
+    button:focus-visible, a:focus-visible, select:focus-visible,
+    input:focus-visible, [tabindex]:focus-visible, summary:focus-visible,
+    .leaflet-control a:focus-visible {
+      outline: 2px solid #fde725 !important;
+      outline-offset: 2px !important;
+      box-shadow: 0 0 0 4px rgba(253,231,37,0.25) !important;
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* prefers-reduced-motion: playback never auto-starts (handled in JS) and
+       nothing on the page eases/animates. Polygons are drawn on a <canvas>
+       (preferCanvas), so their opacity changes are already instantaneous —
+       there is no CSS transition to suppress on the shapes themselves. */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* --- floating panels over the map --- */
+    .panel {
+      position: absolute; z-index: 1000;
+      background: rgba(20, 24, 32, 0.95); color: #e8eaed;
+      border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.55);
+    }
+    #info { top: 10px; left: 56px; max-width: 380px; padding: 9px 12px; }
+    #info h1 { margin: 0 0 3px; font-size: 14px; letter-spacing: .2px; }
+    #info .meta { color: #c8ccd1; font-size: 12px; }
+    #info .meta b { color: #e8eaed; }
+    #info code { background: rgba(255,255,255,0.08); padding: 1px 4px; border-radius: 3px; }
+    #info .warn { color: #ffb84d; }
+    #info .err  { color: #ff8f8f; }
+    #info details { margin-top: 5px; }
+    #info summary { cursor: pointer; color: #9ad7ff; font-size: 12px; }
+    #info details .body { margin-top: 4px; color: #c8ccd1; font-size: 12px; }
+
+    #controls {
+      top: 10px; right: 10px; width: 296px; padding: 8px 10px 10px;
+      max-height: calc(100% - 20px); overflow-y: auto; overscroll-behavior: contain;
+    }
+    #controls h2 {
+      margin: 0 0 6px; font-size: 12px; font-weight: 600;
+      color: #9ad7ff; letter-spacing: .6px; text-transform: uppercase;
+    }
+    #controls .grp { border-top: 1px solid #3a4250; margin-top: 8px; padding-top: 7px; }
+    #controls .grp:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+    #controls label.field { display: block; margin: 5px 0; color: #b3c7d6; font-size: 12px; }
+    #controls select {
+      width: 100%; margin-top: 3px; padding: 5px 6px; min-height: 30px;
+      background: #161b24; color: #e8eaed; border: 1px solid #3a4250; border-radius: 4px;
+      font: 13px system-ui, sans-serif;
+    }
+    details.filter { margin: 4px 0; }
+    details.filter > summary {
+      cursor: pointer; color: #b3c7d6; font-size: 12px; padding: 3px 0;
+      list-style: none; display: flex; align-items: center; gap: 6px;
+    }
+    details.filter > summary::before { content: "\25B8"; color: #9ad7ff; font-size: 10px; }
+    details.filter[open] > summary::before { content: "\25BE"; }
+    details.filter > summary::-webkit-details-marker { display: none; }
+    .chk {
+      display: flex; align-items: center; gap: 7px; margin: 3px 0 3px 14px;
+      font-size: 12px; color: #e8eaed; cursor: pointer; min-height: 20px;
+    }
+    .chk input { accent-color: #9ad7ff; margin: 0; width: 14px; height: 14px; }
+    .chk .n { margin-left: auto; color: #c8ccd1; font-variant-numeric: tabular-nums; font-size: 11px; }
+    .setbtns { margin-left: 14px; }
+    .setbtns button {
+      background: none; border: 0; color: #9ad7ff; font: 11px system-ui, sans-serif;
+      cursor: pointer; padding: 2px 4px; text-decoration: underline;
+    }
+    .legend-row { display: flex; align-items: center; gap: 7px; margin: 3px 0; font-size: 12px; }
+    .legend-row .sw {
+      width: 16px; height: 12px; border-radius: 2px; flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .legend-row .n { margin-left: auto; color: #c8ccd1; font-size: 11px; font-variant-numeric: tabular-nums; }
+    .note { color: #c8ccd1; font-size: 11px; line-height: 1.4; margin: 5px 0 0; }
+
+    /* --- bottom timeline dock --- */
+    #timeline {
+      flex: 0 0 auto; background: #11151d; border-top: 1px solid #3a4250;
+      padding: 8px 12px 10px; position: relative; z-index: 1100;
+    }
+    .transport { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .transport button {
+      background: #1d2432; color: #e8eaed; border: 1px solid #3a4250;
+      border-radius: 4px; cursor: pointer; min-height: 32px; min-width: 34px;
+      font: 13px system-ui, sans-serif; padding: 4px 9px;
+    }
+    .transport button:hover:not(:disabled) { background: #27303f; }
+    .transport button:disabled { color: #6d7686; cursor: not-allowed; }
+    .transport button.primary { background: #2a6cdb; border-color: #2a6cdb; color: #fff; min-width: 82px; }
+    .transport button.primary:hover:not(:disabled) { background: #3b7ce8; }
+    .transport select {
+      background: #161b24; color: #e8eaed; border: 1px solid #3a4250;
+      border-radius: 4px; min-height: 32px; padding: 4px 6px; font: 13px system-ui, sans-serif;
+    }
+    .transport label { color: #b3c7d6; font-size: 12px; display: flex; align-items: center; gap: 5px; }
+    .transport input[type=range].trail { width: 118px; accent-color: #9ad7ff; }
+    .transport .chk { margin: 0; }
+
+    #datebar { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 7px 0 2px; }
+    #cur-date { font: 600 17px/1.1 system-ui, sans-serif; color: #e8eaed; font-variant-numeric: tabular-nums; }
+    #cur-dow { color: #b3c7d6; font-size: 12px; }
+    .stats { display: flex; gap: 14px; flex-wrap: wrap; margin-left: auto; }
+    .stat { font-size: 12px; color: #c8ccd1; }
+    .stat b { color: #e8eaed; font-variant-numeric: tabular-nums; }
+    .stat .k { color: #b3c7d6; }
+    #skipmsg { color: #9ad7ff; font-size: 12px; }
+
+    #scrub {
+      width: 100%; margin: 4px 0 2px; accent-color: #9ad7ff; height: 20px;
+      display: block;
+    }
+
+    /* Calendar heat strip: one row per year in the period, 366 columns so the
+       months line up across years (a non-leap year simply ends one column
+       short — a sub-pixel difference at these widths). */
+    .cal { display: grid; grid-template-columns: 34px 1fr; gap: 3px 6px; align-items: center; }
+    .cal .yr { font-size: 11px; color: #b3c7d6; text-align: right; font-variant-numeric: tabular-nums; }
+    .cal .months, .cal .row { display: grid; grid-template-columns: repeat(366, 1fr); }
+    .cal .months span {
+      font-size: 10px; color: #b3c7d6; overflow: hidden; white-space: nowrap;
+      border-left: 1px solid #3a4250; padding-left: 3px; line-height: 1.3;
+    }
+    .cal .cell { height: 13px; background: #171b22; cursor: pointer; min-width: 0; }
+    .cal.multi .cell { height: 9px; }
+    .cal .cell.play { outline: 1.5px solid #fde725; outline-offset: -1px; z-index: 2; position: relative; }
+    .cal .cell.win  { box-shadow: inset 0 -2px 0 rgba(154,215,255,0.85); }
+    .cal .row.dim .cell { opacity: .55; }
+
+    #cal-legend {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      margin: 6px 0 0 40px; font-size: 11px; color: #c8ccd1;
+    }
+    #cal-legend .k { display: inline-flex; align-items: center; gap: 4px; }
+    #cal-legend i {
+      width: 13px; height: 10px; display: inline-block; border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    #cal-legend .hint { color: #b3c7d6; }
+
+    /* --- Leaflet chrome is authored light; force it onto the dark surface --- */
+    .leaflet-bar, .leaflet-control-layers {
+      background: rgba(20, 24, 32, 0.95) !important;
+      color: #e8eaed !important; border: 0 !important; border-radius: 6px !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+      font: 13px/1.4 system-ui, sans-serif !important;
+    }
+    .leaflet-bar a, .leaflet-bar a:hover {
+      background: transparent !important; color: #e8eaed !important;
+      border-bottom: 1px solid #3a4250 !important;
+      width: 30px; height: 30px; line-height: 30px; font-size: 18px;
+    }
+    .leaflet-bar a:last-child { border-bottom: 0 !important; }
+    .leaflet-bar a:hover { background: rgba(255,255,255,0.06) !important; }
+    .leaflet-bar a.leaflet-disabled { color: #5a6270 !important; cursor: not-allowed; }
+    .leaflet-control-attribution {
+      background: rgba(20, 24, 32, 0.85) !important; color: #b3c7d6 !important;
+      font: 11px system-ui, sans-serif !important; padding: 2px 6px !important;
+    }
+    .leaflet-control-attribution a { color: #9ad7ff !important; }
+    .leaflet-control-scale-line {
+      background: rgba(20,24,32,0.85) !important; color: #c8ccd1 !important;
+      border-color: #3a4250 !important;
+    }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: rgba(20, 24, 32, 0.97) !important; color: #e8eaed !important;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.55) !important;
+    }
+    .leaflet-popup-content { color: #e8eaed; font: 12px/1.45 system-ui, sans-serif; margin: 10px 12px; }
+    .leaflet-popup-close-button { color: #b3c7d6 !important; }
+    .leaflet-popup-close-button:hover { color: #fff !important; }
+    .leaflet-tooltip {
+      background: rgba(20,24,32,0.96) !important; color: #e8eaed !important;
+      border: 1px solid #3a4250 !important; box-shadow: 0 2px 8px rgba(0,0,0,.5) !important;
+      font: 12px system-ui, sans-serif !important;
+    }
+    .leaflet-tooltip:before { border-top-color: #3a4250 !important; border-bottom-color: #3a4250 !important; }
+
+    .pop h3 { margin: 0 0 4px; font-size: 13px; color: #9ad7ff; }
+    .pop table { border-collapse: collapse; }
+    .pop td { padding: 1px 8px 1px 0; vertical-align: top; }
+    .pop td:first-child { color: #b3c7d6; white-space: nowrap; }
+    .pop .op {
+      border-top: 1px solid #3a4250; margin-top: 6px; padding-top: 5px;
+      max-width: 330px;
+    }
+    .pop .op .d { color: #e8eaed; font-weight: 600; }
+    .pop .tag {
+      display: inline-block; padding: 0 5px; border-radius: 3px; font-size: 10px;
+      background: #2a3140; color: #d6dae0; margin-right: 4px; line-height: 16px;
+    }
+    .pop .tag.bad { background: #5b2130; color: #ffd7de; }
+    .pop a { color: #9ad7ff; }
+    .pop .raw { color: #c8ccd1; font-style: italic; }
+
+    @media (max-width: 900px) {
+      #controls { width: 250px; }
+      #info { max-width: 250px; left: 56px; }
+    }
+    @media (max-width: 700px) {
+      #info { left: 8px; right: 8px; max-width: none; top: 8px; }
+      #controls { top: auto; bottom: 8px; left: 8px; right: 8px; width: auto; max-height: 42%; }
+      .stats { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#map">Skip to map</a>
+
+  <main>
+    <div id="map"
+         role="application"
+         aria-label="Map of San Joaquin County mosquito spray zones, animated over time. Use Tab to enter the map, then arrow keys to pan and plus or minus to zoom. Timeline controls are below the map."
+         tabindex="0"></div>
+
+    <header id="info" class="panel" role="region" aria-label="Data source and archive status">
+      <h1>San Joaquin County spray timelapse</h1>
+      <div class="meta" id="meta">Loading <code>data/</code>&hellip;</div>
+      <details id="about">
+        <summary>About this archive</summary>
+        <div class="body" id="about-body">
+          Every spray operation published by the
+          <a href="https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps" target="_blank" rel="noopener"
+             style="color:#9ad7ff">San Joaquin County Mosquito &amp; Vector Control District</a>,
+          with the Google My Maps polygon the district drew for each one.
+          Boundaries are the district's own; timing is as announced, not as flown.
+        </div>
+      </details>
+    </header>
+
+    <aside id="controls" class="panel" role="region" aria-label="Map encoding and filters">
+      <div class="grp">
+        <h2>Color by</h2>
+        <label class="field" for="color-by">
+          Encode polygon color as
+          <select id="color-by">
+            <option value="method" selected>Application method</option>
+            <option value="target">Target stage</option>
+            <option value="product">Product (first listed)</option>
+          </select>
+        </label>
+        <div id="legend" role="region" aria-label="Color legend"></div>
+        <div class="note" id="legend-note"></div>
+        <div class="legend-row" style="margin-top:6px">
+          <span class="sw" aria-hidden="true" style="background:rgba(154,215,255,.35);border:1px solid #9ad7ff"></span>
+          Completed &mdash; solid outline
+        </div>
+        <div class="legend-row">
+          <span class="sw" aria-hidden="true"
+                style="background:rgba(154,215,255,.12);border:1px dashed #9ad7ff"></span>
+          Cancelled / postponed &mdash; dashed outline
+        </div>
+        <div class="legend-row">
+          <span class="sw" aria-hidden="true"
+                style="background:rgba(154,215,255,.12);border:1px dotted #9ad7ff"></span>
+          Scheduled, not yet flown &mdash; dotted
+        </div>
+        <p class="note">
+          Fill fades with age across the trail window: brightest on the spray day itself.
+        </p>
+      </div>
+
+      <div class="grp">
+        <h2>Filters</h2>
+        <div id="filters"></div>
+        <p class="note" id="filter-summary"></p>
+      </div>
+    </aside>
+  </main>
+
+  <section id="timeline" role="region" aria-label="Timelapse controls and calendar of spray days">
+    <div class="transport">
+      <button id="btn-play" class="primary" type="button" aria-label="Play the timelapse">&#9658; Play</button>
+      <button id="btn-prev" type="button" aria-label="Step back one day" title="Step back one day">&#9664;&#124;</button>
+      <button id="btn-next" type="button" aria-label="Step forward one day" title="Step forward one day">&#124;&#9654;</button>
+
+      <label for="sel-speed">Speed
+        <select id="sel-speed">
+          <option value="0.5">0.5&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="2">2&times;</option>
+          <option value="4">4&times;</option>
+        </select>
+      </label>
+
+      <label for="sel-year">Year
+        <select id="sel-year"></select>
+      </label>
+
+      <label for="rng-trail"
+             title="How long a spray stays visible after its date, fading with age. In cumulative mode this controls the fade ramp only.">Trail
+        <input type="range" id="rng-trail" class="trail" min="1" max="30" step="1" value="7"
+               aria-describedby="trail-out" />
+        <span id="trail-out" style="min-width:52px;display:inline-block">7 days</span>
+      </label>
+
+      <label class="chk" for="chk-cumulative" style="gap:6px"
+             title="Keep every operation of the period on the map instead of letting the trail expire.">
+        <input type="checkbox" id="chk-cumulative" /> Cumulative
+      </label>
+
+      <label class="chk" for="chk-skip" style="gap:6px"
+             title="Jump playback over runs of days with no operations. The scrubber and calendar still show the whole year.">
+        <input type="checkbox" id="chk-skip" checked />
+        Skip empty stretches
+      </label>
+      <span id="skipmsg"></span>
+    </div>
+
+    <div id="datebar">
+      <span id="cur-date">&mdash;</span>
+      <span id="cur-dow"></span>
+      <div class="stats" id="stats">
+        <span class="stat"><span class="k">In view</span> <b id="s-vis">0</b> treatments / <b id="s-viszone">0</b> zones</span>
+        <span class="stat"><span class="k">Season to date</span> <b id="s-cum">0</b> treatments / <b id="s-cumzone">0</b> distinct zones</span>
+        <span class="stat" title="Each zone counted once, however many times it was sprayed."><span class="k">Distinct-zone area</span> <b id="s-area">0</b> km&sup2;</span>
+        <span class="stat" title="Zone area summed once per treatment; repeat sprays of the same ground are counted again."><span class="k">Treatment-area sum</span> <b id="s-tarea">0</b> km&sup2;</span>
+        <!-- Wording matters here: spraying the same zone eight times is eight
+             treatments, not eight new square kilometres. The two area figures
+             are labelled so neither can be mistaken for the other. -->
+        <span class="stat" style="flex-basis:100%">
+          A &ldquo;treatment&rdquo; is one operation on one zone. Distinct-zone area counts each zone once no matter
+          how often it was sprayed; the treatment-area sum re-counts the same ground on every repeat spray.
+        </span>
+      </div>
+    </div>
+
+    <input type="range" id="scrub" min="0" max="365" step="1" value="0"
+           aria-label="Day of the selected period. Left and right arrows step one day; Page Up and Page Down step a week."
+           aria-describedby="scrub-desc" />
+    <span id="scrub-desc" class="sr-only">The scrubber always spans the whole calendar period, including months with no spraying.</span>
+
+    <div id="cal" class="cal" role="group" aria-label="Calendar heat strip: spray operations per day"></div>
+    <p class="sr-only" id="cal-summary"></p>
+
+    <div id="cal-legend">
+      <span>Operations per day:</span>
+      <span class="k"><i style="background:#171b22"></i>0</span>
+      <span class="k"><i style="background:#3b528b"></i>1</span>
+      <span class="k"><i style="background:#21918c"></i>2</span>
+      <span class="k"><i style="background:#5ec962"></i>3&ndash;4</span>
+      <span class="k"><i style="background:#addc30"></i>5&ndash;7</span>
+      <span class="k"><i style="background:#fde725"></i>8+</span>
+      <span class="hint">Click any day to jump there. The blue underline marks the trail window; the yellow box is the current day.</span>
+    </div>
+
+    <!-- Screen-reader announcements. Deliberately NOT the visible #cur-date node:
+         while the animation runs the date changes several times a second and a
+         live region on it would flood assistive tech. See announce() in the JS. -->
+    <p class="sr-only" id="live" role="status" aria-live="polite" aria-atomic="true"></p>
+  </section>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          onerror="document.getElementById('meta').innerHTML =
+                   '&lt;b class=&quot;err&quot;&gt;Leaflet failed to load from unpkg.com — the map cannot be drawn. Check the network connection or CDN access.&lt;/b&gt;'"></script>
+
+  <script>
+  /* =====================================================================
+     San Joaquin County mosquito spray timelapse
+     Single file, no build step, no framework. Leaflet 1.9.4 only.
+
+     PERFORMANCE STRATEGY (stated up front because it shapes everything):
+       - The three JSON files are fetched once. Two indexes are built once:
+           SHAPES : mid -> GeoJSON Feature
+           LAYERS : mid -> a Leaflet layer, created once and reused forever
+         Nothing is re-parsed or re-created per frame.
+       - Operations are bucketed once per filter change into ST.byDay, an
+         array indexed by "day offset within the current period". Rendering a
+         day therefore touches only the buckets inside the trail window, never
+         all 823 operations.
+       - The requestAnimationFrame loop only advances a clock. render() runs
+         only when the integer day index actually changes — a few times per
+         second at most, not 60.
+       - render() diffs the previous visible mid-set against the new one and
+         only calls addLayer / removeLayer / setStyle on the difference. The
+         layer set is never torn down and rebuilt.
+     ===================================================================== */
+
+  'use strict';
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- constants ------------------------------------------------ */
+
+  var DAY_MS = 86400000;
+  var BASE_MS_PER_DAY = 260;      // wall-clock ms per simulated day at 1x
+  var STALE_DAYS = 45;            // this is an archive, not live weather:
+                                  // warn only when the snapshot is old in
+                                  // "the season moved on" terms.
+
+  // Paul Tol "bright"/"vibrant" qualitative hues — distinguishable under
+  // deuteranopia, protanopia and tritanopia. Every one of these is also
+  // spelled out as text in the legend and in the popup, never color-only.
+  var PAL = {
+    method: { ground: '#4477AA', aerial: '#EE7733' },
+    target: { adult: '#AA3377', larval: '#228833' },
+    product: {
+      'Evergreen 5-25': '#4477AA',
+      'DeltaGard':      '#EE7733',
+      'Dibrom':         '#EE6677',
+      'VectoBac WDG':   '#228833',
+      'Altosid':        '#CCBB44',
+      'Pyronyl 525':    '#66CCEE'
+    }
+  };
+  var FALLBACK_COLOR = '#BBBBBB';
+
+  // Canonical product notes (closed vocabulary of 6 — see the district's alerts).
+  var PRODUCT_INFO = {
+    'Evergreen 5-25': 'pyrethrins + PBO, adulticide',
+    'DeltaGard':      'deltamethrin, adulticide',
+    'Dibrom':         'naled, adulticide',
+    'VectoBac WDG':   'Bti, larvicide',
+    'Altosid':        'methoprene, larvicide',
+    'Pyronyl 525':    'pyrethrins + PBO, adulticide'
+  };
+
+  var LABEL = {
+    method:  { ground: 'Ground (truck)', aerial: 'Aerial (aircraft)' },
+    target:  { adult: 'Adult mosquitoes (adulticide)', larval: 'Larvae (larvicide)' },
+    status:  { complete: 'Completed', cancelled: 'Cancelled', postponed: 'Postponed', scheduled: 'Scheduled' }
+  };
+
+  // Region taxonomy encoded in the leading capitals of zone_code.
+  var REGION_NAME = {
+    D: 'Delta', E: 'Escalon', L: 'Lodi', LN: 'Linden', M: 'Manteca',
+    MH: 'Mountain House', R: 'Ripon', S: 'Stockton', SC: 'South County',
+    T: 'Tracy', TH: 'Thornton', UNKNOWN: 'Unknown / no zone code'
+  };
+
+  // Sequential ramp for the calendar counts: Viridis samples, perceptually
+  // uniform and colorblind-safe by construction. Index 0 is "no operations",
+  // deliberately near the panel background so empty days read as empty.
+  var HEAT = ['#171b22', '#3b528b', '#21918c', '#5ec962', '#addc30', '#fde725'];
+  function heatColor(n) {
+    if (!n) return HEAT[0];
+    if (n === 1) return HEAT[1];
+    if (n === 2) return HEAT[2];
+    if (n <= 4) return HEAT[3];
+    if (n <= 7) return HEAT[4];
+    return HEAT[5];
+  }
+
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var MONTH_LEN = [31,28,31,30,31,30,31,31,30,31,30,31];  // reference (non-leap) layout
+  var DOW = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  var prefersReducedMotion =
+    !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  /* ---------- application state ---------------------------------------- */
+
+  var OPS = [];                 // all operations, augmented in place
+  var SHAPES = new Map();       // mid -> Feature
+  var LAYERS = new Map();       // mid -> Leaflet layer (created once)
+  var MANIFEST = null;
+
+  var ST = {
+    year: null,                 // a number, or 'all'
+    startMs: 0,                 // UTC ms of day index 0
+    nDays: 366,
+    day: 0,
+    playing: false,
+    speed: 1,
+    trail: 7,
+    cumulative: false,
+    skipEmpty: true,
+    colorBy: 'method',
+    filters: {},                // dimension -> Set of enabled values
+    byDay: [],                  // day index -> [op,...] (filtered, current period)
+    counts: [],                 // day index -> filtered op count
+    activeDays: [],             // sorted day indexes with >0 filtered ops
+    visible: new Map(),         // mid -> { age, ops, top }
+    cells: [],                  // day index -> calendar cell element
+    markedWin: [],              // cells currently flagged .win
+    markedPlay: null,
+    unmappableTotal: 0          // ops whose mid has no shape (whole archive)
+  };
+
+  /* ---------- small helpers -------------------------------------------- */
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+  function dateToMs(d) {                    // "YYYY-MM-DD" -> UTC ms
+    var p = d.split('-');
+    return Date.UTC(+p[0], +p[1] - 1, +p[2]);
+  }
+  function msToDate(ms) {                   // UTC ms -> "YYYY-MM-DD"
+    return new Date(ms).toISOString().slice(0, 10);
+  }
+  function fmtLong(ms) {
+    var d = new Date(ms);
+    return MONTHS[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+  }
+  function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+  function daysInYear(y) { return isLeap(y) ? 366 : 365; }
+  function fmtNum(n, dp) {
+    return Number(n).toLocaleString(undefined, {
+      minimumFractionDigits: dp || 0, maximumFractionDigits: dp || 0
+    });
+  }
+  function regionOf(zoneCode) {
+    if (!zoneCode) return 'UNKNOWN';
+    var m = String(zoneCode).match(/^[A-Z]+/);
+    return m ? m[0] : 'UNKNOWN';
+  }
+  function regionLabel(code) { return REGION_NAME[code] || code; }
+
+  /* ---------- map ------------------------------------------------------ */
+
+  var map = null, canvasRenderer = null;
+
+  function initMap() {
+    // preferCanvas matters: several hundred polygons can be on screen in
+    // cumulative mode, and one canvas beats hundreds of SVG paths.
+    map = L.map('map', { preferCanvas: true, zoomControl: true })
+      .setView([37.94, -121.27], 9);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; ' +
+                   '<a href="https://carto.com/attributions">CARTO</a> &middot; ' +
+                   'spray zones &copy; San Joaquin County Mosquito &amp; Vector Control District',
+      subdomains: 'abcd', maxZoom: 19
+    }).addTo(map);
+
+    L.control.scale({ imperial: true, metric: true }).addTo(map);
+    canvasRenderer = L.canvas({ padding: 0.3 });
+  }
+
+  /* ---------- load ----------------------------------------------------- */
+
+  function fail(msg) {
+    $('meta').innerHTML = '<b class="err">' + esc(msg) + '</b>';
+  }
+
+  function boot() {
+    if (typeof L === 'undefined') { return; }   // the CDN onerror already spoke
+    initMap();
+
+    Promise.all([
+      fetch('data/operations.json').then(okJson),
+      fetch('data/shapes.geojson').then(okJson),
+      fetch('data/manifest.json').then(okJson).catch(function () { return null; })
+    ]).then(function (res) {
+      MANIFEST = res[2];
+      ingest(res[0], res[1]);
+      buildUI();
+      renderManifest();
+    }).catch(function (err) {
+      console.error(err);
+      fail('Could not load the archive from data/ (' + err +
+           '). If you opened this file directly from disk, browsers block fetch() on file:// — ' +
+           'run "python serve.py" (or "python -m http.server") in the project folder and reload over http.');
+    });
+  }
+
+  function okJson(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + r.url);
+    return r.json();
+  }
+
+  function ingest(opsDoc, geo) {
+    // --- shapes index + one reusable Leaflet layer per mid ---------------
+    (geo.features || []).forEach(function (f) {
+      var mid = f.id || (f.properties && f.properties.mid);
+      if (!mid) return;
+      SHAPES.set(mid, f);
+      var layer = L.geoJSON(f, {
+        renderer: canvasRenderer,
+        style: { color: FALLBACK_COLOR, weight: 1, fillOpacity: 0.2 }
+      });
+      // Popup and tooltip content are functions, so they always describe the
+      // operations currently in view for this polygon rather than a snapshot
+      // captured at bind time. One mid can carry dozens of operations.
+      layer.bindPopup(function () { return popupHtml(mid); }, { maxWidth: 380, autoPan: true });
+      layer.bindTooltip(function () { return tooltipHtml(mid); }, { sticky: true });
+      LAYERS.set(mid, layer);
+    });
+
+    // --- operations ------------------------------------------------------
+    OPS = (opsDoc.operations || []).slice();
+    OPS.forEach(function (op) {
+      op._ms = dateToMs(op.date);
+      op._year = +op.date.slice(0, 4);
+      var f = SHAPES.get(op.mid);
+      op._hasShape = !!f;
+      op._zone = f ? (f.properties.zone_code || null) : null;
+      op._region = regionOf(op._zone);
+      op._area = f ? (f.properties.area_sq_km || 0) : 0;
+      op._doc = f ? (f.properties.doc_name || '') : '';
+      if (!op._hasShape) ST.unmappableTotal++;
+    });
+    OPS.sort(function (a, b) { return a._ms - b._ms; });
+
+    // Fit the map to the archive footprint rather than a hardcoded box.
+    // Bounds are walked straight off the coordinates so we do not build a
+    // second set of 310 Leaflet layers just to ask for an extent.
+    var minLat = 90, maxLat = -90, minLon = 180, maxLon = -180, sawPoint = false;
+    function walk(c) {
+      if (typeof c[0] === 'number') {
+        sawPoint = true;
+        if (c[1] < minLat) minLat = c[1];
+        if (c[1] > maxLat) maxLat = c[1];
+        if (c[0] < minLon) minLon = c[0];
+        if (c[0] > maxLon) maxLon = c[0];
+      } else {
+        for (var i = 0; i < c.length; i++) walk(c[i]);
+      }
+    }
+    (geo.features || []).forEach(function (f) { if (f.geometry) walk(f.geometry.coordinates); });
+    if (sawPoint) map.fitBounds(L.latLngBounds([[minLat, minLon], [maxLat, maxLon]]), { padding: [16, 16] });
+  }
+
+  /* ---------- filters UI ------------------------------------------------ */
+
+  var FILTER_DEFS = [
+    { key: 'method',  label: 'Method',   pick: function (o) { return [o.method]; } },
+    { key: 'target',  label: 'Target',   pick: function (o) { return [o.target]; } },
+    { key: 'status',  label: 'Status',   pick: function (o) { return [o.status]; } },
+    { key: 'product', label: 'Product',  pick: function (o) { return o.products.length ? o.products : ['(none listed)']; } },
+    { key: 'region',  label: 'Region',   pick: function (o) { return [o._region]; } }
+  ];
+
+  function filterValueLabel(key, v) {
+    if (key === 'region') return regionLabel(v);
+    if (LABEL[key] && LABEL[key][v]) return LABEL[key][v];
+    return v;
+  }
+
+  function buildFilters() {
+    var host = $('filters');
+    host.innerHTML = '';
+    FILTER_DEFS.forEach(function (def) {
+      var counts = new Map();
+      OPS.forEach(function (op) {
+        def.pick(op).forEach(function (v) { counts.set(v, (counts.get(v) || 0) + 1); });
+      });
+      var vals = Array.from(counts.keys()).sort(function (a, b) {
+        return counts.get(b) - counts.get(a) || String(a).localeCompare(String(b));
+      });
+      ST.filters[def.key] = new Set(vals);
+
+      var d = document.createElement('details');
+      d.className = 'filter';
+      var sum = document.createElement('summary');
+      sum.textContent = def.label + ' (' + vals.length + ')';
+      d.appendChild(sum);
+
+      var btns = document.createElement('div');
+      btns.className = 'setbtns';
+      ['all', 'none'].forEach(function (which) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = which;
+        b.setAttribute('aria-label', (which === 'all' ? 'Select all ' : 'Clear all ') + def.label + ' filters');
+        b.addEventListener('click', function () {
+          d.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
+            cb.checked = (which === 'all');
+            if (cb.checked) ST.filters[def.key].add(cb.value);
+            else ST.filters[def.key].delete(cb.value);
+          });
+          applyFilters();
+        });
+        btns.appendChild(b);
+      });
+      d.appendChild(btns);
+
+      vals.forEach(function (v) {
+        var lab = document.createElement('label');
+        lab.className = 'chk';
+        var cb = document.createElement('input');
+        cb.type = 'checkbox'; cb.checked = true; cb.value = v;
+        cb.addEventListener('change', function () {
+          if (cb.checked) ST.filters[def.key].add(v); else ST.filters[def.key].delete(v);
+          applyFilters();
+        });
+        var txt = document.createElement('span');
+        txt.textContent = filterValueLabel(def.key, v);
+        var n = document.createElement('span');
+        n.className = 'n'; n.textContent = fmtNum(counts.get(v));
+        lab.appendChild(cb); lab.appendChild(txt); lab.appendChild(n);
+        d.appendChild(lab);
+      });
+
+      host.appendChild(d);
+    });
+  }
+
+  function opPasses(op) {
+    if (!ST.filters.method.has(op.method)) return false;
+    if (!ST.filters.target.has(op.target)) return false;
+    if (!ST.filters.status.has(op.status)) return false;
+    if (!ST.filters.region.has(op._region)) return false;
+    var prods = op.products.length ? op.products : ['(none listed)'];
+    for (var i = 0; i < prods.length; i++) if (ST.filters.product.has(prods[i])) return true;
+    return false;
+  }
+
+  /* ---------- legend ---------------------------------------------------- */
+
+  function buildLegend() {
+    var host = $('legend');
+    host.innerHTML = '';
+    var key = ST.colorBy;
+    var pal = PAL[key];
+    // For products, count every operation that NAMES the product (an operation
+    // can list two). The polygon color uses the first-listed product only —
+    // the note below says so, and the popup lists all of them as text.
+    var counts = new Map();
+    OPS.forEach(function (op) {
+      if (key === 'product') {
+        op.products.forEach(function (p) { counts.set(p, (counts.get(p) || 0) + 1); });
+      } else {
+        counts.set(op[key], (counts.get(op[key]) || 0) + 1);
+      }
+    });
+    Object.keys(pal).forEach(function (v) {
+      var row = document.createElement('div');
+      row.className = 'legend-row';
+      var sw = document.createElement('span');
+      sw.className = 'sw'; sw.style.background = pal[v]; sw.setAttribute('aria-hidden', 'true');
+      var t = document.createElement('span');
+      t.textContent = (key === 'product')
+        ? v + ' — ' + (PRODUCT_INFO[v] || '')
+        : filterValueLabel(key, v);
+      var n = document.createElement('span');
+      n.className = 'n'; n.textContent = fmtNum(counts.get(v) || 0);
+      row.appendChild(sw); row.appendChild(t); row.appendChild(n);
+      host.appendChild(row);
+    });
+    $('legend-note').textContent = (key === 'product')
+      ? 'Counts are operations naming that product. A polygon is colored by the first product listed for the freshest operation on it; the popup lists all of them as text.'
+      : 'Counts are operations across the whole archive. Every color here is also written out in the popup, so nothing depends on color alone.';
+  }
+
+  /* ---------- period / calendar ---------------------------------------- */
+
+  function yearsInData() {
+    var s = new Set();
+    OPS.forEach(function (o) { s.add(o._year); });
+    return Array.from(s).sort(function (a, b) { return a - b; });
+  }
+
+  function setPeriod(year) {
+    ST.year = year;
+    var years = yearsInData();
+    if (year === 'all') {
+      ST.startMs = Date.UTC(years[0], 0, 1);
+      var endMs = Date.UTC(years[years.length - 1], 11, 31);
+      ST.nDays = Math.round((endMs - ST.startMs) / DAY_MS) + 1;
+    } else {
+      ST.startMs = Date.UTC(year, 0, 1);
+      ST.nDays = daysInYear(year);
+    }
+    $('scrub').max = String(ST.nDays - 1);
+    buildCalendar();
+    applyFilters(true);
+  }
+
+  function dayIndexOf(op) { return Math.round((op._ms - ST.startMs) / DAY_MS); }
+  function msOfDay(i) { return ST.startMs + i * DAY_MS; }
+
+  function periodYears() {
+    var years = yearsInData();
+    return ST.year === 'all' ? years : [ST.year];
+  }
+
+  // The calendar always shows the FULL calendar year (or years), including the
+  // months with no spraying. That is the point: roughly half of every year is
+  // genuinely empty because the district does not spray in winter, and hiding
+  // those months would misrepresent the data as "missing".
+  function buildCalendar() {
+    var cal = $('cal');
+    cal.innerHTML = '';
+    ST.cells = new Array(ST.nDays);
+    ST.markedWin = [];
+    ST.markedPlay = null;
+    // Every cell node was just discarded, so the remembered tab stop points at
+    // a detached element. Reset it or moveCalendarTabStop() would short-circuit
+    // on a stale index and leave the new strip with no tabbable cell at all.
+    calTabIdx = -1;
+
+    var years = periodYears();
+    cal.className = 'cal' + (years.length > 1 ? ' multi' : '');
+
+    // Grid semantics. The layout children (the spacer, the month ruler and the
+    // year labels) are presentational scaffolding for the CSS grid, so they are
+    // marked as such -- only the day rows and their cells carry meaning.
+    cal.setAttribute('role', 'grid');
+    cal.setAttribute('aria-label',
+      'Spray calendar. Arrow keys move by day, up and down by week, ' +
+      'Page Up and Page Down by month, Home and End to the ends of the period.');
+
+    // Month ruler (spacer cell + 12 spans laid out on the 366-column grid).
+    var spacer = document.createElement('div');
+    spacer.setAttribute('role', 'presentation');
+    cal.appendChild(spacer);
+    var months = document.createElement('div');
+    months.className = 'months';
+    months.setAttribute('role', 'presentation');
+    months.setAttribute('aria-hidden', 'true');
+    MONTHS.forEach(function (m, i) {
+      var s = document.createElement('span');
+      s.textContent = m;
+      s.style.gridColumn = 'span ' + (MONTH_LEN[i] + (i === 1 ? 1 : 0)); // 366 total
+      months.appendChild(s);
+    });
+    cal.appendChild(months);
+
+    years.forEach(function (y) {
+      var lab = document.createElement('div');
+      lab.className = 'yr';
+      lab.textContent = y;
+      lab.setAttribute('role', 'presentation');
+      lab.setAttribute('aria-hidden', 'true');   // the cells name their own year
+      cal.appendChild(lab);
+
+      var row = document.createElement('div');
+      row.className = 'row';
+      row.dataset.year = y;
+      row.setAttribute('role', 'row');
+      var n = daysInYear(y);
+      var base = Math.round((Date.UTC(y, 0, 1) - ST.startMs) / DAY_MS);
+      for (var k = 0; k < n; k++) {
+        var idx = base + k;
+        var c = document.createElement('div');
+        c.className = 'cell';
+        c.dataset.idx = idx;
+        c.setAttribute('role', 'gridcell');
+        // Roving tabindex: exactly ONE cell is tabbable at a time. Making all
+        // ~2500 cells tab stops would be far worse than leaving them out --
+        // a keyboard user would have to tab through a year of days to reach
+        // anything after the strip. paintCalendar() supplies each cell's
+        // accessible name; moveCalendarTabStop() moves the -1/0 as the day
+        // changes.
+        c.tabIndex = -1;
+        row.appendChild(c);
+        ST.cells[idx] = c;
+      }
+      cal.appendChild(row);
+    });
+  }
+
+  // Roving tab stop: the cell for the current day is the single tabbable cell.
+  // Called from syncScrub() so the tab target always follows the timelapse.
+  var calTabIdx = -1;
+  function moveCalendarTabStop(idx) {
+    if (calTabIdx === idx) return;
+    var prev = ST.cells[calTabIdx];
+    if (prev) prev.tabIndex = -1;
+    var next = ST.cells[idx];
+    if (next) next.tabIndex = 0;
+    calTabIdx = next ? idx : -1;
+  }
+
+  // One delegated click handler for up to ~2500 cells, bound once (the strip is
+  // rebuilt whenever the period changes, so binding per build would stack up).
+  function bindCalendarClicks() {
+    $('cal').addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.classList.contains('cell')) return;
+      pause();
+      setDay(+t.dataset.idx, true);
+    });
+
+    // Keyboard equivalent of clicking a cell. Arrows move the day directly
+    // rather than requiring a separate Enter to commit -- the strip behaves
+    // like a second scrubber, which is what it visually is. Focus is moved
+    // onto the new cell so the roving tab stop and the visible focus ring
+    // stay on the day being read out.
+    $('cal').addEventListener('keydown', function (e) {
+      var t = e.target;
+      if (!t || !t.classList.contains('cell')) return;
+      var cur = +t.dataset.idx;
+      var d = null;
+      switch (e.key) {
+        case 'ArrowLeft':  d = cur - 1; break;
+        case 'ArrowRight': d = cur + 1; break;
+        case 'ArrowUp':    d = cur - 7; break;
+        case 'ArrowDown':  d = cur + 7; break;
+        case 'PageUp':     d = cur - 30; break;
+        case 'PageDown':   d = cur + 30; break;
+        case 'Home':       d = 0; break;
+        case 'End':        d = ST.nDays - 1; break;
+        case 'Enter':
+        case ' ':          d = cur; break;
+        default: return;
+      }
+      e.preventDefault();          // stop the page scrolling on arrows/space
+      pause();
+      d = Math.max(0, Math.min(ST.nDays - 1, d));
+      setDay(d, true);
+      var cell = ST.cells[d];
+      if (cell) cell.focus();
+    });
+  }
+
+  function paintCalendar() {
+    for (var i = 0; i < ST.nDays; i++) {
+      var c = ST.cells[i];
+      if (!c) continue;
+      var n = ST.counts[i] || 0;
+      c.style.backgroundColor = heatColor(n);
+      var when = msToDate(msOfDay(i));
+      var what = n ? n + ' operation' + (n === 1 ? '' : 's') : 'no operations';
+      c.title = when + ' — ' + what;
+      // The cell's colour is its only visual signal, so the count has to be in
+      // the accessible name -- a heat ramp conveys nothing to a screen reader.
+      c.setAttribute('aria-label', fmtLong(msOfDay(i)) + ', ' + what);
+    }
+    // Text equivalent of the strip for screen readers (the cells themselves
+    // are aria-hidden; a 2500-node grid read cell by cell is useless).
+    var perMonth = {};
+    for (var d = 0; d < ST.nDays; d++) {
+      if (!ST.counts[d]) continue;
+      var m = new Date(msOfDay(d)).getUTCMonth();
+      perMonth[m] = (perMonth[m] || 0) + ST.counts[d];
+    }
+    var parts = [];
+    for (var mi = 0; mi < 12; mi++) if (perMonth[mi]) parts.push(MONTHS[mi] + ' ' + perMonth[mi]);
+    $('cal-summary').textContent =
+      'Operations by month for the selected period: ' +
+      (parts.length ? parts.join(', ') + '.' : 'none.') +
+      ' Months not listed have zero operations.';
+  }
+
+  /* ---------- filtering + bucketing ------------------------------------ */
+
+  function applyFilters(resetDay) {
+    ST.byDay = new Array(ST.nDays);
+    ST.counts = new Array(ST.nDays).fill(0);
+    ST.activeDays = [];
+
+    var kept = 0, unmappableKept = 0;
+    for (var i = 0; i < OPS.length; i++) {
+      var op = OPS[i];
+      if (!opPasses(op)) continue;
+      var d = dayIndexOf(op);
+      if (d < 0 || d >= ST.nDays) continue;      // outside the selected period
+      kept++;
+      if (!op._hasShape) unmappableKept++;
+      if (!ST.byDay[d]) { ST.byDay[d] = []; ST.activeDays.push(d); }
+      ST.byDay[d].push(op);
+      ST.counts[d]++;
+    }
+    ST.activeDays.sort(function (a, b) { return a - b; });
+
+    $('filter-summary').textContent =
+      fmtNum(kept) + ' of ' + fmtNum(OPS.length) + ' archived operations pass the filters and fall in this period, on ' +
+      fmtNum(ST.activeDays.length) + ' spray day' + (ST.activeDays.length === 1 ? '' : 's') +
+      (unmappableKept ? '. ' + unmappableKept + ' of them cannot be drawn (no published map shape).' : '.');
+
+    paintCalendar();
+    if (resetDay) {
+      ST.day = ST.activeDays.length ? ST.activeDays[0] : 0;
+    }
+    syncScrub();
+    render();
+    announce();
+  }
+
+  // Binary search over the sorted activeDays array. Used by the empty-stretch
+  // skipper so the search is O(log n) rather than a scan of the year.
+  function nextActiveFrom(d) {
+    var lo = 0, hi = ST.activeDays.length - 1, ans = null;
+    while (lo <= hi) {
+      var mid = (lo + hi) >> 1;
+      if (ST.activeDays[mid] >= d) { ans = ST.activeDays[mid]; hi = mid - 1; }
+      else lo = mid + 1;
+    }
+    return ans;
+  }
+  function hasActiveInRange(a, b) {   // inclusive
+    var n = nextActiveFrom(a);
+    return n !== null && n <= b;
+  }
+
+  /* ---------- styling --------------------------------------------------- */
+
+  function colorOf(op) {
+    if (ST.colorBy === 'product') return PAL.product[op.products[0]] || FALLBACK_COLOR;
+    return (PAL[ST.colorBy] && PAL[ST.colorBy][op[ST.colorBy]]) || FALLBACK_COLOR;
+  }
+
+  // Status is encoded WITHOUT relying on hue: cancelled/postponed get a dashed
+  // outline, scheduled a dotted one, completed a solid one. The popup also
+  // spells the status out in words.
+  function dashOf(status) {
+    if (status === 'cancelled' || status === 'postponed') return '6 4';
+    if (status === 'scheduled') return '1 4';
+    return null;
+  }
+
+  function styleFor(entry) {
+    var op = entry.top;
+    var t = ST.cumulative ? Math.max(ST.trail, 1) : ST.trail;
+    // age 0 = sprayed today; fade linearly across the trail window, then hold
+    // at a low floor (cumulative mode keeps very old sprays faintly visible).
+    var f = t <= 1 ? 0 : Math.min(entry.age / (t - 1), 1);
+    var fresh = entry.age === 0;
+    var faded = op.status === 'cancelled' || op.status === 'postponed' || op.status === 'scheduled';
+    return {
+      color: colorOf(op),
+      weight: fresh ? 2.2 : 1.2,
+      opacity: Math.max(0.9 - 0.65 * f, 0.25),
+      fillColor: colorOf(op),
+      fillOpacity: faded ? Math.max(0.16 - 0.12 * f, 0.04)
+                         : Math.max(0.55 - 0.47 * f, 0.07),
+      dashArray: dashOf(op.status),
+      interactive: true
+    };
+  }
+
+  /* ---------- render ---------------------------------------------------- */
+
+  function render() {
+    var d = ST.day;
+    var from = ST.cumulative ? 0 : Math.max(0, d - ST.trail + 1);
+
+    var next = new Map();
+    var visTreatments = 0, visUnmapped = 0;
+
+    for (var i = from; i <= d; i++) {
+      var arr = ST.byDay[i];
+      if (!arr) continue;
+      var age = d - i;
+      for (var k = 0; k < arr.length; k++) {
+        var op = arr[k];
+        visTreatments++;
+        if (!op._hasShape) { visUnmapped++; continue; }
+        var e = next.get(op.mid);
+        if (!e) { next.set(op.mid, { age: age, ops: [op], top: op }); }
+        else {
+          e.ops.push(op);
+          if (age < e.age) { e.age = age; e.top = op; }
+        }
+      }
+    }
+
+    // Diff against the previous frame: only the delta touches Leaflet.
+    ST.visible.forEach(function (_e, mid) {
+      if (!next.has(mid)) map.removeLayer(LAYERS.get(mid));
+    });
+    next.forEach(function (e, mid) {
+      var layer = LAYERS.get(mid);
+      if (!ST.visible.has(mid)) layer.addTo(map);
+      layer.setStyle(styleFor(e));
+    });
+    ST.visible = next;
+
+    updateCalendarMarks(from, d);
+    updateStats(d, visTreatments, visUnmapped, next.size);
+  }
+
+  function updateCalendarMarks(from, d) {
+    var i;
+    for (i = 0; i < ST.markedWin.length; i++) ST.markedWin[i].classList.remove('win');
+    ST.markedWin.length = 0;
+    if (ST.markedPlay) { ST.markedPlay.classList.remove('play'); ST.markedPlay = null; }
+
+    // Only mark the trail window (bounded), not the whole cumulative history.
+    var lo = ST.cumulative ? Math.max(0, d - ST.trail + 1) : from;
+    for (i = lo; i <= d; i++) {
+      var c = ST.cells[i];
+      if (c) { c.classList.add('win'); ST.markedWin.push(c); }
+    }
+    var pc = ST.cells[d];
+    if (pc) { pc.classList.add('play'); ST.markedPlay = pc; }
+
+    // In multi-year mode, dim the rows that are not the current year.
+    if (ST.year === 'all') {
+      var y = new Date(msOfDay(d)).getUTCFullYear();
+      var rows = $('cal').querySelectorAll('.row');
+      for (i = 0; i < rows.length; i++) {
+        rows[i].classList.toggle('dim', +rows[i].dataset.year !== y);
+      }
+    }
+  }
+
+  function updateStats(d, visTreatments, visUnmapped, visZones) {
+    var ms = msOfDay(d);
+    $('cur-date').textContent = fmtLong(ms);
+    $('cur-dow').textContent = DOW[new Date(ms).getUTCDay()];
+
+    // Cumulative totals for the period up to and including today. Worst case
+    // this walks 823 operations, and it only runs on a day change, so it is
+    // nowhere near the per-frame hot path.
+    var cumT = 0, zones = new Set(), tArea = 0, cumUnmapped = 0;
+    for (var i = 0; i <= d; i++) {
+      var arr = ST.byDay[i];
+      if (!arr) continue;
+      for (var k = 0; k < arr.length; k++) {
+        var op = arr[k];
+        cumT++;
+        if (!op._hasShape) { cumUnmapped++; continue; }
+        zones.add(op.mid);
+        tArea += op._area;              // counted once per treatment (repeats included)
+      }
+    }
+    var distinctArea = 0;
+    zones.forEach(function (mid) {
+      var f = SHAPES.get(mid);
+      distinctArea += (f && f.properties.area_sq_km) || 0;
+    });
+
+    $('s-vis').textContent = fmtNum(visTreatments) + (visUnmapped ? ' (' + visUnmapped + ' unmappable)' : '');
+    $('s-viszone').textContent = fmtNum(visZones);
+    $('s-cum').textContent = fmtNum(cumT) + (cumUnmapped ? ' (' + cumUnmapped + ' unmappable)' : '');
+    $('s-cumzone').textContent = fmtNum(zones.size);
+    $('s-area').textContent = fmtNum(distinctArea, 1);
+    $('s-tarea').textContent = fmtNum(tArea, 1);
+  }
+
+  /* ---------- popups ---------------------------------------------------- */
+
+  function tooltipHtml(mid) {
+    var f = SHAPES.get(mid);
+    var e = ST.visible.get(mid);
+    var zone = (f && f.properties.zone_code) || 'no zone code';
+    var name = e && e.top ? e.top.area_name : ((f && f.properties.doc_name) || mid);
+    var n = e ? e.ops.length : 0;
+    return '<b>' + esc(zone) + '</b> — ' + esc(name) +
+           '<br/>' + n + ' operation' + (n === 1 ? '' : 's') + ' in view. Click for detail.';
+  }
+
+  function rowsHtml(rows) {
+    return '<table>' + rows.map(function (r) {
+      return '<tr><td>' + r[0] + '</td><td>' + (r[1] == null ? '—' : r[1]) + '</td></tr>';
+    }).join('') + '</table>';
+  }
+
+  function productsHtml(op) {
+    var canon = op.products.map(function (p) {
+      return esc(p) + (PRODUCT_INFO[p] ? ' <span class="tag">' + esc(PRODUCT_INFO[p]) + '</span>' : '');
+    }).join('<br/>') || '—';
+    var raw = (op.products_raw || []).join('; ');
+    var same = raw && raw.replace(/\s+/g, ' ').trim() === op.products.join('; ');
+    if (raw && !same) {
+      canon += '<br/><span class="raw">district wording: &ldquo;' + esc(raw) + '&rdquo;</span>';
+    }
+    return canon;
+  }
+
+  function timeHtml(op) {
+    if (!op.time_start && !op.time_end) return op.period ? esc(op.period) : null;
+    var t = esc(op.time_start || '?') + '–' + esc(op.time_end || '?');
+    return t + (op.period ? ' <span class="tag">' + esc(op.period) + '</span>' : '');
+  }
+
+  // The popup describes the operation(s) currently in view for this polygon.
+  // One mid can carry many operations on different dates, so we list every one
+  // inside the trail/cumulative window, freshest first.
+  function popupHtml(mid) {
+    var f = SHAPES.get(mid);
+    var e = ST.visible.get(mid);
+    var p = (f && f.properties) || {};
+    var head = '<div class="pop"><h3>' +
+      esc((e && e.top && e.top.area_name) || p.doc_name || 'Spray zone') + '</h3>' +
+      rowsHtml([
+        ['Zone code', esc(p.zone_code || '—')],
+        ['Region', esc(regionLabel(regionOf(p.zone_code)))],
+        ['Zone area', p.area_sq_km != null ? fmtNum(p.area_sq_km, 2) + ' km&sup2;' : '—'],
+        ['District map', '<a href="' + esc('https://www.google.com/maps/d/viewer?mid=' + mid) +
+          '" target="_blank" rel="noopener">View original district map</a>']
+      ]);
+
+    if (!e || !e.ops.length) {
+      return head + '<div class="op">No operation in the current time window.</div></div>';
+    }
+
+    var ops = e.ops.slice().sort(function (a, b) { return b._ms - a._ms; });
+    var shown = ops.slice(0, 6);
+    var body = shown.map(function (op) {
+      var badStatus = op.status !== 'complete';
+      var age = Math.round((msOfDay(ST.day) - op._ms) / DAY_MS);
+      return '<div class="op">' +
+        '<div class="d">' + esc(op.date) + ' — ' +
+          (age === 0 ? 'the current day' : fmtNum(age) + ' day' + (age === 1 ? '' : 's') + ' before the current day') +
+        '</div>' +
+        rowsHtml([
+          ['Method', esc(LABEL.method[op.method] || op.method)],
+          ['Target', esc(LABEL.target[op.target] || op.target)],
+          ['Products', productsHtml(op)],
+          ['Time', timeHtml(op)],
+          ['Status', '<span class="tag' + (badStatus ? ' bad' : '') + '">' +
+            esc(LABEL.status[op.status] || op.status) + '</span>' +
+            (op.status_text ? ' ' + esc(op.status_text) : '')],
+          ['Boundary', op.boundary_text ? esc(op.boundary_text) : null],
+          ['Source', esc(op.source)]
+        ]) + '</div>';
+    }).join('');
+
+    var more = ops.length > shown.length
+      ? '<div class="op">' + (ops.length - shown.length) + ' more operation(s) in this window not listed.</div>'
+      : '';
+    return head + body + more + '</div>';
+  }
+
+  /* ---------- playback --------------------------------------------------- */
+
+  var rafId = null, lastTs = 0, acc = 0;
+
+  function play() {
+    if (ST.playing || !ST.activeDays.length) return;
+    ST.playing = true;
+    lastTs = 0; acc = 0;
+    $('btn-play').innerHTML = '&#10074;&#10074; Pause';
+    $('btn-play').setAttribute('aria-label', 'Pause the timelapse');
+    rafId = requestAnimationFrame(tick);
+  }
+  function pause() {
+    if (!ST.playing) return;
+    ST.playing = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+    $('btn-play').innerHTML = '&#9658; Play';
+    $('btn-play').setAttribute('aria-label', 'Play the timelapse');
+    announce();   // announce where we landed, now that the flood has stopped
+  }
+  function toggle() { ST.playing ? pause() : play(); }
+
+  function tick(ts) {
+    if (!ST.playing) return;
+    if (!lastTs) lastTs = ts;
+    var dt = ts - lastTs;
+    lastTs = ts;
+    // Clamp: after a backgrounded tab the delta can be many seconds, which
+    // would fast-forward the whole year in one frame.
+    if (dt > 250) dt = 250;
+    acc += dt;
+    var msPerDay = BASE_MS_PER_DAY / ST.speed;
+    var steps = 0;
+    while (acc >= msPerDay && steps < 40) { acc -= msPerDay; advance(); steps++; }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  // THE EMPTY-WINTER PROBLEM.
+  // Jan-Apr and Dec have literally zero operations, every year. A day-by-day
+  // animation would therefore show an empty map for half the run time. When
+  // "skip empty stretches" is on we jump playback straight to the next day
+  // that has something on it — but the scrubber and the calendar strip still
+  // span the true, full calendar year, so the seasonality stays visible and
+  // the viewer is told how many days were skipped. Nothing is hidden; only the
+  // dwell time on dead days is removed.
+  function advance() {
+    var d = ST.day + 1;
+    var skipped = 0;
+    if (d >= ST.nDays) {                      // loop seamlessly
+      d = ST.skipEmpty && ST.activeDays.length ? ST.activeDays[0] : 0;
+      setDay(d, false);
+      flashSkip('Looped back to the start of the period.');
+      return;
+    }
+    if (ST.skipEmpty) {
+      // "Empty" means no NEW operation inside the trail window ending today.
+      // In cumulative mode the accumulated polygons stay on screen while we
+      // skip ahead, which is exactly what you want: the picture never blanks,
+      // it just stops idling through months the district never sprays in.
+      var windowStart = Math.max(0, d - ST.trail + 1);
+      if (!hasActiveInRange(windowStart, d)) {
+        var n = nextActiveFrom(d);
+        if (n === null) {                     // nothing left this period -> loop
+          d = ST.activeDays.length ? ST.activeDays[0] : 0;
+          setDay(d, false);
+          flashSkip('Looped back to the start of the period.');
+          return;
+        }
+        skipped = n - d;
+        d = n;
+      }
+    }
+    setDay(d, false);
+    if (skipped > 1) flashSkip('Skipped ' + skipped + ' days with no operations.');
+  }
+
+  var skipTimer = null;
+  function flashSkip(msg) {
+    var el = $('skipmsg');
+    el.textContent = msg;
+    if (skipTimer) clearTimeout(skipTimer);
+    skipTimer = setTimeout(function () { el.textContent = ''; }, 2200);
+  }
+
+  /* Keep the scrubber's value and its spoken value in one place so they can
+     never drift apart. Without aria-valuetext a screen reader announces the
+     raw index -- "205" -- which is meaningless; the whole point of the control
+     is the date it lands on. Also moves the calendar's roving tab stop so the
+     keyboard focus target follows the current day. */
+  function syncScrub() {
+    var el = $('scrub');
+    el.value = String(ST.day);
+    el.setAttribute('aria-valuetext', fmtLong(msOfDay(ST.day)));
+    moveCalendarTabStop(ST.day);
+  }
+
+  function setDay(d, doAnnounce) {
+    d = Math.max(0, Math.min(ST.nDays - 1, d));
+    if (d === ST.day) {
+      if (doAnnounce) announce();
+      return;
+    }
+    ST.day = d;
+    syncScrub();
+    render();
+    if (doAnnounce) announce();
+  }
+
+  /* ---------- throttled screen-reader announcements ---------------------- */
+  /* Decision, deliberately: while the timelapse is PLAYING we announce
+     nothing. At 4x the date changes roughly 15 times a second; piping that
+     into a live region would make the page unusable with a screen reader and
+     would drown out everything else. Instead we announce on the actions a
+     screen-reader user actually performs — pause, step, scrub, calendar jump,
+     year change, filter change — and even then with a 1.2 s trailing throttle
+     so that holding down an arrow key produces one summary, not fifty. */
+  var annTimer = null, annLast = 0;
+  function announce() {
+    if (ST.playing) return;
+    var now = Date.now();
+    if (annTimer) clearTimeout(annTimer);
+    var delay = Math.max(0, 1200 - (now - annLast));
+    annTimer = setTimeout(function () {
+      annLast = Date.now();
+      var vis = 0;
+      ST.visible.forEach(function (e) { vis += e.ops.length; });
+      var zones = ST.visible.size;
+      var today = ST.counts[ST.day] || 0;
+      $('live').textContent =
+        fmtLong(msOfDay(ST.day)) + '. ' +
+        (today ? today + ' operation' + (today === 1 ? '' : 's') + ' on this day. ' : 'No operations on this day. ') +
+        vis + ' treatment' + (vis === 1 ? '' : 's') + ' across ' + zones +
+        ' zone' + (zones === 1 ? '' : 's') + ' in the current ' +
+        (ST.cumulative ? 'cumulative period.' : ST.trail + '-day trail.');
+    }, delay);
+  }
+
+  /* ---------- manifest banner ------------------------------------------- */
+
+  function renderManifest() {
+    var m = MANIFEST;
+    var lines = [];
+    if (!m) {
+      lines.push('<span class="warn">No <code>data/manifest.json</code> — showing the archive without run metadata.</span>');
+    } else {
+      var ageDays = (Date.now() - Date.parse(m.generated_at)) / DAY_MS;
+      var when = new Date(m.generated_at).toLocaleString();
+      if (ageDays > STALE_DAYS) {
+        lines.push('<span class="warn"><b>Archive snapshot is ' + Math.round(ageDays) +
+          ' days old</b> (' + esc(when) + '). Spray alerts published since then are not here — ' +
+          're-run <code>python fetch_data.py</code>.</span>');
+      } else {
+        lines.push('<b>Archive snapshot:</b> ' + esc(when) +
+          ' (' + (ageDays < 1 ? 'today' : Math.round(ageDays) + ' days ago') + ')');
+      }
+      var dMin = m.date_min || (OPS.length ? OPS[0].date : '?');
+      var dMax = m.date_max || (OPS.length ? OPS[OPS.length - 1].date : '?');
+      lines.push('<b>' + fmtNum(m.total_ops != null ? m.total_ops : OPS.length) + '</b> operations · <b>' +
+        fmtNum(m.total_shapes != null ? m.total_shapes : SHAPES.size) + '</b> published map shapes · ' +
+        esc(dMin) + ' to ' + esc(dMax));
+      if (m.errors && m.errors.length) {
+        lines.push('<span class="warn">' + m.errors.length + ' fetch error(s) recorded in the manifest.</span>');
+      }
+    }
+    // Honest accounting of the known gap: the district deleted one Google map,
+    // so those operations exist in the record but can never be drawn.
+    if (ST.unmappableTotal) {
+      lines.push('<span class="warn">' + ST.unmappableTotal + ' operation' +
+        (ST.unmappableTotal === 1 ? '' : 's') +
+        ' cannot be mapped</span> — the district deleted the Google map for that zone and it now 404s. ' +
+        'They are still counted in the treatment totals and flagged as &ldquo;unmappable&rdquo; there.');
+    }
+    $('meta').innerHTML = lines.join('<br/>');
+  }
+
+  /* ---------- wire up ---------------------------------------------------- */
+
+  function buildUI() {
+    if (!OPS.length) {
+      fail('data/operations.json parsed but contains no operations — nothing to animate.');
+      return;
+    }
+    buildFilters();
+    buildLegend();
+    bindCalendarClicks();
+
+    // Year selector: default to the most recent year present in the data,
+    // never a hardcoded year.
+    var years = yearsInData();
+    var sel = $('sel-year');
+    var optAll = document.createElement('option');
+    optAll.value = 'all';
+    optAll.textContent = 'All years (' + years[0] + '–' + years[years.length - 1] + ')';
+    sel.appendChild(optAll);
+    years.slice().reverse().forEach(function (y) {
+      var o = document.createElement('option');
+      o.value = String(y); o.textContent = String(y);
+      sel.appendChild(o);
+    });
+    var defaultYear = years[years.length - 1];
+    sel.value = String(defaultYear);
+
+    sel.addEventListener('change', function () {
+      pause();
+      setPeriod(sel.value === 'all' ? 'all' : +sel.value);
+      announce();
+    });
+
+    $('color-by').addEventListener('change', function () {
+      ST.colorBy = $('color-by').value;
+      buildLegend();
+      // Restyle only what is currently on the map.
+      ST.visible.forEach(function (e, mid) { LAYERS.get(mid).setStyle(styleFor(e)); });
+    });
+
+    $('btn-play').addEventListener('click', toggle);
+    $('btn-prev').addEventListener('click', function () { pause(); setDay(ST.day - 1, true); });
+    $('btn-next').addEventListener('click', function () { pause(); setDay(ST.day + 1, true); });
+
+    $('sel-speed').addEventListener('change', function () { ST.speed = +$('sel-speed').value; });
+
+    $('rng-trail').addEventListener('input', function () {
+      ST.trail = +$('rng-trail').value;
+      $('trail-out').textContent = ST.trail + (ST.trail === 1 ? ' day' : ' days');
+      render();
+      announce();
+    });
+
+    // The trail slider stays live in cumulative mode: everything sprayed so far
+    // remains on the map, and the slider then controls how fast an operation
+    // fades toward the floor opacity (and how far ahead the empty-stretch
+    // skipper looks). Disabling it would take away a control that still does
+    // something.
+    $('chk-cumulative').addEventListener('change', function () {
+      ST.cumulative = $('chk-cumulative').checked;
+      render();
+      announce();
+    });
+
+    $('chk-skip').addEventListener('change', function () { ST.skipEmpty = $('chk-skip').checked; });
+
+    $('scrub').addEventListener('input', function () {
+      pause();
+      setDay(+$('scrub').value, true);
+    });
+
+    // Space toggles playback, but only when focus is on the page body or the
+    // map — otherwise it would hijack buttons and checkboxes.
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== ' ' && e.code !== 'Space') return;
+      var t = e.target;
+      if (t === document.body || t === $('map')) { e.preventDefault(); toggle(); }
+    });
+
+    ST.speed = +$('sel-speed').value;
+    ST.trail = +$('rng-trail').value;
+    ST.skipEmpty = $('chk-skip').checked;
+    ST.cumulative = $('chk-cumulative').checked;
+    ST.colorBy = $('color-by').value;
+
+    setPeriod(defaultYear);
+
+    // prefers-reduced-motion: never autoplay. The map stays a fully usable,
+    // scrubable static map; the user can still press Play deliberately.
+    // The notice goes in the visible #skipmsg rather than the live region,
+    // because announce() would overwrite the live region a moment later.
+    if (prefersReducedMotion) {
+      $('skipmsg').textContent = 'Reduced motion is on — playback did not start automatically. Press Play or drag the day slider.';
+    } else {
+      play();
+    }
+  }
+
+  boot();
+  </script>
+</body>
+</html>
