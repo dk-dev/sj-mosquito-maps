@@ -1,0 +1,20 @@
+# Session / tooling artifacts
+.rstk/
+**/.sf/
+**/.sfdx/
+**/node_modules/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Raw upstream caches — regenerable, never the source of truth.
+# NOTE: data/ itself is COMMITTED. It is the historical spray archive and
+# cannot be re-derived once the district's page rolls an entry off.
+data/.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

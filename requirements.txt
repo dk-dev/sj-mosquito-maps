@@ -1,0 +1,14 @@
+# Runtime dependencies for fetch_data.py. Deliberately tiny: the whole
+# pipeline is HTTP + HTML + XML, all of which the standard library and these
+# two packages cover. Nothing here needs a compiler, so the scheduled GitHub
+# Actions job installs in seconds on a clean runner.
+
+# HTTP with connection pooling, retries and sane timeouts (sjmvcd/http.py).
+# 2.32 is the floor: it is the first release with the fixed certificate
+# handling and is what every current distro ships.
+requests>=2.32,<3
+
+# HTML parsing (sjmvcd/parse.py). Used with the standard library's built-in
+# 'html.parser' backend ONLY -- no lxml, no html5lib, so there is nothing to
+# build. 4.12 is the floor for the modern find_all/select API used here.
+beautifulsoup4>=4.12,<5

@@ -1,0 +1,34 @@
+{
+  "date_max": "2026-07-27",
+  "date_min": "2020-05-04",
+  "errors": [],
+  "generated_at": "2026-07-27T11:06:04Z",
+  "new_ops": 0,
+  "new_shapes": 0,
+  "page_ops": 79,
+  "shape_failures": 1,
+  "sources": {
+    "live": {
+      "html_bytes": 82114,
+      "operations": 79,
+      "status": "ok",
+      "unique_mids": 53,
+      "url": "https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps"
+    },
+    "shapes": {
+      "failed": 1,
+      "failed_mids": [
+        "1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c"
+      ],
+      "fetched": 0,
+      "requested": 1,
+      "status": "ok"
+    },
+    "wayback": {
+      "reason": "no --backfill",
+      "status": "skipped"
+    }
+  },
+  "total_ops": 823,
+  "total_shapes": 310
+}

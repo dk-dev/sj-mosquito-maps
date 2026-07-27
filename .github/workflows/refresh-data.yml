@@ -1,0 +1,139 @@
+name: Refresh spray archive
+
+# Scans the district's spray-alerts page for newly posted maps, pulls the
+# shapes for any map ID it has not seen before, and rebuilds the timeline.
+#
+# WHY THIS JOB MATTERS MORE THAN A USUAL CACHE REFRESH:
+# the district's page only retains roughly two months of operations. Once an
+# entry rolls off, the only remaining record is what this job has already
+# committed to data/. The archive is append-only and is NOT regenerable, so
+# the job is written to fail loudly rather than commit a truncated archive.
+
+on:
+  schedule:
+    # Every 6 hours. Operations are typically posted a day or two ahead, so
+    # this catches new maps well before the spray happens.
+    - cron: '15 */6 * * *'
+    # Weekly Wayback sweep (Sundays 04:40 UTC). Redundant while the 6-hourly
+    # job is healthy, but it self-heals any gap left by a broken or paused
+    # scheduler — GitHub also disables schedules on repos with no activity
+    # for 60 days, and this backfills whatever was missed in the meantime.
+    - cron: '40 4 * * 0'
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: 'Also sweep the Wayback Machine for historical operations'
+        type: boolean
+        default: false
+      backfill_limit:
+        description: 'Max archived snapshots to walk (blank = all)'
+        type: string
+        default: ''
+
+# A slow Wayback sweep must not overlap with the next scheduled tick — two
+# writers racing on data/operations.json would produce a conflicted commit.
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write # required to push the data/ commit
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Record the pre-run archive size so the guard below can prove the run
+      # only ever added history.
+      - name: Snapshot archive size
+        id: before
+        run: |
+          if [ -f data/operations.json ]; then
+            n=$(python -c "import json;print(len(json.load(open('data/operations.json'))['operations']))")
+          else
+            n=0
+          fi
+          echo "ops=$n" >> "$GITHUB_OUTPUT"
+          echo "Archive holds $n operations before this run."
+
+      # The weekly cron and the manual 'backfill' input both enable the
+      # Wayback sweep; the 6-hourly cron does not.
+      - name: Decide whether to backfill
+        id: mode
+        run: |
+          if [ "${{ github.event.schedule }}" = "40 4 * * 0" ] || [ "${{ inputs.backfill }}" = "true" ]; then
+            echo "flags=--backfill" >> "$GITHUB_OUTPUT"
+            echo "Wayback backfill: ON"
+          else
+            echo "flags=" >> "$GITHUB_OUTPUT"
+            echo "Wayback backfill: off"
+          fi
+
+      - name: Scrape, fetch shapes, rebuild timeline
+        env:
+          PYTHONUTF8: '1'
+        run: |
+          limit=""
+          if [ -n "${{ inputs.backfill_limit }}" ]; then
+            limit="--backfill-limit ${{ inputs.backfill_limit }}"
+          fi
+          python fetch_data.py ${{ steps.mode.outputs.flags }} $limit
+
+      - name: Show manifest
+        run: |
+          if [ -f data/manifest.json ]; then
+            python -c "import json;print(json.dumps(json.load(open('data/manifest.json')),indent=2))"
+          fi
+
+      # HARD GUARD: the archive is append-only and irreplaceable. If a parser
+      # regression or an upstream redesign produced a smaller archive, fail
+      # without committing so the previous good state stays on main.
+      - name: Guard against archive loss
+        run: |
+          n=$(python -c "import json;print(len(json.load(open('data/operations.json'))['operations']))")
+          before=${{ steps.before.outputs.ops }}
+          echo "Archive: $before -> $n operations."
+          if [ "$n" -lt "$before" ]; then
+            echo "::error::Archive SHRANK ($before -> $n). Refusing to commit — this would destroy history."
+            exit 1
+          fi
+          if [ "$before" -gt 0 ] && [ "$n" -eq "$before" ]; then
+            echo "No new operations this run (normal outside spray season)."
+          fi
+
+      - name: Detect changes in data/
+        id: diff
+        run: |
+          if git diff --quiet data/; then
+            echo "No data changes; skipping commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git diff --stat data/ | tail -5
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push refreshed archive
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          n=$(python -c "import json;print(len(json.load(open('data/operations.json'))['operations']))")
+          git add data/
+          git commit -m "chore: refresh spray archive ($n operations, $(date -u +'%Y-%m-%d %H:%MZ'))"
+          git push
