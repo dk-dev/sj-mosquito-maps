@@ -564,6 +564,13 @@
     map = L.map('map', { preferCanvas: true, zoomControl: true })
       .setView([37.94, -121.27], 9);
 
+    // Track which polygon's popup is open so render() can keep its contents in
+    // step with the clock (see refreshOpenPopup).
+    map.on('popupopen', function (e) {
+      openPopupMid = (e.popup && e.popup._source && e.popup._source._sjMid) || null;
+    });
+    map.on('popupclose', function () { openPopupMid = null; });
+
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; ' +
                    '<a href="https://carto.com/attributions">CARTO</a> &middot; ' +
@@ -617,9 +624,20 @@
         renderer: canvasRenderer,
         style: { color: FALLBACK_COLOR, weight: 1, fillOpacity: 0.2 }
       });
-      // Popup and tooltip content are functions, so they always describe the
-      // operations currently in view for this polygon rather than a snapshot
-      // captured at bind time. One mid can carry dozens of operations.
+      // Popup and tooltip content are functions of the CURRENT day, not a
+      // snapshot captured at bind time. One mid can carry dozens of operations.
+      //
+      // Leaflet only evaluates a popup's content function when the popup is
+      // opened, so during playback an open popup would freeze -- still reading
+      // "2 days before the current day" while the date banner had moved on four
+      // days. The tooltip re-evaluates on every mousemove, so the two could
+      // even contradict each other on screen. refreshOpenPopup(), called from
+      // render(), re-renders the open one on every day change.
+      // L.geoJSON is a LayerGroup, and clicking a polygon makes the CHILD path
+      // the popup's _source rather than the group, so the id has to live on
+      // both or the popupopen handler cannot identify which zone was opened.
+      layer._sjMid = mid;
+      layer.eachLayer(function (child) { child._sjMid = mid; });
       layer.bindPopup(function () { return popupHtml(mid); }, { maxWidth: 380, autoPan: true });
       layer.bindTooltip(function () { return tooltipHtml(mid); }, { sticky: true });
       LAYERS.set(mid, layer);
@@ -801,6 +819,10 @@
       ST.nDays = daysInYear(year);
     }
     $('scrub').max = String(ST.nDays - 1);
+    // Any pending "Skipped N days" / "Looped back" line refers to the period we
+    // are leaving. Clear it now, or it lingers under the newly selected year
+    // for up to 2.2 s describing something that no longer happened.
+    clearSkipMessage();
     buildCalendar();
     applyFilters(true);
   }
@@ -1002,6 +1024,15 @@
     if (resetDay) {
       ST.day = ST.activeDays.length ? ST.activeDays[0] : 0;
     }
+    // A filter change can empty the match set while playback is running (turn
+    // every method off, or pick a region/year pair with no operations -- e.g.
+    // Mountain House, which has exactly one op in the whole archive). There is
+    // then nothing to advance through, so stop rather than spin: the transport
+    // would otherwise keep saying "Pause" over a clock that never moves.
+    if (ST.playing && !ST.activeDays.length) {
+      pause();
+      flashSkip('No operations match the current filters — playback stopped.');
+    }
     syncScrub();
     render();
     announce();
@@ -1096,8 +1127,28 @@
     });
     ST.visible = next;
 
+    refreshOpenPopup();
     updateCalendarMarks(from, d);
     updateStats(d, visTreatments, visUnmapped, next.size);
+  }
+
+  /* An open popup describes the operations in view for one polygon AND their
+     age relative to the current day, both of which change as the clock moves.
+     Leaflet evaluates a popup's content function only at open time, so without
+     this the popup silently freezes: it would keep reading "2 days before the
+     current day" while the banner showed a date four days later, and the
+     hover tooltip -- which does re-evaluate -- would contradict it.
+
+     Only ever one popup is open, and this runs on day change rather than per
+     animation frame, so the cost is one innerHTML swap per step. If the layer
+     has left the trail window Leaflet has already closed the popup, so the
+     visibility check is a guard rather than the common path. */
+  var openPopupMid = null;
+  function refreshOpenPopup() {
+    if (!openPopupMid) return;
+    var layer = LAYERS.get(openPopupMid);
+    if (!layer || !ST.visible.has(openPopupMid)) return;
+    layer.setPopupContent(popupHtml(openPopupMid));
   }
 
   function updateCalendarMarks(from, d) {
@@ -1251,6 +1302,10 @@
   function play() {
     if (ST.playing || !ST.activeDays.length) return;
     ST.playing = true;
+    // announce() checks ST.playing when it is SCHEDULED, not when it fires, so
+    // a step immediately before pressing play would leave a trailing 1.2 s
+    // timer that speaks a date the clock has already passed. Drop it.
+    if (annTimer) { clearTimeout(annTimer); annTimer = null; }
     lastTs = 0; acc = 0;
     $('btn-play').innerHTML = '&#10074;&#10074; Pause';
     $('btn-play').setAttribute('aria-label', 'Pause the timelapse');
@@ -1307,8 +1362,19 @@
       var windowStart = Math.max(0, d - ST.trail + 1);
       if (!hasActiveInRange(windowStart, d)) {
         var n = nextActiveFrom(d);
-        if (n === null) {                     // nothing left this period -> loop
-          d = ST.activeDays.length ? ST.activeDays[0] : 0;
+        if (n === null) {                     // nothing left this period
+          // Defensive stop. If the filters match NOTHING there is no day worth
+          // looping to, and looping to 0 on every frame would pin the clock at
+          // Jan 1 while the transport still claimed to be playing -- and would
+          // re-arm flashSkip's timer 60 times a second so its message could
+          // never clear. applyFilters() already pauses in this case; this is
+          // the backstop for any path that does not go through it.
+          if (!ST.activeDays.length) {
+            pause();
+            flashSkip('No operations match the current filters — playback stopped.');
+            return;
+          }
+          d = ST.activeDays[0];
           setDay(d, false);
           flashSkip('Looped back to the start of the period.');
           return;
@@ -1327,6 +1393,10 @@
     el.textContent = msg;
     if (skipTimer) clearTimeout(skipTimer);
     skipTimer = setTimeout(function () { el.textContent = ''; }, 2200);
+  }
+  function clearSkipMessage() {
+    if (skipTimer) { clearTimeout(skipTimer); skipTimer = null; }
+    $('skipmsg').textContent = '';
   }
 
   /* Keep the scrubber's value and its spoken value in one place so they can
@@ -1464,7 +1534,14 @@
     $('btn-prev').addEventListener('click', function () { pause(); setDay(ST.day - 1, true); });
     $('btn-next').addEventListener('click', function () { pause(); setDay(ST.day + 1, true); });
 
-    $('sel-speed').addEventListener('change', function () { ST.speed = +$('sel-speed').value; });
+    $('sel-speed').addEventListener('change', function () {
+      ST.speed = +$('sel-speed').value;
+      // Drop the leftover partial day. Carrying `acc` across a speed change
+      // means the accumulated fraction is measured against the OLD ms-per-day,
+      // so the first step after 4x -> 0.5x can land up to a whole 4x-frame
+      // early. Every other time-base reset already zeroes it.
+      acc = 0; lastTs = 0;
+    });
 
     $('rng-trail').addEventListener('input', function () {
       ST.trail = +$('rng-trail').value;
