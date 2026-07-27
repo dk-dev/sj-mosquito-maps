@@ -29,6 +29,27 @@
     main { flex: 1 1 auto; position: relative; min-height: 0; display: block; }
     #map { position: absolute; inset: 0; background: #0b0e13; }
 
+    /* WCAG 1.4.10 Reflow. The full-viewport layout above assumes the timeline
+       dock always fits under the map. At 400% zoom (the 1.4.10 test viewport is
+       320x256 CSS px) the dock is taller than the whole viewport, so `main`
+       collapsed to 0 height, the map vanished, and #controls -- absolutely
+       positioned inside that zero-height main -- was laid out ABOVE the top of
+       the screen. With `body{overflow:hidden}` propagating to the viewport
+       there was then no scrollbar and no way to reach ~50 focusable controls.
+
+       Below that threshold the page stops being a fixed full-screen app and
+       becomes an ordinary scrolling document: the map keeps a usable minimum
+       height and everything else flows underneath it. */
+    @media (max-height: 480px), (max-width: 480px) {
+      html, body { height: auto; }
+      body { overflow: auto; }
+      main { flex: 0 0 auto; min-height: 60vh; }
+      #map { position: relative; inset: auto; height: 60vh; min-height: 240px; }
+      #controls { position: static; max-height: none; width: auto; }
+      #info { position: static; max-width: none; margin: 8px; }
+      #timeline { position: static; }
+    }
+
     /* Skip link — invisible until focused. WCAG 2.4.1 (Bypass blocks). */
     .skip-link {
       position: absolute; left: 8px; top: -100px; z-index: 2000;
@@ -118,6 +139,20 @@
     }
     .legend-row .n { margin-left: auto; color: #c8ccd1; font-size: 11px; font-variant-numeric: tabular-nums; }
     .note { color: #c8ccd1; font-size: 11px; line-height: 1.4; margin: 5px 0 0; }
+
+    /* Keyboard/AT route to the zones (see #zones-details in the markup). */
+    #zonelist { list-style: none; margin: 6px 0 0; padding: 0; max-height: 240px; overflow-y: auto; }
+    #zonelist li { margin: 0 0 3px; }
+    #zonelist button {
+      display: block; width: 100%; text-align: left; cursor: pointer;
+      background: #161b24; color: #e8eaed; border: 1px solid #3a4250;
+      border-radius: 3px; padding: 5px 6px; font: inherit; font-size: 11.5px;
+      line-height: 1.35;
+    }
+    #zonelist button:hover { background: #1d2432; }
+    #zonelist button .zk { color: #9ad7ff; font-weight: 600; }
+    #zonelist button .zm { color: #c8ccd1; }
+    #zonelist .more { color: #c8ccd1; font-size: 11px; padding: 3px 2px; }
 
     /* --- bottom timeline dock --- */
     #timeline {
@@ -274,6 +309,18 @@
     </header>
 
     <aside id="controls" class="panel" role="region" aria-label="Map encoding and filters">
+      <!-- Keyboard and screen-reader route to the operation records. The map
+           uses a canvas renderer, so the polygons are pixels, not DOM nodes:
+           they cannot be tabbed to and a popup opened by mouse announces
+           nothing. Everything the popup shows therefore also lives here, as
+           real buttons, so the per-operation detail is reachable without a
+           pointer. Activating one opens that zone's popup and pans to it. -->
+      <details class="grp" id="zones-details">
+        <summary><h2 style="display:inline">Zones in view</h2></summary>
+        <div class="note">Every zone currently painted on the map, with the operations inside the trail window. Activate one to open it on the map.</div>
+        <ul id="zonelist" aria-label="Spray zones currently in view"></ul>
+      </details>
+
       <div class="grp">
         <h2>Color by</h2>
         <label class="field" for="color-by">
@@ -281,7 +328,7 @@
           <select id="color-by">
             <option value="method" selected>Application method</option>
             <option value="target">Target stage</option>
-            <option value="product">Product (first listed)</option>
+            <option value="product">Product applied</option>
           </select>
         </label>
         <div id="legend" role="region" aria-label="Color legend"></div>
@@ -358,14 +405,23 @@
       <div class="stats" id="stats">
         <span class="stat"><span class="k">In view</span> <b id="s-vis">0</b> treatments / <b id="s-viszone">0</b> zones</span>
         <span class="stat"><span class="k">Season to date</span> <b id="s-cum">0</b> treatments / <b id="s-cumzone">0</b> distinct zones</span>
-        <span class="stat" title="Each zone counted once, however many times it was sprayed."><span class="k">Distinct-zone area</span> <b id="s-area">0</b> km&sup2;</span>
+        <span class="stat" title="Each zone's published area, added up once per zone. Zones overlap, so this is larger than the ground covered."><span class="k">Zone areas summed</span> <b id="s-area">0</b> km&sup2;</span>
         <span class="stat" title="Zone area summed once per treatment; repeat sprays of the same ground are counted again."><span class="k">Treatment-area sum</span> <b id="s-tarea">0</b> km&sup2;</span>
         <!-- Wording matters here: spraying the same zone eight times is eight
-             treatments, not eight new square kilometres. The two area figures
-             are labelled so neither can be mistaken for the other. -->
+             treatments, not eight new square kilometres. And neither area figure
+             is the county's treated FOOTPRINT: the district's zones overlap and
+             nest heavily (334 pairs sit >90% inside another, and four pairs are
+             byte-identical polygons under different ids), so even counting each
+             zone once sums the same ground repeatedly. The true union for the
+             whole archive is roughly 918 km2 against the 2,498 km2 sum. Naming
+             the figure for what it does -- adding up zone areas -- is honest;
+             calling it "distinct-zone area" invited it to be read as a
+             footprint. Computing a real union in-browser would need a polygon
+             clipping library and is deliberately out of scope here. -->
         <span class="stat" style="flex-basis:100%">
-          A &ldquo;treatment&rdquo; is one operation on one zone. Distinct-zone area counts each zone once no matter
-          how often it was sprayed; the treatment-area sum re-counts the same ground on every repeat spray.
+          A &ldquo;treatment&rdquo; is one operation on one zone. Neither area figure is the county footprint:
+          spray zones overlap, so both add the same ground more than once. The zone sum counts each zone
+          once however often it was sprayed; the treatment sum re-counts it on every repeat spray.
         </span>
       </div>
     </div>
@@ -769,16 +825,15 @@
     host.innerHTML = '';
     var key = ST.colorBy;
     var pal = PAL[key];
-    // For products, count every operation that NAMES the product (an operation
-    // can list two). The polygon color uses the first-listed product only —
-    // the note below says so, and the popup lists all of them as text.
+    // For products, count by the SAME rule that picks the polygon colour. The
+    // legend previously counted every operation naming a product, so a tank mix
+    // was counted under both -- the totals (Evergreen 605 / DeltaGard 567) then
+    // summed past 823 and could never match what was on screen. A legend that
+    // does not describe the paint is worse than no legend.
     var counts = new Map();
     OPS.forEach(function (op) {
-      if (key === 'product') {
-        op.products.forEach(function (p) { counts.set(p, (counts.get(p) || 0) + 1); });
-      } else {
-        counts.set(op[key], (counts.get(op[key]) || 0) + 1);
-      }
+      var v = key === 'product' ? primaryProduct(op) : op[key];
+      if (v !== null && v !== undefined) counts.set(v, (counts.get(v) || 0) + 1);
     });
     Object.keys(pal).forEach(function (v) {
       var row = document.createElement('div');
@@ -795,8 +850,8 @@
       host.appendChild(row);
     });
     $('legend-note').textContent = (key === 'product')
-      ? 'Counts are operations naming that product. A polygon is colored by the first product listed for the freshest operation on it; the popup lists all of them as text.'
-      : 'Counts are operations across the whole archive. Every color here is also written out in the popup, so nothing depends on color alone.';
+      ? 'Many operations apply two products as a tank mix. Each is counted and colored once, under the product shown here; the popup lists every product applied. Counts are across the whole archive, not the selected period.'
+      : 'Counts are operations across the whole archive, not the selected period. Every color here is also written out in the popup, so nothing depends on color alone.';
   }
 
   /* ---------- period / calendar ---------------------------------------- */
@@ -857,6 +912,9 @@
     // year labels) are presentational scaffolding for the CSS grid, so they are
     // marked as such -- only the day rows and their cells carry meaning.
     cal.setAttribute('role', 'grid');
+    // The trail window is a contiguous run of "currently painted" days, marked
+    // with aria-selected in updateCalendarMarks.
+    cal.setAttribute('aria-multiselectable', 'true');
     cal.setAttribute('aria-label',
       'Spray calendar. Arrow keys move by day, up and down by week, ' +
       'Page Up and Page Down by month, Home and End to the ends of the period.');
@@ -1056,8 +1114,33 @@
 
   /* ---------- styling --------------------------------------------------- */
 
+  /* Which product represents an operation when colouring by product.
+
+     NOT products[0]. That is the order the district happened to write the two
+     names in the alert, and it drifted over the years: of 542 ground operations
+     using the identical Evergreen 5-25 + DeltaGard tank mix, the alerts put
+     Evergreen first 64 times in 2020 and DeltaGard first 139 times in 2025.
+     Colouring on source order made the all-years animation flip wholesale from
+     blue to orange across 2022-23, which reads as "the district switched
+     insecticide" when nothing about the chemistry changed -- only the sentence.
+
+     A fixed precedence gives one deterministic colour per mix. Larvicides rank
+     above adulticides because a larvicide application is the more distinctive
+     event, and the two are never mixed in practice. */
+  var PRODUCT_PRECEDENCE = [
+    'VectoBac WDG', 'Altosid',                      // larvicides
+    'Dibrom', 'DeltaGard', 'Evergreen 5-25', 'Pyronyl 525'   // adulticides
+  ];
+  function primaryProduct(op) {
+    var list = op.products || [];
+    for (var i = 0; i < PRODUCT_PRECEDENCE.length; i++) {
+      if (list.indexOf(PRODUCT_PRECEDENCE[i]) !== -1) return PRODUCT_PRECEDENCE[i];
+    }
+    return list[0] || null;
+  }
+
   function colorOf(op) {
-    if (ST.colorBy === 'product') return PAL.product[op.products[0]] || FALLBACK_COLOR;
+    if (ST.colorBy === 'product') return PAL.product[primaryProduct(op)] || FALLBACK_COLOR;
     return (PAL[ST.colorBy] && PAL[ST.colorBy][op[ST.colorBy]]) || FALLBACK_COLOR;
   }
 
@@ -1128,6 +1211,7 @@
     ST.visible = next;
 
     refreshOpenPopup();
+    renderZoneList();
     updateCalendarMarks(from, d);
     updateStats(d, visTreatments, visUnmapped, next.size);
   }
@@ -1151,20 +1235,96 @@
     layer.setPopupContent(popupHtml(openPopupMid));
   }
 
+  /* The keyboard/AT equivalent of the polygons. With preferCanvas the shapes
+     are pixels: there is nothing to tab to, and a popup opened by mouse sets no
+     focus and announces nothing, so without this every per-operation fact --
+     which zones, which pesticides, and critically whether an operation was
+     CANCELLED -- was pointer-only.
+
+     Rebuilt only while the disclosure is open, so the normal cost is a Boolean
+     test per frame. Capped because cumulative all-years mode can hold all 310
+     zones and a 310-button rebuild per animation step would be wasteful; the
+     cap is disclosed rather than silently truncating. */
+  var ZONE_LIST_CAP = 60;
+  function renderZoneList() {
+    var host = $('zonelist');
+    if (!host || !$('zones-details').open) return;
+    host.innerHTML = '';
+
+    var entries = [];
+    ST.visible.forEach(function (e, mid) { entries.push({ mid: mid, e: e }); });
+    // Freshest first: that is the reading order the animation implies.
+    entries.sort(function (a, b) { return a.e.age - b.e.age; });
+
+    var shown = entries.slice(0, ZONE_LIST_CAP);
+    shown.forEach(function (row) {
+      var e = row.e, props = (SHAPES.get(row.mid) || {}).properties || {};
+      var top = e.top;
+      var li = document.createElement('li');
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.dataset.mid = row.mid;
+
+      var products = (top.products || []).join(' + ') || 'not stated';
+      var statusBit = top.status === 'complete' ? '' : ', ' + LABEL.status[top.status];
+      var ageBit = e.age === 0 ? 'today' : e.age + (e.age === 1 ? ' day ago' : ' days ago');
+      var head = props.zone_code ? props.zone_code + ' — ' : '';
+
+      b.innerHTML =
+        '<span class="zk">' + esc(head + (top.area_name || '(unnamed zone)')) + '</span><br>' +
+        '<span class="zm">' + esc(
+          top.date + ' (' + ageBit + '), ' +
+          LABEL.method[top.method] + ', ' + LABEL.target[top.target] + ', ' +
+          products + statusBit +
+          (e.ops.length > 1 ? ' — ' + e.ops.length + ' operations in view' : '')
+        ) + '</span>';
+      li.appendChild(b);
+      host.appendChild(li);
+    });
+
+    if (entries.length > shown.length) {
+      var more = document.createElement('li');
+      more.className = 'more';
+      more.textContent = 'and ' + (entries.length - shown.length) +
+        ' more zones in view — shorten the trail or filter to see them individually.';
+      host.appendChild(more);
+    }
+  }
+
   function updateCalendarMarks(from, d) {
     var i;
-    for (i = 0; i < ST.markedWin.length; i++) ST.markedWin[i].classList.remove('win');
+    // The yellow playhead outline and the blue trail-window shading are the
+    // single piece of state this strip exists to communicate, and both were
+    // pure CSS classes -- so every cell read identically to a screen reader and
+    // "which day is now" was unavailable non-visually. aria-current marks the
+    // playhead; aria-selected marks the days currently painted on the map.
+    for (i = 0; i < ST.markedWin.length; i++) {
+      ST.markedWin[i].classList.remove('win');
+      ST.markedWin[i].removeAttribute('aria-selected');
+    }
     ST.markedWin.length = 0;
-    if (ST.markedPlay) { ST.markedPlay.classList.remove('play'); ST.markedPlay = null; }
+    if (ST.markedPlay) {
+      ST.markedPlay.classList.remove('play');
+      ST.markedPlay.removeAttribute('aria-current');
+      ST.markedPlay = null;
+    }
 
     // Only mark the trail window (bounded), not the whole cumulative history.
     var lo = ST.cumulative ? Math.max(0, d - ST.trail + 1) : from;
     for (i = lo; i <= d; i++) {
       var c = ST.cells[i];
-      if (c) { c.classList.add('win'); ST.markedWin.push(c); }
+      if (c) {
+        c.classList.add('win');
+        c.setAttribute('aria-selected', 'true');
+        ST.markedWin.push(c);
+      }
     }
     var pc = ST.cells[d];
-    if (pc) { pc.classList.add('play'); ST.markedPlay = pc; }
+    if (pc) {
+      pc.classList.add('play');
+      pc.setAttribute('aria-current', 'date');
+      ST.markedPlay = pc;
+    }
 
     // In multi-year mode, dim the rows that are not the current year.
     if (ST.year === 'all') {
@@ -1533,6 +1693,33 @@
     $('btn-play').addEventListener('click', toggle);
     $('btn-prev').addEventListener('click', function () { pause(); setDay(ST.day - 1, true); });
     $('btn-next').addEventListener('click', function () { pause(); setDay(ST.day + 1, true); });
+
+    // Zone list: opening the disclosure has to populate it (render() skips the
+    // work while it is closed), and activating an entry does what clicking the
+    // polygon does -- pan to it and open its popup.
+    $('zones-details').addEventListener('toggle', function () { renderZoneList(); });
+    $('zonelist').addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('button[data-mid]') : null;
+      if (!b) return;
+      var layer = LAYERS.get(b.dataset.mid);
+      if (!layer) return;
+      pause();
+      try { map.fitBounds(layer.getBounds(), { maxZoom: 13, padding: [40, 40] }); } catch (err) {}
+      layer.openPopup();
+    });
+
+    // The scrubber's label promises "Page Up and Page Down step a week". A
+    // native range does NOT do that -- the HTML spec says "a larger amount"
+    // and every engine implements ~1/10 of the range, which here is ~36 days.
+    // So the promise is honoured in code rather than the instruction watered
+    // down, and it matches the calendar grid's own Page Up/Down behaviour.
+    $('scrub').addEventListener('keydown', function (e) {
+      var step = e.key === 'PageUp' ? -7 : e.key === 'PageDown' ? 7 : 0;
+      if (!step) return;
+      e.preventDefault();
+      pause();
+      setDay(ST.day + step, true);
+    });
 
     $('sel-speed').addEventListener('change', function () {
       ST.speed = +$('sel-speed').value;
