@@ -60,6 +60,24 @@ def seed_payload():
     """
     payload = [(str(ROOT / "index.html"), ".")]
 
+    # Vendored Leaflet. Without this the exe ships 1.3 MB of archive and then
+    # cannot draw any of it without reaching unpkg.com -- the "works offline"
+    # promise would be false at the first launch on a plane or a locked-down
+    # network. Basemap TILES still need the network; the polygons no longer do.
+    vendor_dir = ROOT / "vendor"
+    vendored = 0
+    for entry in sorted(vendor_dir.rglob("*")):
+        if not entry.is_file():
+            continue
+        # Preserve the tree: leaflet.css references images/ by relative path.
+        payload.append((str(entry), str(Path("vendor") / entry.parent.relative_to(vendor_dir))))
+        vendored += 1
+    if vendored == 0:
+        raise SystemExit(
+            f"{APP_NAME}.spec: vendor/ is empty. index.html loads Leaflet from "
+            "there, so the exe would build and then show no map at all."
+        )
+
     data_dir = ROOT / "data"
     seeded = 0
     for entry in sorted(data_dir.iterdir()):

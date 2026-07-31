@@ -9,7 +9,14 @@
   <meta name="theme-color" content="#0b0e13" />
   <title>San Joaquin County mosquito spray timelapse</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Leaflet 1.9.4 is vendored under vendor/ rather than pulled from a CDN.
+       Three reasons: the packaged .exe ships the whole archive so it can open
+       with no network, and a CDN <script> made that claim false (no Leaflet,
+       no map at all); a CDN outage or a blocked unpkg.com breaks an app whose
+       entire dataset is already on disk; and it stops every launch announcing
+       itself to a third party. Basemap TILES still need the network -- without
+       it the spray polygons draw on an empty background. -->
+  <link rel="stylesheet" href="vendor/leaflet.css" />
 
   <style>
     /* ---------------------------------------------------------------
@@ -488,9 +495,9 @@
     <p class="sr-only" id="live" role="status" aria-live="polite" aria-atomic="true"></p>
   </section>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  <script src="vendor/leaflet.js"
           onerror="document.getElementById('meta').innerHTML =
-                   '&lt;b class=&quot;err&quot;&gt;Leaflet failed to load from unpkg.com — the map cannot be drawn. Check the network connection or CDN access.&lt;/b&gt;'"></script>
+                   '&lt;b class=&quot;err&quot;&gt;vendor/leaflet.js did not load, so the map cannot be drawn. If you are opening index.html directly from disk, serve it instead: run app.py (or view-map.cmd).&lt;/b&gt;'"></script>
 
   <script>
   /* =====================================================================

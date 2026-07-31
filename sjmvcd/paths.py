@@ -203,7 +203,22 @@ def seed_data_dir() -> tuple[int, Path]:
         target = destination / entry.name
         if target.exists():
             continue  # <- the whole point: never clobber a newer archive
-        shutil.copy2(entry, target)
+
+        # Copy through a temp file and rename into place. A plain copy of a
+        # 700 KB archive interrupted by a kill or a power loss leaves a
+        # TRUNCATED operations.json -- and because the guard above only asks
+        # whether the target exists, that broken file would then be skipped
+        # forever while the fetcher refuses to write over an unreadable
+        # archive. The app would be permanently unable to show a map or
+        # update itself, with no in-app way out. os.replace is atomic, so the
+        # destination either does not exist yet or is complete.
+        tmp = destination / f".{entry.name}.{os.getpid()}.partial"
+        try:
+            shutil.copy2(entry, tmp)
+            os.replace(tmp, target)
+        except BaseException:
+            tmp.unlink(missing_ok=True)
+            raise
         copied += 1
     return copied, destination
 

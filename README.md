@@ -107,6 +107,25 @@ private repositories without a paid plan. Everything below runs locally.
 | `python app.py --browser` | Skips the native window, uses your default browser |
 | `python serve.py` | Just the server on port 8000, if you want a plain tab |
 
+### As a Windows application
+
+```bash
+build-exe.cmd
+```
+
+Produces `dist\sj-mosquito-maps.exe` (~14 MB) — a single file you can hand to
+someone who has no Python. It carries the whole archive and a vendored copy of
+Leaflet, so it opens and draws the spray zones with no network at all; only the
+basemap tiles need internet. **Update maps** in the app re-scrapes the district's
+page and rewrites the archive in place.
+
+The exe keeps its archive in `%LOCALAPPDATA%\sj-mosquito-maps\data`, not beside
+the executable — a frozen app's own directory is either a temp folder that is
+deleted on exit or a Program Files path it cannot write to. On first run it
+copies the archive that shipped inside it to that location, and it only ever
+fills in files that are **missing**, so reinstalling or rebuilding can never roll
+a months-newer archive back to the build-time snapshot.
+
 The native window needs one optional extra:
 
 ```bash
@@ -164,10 +183,14 @@ names — to be repaired in place.
 ```
 app.py                Desktop launcher — native window, falls back to browser
 view-map.cmd          Double-clickable Windows wrapper around app.py
-fetch_data.py         CLI entry point; runs the stages, writes data/
+build-exe.cmd         One-step Windows build -> dist/sj-mosquito-maps.exe
+sj-mosquito-maps.spec PyInstaller build definition (committed, hand-written)
+fetch_data.py         CLI entry point; runs the stages, writes the archive
 verify_data.py        Archive integrity checks (also a CI gate)
-serve.py              Static server + POST /refresh subprocess shim
+serve.py              Static server + POST /refresh (runs the fetch in-process)
 index.html            The entire frontend. Single file, no build step
+vendor/               Leaflet 1.9.4, vendored so the app needs no CDN
+sjmvcd/paths.py       Resolves the two roots: read-only bundle vs writable archive
 sjmvcd/               Fetch/parse/merge package
 data/                 COMMITTED archive:
   operations.json       823 operations

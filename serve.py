@@ -41,7 +41,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from sjmvcd import paths
+from sjmvcd import archive, paths
 
 # Imported at module scope on purpose, for two reasons:
 #   1. PyInstaller's static analysis has to SEE this import to pull the fetcher
@@ -129,14 +129,28 @@ def run_fetch_in_process(backfill: bool) -> dict:
     # access-log line can land in these buffers. Harmless -- the tails are for
     # display only -- and the single-flight lock means it is never another
     # fetch's output.
+    # Tee to the CURRENT streams, not sys.__stdout__/__stderr__. In a frozen
+    # windowed build the originals are None -- there is no console -- and the
+    # runtime hook redirects sys.stdout to the log file, not sys.__stdout__.
+    # Teeing to the originals therefore dropped the passthrough on its first
+    # write and threw away every line the fetcher printed, so the one operation
+    # that touches the network and rewrites the archive was the only one that
+    # logged nothing at all.
     prev_out, prev_err = sys.stdout, sys.stderr
-    sys.stdout = _Tee(out_buf, sys.__stdout__)
-    sys.stderr = _Tee(err_buf, sys.__stderr__)
+    sys.stdout = _Tee(out_buf, prev_out)
+    sys.stderr = _Tee(err_buf, prev_err)
 
     t0 = time.time()
     returncode = 1
     try:
-        returncode = fetch_data.main(argv)
+        # Cross-process guard. _refresh_lock above only covers threads inside
+        # THIS process; a second copy of the frozen app resolves the same
+        # archive and would otherwise merge concurrently.
+        with archive.archive_lock(paths.data_dir()):
+            returncode = fetch_data.main(argv)
+    except archive.ArchiveBusy as exc:
+        err_buf.write(f"{exc}\n")
+        returncode = 1
     except SystemExit as exc:
         # argparse calls sys.exit on a bad flag; in-process that must not kill
         # the server thread.
@@ -209,7 +223,13 @@ class Handler(SimpleHTTPRequestHandler):
             return str(BUNDLE_ROOT / "__forbidden__")
 
         parts = relative.parts
-        if parts and parts[0] == "data":
+        # Case-insensitive on Windows deliberately. The filesystem is, so
+        # "/DATA/manifest.json" would otherwise miss this branch, fall through
+        # to the bundle root, and quietly serve the build-time SEED archive
+        # instead of the user's live one -- a stale-data path that returns 200
+        # rather than failing loudly.
+        if parts and (parts[0] == "data"
+                      or (sys.platform == "win32" and parts[0].lower() == "data")):
             # joinpath over the remaining components -- each already proven by
             # the base implementation not to be '..' and not to contain a path
             # separator, so this cannot climb out of the data root either.
@@ -290,7 +310,12 @@ def main():
     if copied:
         print(f"seeded {copied} archive file(s) into {data_root}")
 
-    with ThreadingHTTPServer(("", port), make_handler()) as httpd:
+    # 127.0.0.1, not "" (all interfaces). This server hands out the whole
+    # bundle root, which in a dev checkout is the repository -- source, .venv
+    # and all -- and exposes a POST that drives scrapes against the district
+    # and Google from this machine's address. None of that should be reachable
+    # from the rest of the network. app.py already binds the loopback only.
+    with ThreadingHTTPServer(("127.0.0.1", port), make_handler()) as httpd:
         print(f"serving {BUNDLE_ROOT} on http://localhost:{port}/")
         print(f"  /data/* -> {data_root}")
         print(f"  POST http://localhost:{port}/refresh             re-scrape the live page")

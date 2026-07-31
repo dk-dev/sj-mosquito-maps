@@ -442,9 +442,22 @@ def main(argv: list[str] | None = None) -> int:
         "date_max": dates[-1] if dates else None,
         "sources": sources,
         "errors": errors,
+        # Whether the counts above actually describe what is on disk. When the
+        # existing archive could not be read the merge never landed, so the
+        # totals are of a merge that exists only in memory -- writing them
+        # unqualified told the UI the archive had shrunk to whatever the live
+        # page happened to hold. Consumers must check this before trusting the
+        # counts.
+        "archive_written": bool(archive_readable and not args.dry_run),
     }
 
-    if not args.dry_run:
+    if not args.dry_run and not archive_readable:
+        # The archive was refused, so these totals describe a merge that never
+        # reached disk. Overwriting a good manifest with them would make the UI
+        # report a shrunken archive that is in fact intact.
+        print(f"\n[manifest] {MANIFEST_PATH.name}: NOT written -- the archive "
+              f"could not be read, so this run's counts describe nothing on disk")
+    elif not args.dry_run:
         try:
             # Same stable-timestamp rule as the archive: a run that changed
             # nothing leaves a byte-identical manifest, so the scheduled job's

@@ -35,8 +35,13 @@ Concretely:
 
 from __future__ import annotations
 
+import contextlib
 import json
 import os
+import subprocess
+import sys
+import threading
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
@@ -288,6 +293,119 @@ def _read_json(path: Path, *, strict: bool) -> Any | None:
 
 
 # ---------------------------------------------------------------------------
+# Cross-process locking
+# ---------------------------------------------------------------------------
+
+#: A lock older than this is assumed to belong to a process that was killed.
+#: Generous, because a Wayback backfill legitimately runs for many minutes.
+LOCK_STALE_SECONDS = 90 * 60
+
+
+class ArchiveBusy(RuntimeError):
+    """Raised when another process is already writing the archive."""
+
+
+#: Lockfiles this process currently holds. Needed to tell two situations apart
+#: that otherwise look identical -- a lock stamped with our own pid because WE
+#: are holding it right now (genuinely busy, refuse), versus one stamped with
+#: our pid by an earlier, crashed process whose id the OS has since recycled
+#: (abandoned, safe to steal). Without this distinction the same-pid case has
+#: to guess, and either guess is wrong half the time.
+_held_locks: set[Path] = set()
+_held_lock_guard = threading.Lock()
+
+
+@contextlib.contextmanager
+def archive_lock(data_dir: Path):
+    """
+    Hold an exclusive, cross-PROCESS lock on the archive for the duration.
+
+    The in-process ``threading.Lock`` in serve.py cannot see a second copy of
+    the application, and the frozen build makes that a realistic case: every
+    instance resolves the same archive under %LOCALAPPDATA%, and double-clicking
+    the exe twice is ordinary user behaviour when a window takes a moment to
+    appear. Two concurrent merges would race on the same files.
+
+    Implemented as an O_EXCL lockfile because it is the one primitive that
+    behaves identically on Windows and POSIX without a dependency. A lock whose
+    owning pid is gone, or that is older than LOCK_STALE_SECONDS, is treated as
+    abandoned and stolen -- otherwise a hard kill would leave the app
+    permanently unable to update, with no way for a non-developer to clear it.
+    """
+    data_dir.mkdir(parents=True, exist_ok=True)
+    lock_path = data_dir / ".refresh.lock"
+
+    def _stale() -> bool:
+        try:
+            age = time.time() - lock_path.stat().st_mtime
+        except OSError:
+            return True
+        if age > LOCK_STALE_SECONDS:
+            return True
+        try:
+            owner = int(lock_path.read_text(encoding="utf-8").split()[0])
+        except Exception:
+            return True          # unreadable lock tells us nothing; treat as dead
+        if owner == os.getpid():
+            # Ours only if we are actually holding it. If not, this is a
+            # leftover from a dead process whose pid got recycled onto us.
+            with _held_lock_guard:
+                return lock_path.resolve() not in _held_locks
+        return not _pid_alive(owner)
+
+    try:
+        fd = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        if not _stale():
+            raise ArchiveBusy(
+                "another copy of the app is updating the archive right now"
+            ) from None
+        lock_path.unlink(missing_ok=True)
+        try:
+            fd = os.open(lock_path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        except FileExistsError:  # lost the race to steal it
+            raise ArchiveBusy(
+                "another copy of the app is updating the archive right now"
+            ) from None
+
+    try:
+        os.write(fd, f"{os.getpid()} {utcnow_iso()}\n".encode("utf-8"))
+        os.close(fd)
+        with _held_lock_guard:
+            _held_locks.add(lock_path.resolve())
+        yield lock_path
+    finally:
+        with _held_lock_guard:
+            _held_locks.discard(lock_path.resolve())
+        lock_path.unlink(missing_ok=True)
+
+
+def _pid_alive(pid: int) -> bool:
+    """Best-effort liveness check; assumes alive when it cannot tell."""
+    if pid <= 0:
+        return False
+    if sys.platform == "win32":
+        try:
+            out = subprocess.run(
+                ["tasklist", "/FI", f"PID eq {pid}", "/NH"],
+                capture_output=True, text=True, timeout=10,
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+            ).stdout
+        except Exception:
+            return True
+        return str(pid) in out
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return True
+    return True
+
+
+# ---------------------------------------------------------------------------
 # Writing
 # ---------------------------------------------------------------------------
 
@@ -311,9 +429,23 @@ def write_json(path: str | os.PathLike, obj: Any, *, sort_keys: bool = True) -> 
     path.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(obj, indent=2, sort_keys=sort_keys, ensure_ascii=False) + "\n"
 
-    tmp = path.with_name(path.name + ".tmp")
-    tmp.write_text(text, encoding="utf-8", newline="\n")
-    os.replace(tmp, path)
+    # The temp name carries the pid. A fixed "<name>.tmp" is safe against
+    # threads (the refresh lock covers those) but NOT against two processes:
+    # the frozen app resolves one archive under %LOCALAPPDATA%, and
+    # double-clicking the exe twice is the most predictable thing a
+    # non-developer does when a window takes a few seconds to appear. Two
+    # instances writing the same "<name>.tmp" can interleave their bytes and
+    # then both os.replace it into position, publishing a corrupt archive --
+    # which is unrecoverable in-app, because the fetcher then refuses to write
+    # over an unreadable file and seeding will not re-copy a file that exists.
+    tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+    try:
+        tmp.write_text(text, encoding="utf-8", newline="\n")
+        os.replace(tmp, path)
+    except BaseException:
+        # Never leave a half-written temp behind for the next run to trip over.
+        tmp.unlink(missing_ok=True)
+        raise
 
 
 def write_json_stable(

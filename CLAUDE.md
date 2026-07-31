@@ -39,10 +39,14 @@ On Windows, `view-map.cmd` is double-clickable and wraps `app.py`.
 ```
 app.py                  Desktop launcher — native window via pywebview
 view-map.cmd            Double-clickable Windows wrapper around app.py
-fetch_data.py           CLI entry point; runs the stages, writes data/
+build-exe.cmd           One-step build -> dist/sj-mosquito-maps.exe
+sj-mosquito-maps.spec   PyInstaller build definition (committed, not generated)
+fetch_data.py           CLI entry point; runs the stages, writes the archive
 verify_data.py          Archive integrity checks (also a CI gate)
-serve.py                Static server + POST /refresh subprocess shim
+serve.py                Static server + POST /refresh (fetch runs IN-PROCESS)
 index.html              Entire frontend, single file
+vendor/                 Leaflet 1.9.4, vendored — no CDN at runtime
+sjmvcd/paths.py         The two roots: read-only bundle vs writable archive
 sjmvcd/http.py          Polite session: UA, retry/backoff
 sjmvcd/parse.py         Spray-alerts HTML -> operation records
 sjmvcd/shapes.py        Google My Maps KML -> GeoJSON
@@ -69,6 +73,17 @@ data/.cache/            Raw archived HTML (gitignored, regenerable)
   but only when the incoming value is non-empty, so a regression can fail to
   improve a record and never blank one. Without this, a parser bug is welded
   into the archive permanently.
+- **Two roots, and they only coincide in dev** (`sjmvcd/paths.py`). The
+  read-only bundle holds `index.html` and `vendor/`; the writable archive holds
+  `operations.json` and friends. In a checkout the second nests inside the
+  first, which is why one root was enough for years. In the frozen exe the
+  bundle is a temp directory **deleted on exit** and the archive lives in
+  `%LOCALAPPDATA%\sj-mosquito-maps\data`. Anything resolving data through
+  `__file__` is a bug that only shows up after shipping.
+- **Nothing may subprocess `sys.executable`.** In the frozen app that is the
+  GUI, so spawning it relaunches the window instead of running a scrape, and
+  `fetch_data.py` is not on disk to spawn anyway. `/refresh` imports and calls
+  the fetcher.
 - **Fetchers are failure-isolated.** Each stage records its own error into
   `data/manifest.json` and the run continues. A flaky upstream must never
   cost us the other stages, and must never truncate the archive.
