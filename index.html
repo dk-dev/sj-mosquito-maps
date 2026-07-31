@@ -25,6 +25,17 @@
          page bg #0b0e13 / panel rgba(20,24,32,.95) / body #e8eaed
          secondary #c8ccd1 / key #b3c7d6 / accent #9ad7ff
          hairline #3a4250 / focus ring #fde725
+
+       TWO hairlines, deliberately. #3a4250 is the STRUCTURAL rule -- the line
+       between a panel's groups, the dock's top edge. It separates regions of
+       one surface and WCAG 1.4.11 does not reach it. #6e7889 is the COMPONENT
+       hairline: the visible boundary of a button, a select or a list item, the
+       thing that says "this is operable". That IS in scope for 1.4.11 and needs
+       3:1 against its surround. Measured on the panel (rgba(20,24,32,.95) over
+       #0b0e13, relative luminance 0.0090): #3a4250 gives 1.77:1 -- a fail -- and
+       #6e7889 gives 4.05:1 against the panel and 3.54:1 against the buttons'
+       own #1d2432 fill. Do not collapse the two back into one token; the
+       structural rules are intentionally quieter than the controls.
        --------------------------------------------------------------- */
     html, body { height: 100%; margin: 0; padding: 0; background: #0b0e13; }
     body {
@@ -88,8 +99,14 @@
     }
 
     /* --- floating panels over the map --- */
+    /* box-sizing matters here, not just tidiness: #controls caps itself with
+       max-height: calc(100% - 20px) and carries 18px of vertical padding. Under
+       the default content-box that padding is added OUTSIDE the cap, so the
+       panel measured 8px taller than its own limit and its last 8px sat under
+       the z-index:1100 timeline dock -- a focused checkbox at the bottom of the
+       filter list was partly covered (WCAG 2.4.11 / 2.4.12). */
     .panel {
-      position: absolute; z-index: 1000;
+      position: absolute; z-index: 1000; box-sizing: border-box;
       background: rgba(20, 24, 32, 0.95); color: #e8eaed;
       border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.55);
     }
@@ -112,7 +129,7 @@
       margin-top: 7px; padding-top: 7px; border-top: 1px solid #3a4250;
     }
     #btn-update {
-      background: #1d2432; color: #e8eaed; border: 1px solid #3a4250;
+      background: #1d2432; color: #e8eaed; border: 1px solid #6e7889;
       border-radius: 4px; cursor: pointer; min-height: 30px; padding: 4px 10px;
       font: 13px system-ui, sans-serif;
     }
@@ -141,27 +158,47 @@
     #controls label.field { display: block; margin: 5px 0; color: #b3c7d6; font-size: 12px; }
     #controls select {
       width: 100%; margin-top: 3px; padding: 5px 6px; min-height: 30px;
-      background: #161b24; color: #e8eaed; border: 1px solid #3a4250; border-radius: 4px;
+      background: #161b24; color: #e8eaed; border: 1px solid #6e7889; border-radius: 4px;
       font: 13px system-ui, sans-serif;
     }
     details.filter { margin: 4px 0; }
+    /* min-height 24px on every disclosure trigger: WCAG 2.5.8 wants 24x24, and
+       a <summary> is a real target. At the old 3px padding these measured
+       17-23px tall and only passed through the "Spacing" exception, which then
+       constrained everything laid out near them. Meeting the size outright is
+       cheaper to reason about and cannot be broken by a neighbour moving. */
     details.filter > summary {
       cursor: pointer; color: #b3c7d6; font-size: 12px; padding: 3px 0;
       list-style: none; display: flex; align-items: center; gap: 6px;
+      min-height: 24px;
     }
+    /* Padding rather than display:flex — a <summary> whose display is changed
+       loses its disclosure triangle in Chrome, and the triangle is the only
+       affordance saying it opens. */
+    #about > summary, #zones-details > summary { min-height: 24px; padding: 3px 0; }
     details.filter > summary::before { content: "\25B8"; color: #9ad7ff; font-size: 10px; }
     details.filter[open] > summary::before { content: "\25BE"; }
     details.filter > summary::-webkit-details-marker { display: none; }
+    /* 24px, not 20px: WCAG 2.5.8. The filter rows sit on a 3px collapsed
+       margin, so a 20px row gave a 23px vertical pitch and the 24px target
+       circles of adjacent rows intersected -- which is exactly what the
+       Spacing exception forbids. 24px takes the pitch to 27px and the rows
+       pass on their own size, no exception needed. */
     .chk {
       display: flex; align-items: center; gap: 7px; margin: 3px 0 3px 14px;
-      font-size: 12px; color: #e8eaed; cursor: pointer; min-height: 20px;
+      font-size: 12px; color: #e8eaed; cursor: pointer; min-height: 24px;
     }
     .chk input { accent-color: #9ad7ff; margin: 0; width: 14px; height: 14px; }
     .chk .n { margin-left: auto; color: #c8ccd1; font-variant-numeric: tabular-nums; font-size: 11px; }
-    .setbtns { margin-left: 14px; }
+    /* "all" / "none" were 18.9x18.7 and 32.7x18.7 with a 0px gap between them,
+       so their target circles intersected each other AND the group's summary.
+       Sized to 24 and given a real gap they pass 2.5.8 outright. The underline
+       is what marks them as operable, so it stays. */
+    .setbtns { margin: 4px 0 4px 14px; display: flex; gap: 8px; }
     .setbtns button {
       background: none; border: 0; color: #9ad7ff; font: 11px system-ui, sans-serif;
       cursor: pointer; padding: 2px 4px; text-decoration: underline;
+      min-width: 24px; min-height: 24px;
     }
     .legend-row { display: flex; align-items: center; gap: 7px; margin: 3px 0; font-size: 12px; }
     .legend-row .sw {
@@ -176,7 +213,7 @@
     #zonelist li { margin: 0 0 3px; }
     #zonelist button {
       display: block; width: 100%; text-align: left; cursor: pointer;
-      background: #161b24; color: #e8eaed; border: 1px solid #3a4250;
+      background: #161b24; color: #e8eaed; border: 1px solid #6e7889;
       border-radius: 3px; padding: 5px 6px; font: inherit; font-size: 11.5px;
       line-height: 1.35;
     }
@@ -192,7 +229,7 @@
     }
     .transport { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .transport button {
-      background: #1d2432; color: #e8eaed; border: 1px solid #3a4250;
+      background: #1d2432; color: #e8eaed; border: 1px solid #6e7889;
       border-radius: 4px; cursor: pointer; min-height: 32px; min-width: 34px;
       font: 13px system-ui, sans-serif; padding: 4px 9px;
     }
@@ -201,11 +238,14 @@
     .transport button.primary { background: #2a6cdb; border-color: #2a6cdb; color: #fff; min-width: 82px; }
     .transport button.primary:hover:not(:disabled) { background: #3b7ce8; }
     .transport select {
-      background: #161b24; color: #e8eaed; border: 1px solid #3a4250;
+      background: #161b24; color: #e8eaed; border: 1px solid #6e7889;
       border-radius: 4px; min-height: 32px; padding: 4px 6px; font: 13px system-ui, sans-serif;
     }
     .transport label { color: #b3c7d6; font-size: 12px; display: flex; align-items: center; gap: 5px; }
-    .transport input[type=range].trail { width: 118px; accent-color: #9ad7ff; }
+    /* 24px tall so the two sliders meet 2.5.8 on their own size rather than
+       leaning on the Spacing exception, which would break the moment anything
+       were laid out closer to them. */
+    .transport input[type=range].trail { width: 118px; height: 24px; accent-color: #9ad7ff; }
     .transport .chk { margin: 0; }
 
     #datebar { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 7px 0 2px; }
@@ -218,7 +258,7 @@
     #skipmsg { color: #9ad7ff; font-size: 12px; }
 
     #scrub {
-      width: 100%; margin: 4px 0 2px; accent-color: #9ad7ff; height: 20px;
+      width: 100%; margin: 4px 0 2px; accent-color: #9ad7ff; height: 24px;
       display: block;
     }
 
@@ -228,9 +268,25 @@
     .cal { display: grid; grid-template-columns: 34px 1fr; gap: 3px 6px; align-items: center; }
     .cal .yr { font-size: 11px; color: #b3c7d6; text-align: right; font-variant-numeric: tabular-nums; }
     .cal .months, .cal .row { display: grid; grid-template-columns: repeat(366, 1fr); }
+    /* No `overflow: hidden` here. WCAG 1.4.12 (Text Spacing): at 320px with the
+       criterion's letter/word-spacing overrides applied, 8 of the 12 month
+       labels needed more width than their column and the last glyph was cut
+       off ("May" wanted 26px in a 21px box). Clipping text is content loss even
+       on a decorative ruler. Below 700px the ruler drops to the month's initial
+       instead -- a single letter fits every column at any spacing -- and above
+       it the full abbreviation always fits, so nothing is ever truncated. */
     .cal .months span {
-      font-size: 10px; color: #b3c7d6; overflow: hidden; white-space: nowrap;
+      font-size: 10px; color: #b3c7d6; overflow: visible; white-space: nowrap;
       border-left: 1px solid #3a4250; padding-left: 3px; line-height: 1.3;
+      min-width: 0;
+    }
+    @media (max-width: 700px) {
+      /* The span's own text is suppressed and the initial drawn from the data
+         attribute, so the DOM keeps the readable name for anything that reads
+         it (nothing does -- the ruler is aria-hidden and the cells name their
+         own dates) while the paint stays inside the column. */
+      .cal .months span { font-size: 0; }
+      .cal .months span::before { content: attr(data-initial); font-size: 10px; }
     }
     .cal .cell { height: 13px; background: #171b22; cursor: pointer; min-width: 0; }
     .cal.multi .cell { height: 9px; }
@@ -249,21 +305,118 @@
     }
     #cal-legend .hint { color: #b3c7d6; }
 
+    /* --- basemap composite ------------------------------------------------
+       "Terrain dark" does not exist as a hosted basemap anywhere in the free
+       tier, so it is built here: CARTO Dark Matter carries roads, water and
+       labels, and Esri's World Hillshade is laid on top of it. (The base was
+       Esri's Dark Gray Canvas until it was measured at 21x Dark Matter's
+       luminance -- see the rebase note on the BASEMAPS registry. The blend
+       reasoning below is unaffected: it is about the hillshade, and the
+       hillshade did not change.)
+
+       `multiply` is the blend, arrived at by comparing renders over the Diablo
+       Range rather than from first principles. `overlay` was tried first, on
+       the theory that flat ground in a hillshade is mid-grey and would sit on
+       overlay's neutral point. That theory is wrong for this hillshade: Esri's
+       flat ground is a light grey well above 50%, so overlay BRIGHTENED the
+       whole basemap toward mid-grey and cost it both its darkness and its
+       contrast. Multiply is the correct model anyway -- a hillshade is a light
+       map, and shading a base means removing light from it, not adding it.
+       Flat ground barely changes, shaded slopes darken hard, and the county's
+       western canyons come out legibly embossed on a base that stays dark.
+
+       Alpha alone was also tried and rejected: a light-grey image composited
+       over a dark one washes it grey, which is the one thing this basemap
+       exists to avoid.
+
+       Scoping the blend by class is safe because .leaflet-pane carries a
+       z-index and therefore opens a stacking context: the hillshade can only
+       blend with the basemap tiles beneath it inside #map's tilePane, never
+       with the page background, never with the scrim (pane sjScrim, z-index
+       250) and never with the spray polygons (sjCasing 401, sjCore 402). That
+       ordering is what lets the scrim composite over a FINISHED basemap: the
+       contrast numbers assume alpha*scrim + (1-alpha)*tile, which would not
+       hold if the blend could still reach across the pane boundary.
+       Browsers without mix-blend-mode fall back to an opaque
+       hillshade -- monochrome relief with the canvas hidden, which is a worse
+       map but still a readable one, and every engine in support since 2016
+       has this. */
+    .bm-blend-multiply { mix-blend-mode: multiply; }
+
     /* --- Leaflet chrome is authored light; force it onto the dark surface --- */
+    /* The 1px #6e7889 edge is a 1.4.11 requirement, not decoration: these
+       controls float over an arbitrary basemap. On Dark the panel fill is
+       within 1.1:1 of the tiles behind it, so without a boundary there is no
+       visual information identifying where the control is. */
     .leaflet-bar, .leaflet-control-layers {
       background: rgba(20, 24, 32, 0.95) !important;
-      color: #e8eaed !important; border: 0 !important; border-radius: 6px !important;
+      color: #e8eaed !important; border: 1px solid #6e7889 !important; border-radius: 6px !important;
       box-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
       font: 13px/1.4 system-ui, sans-serif !important;
     }
     .leaflet-bar a, .leaflet-bar a:hover {
       background: transparent !important; color: #e8eaed !important;
-      border-bottom: 1px solid #3a4250 !important;
+      border-bottom: 1px solid #6e7889 !important;
       width: 30px; height: 30px; line-height: 30px; font-size: 18px;
     }
     .leaflet-bar a:last-child { border-bottom: 0 !important; }
     .leaflet-bar a:hover { background: rgba(255,255,255,0.06) !important; }
     .leaflet-bar a.leaflet-disabled { color: #5a6270 !important; cursor: not-allowed; }
+
+    /* --- single-pointer pan control (WCAG 2.5.7 Dragging Movements) ---------
+       Leaflet ships no pan control, and panning the map is a drag: press,
+       move along a path, release. 2.5.7 wants a single-pointer alternative
+       that is not a drag, and keyboard arrow-panning does NOT satisfy it --
+       the criterion is explicitly about pointer input. Four buttons, one
+       map.panBy() per click, no path involved.
+
+       Laid out as a 30px-wide vertical stack on purpose: it lives directly
+       under the zoom control in the top-left column, and matching that
+       column's width means no other panel has to move to stay clear of it
+       (see the 2.4.11 note in the 700px media query). A 3x3 D-pad would be
+       90px wide and would push #info sideways at every breakpoint.
+
+       30x30 per button clears 2.5.8's 24x24. Each has an accessible name, and
+       none of them writes to a live region -- panning is a view change the
+       user just requested, not a status message, and routing it through the
+       throttled #live region would displace the date announcement. */
+    .sj-pan { display: block; }
+    .sj-pan button {
+      display: block; width: 30px; height: 30px; padding: 0;
+      background: transparent; color: #e8eaed; cursor: pointer;
+      border: 0; border-bottom: 1px solid #6e7889;
+      font: 13px/30px system-ui, sans-serif; text-align: center;
+    }
+    .sj-pan button:last-child { border-bottom: 0; }
+    .sj-pan button:hover { background: rgba(255,255,255,0.06); }
+    /* The Leaflet control corners outrank the floating panels. Two reasons, and
+       they point the same way: the attribution bar is a licence condition (the
+       OSM Foundation's guidelines require it to be presented to anyone who
+       views the map, without interaction), and its links are in the Tab order,
+       so a panel covering them is a 2.4.11 failure. The panels are ours and can
+       yield; the credits cannot. */
+    .leaflet-top, .leaflet-bottom { z-index: 1200 !important; }
+
+    /* WCAG 2.4.11 Focus Not Obscured (Minimum), AA and new in 2.2.
+       A FIXED stacking order cannot satisfy this criterion. Whatever sits on
+       top permanently obscures whatever is beneath it, so raising one layer to
+       protect its focusable content simply moves the failure somewhere else --
+       which is exactly what happened here. The rule above lifted the Leaflet
+       corners to protect the attribution links, and in doing so put the SCALE
+       BAR over the pan buttons and the CREDITS over the filter panel: three
+       separate obscured-focus failures between 481 and 768 px wide, measured at
+       zero visible pixels of the focused control.
+       The criterion is about the focused element only, so the fix is to let
+       focus decide the order. Whichever container holds focus rises above the
+       rest for exactly as long as it holds it; nothing moves for a mouse user,
+       and no breakpoint has to be hand-tuned. The Leaflet corners rank highest
+       when focused so the pan and zoom buttons clear the scale bar, which is
+       not focusable and therefore never needs to win. */
+    #info:focus-within,
+    #controls:focus-within,
+    #timeline:focus-within { z-index: 1400; }
+    .leaflet-top:focus-within,
+    .leaflet-bottom:focus-within { z-index: 1500 !important; }
     .leaflet-control-attribution {
       background: rgba(20, 24, 32, 0.85) !important; color: #b3c7d6 !important;
       font: 11px system-ui, sans-serif !important; padding: 2px 6px !important;
@@ -289,8 +442,11 @@
 
     .pop h3 { margin: 0 0 4px; font-size: 13px; color: #9ad7ff; }
     .pop table { border-collapse: collapse; }
-    .pop td { padding: 1px 8px 1px 0; vertical-align: top; }
-    .pop td:first-child { color: #b3c7d6; white-space: nowrap; }
+    .pop td, .pop th { padding: 1px 8px 1px 0; vertical-align: top; }
+    /* The label column is a row header (WCAG 1.3.1): it names what the cell
+       beside it means. As <td> the relationship was invisible to assistive
+       tech, which then read a two-column table of unlabelled values. */
+    .pop th { color: #b3c7d6; white-space: nowrap; text-align: left; font-weight: 400; }
     .pop .op {
       border-top: 1px solid #3a4250; margin-top: 6px; padding-top: 5px;
       max-width: 330px;
@@ -308,10 +464,42 @@
       #controls { width: 250px; }
       #info { max-width: 250px; left: 56px; }
     }
+    /* WCAG 2.4.11 Focus Not Obscured (Minimum).
+       This block used to put #info at left:8px, i.e. straight over the zoom
+       control at [10,10]-[40,71]. Both panels and the Leaflet control corners
+       carried z-index 1000 and #info came later in the DOM, so #info won -- and
+       between 481px and 700px wide, with all disclosures closed, BOTH zoom
+       buttons were entirely covered while still being in the Tab order.
+       Tabbing to them focused something invisible.
+
+       left:56px is the offset the wide layout already uses and it clears the
+       whole top-left control column (30px of controls at left:10px, plus
+       margin). bottom:26px does the same job at the other end: it lifts
+       #controls clear of the attribution bar -- a row of links that were
+       entirely covered at 700x640 -- whose height is about 17px. */
     @media (max-width: 700px) {
-      #info { left: 8px; right: 8px; max-width: none; top: 8px; }
-      #controls { top: auto; bottom: 8px; left: 8px; right: 8px; width: auto; max-height: 42%; }
+      #info {
+        left: 56px; right: 8px; max-width: none; top: 8px;
+        /* The two panels stack vertically at this width, so #info must not be
+           allowed to grow into #controls. It can: opening "About this archive"
+           adds ~70px, and since both carry z-index 1000 and #controls comes
+           later in the DOM, #controls wins -- the district link inside the
+           disclosure was ENTIRELY covered while still being in the Tab order.
+           The cap is the space #controls leaves: 100% - 42% of the map, minus
+           this panel's 8px top offset and #controls' 26px bottom offset.
+           Overflowing content scrolls inside the panel instead of hiding under
+           another one. */
+        max-height: calc(58% - 34px); overflow-y: auto; overscroll-behavior: contain;
+      }
+      #controls { top: auto; bottom: 26px; left: 8px; right: 8px; width: auto; max-height: 42%; }
       .stats { margin-left: 0; }
+    }
+    /* Undo that cap once the layout stops being an overlay. Below 481px (or
+       481px tall) the panels are static and flow one after another, so nothing
+       can cover anything and a max-height would only clip. This block has to
+       come AFTER the 700px one to win -- the two conditions overlap. */
+    @media (max-height: 480px), (max-width: 480px) {
+      #info { max-height: none; overflow: visible; }
     }
   </style>
 </head>
@@ -353,6 +541,28 @@
     </header>
 
     <aside id="controls" class="panel" role="region" aria-label="Map encoding and filters">
+      <div class="grp">
+        <h2>Basemap</h2>
+        <label class="field" for="sel-basemap">
+          Background map
+          <!-- Options are filled from the BASEMAPS registry in the JS so the
+               list and the layer definitions cannot drift apart. -->
+          <select id="sel-basemap" aria-describedby="basemap-note"></select>
+        </label>
+        <p class="note" id="basemap-note">
+          Basemap tiles are the one thing here that needs the network; the archive itself is local.
+          Each background gets its own tuning: zone outlines are drawn twice, a plain white or black
+          casing under the coloured line, and a light tint is laid over the tiles, so the outlines
+          keep their contrast and the age fade stays readable on any of the five.
+        </p>
+        <!-- A live region of its own, deliberately NOT #live. #live is the
+             timelapse's, throttled to 1.2 s and rewritten on every step, scrub
+             and filter change; a basemap announcement posted there would be
+             overwritten before it was read, or would itself swallow the date
+             announcement the user was waiting for. -->
+        <p class="sr-only" id="live-basemap" role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+
       <!-- Keyboard and screen-reader route to the operation records. The map
            uses a canvas renderer, so the polygons are pixels, not DOM nodes:
            they cannot be tabbed to and a popup opened by mouse announces
@@ -399,7 +609,12 @@
       <div class="grp">
         <h2>Filters</h2>
         <div id="filters"></div>
-        <p class="note" id="filter-summary"></p>
+        <!-- A status message in WCAG 4.1.3 terms: it reports the result of the
+             user's filter action ("100 of 845 archived operations pass...") in
+             a place that never receives focus. It changes only on a filter or
+             year change -- both deliberate user actions, never during
+             playback -- so it cannot flood. -->
+        <p class="note" id="filter-summary" role="status" aria-live="polite" aria-atomic="true"></p>
       </div>
     </aside>
   </main>
@@ -440,7 +655,14 @@
         <input type="checkbox" id="chk-skip" checked />
         Skip empty stretches
       </label>
-      <span id="skipmsg"></span>
+      <!-- WCAG 4.1.3. This carries three genuine status messages: "No
+           operations match the current filters — playback stopped.", the
+           reduced-motion notice, and "Skipped N days...". The first two are
+           consequences of a user action and must be announced; the third fires
+           several times a second while the timelapse runs and must not be.
+           setSkipMessage() flips aria-live to "off" for the playback case, so
+           the region exists without becoming a firehose. -->
+      <span id="skipmsg" role="status" aria-live="polite" aria-atomic="true"></span>
     </div>
 
     <div id="datebar">
@@ -597,7 +819,11 @@
 
   var OPS = [];                 // all operations, augmented in place
   var SHAPES = new Map();       // mid -> Feature
-  var LAYERS = new Map();       // mid -> Leaflet layer (created once)
+  var LAYERS = new Map();       // mid -> Leaflet layer, the coloured core
+  var CASINGS = new Map();      // mid -> Leaflet layer, the opaque outline
+                                //        drawn under it (see the 1.4.11 note
+                                //        on BASEMAPS). Added, removed, styled
+                                //        and discarded in lockstep with LAYERS.
   var MANIFEST = null;
 
   var ST = {
@@ -611,6 +837,7 @@
     cumulative: false,
     skipEmpty: true,
     colorBy: 'method',
+    basemap: null,              // id from BASEMAPS; set by initBasemapControl
     filters: {},                // dimension -> Set of enabled values
     byDay: [],                  // day index -> [op,...] (filtered, current period)
     counts: [],                 // day index -> filtered op count
@@ -654,33 +881,577 @@
   }
   function regionLabel(code) { return REGION_NAME[code] || code; }
 
+  /* ---------- basemaps -------------------------------------------------- */
+  /* Five backgrounds, one registry. Each entry owns four things that have to
+     move together and used to be scattered: the tile layer stack, the
+     attribution each of those layers legally requires, the scrim that makes
+     the backdrop's luminance predictable, and the polygon style profile that
+     keeps the spray data readable on it.
+
+     ATTRIBUTION IS PER LAYER, ALWAYS. It attaches to the layer whose content
+     it describes -- never to "the basemap", and never to whichever layer
+     happens to be first in the array. This file used to do the latter
+     (`if (j === 0) opts.attribution = def.attribution`) on the theory that a
+     composite shares one credit. It does not: terrain-dark composites a CARTO
+     basemap with an Esri elevation service, two different licensors with
+     disjoint provider lists, and two of its three layers were rendering
+     uncredited. Worse, the binding was positional, so reordering the stack for
+     a rendering reason -- exactly what the CARTO rebase below does -- would
+     have silently made the displayed credit describe a different service than
+     the one it names. Nothing errors when that happens, which is why it has to
+     be structural. Leaflet's AttributionControl unions and de-duplicates, so
+     layers that genuinely share a licensor still render one credit.
+
+     The strings are Esri's and CARTO's OWN machine-readable copyrightText,
+     copied verbatim, with two mechanical edits: `(c)` becomes `&copy;` and the
+     word OpenStreetMap becomes a link to openstreetmap.org/copyright. Do not
+     hand-curate the provider lists. Hand-curation is how this file came to
+     credit NOAA on a service that has never listed NOAA, omit OpenStreetMap
+     from two OSM-derived services (an ODbL breach, since attribution is a
+     licence condition and not a courtesy), and credit "Maxar" on World_Imagery
+     after Maxar became Vantor and Esri updated the service. A verbatim copy has
+     an authoritative source to diff against; a curated list drifts.
+
+     The one credit that must survive every switch is the district's, because it
+     describes the DATA and not the tiles; that one is the attribution
+     control's prefix, which no layer can remove.
+
+     maxNativeZoom is measured, not guessed. The ArcGIS service metadata claims
+     LOD 23 for all of them, and it is wrong: probed over Stockton, the Canvas
+     and Hillshade services answer 200 from z17 up with an identical
+     2,521-byte flat-grey "no data" tile, and only the imagery and topo
+     services carry real pixels past z16. A 200 with a plausible JPEG in it is
+     the worst kind of failure, so without maxNativeZoom the hillshade would
+     multiply a sheet of flat grey over the dark terrain view one zoom step
+     past its data instead of upsampling z16 the way it does now. (The Canvas
+     measurement is kept because the finding is about the services, not about
+     which of them this file happens to use today.)
+
+     STYLE PROFILE, per basemap -- and WHY THE MARK IS NOW TWO STROKES.
+
+     WCAG 1.4.11 asks for 3:1 between a graphical object and what is adjacent
+     to it. Measured against real tiles over this county (262,144 px per
+     basemap), the single coloured outline missed on all five: the freshest
+     stroke reached 2.84:1 on the default Dark basemap, 1.76:1 on Light and
+     1.38:1 on Satellite, and the aged end of the trail sat at 1.1-1.3:1, below
+     the ~1.2:1 just-noticeable floor.
+
+     Raising alpha cannot fix it, and this is arithmetic rather than taste. A
+     mark of luminance Lm needs a backdrop at or below (Lm+0.05)/3-0.05, or at
+     or above 3(Lm+0.05)-0.05. For three of the seven palette colours the second
+     bound is greater than 1.0 -- #EE7733 needs 1.048, #CCBB44 1.564, #66CCEE
+     1.666 -- so against a light backdrop they are IMPOSSIBLE at any opacity,
+     scrim or no scrim. Against pure white their ceilings are 2.87:1, 1.95:1 and
+     1.84:1. A palette chosen to be distinguishable under three kinds of colour
+     blindness cannot also be chosen for luminance contrast against an arbitrary
+     photograph; those are different constraints on the same channel.
+
+     So the identifying mark is no longer the coloured line. It is a CASING: an
+     opaque white (on dark backdrops) or black (on light ones) stroke drawn
+     wider and underneath, with the coloured core drawn on top of it. A fixed
+     opaque luminance escapes the palette trap entirely, and it is the standard
+     cartographic answer for exactly this reason. Measured worst pixel of
+     262,144: 9.74:1 on Dark, 7.57:1 on Light, 3.01:1 on Terrain light, 3.03:1
+     on Terrain dark, 3.14:1 on Satellite. What identifies a spray zone is its
+     boundary -- its shape and extent -- and the casing's outer edge is what
+     meets the tile.
+
+     CASING ALPHA NEVER FADES WITH AGE. At 0.90 on the rebased Terrain dark the
+     aged casing drops to 2.85:1, under the bar. The fade is carried by the
+     core and the fill, which is where the recency meaning belongs; the outline
+     that carries the conformance claim is constant.
+
+     THE SCRIM's job is the tail, not the average. A per-basemap rgba fill in a
+     pane between the tiles and the data makes the backdrop luminance
+     computable instead of "whatever is under this polygon" -- but a scrim
+     strong enough to carry 1.4.11 on its own would need alpha 0.87-0.92 on
+     three of the five, which is a grey rectangle, not a basemap. With the
+     casing doing the work the scrim only has to clamp the extremes: CARTO's
+     white place labels, Esri Topo's black contour lines, satellite's specular
+     fields. Two basemaps need none at all. Satellite takes a BLACK scrim
+     rather than white even though both retain ~62% of the imagery's detail,
+     because a white scrim collapses the age fade to 1.01:1 -- dead -- while
+     black keeps it at 1.21:1.
+
+     The fill is deliberately NOT raised. Two 55% fills stacked on imagery are
+     an opaque blob and the overlap information is gone. Fills reach 3:1 only on
+     the two near-black basemaps and are not claimed to elsewhere; nothing
+     depends on them, because product, method and status are each available as
+     text in the popup, the legend and the "Zones in view" list.
+
+       casing   opaque colour of the outer stroke
+       ring     casing's extra width PER SIDE, so casing weight = core + 2*ring
+       sHi/sLo  CORE stroke alpha at age 0 / at the end of the trail window.
+                1.00 -> 0.30 on all five: once the casing survives the tile,
+                the core only has to stay distinguishable against the casing,
+                which is a fixed backdrop. That is why the fade ramp could
+                re-open (the old satellite floor of 0.70 gave 1.15:1 between
+                fresh and oldest -- below the just-noticeable floor; 0.30 gives
+                1.53:1 on a white casing and 2.79:1 on a black one).
+       fHi/fLo  fill alpha, normal statuses
+       gHi/gLo  fill alpha, ghosted statuses (cancelled/postponed/scheduled)
+       dash     multiplier on the status dash patterns -- at heavy weights a
+                "1 4" dotted outline reads as a smear, so the pattern scales
+                with the stroke and solid/dashed/dotted stay tellable apart.
+                The casing uses the SAME dashArray as the core, so the non-hue
+                status channel survives the second stroke.
+       scrim    { color, alpha } for the pane between tiles and data. */
+
+  var MAX_ZOOM = 19;          // pinned on the MAP, not inherited from layers,
+                              // so switching basemaps can never move the zoom
+                              // cap out from under a view the user has set.
+
+  /* CARTO's own sample code (github.com/CartoDB/basemap-styles) ships exactly
+     this pair, and CARTO's terms require "attribution to both CARTO and any
+     appropriate provider". Dark Matter and Positron are rendered from OSM data,
+     so OSM is the provider. */
+  var CARTO_ATTR =
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+    '&copy; <a href="https://carto.com/attributions">CARTO</a>';
+
+  /* Esri's Terms of Use summary (April 2025) states the condition as "Provide
+     attribution to Esri AND ITS DATA PROVIDERS". "Tiles (c) Esri" alone does
+     not satisfy it -- the provider list is part of the condition. Each string
+     below is the verbatim copyrightText of that one service. */
+  var ESRI_PREFIX = 'Powered by <a href="https://www.esri.com/">Esri</a> &mdash; ';
+  var OSM_CREDIT =
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+  var ESRI_TOPO_ATTR = ESRI_PREFIX +
+    'Sources: Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, ' +
+    'NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, ' +
+    'Esri China (Hong Kong), ' + OSM_CREDIT + ', and the GIS User Community';
+  var ESRI_HILLSHADE_ATTR = ESRI_PREFIX +
+    'Sources: Esri, Vantor, Airbus DS, USGS, NGA, NASA, CGIAR, N Robinson, NCEAS, NLS, ' +
+    'OS, NMA, Geodatastyrelsen, Rijkswaterstaat, GSA, Geoland, FEMA, Intermap, ' +
+    'and the GIS user community';
+  // Vantor, not Maxar. Maxar Intelligence rebranded and Esri has already
+  // updated the live service; "Maxar" appears in no current World_Imagery or
+  // World_Hillshade record, so crediting it named a party the licensor has
+  // retired while omitting the one it now requires.
+  var ESRI_IMAGERY_ATTR = ESRI_PREFIX +
+    'Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community';
+
+  var BASEMAPS = [
+    {
+      id: 'dark', label: 'Dark', bg: '#0b0e13',
+      layers: [{
+        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR }
+      }],
+      // Dark Matter is genuinely near-black (mean relative luminance 0.0034),
+      // so a white casing clears 3:1 on every measured pixel with no scrim at
+      // all. The 0.10 is margin against CARTO's white place labels, which are
+      // the only bright pixels in the frame.
+      scrim: { color: '#000000', alpha: 0.10 },
+      style: { casing: '#FFFFFF', ring: 1.0,
+               wFresh: 2.0, wAged: 1.2, sHi: 1.00, sLo: 0.30,
+               fHi: 0.55, fLo: 0.08, gHi: 0.16, gLo: 0.04, dash: 1 }
+    },
+    {
+      id: 'light', label: 'Light', bg: '#eceef1',
+      layers: [{
+        url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR }
+      }],
+      // Positron is near-white and almost featureless, so a black casing clears
+      // 3:1 everywhere unaided -- worst measured pixel 7.57:1, and no scrim, so
+      // the basemap keeps 100% of its detail. Peak fill stays down because a
+      // 55% saturated fill on white hides the street grid the viewer is using
+      // to place the zone.
+      scrim: { color: '#FFFFFF', alpha: 0.00 },
+      style: { casing: '#000000', ring: 1.0,
+               wFresh: 2.2, wAged: 1.4, sHi: 1.00, sLo: 0.30,
+               fHi: 0.45, fLo: 0.10, gHi: 0.18, gLo: 0.06, dash: 1.2 }
+    },
+    {
+      id: 'terrain-light', label: 'Terrain (light)', bg: '#e6e2d8',
+      layers: [{
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+        // Esri axis order is {z}/{y}/{x}. Getting it wrong does not error --
+        // it silently draws a different part of the world.
+        opts: { maxNativeZoom: 19, attribution: ESRI_TOPO_ATTR }
+      }],
+      // A real topo: baked-in relief shading, contours, land cover and labels.
+      // Its black contour lines and type are what a black casing has to beat,
+      // and they are the reason this basemap needs the second-strongest scrim.
+      // 0.36, not the 0.35 first measured here. An independent re-measurement
+      // over 1,628,160 backdrop pixels put the worst pixel at 2.998:1, not the
+      // 3.01:1 originally claimed: a pure-black source pixel under 0.35 white
+      // composites to 89/255, relative luminance 0.09985, so the black casing
+      // gets (0.09985 + 0.05) / 0.05 = 2.998. That is a FAIL by 0.002, it lands
+      // exactly on Esri's black contour lines and type -- where a zone boundary
+      // can genuinely run -- and at that margin the verdict depends on the
+      // compositor's 8-bit rounding. 0.36 gives 3.09:1 and real headroom for a
+      // negligible loss of surviving detail.
+      scrim: { color: '#FFFFFF', alpha: 0.36 },
+      style: { casing: '#000000', ring: 1.2,
+               wFresh: 2.4, wAged: 1.6, sHi: 1.00, sLo: 0.30,
+               fHi: 0.40, fLo: 0.11, gHi: 0.19, gLo: 0.07, dash: 1.4 }
+    },
+    {
+      id: 'terrain-dark', label: 'Terrain (dark)', bg: '#0b0e13',
+      // No free provider hosts a dark terrain basemap, so it is composited.
+      //
+      // REBASED onto CARTO Dark Matter. The previous base was Esri's Dark Gray
+      // Canvas, which measured mean relative luminance 0.0662 -- 21x brighter
+      // than Dark Matter's 0.0032 -- and cost the freshest mark 46% of its
+      // contrast (3.62:1 -> 1.95:1) in exchange for about 0.4% luminance
+      // modulation over the sprayed area, because this county is valley floor
+      // and its only real relief is in the western hills where no operations
+      // exist. Carto + multiplied hillshade measures 0.0038 mean luminance
+      // while keeping 95% of the composite's relief texture (L* sd 3.41 vs
+      // 3.59) and is still 38% more textured than plain Dark Matter. It gets
+      // the darkness and the relief.
+      //
+      // Order matters: unlabelled base, hillshade multiplied over it for the
+      // relief (see the .bm-blend-multiply note in the CSS), then the labels
+      // LAST so place names sit above the hillshade instead of being shaded by
+      // it. That reordering is precisely why attribution must not be bound to
+      // "layer 0" -- layer 0 is now CARTO, not Esri.
+      layers: [
+        { url: 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+          opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR } },
+        { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}',
+          // Full opacity: the multiply blend, not an alpha fade, is what keeps
+          // the base visible underneath. Backing the opacity off only mixes
+          // the unshaded base back in and flattens the relief.
+          opts: { maxNativeZoom: 16, className: 'bm-blend-multiply',
+                  attribution: ESRI_HILLSHADE_ATTR } },
+        // Same string as the base layer, so Leaflet's attribution control
+        // de-duplicates it and CARTO is credited once, not twice.
+        { url: 'https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png',
+          opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR } }
+      ],
+      scrim: { color: '#000000', alpha: 0.10 },
+      style: { casing: '#FFFFFF', ring: 1.1,
+               wFresh: 2.2, wAged: 1.4, sHi: 1.00, sLo: 0.30,
+               fHi: 0.50, fLo: 0.09, gHi: 0.17, gLo: 0.05, dash: 1.2 }
+    },
+    {
+      id: 'satellite', label: 'Satellite', bg: '#1c2118',
+      layers: [{
+        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        opts: { maxNativeZoom: 19, attribution: ESRI_IMAGERY_ATTR }
+      }],
+      // The hardest background: a photograph has high local contrast at every
+      // luminance, so no alpha makes a thin coloured line reliably visible --
+      // it is destroyed by orchard rows and field edges rather than by the
+      // average brightness. Heaviest casing of the five, and the strongest
+      // scrim: black 0.45 puts the worst of 262,144 pixels at 3.14:1 while
+      // retaining 62% of the imagery's lightness variation. Black rather than
+      // white because a white scrim of equal strength collapses the age fade
+      // to 1.01:1.
+      scrim: { color: '#000000', alpha: 0.45 },
+      style: { casing: '#FFFFFF', ring: 1.4,
+               wFresh: 2.8, wAged: 1.8, sHi: 1.00, sLo: 0.30,
+               fHi: 0.38, fLo: 0.12, gHi: 0.20, gLo: 0.08, dash: 1.8 }
+    }
+  ];
+
+  var DEFAULT_BASEMAP = 'dark';
+  var LS_BASEMAP = 'sjmvcd.basemap';
+
+  /* localStorage throws, not returns null, in Safari private mode and under a
+     "block all cookies" policy, and it is absent entirely in some embedded
+     webviews. Remembering a basemap is a nicety; losing the map over it would
+     not be. Both accessors swallow everything. */
+  function lsGet(key) {
+    try { return window.localStorage.getItem(key); } catch (err) { return null; }
+  }
+  function lsSet(key, val) {
+    try { window.localStorage.setItem(key, val); } catch (err) { /* ignore */ }
+  }
+
+  function basemapById(id) {
+    for (var i = 0; i < BASEMAPS.length; i++) {
+      if (BASEMAPS[i].id === id) return BASEMAPS[i];
+    }
+    return null;
+  }
+  function currentBasemap() {
+    return basemapById(ST.basemap) || BASEMAPS[0];
+  }
+
   /* ---------- map ------------------------------------------------------ */
 
-  var map = null, canvasRenderer = null;
+  var map = null, canvasRenderer = null, casingRenderer = null;
+  var baseLayers = [];          // tile layers of the CURRENT basemap, only
+  var scrimLayer = null;        // the one rectangle in the sjScrim pane
+
+  /* Repaint the scrim for a basemap. It is a world-bounds rectangle in its own
+     pane rather than a background colour on the pane's div: panes live inside
+     the transformed mapPane, so a fixed-size background drifts on pan and
+     during zoom animation, whereas a rectangle is projected like any other
+     geometry and stays put. Its compositing is exactly the alpha*scrim +
+     (1-alpha)*tile model the contrast numbers were measured against. */
+  function applyScrim(def) {
+    if (!scrimLayer) return;
+    var s = def.scrim || { color: '#000000', alpha: 0 };
+    scrimLayer.setStyle({
+      fill: s.alpha > 0,
+      fillColor: s.color,
+      fillOpacity: s.alpha
+    });
+  }
+
+  /* Swap the whole tile stack. The old layers are removed BEFORE the new ones
+     are added, and baseLayers is the only reference to them, so nothing can
+     accumulate: after any number of switches map._layers holds exactly the
+     current basemap's tile layers plus the polygon layers on screen. */
+  function setBasemap(id, announceIt) {
+    var def = basemapById(id) || basemapById(DEFAULT_BASEMAP) || BASEMAPS[0];
+    if (def.id === ST.basemap) return;
+
+    for (var i = 0; i < baseLayers.length; i++) map.removeLayer(baseLayers[i]);
+    baseLayers.length = 0;
+
+    // Every layer's own `attribution` rides in with the rest of its opts. There
+    // is deliberately no special case for the first layer: see the ATTRIBUTION
+    // IS PER LAYER note on the registry. Leaflet unions and de-duplicates the
+    // strings of whatever layers are currently on the map, and drops each one
+    // when its layer is removed, so a credit can neither outlive nor precede
+    // the tiles it describes.
+    for (var j = 0; j < def.layers.length; j++) {
+      var spec = def.layers[j];
+      var opts = { maxZoom: MAX_ZOOM };
+      for (var k in spec.opts) {
+        if (Object.prototype.hasOwnProperty.call(spec.opts, k)) opts[k] = spec.opts[k];
+      }
+      var layer = L.tileLayer(spec.url, opts);
+      layer.addTo(map);
+      baseLayers.push(layer);
+    }
+
+    applyScrim(def);
+    ST.basemap = def.id;
+    // While tiles are still in flight the map container shows through. Left at
+    // the dark-theme black it flashes a black hole under a light basemap.
+    var el = $('map');
+    if (el) el.style.background = def.bg;
+
+    var sel = $('sel-basemap');
+    if (sel && sel.value !== def.id) sel.value = def.id;
+
+    restyleVisible();
+    lsSet(LS_BASEMAP, def.id);
+
+    if (announceIt) {
+      $('live-basemap').textContent =
+        'Basemap changed to ' + def.label +
+        '. Spray zone outlines and fills re-tuned for this background.';
+    }
+  }
+
+  function initBasemapControl() {
+    var sel = $('sel-basemap');
+    sel.innerHTML = '';
+    for (var i = 0; i < BASEMAPS.length; i++) {
+      var opt = document.createElement('option');
+      opt.value = BASEMAPS[i].id;
+      opt.textContent = BASEMAPS[i].label;
+      sel.appendChild(opt);
+    }
+    // A stored id that no longer exists (a basemap retired between releases)
+    // falls back to the default rather than leaving the map with no tiles.
+    var saved = lsGet(LS_BASEMAP);
+    var start = basemapById(saved) ? saved : DEFAULT_BASEMAP;
+    sel.value = start;
+    sel.addEventListener('change', function () { setBasemap(sel.value, true); });
+    setBasemap(start, false);
+  }
+
+  /* Four buttons that pan by a click each: the single-pointer alternative to
+     dragging the map that WCAG 2.5.7 requires. Leaflet has no such control, and
+     the keyboard's arrow-key panning does not satisfy the criterion -- 2.5.7 is
+     about pointer input specifically, and the map's drag is author-supplied so
+     the "user agent determined" exception does not apply either.
+
+     panBy() is a single discrete action per click. Nothing here reads or writes
+     the throttled #live region: a pan is a view change the user just asked for,
+     not a status message, and posting one would displace the date announcement
+     the timelapse's own live region exists to carry. */
+  function makePanControl() {
+    var Pan = L.Control.extend({
+      options: { position: 'topleft' },
+      onAdd: function (m) {
+        var bar = L.DomUtil.create('div', 'leaflet-bar sj-pan');
+        bar.setAttribute('role', 'group');
+        bar.setAttribute('aria-label', 'Pan the map');
+        [['▲', 'Pan the map up', 0, -1],
+         ['▼', 'Pan the map down', 0, 1],
+         ['◀', 'Pan the map left', -1, 0],
+         ['▶', 'Pan the map right', 1, 0]].forEach(function (d) {
+          var b = L.DomUtil.create('button', '', bar);
+          b.type = 'button';
+          b.innerHTML = d[0];
+          b.setAttribute('aria-label', d[1]);
+          b.title = d[1];
+          L.DomEvent.on(b, 'click', function (ev) {
+            L.DomEvent.stop(ev);
+            // 40% of the viewport, floored at 80px so the step is still useful
+            // on a small map. Matches the feel of Leaflet's own keyboard pan
+            // without being so large that the user loses their place.
+            var size = m.getSize();
+            m.panBy([d[2] * Math.max(80, Math.round(size.x * 0.4)),
+                     d[3] * Math.max(80, Math.round(size.y * 0.4))]);
+          });
+        });
+        // Without this a press on a button also starts a map drag underneath.
+        L.DomEvent.disableClickPropagation(bar);
+        L.DomEvent.disableScrollPropagation(bar);
+        return bar;
+      }
+    });
+    return new Pan();
+  }
 
   function initMap() {
     // preferCanvas matters: several hundred polygons can be on screen in
     // cumulative mode, and one canvas beats hundreds of SVG paths.
-    map = L.map('map', { preferCanvas: true, zoomControl: true })
+    map = L.map('map', { preferCanvas: true, zoomControl: true, maxZoom: MAX_ZOOM })
       .setView([37.94, -121.27], 9);
+
+    /* Three custom panes, in the gaps Leaflet leaves between its own.
+       tilePane is 200 and overlayPane is 400, so:
+         sjScrim  250  above the finished basemap, below all data
+         sjCasing 401  the opaque outline that carries WCAG 1.4.11
+         sjCore   402  the coloured outline and fill, drawn over the casing
+       Splitting casing and core across two panes (and therefore two canvas
+       renderers) is what gives every casing a chance to be painted before any
+       core is -- within a single canvas Leaflet strokes each path once, in
+       insertion order, so one zone's core would end up under the next zone's
+       casing.
+
+       aria-hidden on all three: they contain <canvas> elements that are pure
+       pixels with no accessible name, and an unnamed graphic in the tree is
+       noise. Everything they draw is reachable as text through "Zones in view".
+
+       pointer-events:none on the scrim and the casing so neither can intercept
+       a click meant for a polygon (the core pane sits above both and does the
+       hit-testing, exactly as the single overlay canvas used to). */
+    function pane(name, z, clickable) {
+      var p = map.createPane(name);
+      p.style.zIndex = String(z);
+      if (!clickable) p.style.pointerEvents = 'none';
+      p.setAttribute('aria-hidden', 'true');
+      return p;
+    }
+    pane('sjScrim', 250, false);
+    pane('sjCasing', 401, false);
+    pane('sjCore', 402, true);
+    var overlay = map.getPane('overlayPane');
+    if (overlay) overlay.setAttribute('aria-hidden', 'true');
+
+    canvasRenderer = L.canvas({ padding: 0.3, pane: 'sjCore' });
+    casingRenderer = L.canvas({ padding: 0.3, pane: 'sjCasing' });
+
+    // The scrim itself. Interactive:false and a pane with pointer-events off,
+    // so it is invisible to hit-testing; excluded from LAYERS, from
+    // restyleVisible() and from the zone list, because it is not data.
+    scrimLayer = L.rectangle([[-85, -180], [85, 180]], {
+      renderer: L.canvas({ padding: 0.5, pane: 'sjScrim' }),
+      pane: 'sjScrim',
+      stroke: false, fill: false, fillColor: '#000000', fillOpacity: 0,
+      interactive: false
+    }).addTo(map);
 
     // Track which polygon's popup is open so render() can keep its contents in
     // step with the clock (see refreshOpenPopup).
     map.on('popupopen', function (e) {
       openPopupMid = (e.popup && e.popup._source && e.popup._source._sjMid) || null;
+      // Leaflet lays the popup out inside onAdd and fires popupopen afterwards,
+      // so setting the options here is not enough on its own -- update() is
+      // what re-runs _updateLayout with them and re-runs autoPan against the
+      // new size. Without the second call the clamp is computed and ignored.
+      sizePopup(e.popup);
+      e.popup.update();
+      // WCAG 2.4.3. A "Zones in view" button opens a popup whose content --
+      // including the unique "View original district map" link -- lives inside
+      // #map, which precedes #controls in the DOM. Leaving focus on the button
+      // meant shift-tabbing backwards past the whole info panel to reach
+      // something the user had just summoned. Move focus into the popup, and
+      // put it back on the button when the popup closes.
+      if (popupReturnFocus && e.popup._contentNode) {
+        e.popup._contentNode.setAttribute('tabindex', '-1');
+        e.popup._contentNode.focus();
+      }
     });
-    map.on('popupclose', function () { openPopupMid = null; });
+    map.on('popupclose', function () {
+      openPopupMid = null;
+      var back = popupReturnFocus;
+      popupReturnFocus = null;
+      // Deferred: Leaflet's own close-button handler calls _refocusOnMap after
+      // this event, and would take the focus straight back off the button.
+      if (back && document.contains(back)) setTimeout(function () { back.focus(); }, 0);
+    });
+    // The popup is sized from the viewport, so it has to be re-sized when the
+    // viewport changes (WCAG 1.4.10 -- see sizePopup).
+    map.on('resize', function () {
+      if (map._popup) { sizePopup(map._popup); map._popup.update(); }
+    });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; ' +
-                   '<a href="https://carto.com/attributions">CARTO</a> &middot; ' +
-                   'spray zones &copy; San Joaquin County Mosquito &amp; Vector Control District',
-      subdomains: 'abcd', maxZoom: 19
-    }).addTo(map);
+    // WCAG 1.4.13 Content on Hover or Focus. The zone tooltips are
+    // author-generated hover content that obscures the map beneath, so all
+    // three applicable bullets have to hold -- an earlier note here claimed
+    // Dismissible was "the only route to conformance", which misread the
+    // criterion: they are conjunctive, not alternatives.
+    //   Dismissible: Leaflet's Escape handling covers popups only, so Escape
+    //     now closes an open tooltip too. It stays closed until the pointer
+    //     moves, because a sticky tooltip only reopens on a mouse event over
+    //     the layer.
+    //   Hoverable:  met, though not in the usual way. Leaflet gives
+    //     .leaflet-tooltip `pointer-events: none`, so moving the pointer toward
+    //     the tooltip never takes hover off the polygon underneath and the
+    //     content does not vanish. The pointer cannot rest ON the tooltip, but
+    //     nothing is lost by moving toward it, which is what the bullet
+    //     protects against. Auditors do split on cursor-following tooltips;
+    //     the safe reading is that this passes because the content survives
+    //     pointer movement, and everything the tooltip says is also in the
+    //     popup and the "Zones in view" list, which are keyboard-reachable.
+    //   Persistent: it remains until the pointer leaves, Escape, or the layer
+    //     leaves the trail window.
+    map.on('tooltipopen', function (e) { openTooltip = e.tooltip; });
+    map.on('tooltipclose', function () { openTooltip = null; });
+
+    // The data credit lives in the attribution control's PREFIX, not on a tile
+    // layer. It describes the spray polygons, which are on screen whatever the
+    // basemap is, so it must outlive every tile layer that comes and goes --
+    // and the prefix is the one slot removeLayer cannot reach.
+    map.attributionControl.setPrefix(
+      '<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>' +
+      ' &middot; spray zones &copy; San Joaquin County Mosquito &amp; Vector Control District');
+
+    makePanControl().addTo(map);
+    initBasemapControl();
 
     L.control.scale({ imperial: true, metric: true }).addTo(map);
-    canvasRenderer = L.canvas({ padding: 0.3 });
   }
+
+  /* WCAG 1.4.10 Reflow. A fixed maxWidth of 380 rendered a 381px-wide popup at
+     left -32 in a 320px viewport, 339px tall in a ~240px map, with no document
+     scrollbar -- the overflow, including the district-map link, was simply
+     unreachable. Both dimensions are now clamped to the viewport and the
+     content scrolls inside the popup instead. Leaflet reads these options every
+     time it lays the popup out, so updating them on an open popup is enough. */
+  function sizePopup(p) {
+    if (!p || !p.options) return;
+    // The budget is the MAP's box, not the window's: .leaflet-container is
+    // overflow:hidden, so anything outside it is clipped rather than scrolled
+    // to, and in the reflow layout the map is only a fraction of the viewport.
+    // The 48 and the 70 are the chrome around the content box -- the popup's
+    // 12px side margins, its tip, and Leaflet's 5px autoPan padding at both
+    // edges. Undercounting them leaves autoPan a problem with no solution: it
+    // corrects one side at a time, so a popup that is wider than the map minus
+    // its padding just slides from overflowing on the right to overflowing on
+    // the left.
+    var mapH = (map && map.getSize) ? map.getSize().y : window.innerHeight;
+    p.options.maxWidth = Math.max(160, Math.min(380, window.innerWidth - 48));
+    p.options.maxHeight = Math.max(110, Math.min(520, window.innerHeight - 120, mapH - 70));
+  }
+
+  var popupReturnFocus = null;   // the control to hand focus back to on close
+  var openTooltip = null;
 
   /* ---------- load ----------------------------------------------------- */
 
@@ -692,7 +1463,13 @@
     // Wired first and unconditionally: if Leaflet or data/ failed to load, an
     // update is the one action still worth offering.
     initUpdater();
-    if (typeof L === 'undefined') { return; }   // the CDN onerror already spoke
+    if (typeof L === 'undefined') {             // the onerror handler already spoke
+      // No Leaflet means no map to put a basemap under. An enabled but inert
+      // select would be a lie, and it is the one control on the page that
+      // cannot be made to work without the library.
+      $('sel-basemap').disabled = true;
+      return;
+    }
     initMap();
 
     Promise.all([
@@ -730,6 +1507,17 @@
       var mid = f.id || (f.properties && f.properties.mid);
       if (!mid) return;
       SHAPES.set(mid, f);
+      // Two layers per zone: the opaque casing underneath (its own renderer, in
+      // its own pane) and the coloured core on top. The casing is not
+      // interactive -- it must never be the thing a click or a hover lands on,
+      // and it carries no popup or tooltip of its own.
+      var casing = L.geoJSON(f, {
+        renderer: casingRenderer,
+        interactive: false,
+        style: { color: '#FFFFFF', weight: 3, fill: false, fillOpacity: 0, opacity: 1 }
+      });
+      CASINGS.set(mid, casing);
+
       var layer = L.geoJSON(f, {
         renderer: canvasRenderer,
         style: { color: FALLBACK_COLOR, weight: 1, fillOpacity: 0.2 }
@@ -748,7 +1536,10 @@
       // both or the popupopen handler cannot identify which zone was opened.
       layer._sjMid = mid;
       layer.eachLayer(function (child) { child._sjMid = mid; });
-      layer.bindPopup(function () { return popupHtml(mid); }, { maxWidth: 380, autoPan: true });
+      // maxWidth/maxHeight are re-clamped to the viewport on every open and on
+      // resize (sizePopup) -- these are only the starting values.
+      layer.bindPopup(function () { return popupHtml(mid); },
+                      { maxWidth: 380, maxHeight: 520, autoPan: true });
       layer.bindTooltip(function () { return tooltipHtml(mid); }, { sticky: true });
       LAYERS.set(mid, layer);
     });
@@ -828,7 +1619,14 @@
         var b = document.createElement('button');
         b.type = 'button';
         b.textContent = which;
-        b.setAttribute('aria-label', (which === 'all' ? 'Select all ' : 'Clear all ') + def.label + ' filters');
+        // WCAG 2.5.3 Label in Name: the accessible name must CONTAIN the
+        // visible text, so speech input ("click none") can reach it. The old
+        // name for this button was "Clear all Region filters" -- the word the
+        // user can see, "none", appeared nowhere in it. Leading with the
+        // visible word also puts it first for voice matching.
+        b.setAttribute('aria-label',
+          which + ' — ' + (which === 'all' ? 'select every ' : 'clear every ') +
+          def.label + ' filter');
         b.addEventListener('click', function () {
           d.querySelectorAll('input[type=checkbox]').forEach(function (cb) {
             cb.checked = (which === 'all');
@@ -988,6 +1786,10 @@
     MONTHS.forEach(function (m, i) {
       var s = document.createElement('span');
       s.textContent = m;
+      // Narrow viewports paint this initial instead of the full abbreviation,
+      // so no label is ever clipped under the WCAG 1.4.12 spacing overrides.
+      // See the .cal .months rules in the CSS.
+      s.dataset.initial = m.charAt(0);
       s.style.gridColumn = 'span ' + (MONTH_LEN[i] + (i === 1 ? 1 : 0)); // 366 total
       months.appendChild(s);
     });
@@ -1013,12 +1815,23 @@
         c.className = 'cell';
         c.dataset.idx = idx;
         c.setAttribute('role', 'gridcell');
+        // The grid is aria-multiselectable, so every cell has to state whether
+        // it is selected. Marking only the trail window left the other ~358
+        // reading as not selectABLE, which is a different claim.
+        c.setAttribute('aria-selected', 'false');
         // Roving tabindex: exactly ONE cell is tabbable at a time. Making all
         // ~2500 cells tab stops would be far worse than leaving them out --
         // a keyboard user would have to tab through a year of days to reach
         // anything after the strip. paintCalendar() supplies each cell's
         // accessible name; moveCalendarTabStop() moves the -1/0 as the day
         // changes.
+        //
+        // WCAG 2.5.8: a cell is about 3.3 x 13 px and cannot be made 24 x 24 --
+        // 366 columns of 24px would be an 8,784px-wide strip. These rely on the
+        // documented "Equivalent" exception, and the equivalent controls are
+        // #btn-prev and #btn-next at 34 x 32 px, which step to ANY day in the
+        // period. Deliberately not the scrubber: it is a full-width target but
+        // only 24px tall, so it cannot be the control that proves the point.
         c.tabIndex = -1;
         row.appendChild(c);
         ST.cells[idx] = c;
@@ -1147,7 +1960,7 @@
     // would otherwise keep saying "Pause" over a clock that never moves.
     if (ST.playing && !ST.activeDays.length) {
       pause();
-      flashSkip('No operations match the current filters — playback stopped.');
+      reportSkip('No operations match the current filters — playback stopped.');
     }
     syncScrub();
     render();
@@ -1204,15 +2017,21 @@
 
   // Status is encoded WITHOUT relying on hue: cancelled/postponed get a dashed
   // outline, scheduled a dotted one, completed a solid one. The popup also
-  // spells the status out in words.
-  function dashOf(status) {
-    if (status === 'cancelled' || status === 'postponed') return '6 4';
-    if (status === 'scheduled') return '1 4';
+  // spells the status out in words. The pattern scales with the stroke weight
+  // (`scale`, from the basemap's style profile) because a "1 4" dot pattern
+  // drawn at 3.6px reads as a solid smear -- at satellite weights, without
+  // scaling, the non-colour status channel would quietly stop working.
+  function dashOf(status, scale) {
+    var s = scale || 1;
+    function px(n) { return Math.round(n * s * 10) / 10; }
+    if (status === 'cancelled' || status === 'postponed') return px(6) + ' ' + px(4);
+    if (status === 'scheduled') return px(1) + ' ' + px(4);
     return null;
   }
 
   function styleFor(entry) {
     var op = entry.top;
+    var p = currentBasemap().style;
     var t = ST.cumulative ? Math.max(ST.trail, 1) : ST.trail;
     // age 0 = sprayed today; fade linearly across the trail window, then hold
     // at a low floor (cumulative mode keeps very old sprays faintly visible).
@@ -1221,14 +2040,60 @@
     var faded = op.status === 'cancelled' || op.status === 'postponed' || op.status === 'scheduled';
     return {
       color: colorOf(op),
-      weight: fresh ? 2.2 : 1.2,
-      opacity: Math.max(0.9 - 0.65 * f, 0.25),
+      weight: fresh ? p.wFresh : p.wAged,
+      opacity: p.sHi - (p.sHi - p.sLo) * f,
       fillColor: colorOf(op),
-      fillOpacity: faded ? Math.max(0.16 - 0.12 * f, 0.04)
-                         : Math.max(0.55 - 0.47 * f, 0.07),
-      dashArray: dashOf(op.status),
+      fillOpacity: faded ? p.gHi - (p.gHi - p.gLo) * f
+                         : p.fHi - (p.fHi - p.fLo) * f,
+      dashArray: dashOf(op.status, p.dash),
       interactive: true
     };
+  }
+
+  /* The casing: the mark that actually carries WCAG 1.4.11 (see the long note
+     on BASEMAPS). Three properties are load-bearing and none of them is
+     cosmetic:
+
+       opacity is 1 at EVERY age. Fading it with the core would take the aged
+       outline on the rebased Terrain dark to 2.85:1, under the bar. The
+       timelapse's recency meaning is carried by the core and the fill instead.
+
+       the dashArray is the CORE's, unscaled and unaltered, so the solid /
+       dashed / dotted status channel -- the one encoding that does not depend
+       on hue -- is not smeared shut by the wider stroke.
+
+       fill is off. The casing is an outline only; the core paints the fill, so
+       there is no double-compositing of the fill alpha. */
+  function casingStyleFor(entry) {
+    var op = entry.top;
+    var p = currentBasemap().style;
+    var core = entry.age === 0 ? p.wFresh : p.wAged;
+    return {
+      color: p.casing,
+      weight: core + 2 * p.ring,
+      opacity: 1,
+      fill: false,
+      fillOpacity: 0,
+      dashArray: dashOf(op.status, p.dash),
+      interactive: false
+    };
+  }
+
+  /* Restyle everything currently on the map. Needed by the two settings that
+     change how a polygon looks without changing which polygons are visible:
+     the colour encoding and the basemap. Cheaper than render(), which would
+     also rebuild the zone list, the calendar marks and the statistics.
+
+     Both strokes are restyled: a basemap switch changes the casing colour from
+     white to black (or back), and missing that would leave a white outline on
+     a white basemap -- the exact failure this whole mechanism exists to fix. */
+  function restyleVisible() {
+    ST.visible.forEach(function (e, mid) {
+      var casing = CASINGS.get(mid);
+      if (casing) casing.setStyle(casingStyleFor(e));
+      var layer = LAYERS.get(mid);
+      if (layer) layer.setStyle(styleFor(e));
+    });
   }
 
   /* ---------- render ---------------------------------------------------- */
@@ -1257,13 +2122,25 @@
       }
     }
 
-    // Diff against the previous frame: only the delta touches Leaflet.
+    // Diff against the previous frame: only the delta touches Leaflet. The
+    // casing is added, removed and restyled with its core -- they are one mark
+    // in two passes, and a casing left behind would be an outline around
+    // nothing.
     ST.visible.forEach(function (_e, mid) {
-      if (!next.has(mid)) map.removeLayer(LAYERS.get(mid));
+      if (!next.has(mid)) {
+        map.removeLayer(LAYERS.get(mid));
+        var gone = CASINGS.get(mid);
+        if (gone) map.removeLayer(gone);
+      }
     });
     next.forEach(function (e, mid) {
       var layer = LAYERS.get(mid);
-      if (!ST.visible.has(mid)) layer.addTo(map);
+      var casing = CASINGS.get(mid);
+      if (!ST.visible.has(mid)) {
+        if (casing) casing.addTo(map);
+        layer.addTo(map);
+      }
+      if (casing) casing.setStyle(casingStyleFor(e));
       layer.setStyle(styleFor(e));
     });
     ST.visible = next;
@@ -1358,7 +2235,9 @@
     // playhead; aria-selected marks the days currently painted on the map.
     for (i = 0; i < ST.markedWin.length; i++) {
       ST.markedWin[i].classList.remove('win');
-      ST.markedWin[i].removeAttribute('aria-selected');
+      // Back to "false", not removed: in a multiselectable grid an absent
+      // aria-selected says "not selectable", which is not what we mean.
+      ST.markedWin[i].setAttribute('aria-selected', 'false');
     }
     ST.markedWin.length = 0;
     if (ST.markedPlay) {
@@ -1440,9 +2319,13 @@
            '<br/>' + n + ' operation' + (n === 1 ? '' : 's') + ' in view. Click for detail.';
   }
 
+  // The label column is a ROW HEADER, not a second data cell (WCAG 1.3.1).
+  // As <td> the "Zone code -> S23" relationship existed only visually, and a
+  // screen reader read a table of values with nothing naming them.
   function rowsHtml(rows) {
     return '<table>' + rows.map(function (r) {
-      return '<tr><td>' + r[0] + '</td><td>' + (r[1] == null ? '—' : r[1]) + '</td></tr>';
+      return '<tr><th scope="row">' + r[0] + '</th><td>' +
+             (r[1] == null ? '—' : r[1]) + '</td></tr>';
     }).join('') + '</table>';
   }
 
@@ -1589,7 +2472,7 @@
           // the backstop for any path that does not go through it.
           if (!ST.activeDays.length) {
             pause();
-            flashSkip('No operations match the current filters — playback stopped.');
+            reportSkip('No operations match the current filters — playback stopped.');
             return;
           }
           d = ST.activeDays[0];
@@ -1606,16 +2489,40 @@
   }
 
   var skipTimer = null;
-  function flashSkip(msg) {
+
+  /* #skipmsg is a live region (WCAG 4.1.3) but must not become a firehose. The
+     messages it carries fall into two classes:
+
+       announced   "No operations match the current filters — playback stopped."
+                   and the reduced-motion notice. Both are results of something
+                   the user just did, in a place that never receives focus, and
+                   both were previously silent to assistive tech.
+       silent      "Skipped N days with no operations." / "Looped back...".
+                   These fire several times a second while the timelapse runs,
+                   which is the same reason announce() says nothing during
+                   playback.
+
+     The split is made by flipping aria-live rather than by using two elements,
+     because it is the same sentence in the same place for sighted users; only
+     the announcement is conditional. Writing aria-live BEFORE the text is what
+     makes it take effect for that mutation. */
+  function setSkipMessage(msg, announceIt, persistent) {
     var el = $('skipmsg');
+    el.setAttribute('aria-live', announceIt ? 'polite' : 'off');
     el.textContent = msg;
-    if (skipTimer) clearTimeout(skipTimer);
-    skipTimer = setTimeout(function () { el.textContent = ''; }, 2200);
-  }
-  function clearSkipMessage() {
     if (skipTimer) { clearTimeout(skipTimer); skipTimer = null; }
-    $('skipmsg').textContent = '';
+    if (msg && !persistent) {
+      skipTimer = setTimeout(function () {
+        el.setAttribute('aria-live', 'off');   // clearing is not news
+        el.textContent = '';
+      }, 2200);
+    }
   }
+  // Playback chatter: shown, never spoken.
+  function flashSkip(msg) { setSkipMessage(msg, false, false); }
+  // A user action produced this; it is a status message and gets announced.
+  function reportSkip(msg) { setSkipMessage(msg, true, false); }
+  function clearSkipMessage() { setSkipMessage('', false, false); }
 
   /* Keep the scrubber's value and its spoken value in one place so they can
      never drift apart. Without aria-valuetext a screen reader announces the
@@ -1853,9 +2760,11 @@
     // otherwise the old polygons stay drawn on the canvas with nothing left
     // holding a reference to them.
     LAYERS.forEach(function (l) { if (map.hasLayer(l)) map.removeLayer(l); });
+    CASINGS.forEach(function (l) { if (map.hasLayer(l)) map.removeLayer(l); });
     ST.visible = new Map();
     SHAPES.clear();
     LAYERS.clear();
+    CASINGS.clear();
     OPS = [];
     ST.unmappableTotal = 0;
     MANIFEST = manifest || null;
@@ -2058,8 +2967,7 @@
     $('color-by').addEventListener('change', function () {
       ST.colorBy = $('color-by').value;
       buildLegend();
-      // Restyle only what is currently on the map.
-      ST.visible.forEach(function (e, mid) { LAYERS.get(mid).setStyle(styleFor(e)); });
+      restyleVisible();        // only what is currently on the map
     });
 
     $('btn-play').addEventListener('click', toggle);
@@ -2076,6 +2984,9 @@
       var layer = LAYERS.get(b.dataset.mid);
       if (!layer) return;
       pause();
+      // Remember who summoned the popup so focus can go in and come back out
+      // again (WCAG 2.4.3 -- see the popupopen/popupclose handlers in initMap).
+      popupReturnFocus = b;
       try { map.fitBounds(layer.getBounds(), { maxZoom: 13, padding: [40, 40] }); } catch (err) {}
       layer.openPopup();
     });
@@ -2135,6 +3046,23 @@
       if (t === document.body || t === $('map')) { e.preventDefault(); toggle(); }
     });
 
+    /* WCAG 1.4.13 Content on Hover or Focus -- "Dismissible". Leaflet's own
+       Escape handling closes popups and nothing else, so a hover tooltip
+       covering the map could not be dismissed at all: it is sticky, so it
+       tracks the cursor and can never be hovered onto either. Escape now closes
+       it without the pointer moving, which is what the criterion asks. It stays
+       closed until the pointer actually moves, because a sticky tooltip only
+       reopens on a mouse event over its layer.
+
+       Deliberately not preventDefault: Escape has other jobs on this page
+       (Leaflet's popup close, the browser's own), and this must not take them. */
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' && e.key !== 'Esc') return;
+      if (openTooltip && map) {
+        try { map.closeTooltip(openTooltip); } catch (err) { /* already gone */ }
+      }
+    });
+
     ST.speed = +$('sel-speed').value;
     ST.trail = +$('rng-trail').value;
     ST.skipEmpty = $('chk-skip').checked;
@@ -2153,7 +3081,8 @@
     // The notice goes in the visible #skipmsg rather than the live region,
     // because announce() would overwrite the live region a moment later.
     if (prefersReducedMotion) {
-      $('skipmsg').textContent = 'Reduced motion is on — playback did not start automatically. Press Play or drag the day slider.';
+      setSkipMessage('Reduced motion is on — playback did not start automatically. ' +
+                     'Press Play or drag the day slider.', true, true);
     } else {
       play();
     }

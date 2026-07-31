@@ -51,6 +51,15 @@ record of it and cannot be re-derived.
 - **Calendar heat strip** — every day of the period as a cell colored by
   operation count; click (or arrow-key) to jump. Seasonality at a glance
 - **Color by** application method, target stage, or pesticide
+- **Five basemaps** — dark, light, terrain light, terrain dark and satellite,
+  remembered between launches. No free provider hosts a dark terrain map, so
+  that one is composited in the browser from CARTO Dark Matter with Esri's
+  World Hillshade multiplied over it. Every layer of every stack carries its
+  own provider credit, taken verbatim from that service's own metadata, and
+  the polygon styling is re-tuned per background: each zone outline is drawn
+  twice — an opaque white or black casing under the coloured line — over a
+  tuned per-basemap tint, so the outline clears WCAG's 3:1 on every measured
+  pixel of all five backgrounds and the age fade survives the move off black
 - **Filters** — method, target stage, status, pesticide, and all 12 district
   regions; filters drive the map, the calendar strip and the stats together
 - **Honest statistics** — distinguishes *treatments* from *distinct zones*, and
@@ -70,8 +79,8 @@ record of it and cannot be re-derived.
 | Shapes     | Google My Maps KML export → GeoJSON (stdlib `xml.etree`) |
 | Backfill   | Wayback Machine CDX API                                  |
 | Server     | `http.server` subclass with a `POST /refresh` endpoint   |
-| Frontend   | Leaflet 1.9.4 from CDN, single file, no build step       |
-| Tiles      | Carto Dark Matter (OpenStreetMap)                        |
+| Frontend   | Leaflet 1.9.4, vendored, single file, no build step      |
+| Tiles      | CARTO (OpenStreetMap) + Esri ArcGIS Online — see below   |
 
 No npm, no bundler, no build step. Two pure-Python dependencies; nothing
 compiles.
@@ -235,12 +244,38 @@ duplicated id, a blanked required field. All nine were caught.
 | Spray operations | [SJCMVCD Spray Alerts & Maps](https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps) |
 | Spray zone shapes| Google My Maps KML export (`maps/d/kml?mid=…`)            |
 | Historical pages | [Wayback Machine](https://web.archive.org/) CDX API       |
-| Basemap          | Carto Dark Matter / OpenStreetMap                          |
+| Basemaps         | CARTO and Esri ArcGIS Online (table below)                  |
 
 Spray zone geometry and operation details are published by the San Joaquin
-County Mosquito & Vector Control District. Tiles © OpenStreetMap contributors
-© CARTO. The scrapers identify themselves by User-Agent and rate-limit
-themselves.
+County Mosquito & Vector Control District. The scrapers identify themselves by
+User-Agent and rate-limit themselves.
+
+### Basemap tile services and their credits
+
+Five basemaps, eight tile services between them. Attribution is bound to each
+*layer*, not to each basemap, so a composite cannot silently drop a credit when
+its stack is reordered — Leaflet unions and de-duplicates whatever is on the
+map. Every string is that service's own `copyrightText`, copied verbatim, with
+`(c)` rendered as `©` and the word OpenStreetMap linked to
+`openstreetmap.org/copyright`.
+
+| Basemap          | Tile layers                                                                                 | Credited to                                              |
+|------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------|
+| Dark             | CARTO `dark_all`                                                                              | © OpenStreetMap contributors, © CARTO                    |
+| Light            | CARTO `light_all`                                                                             | © OpenStreetMap contributors, © CARTO                    |
+| Terrain (light)  | Esri `World_Topo_Map`                                                                         | Esri and its data providers, incl. © OpenStreetMap contributors |
+| Terrain (dark)   | CARTO `dark_nolabels` + Esri `Elevation/World_Hillshade` (multiplied) + CARTO `dark_only_labels` | © OpenStreetMap contributors, © CARTO; and Esri and its data providers |
+| Satellite        | Esri `World_Imagery`                                                                          | Esri and its data providers (Vantor, Earthstar Geographics, …) |
+
+Two conditions worth stating plainly. **OpenStreetMap**: Esri's World Topo Map
+and CARTO's basemaps are both rendered from OSM data, so the OSM credit is a
+licence condition under the ODbL, not a courtesy, and the link to the licence
+is part of it. **Esri**: the Terms of Use summary requires attribution to
+"Esri *and its data providers*", so the provider list is part of the condition
+and not decoration — which is why the lists are copied rather than curated.
+Esri's terms also forbid harvesting, redistributing or self-hosting their
+tiles: Leaflet is vendored under `vendor/`, Esri tiles are not, and nothing in
+the packaged `.exe` caches them.
 
 ## Limitations (honest list)
 
