@@ -15,6 +15,16 @@ __pycache__/
 # cannot be re-derived once the district's page rolls an entry off.
 data/.cache/
 
+# PyInstaller output. Both are pure build products, regenerated from
+# sj-mosquito-maps.spec by build-exe.cmd, and dist/ holds a ~15 MB binary.
+# Anchored with a leading slash so they only match at the repo root -- an
+# unanchored "build/" would also swallow any future data/build/ directory.
+/build/
+/dist/
+# NOTE: *.spec is deliberately NOT ignored. sj-mosquito-maps.spec is the build
+# definition -- hand-written, reviewed, and committed. The blanket "*.spec"
+# rule that PyInstaller tutorials suggest would silently drop it.
+
 # OS
 .DS_Store
 Thumbs.db

@@ -97,6 +97,30 @@
     #info summary { cursor: pointer; color: #9ad7ff; font-size: 12px; }
     #info details .body { margin-top: 4px; color: #c8ccd1; font-size: 12px; }
 
+    /* "Update maps" control. Same surface as the transport buttons in the
+       timeline dock (#1d2432 on #3a4250) so the two read as one application
+       rather than two widgets that happen to share a page. */
+    #info .upd {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      margin-top: 7px; padding-top: 7px; border-top: 1px solid #3a4250;
+    }
+    #btn-update {
+      background: #1d2432; color: #e8eaed; border: 1px solid #3a4250;
+      border-radius: 4px; cursor: pointer; min-height: 30px; padding: 4px 10px;
+      font: 13px system-ui, sans-serif;
+    }
+    #btn-update:hover:not(:disabled) { background: #27303f; }
+    #btn-update:disabled { color: #6d7686; cursor: progress; }
+    #upd-tick { color: #c8ccd1; font-size: 11px; font-variant-numeric: tabular-nums; }
+    /* The status line is a live region, so it stays in the layout at all times
+       and only its margin collapses when empty — toggling display on a live
+       region is a reliable way to lose the announcement. */
+    #info .upd-status { margin: 5px 0 0; font-size: 12px; color: #c8ccd1; }
+    #info .upd-status:empty { margin: 0; }
+    #info .upd-status.ok   { color: #9ad7ff; }
+    #info .upd-status.warn { color: #ffb84d; }
+    #info .upd-status.err  { color: #ff8f8f; }
+
     #controls {
       top: 10px; right: 10px; width: 296px; padding: 8px 10px 10px;
       max-height: calc(100% - 20px); overflow-y: auto; overscroll-behavior: contain;
@@ -296,6 +320,19 @@
     <header id="info" class="panel" role="region" aria-label="Data source and archive status">
       <h1>San Joaquin County spray timelapse</h1>
       <div class="meta" id="meta">Loading <code>data/</code>&hellip;</div>
+
+      <div class="upd">
+        <button id="btn-update" type="button"
+                aria-label="Update maps: check the district's page for spray operations published since this snapshot and add them to the archive"
+                title="Check the district's page for newly published spray maps and add them to the archive. Nothing is ever removed.">Update maps</button>
+        <!-- Elapsed-time ticker. aria-hidden deliberately: it changes every
+             second, and the live region below must carry the result only, not
+             every tick. Sighted users get the progress here; screen-reader
+             users get one "checking" line and one result line. -->
+        <span id="upd-tick" aria-hidden="true"></span>
+      </div>
+      <p id="upd-status" class="upd-status" role="status" aria-live="polite" aria-atomic="true"></p>
+
       <details id="about">
         <summary>About this archive</summary>
         <div class="body" id="about-body">
@@ -645,6 +682,9 @@
   }
 
   function boot() {
+    // Wired first and unconditionally: if Leaflet or data/ failed to load, an
+    // update is the one action still worth offering.
+    initUpdater();
     if (typeof L === 'undefined') { return; }   // the CDN onerror already spoke
     initMap();
 
@@ -654,7 +694,7 @@
       fetch('data/manifest.json').then(okJson).catch(function () { return null; })
     ]).then(function (res) {
       MANIFEST = res[2];
-      ingest(res[0], res[1]);
+      ingest(res[0], res[1], true);       // first load: frame the whole archive
       buildUI();
       renderManifest();
     }).catch(function (err) {
@@ -670,7 +710,14 @@
     return r.json();
   }
 
-  function ingest(opsDoc, geo) {
+  /* fitView: fit the map to the archive footprint after indexing. True on the
+     first load, FALSE when an "update maps" run re-ingests into a live map --
+     the viewer has panned and zoomed somewhere deliberately by then, and
+     yanking the view back to the county extent would lose their place. It has
+     to be suppressed here rather than undone afterwards: fitBounds starts an
+     animated zoom whose completion handler resets the view, so a setView()
+     called immediately after it is silently overwritten a frame later. */
+  function ingest(opsDoc, geo, fitView) {
     // --- shapes index + one reusable Leaflet layer per mid ---------------
     (geo.features || []).forEach(function (f) {
       var mid = f.id || (f.properties && f.properties.mid);
@@ -730,7 +777,7 @@
       }
     }
     (geo.features || []).forEach(function (f) { if (f.geometry) walk(f.geometry.coordinates); });
-    if (sawPoint) map.fitBounds(L.latLngBounds([[minLat, minLon], [maxLat, maxLon]]), { padding: [16, 16] });
+    if (sawPoint && fitView) map.fitBounds(L.latLngBounds([[minLat, minLon], [maxLat, maxLon]]), { padding: [16, 16] });
   }
 
   /* ---------- filters UI ------------------------------------------------ */
@@ -792,6 +839,10 @@
         lab.className = 'chk';
         var cb = document.createElement('input');
         cb.type = 'checkbox'; cb.checked = true; cb.value = v;
+        // Which dimension this box belongs to, so that an in-place archive
+        // reload can put the user's filter selections back after buildFilters()
+        // has recreated every box from the new data. See applyReloadedArchive().
+        cb.dataset.key = def.key;
         cb.addEventListener('change', function () {
           if (cb.checked) ST.filters[def.key].add(v); else ST.filters[def.key].delete(v);
           applyFilters();
@@ -1650,6 +1701,283 @@
     $('meta').innerHTML = lines.join('<br/>');
   }
 
+  /* =====================================================================
+     "Update maps" — the in-app refresh control
+
+     POSTs to /refresh, which re-scrapes the district's spray-alerts page and
+     merges anything new into data/ (append-only: the archive can grow, never
+     shrink). The reply shape is fixed:
+
+       { status: "ok"|"error"|"busy", returncode, duration_s, backfill,
+         stdout_tail, stderr_tail, manifest? }
+
+     Two status surfaces, on purpose:
+       #upd-tick   visible, aria-hidden, updated every second while running —
+                   this is what stops a 15-to-60-second fetch looking frozen.
+       #upd-status a polite live region written exactly TWICE per run: once
+                   when the run starts, once with the outcome. The per-second
+                   elapsed count never touches it.
+
+     RELOAD STRATEGY: in place, not location.reload(). The app already has a
+     clean seam for it — ingest() builds the indexes, buildFilters()/
+     buildLegend()/populateYearSelect() build the panels and setPeriod()
+     re-buckets everything — and all the one-time event wiring lives in
+     buildUI(), which we deliberately do NOT re-run (it would double-bind every
+     listener). Rebuilding in place keeps the viewer's map view, selected year,
+     day and filter selections, which a full page reload would all throw away
+     mid-session. location.reload() is kept as the fallback for the one case
+     where in-place is not possible: the page never finished booting (Leaflet
+     missing, or the first load of data/ failed), so there is no live map or
+     wired UI to rebuild into.
+     ===================================================================== */
+
+  var APP_READY = false;        // buildUI() finished; in-place rebuild is safe
+  var updBusy = false;
+  var updTickTimer = null;
+
+  /* Year <option>s are rebuilt after a reload — a refresh can introduce a
+     whole new year — so building them lives in one place. `preferred` is the
+     year to re-select if it still exists in the data; anything else falls back
+     to the most recent year. Returns the selected year (number or 'all'). */
+  function populateYearSelect(preferred) {
+    var years = yearsInData();
+    var sel = $('sel-year');
+    sel.innerHTML = '';
+    var optAll = document.createElement('option');
+    optAll.value = 'all';
+    optAll.textContent = 'All years (' + years[0] + '–' + years[years.length - 1] + ')';
+    sel.appendChild(optAll);
+    years.slice().reverse().forEach(function (y) {
+      var o = document.createElement('option');
+      o.value = String(y); o.textContent = String(y);
+      sel.appendChild(o);
+    });
+    var want = (preferred === 'all' || years.indexOf(+preferred) !== -1)
+      ? String(preferred) : String(years[years.length - 1]);
+    sel.value = want;
+    return want === 'all' ? 'all' : +want;
+  }
+
+  function updStatus(msg, cls) {
+    var el = $('upd-status');
+    el.className = 'upd-status' + (cls ? ' ' + cls : '');
+    el.textContent = msg;
+  }
+
+  function updTicker(on) {
+    var el = $('upd-tick');
+    if (updTickTimer) { clearInterval(updTickTimer); updTickTimer = null; }
+    if (!on) { el.textContent = ''; return; }
+    var t0 = Date.now();
+    el.textContent = 'working… 0s';
+    updTickTimer = setInterval(function () {
+      el.textContent = 'working… ' + Math.round((Date.now() - t0) / 1000) + 's';
+    }, 1000);
+  }
+
+  // Best sentence we can offer about a failed run, in decreasing usefulness.
+  function updErrorText(body, code) {
+    // No trailing full stop on any branch here: the caller appends one.
+    if (!body) return 'HTTP ' + code + ' — the server did not return JSON';
+    var bits = [];
+    if (body.message) bits.push(String(body.message));
+    var err = String(body.stderr_tail || '').split('\n').filter(Boolean);
+    if (err.length) bits.push(err[err.length - 1]);
+    if (!bits.length) {
+      var out = String(body.stdout_tail || '').split('\n').filter(Boolean);
+      if (out.length) bits.push(out[out.length - 1]);
+    }
+    if (!bits.length && body.returncode != null) bits.push('the fetcher exited with code ' + body.returncode);
+    return bits.join(' — ') || ('HTTP ' + code);
+  }
+
+  // What actually changed, in the viewer's terms. Prefer the manifest's own
+  // new_ops/new_shapes (written by the run itself); fall back to a before/after
+  // difference on the totals if an older manifest lacks them.
+  function updSummary(m, beforeOps, beforeShapes) {
+    var nOps = (m && typeof m.new_ops === 'number') ? m.new_ops
+      : (m && typeof m.total_ops === 'number') ? Math.max(0, m.total_ops - beforeOps) : null;
+    var nSh = (m && typeof m.new_shapes === 'number') ? m.new_shapes
+      : (m && typeof m.total_shapes === 'number') ? Math.max(0, m.total_shapes - beforeShapes) : null;
+    var totOps = (m && typeof m.total_ops === 'number') ? m.total_ops : OPS.length;
+    var through = (m && m.date_max) ? m.date_max : (OPS.length ? OPS[OPS.length - 1].date : null);
+
+    if (nOps === null) {
+      return { msg: 'Update finished. The archive now holds ' + fmtNum(totOps) + ' operations' +
+                    (through ? ' through ' + through : '') + '.', cls: 'ok' };
+    }
+    if (nOps === 0) {
+      return { msg: 'No new operations — the district has not posted anything since ' +
+                    (through || 'the last snapshot') + '.' +
+                    (nSh ? ' ' + nSh + ' new zone shape' + (nSh === 1 ? '' : 's') + ' were fetched.' : '') +
+                    ' The archive still holds ' + fmtNum(totOps) + ' operations.', cls: 'ok' };
+    }
+    return { msg: nOps + ' new operation' + (nOps === 1 ? '' : 's') +
+                  (nSh ? ', ' + nSh + ' new zone' + (nSh === 1 ? '' : 's') : '') +
+                  '. The archive now holds ' + fmtNum(totOps) + ' operations' +
+                  (through ? ' through ' + through : '') + '.', cls: 'ok' };
+  }
+
+  // Swap the freshly written data/ in without a page reload. Everything the
+  // viewer had chosen is captured first and put back afterwards.
+  function applyReloadedArchive(opsDoc, geo, manifest) {
+    var wasPlaying = ST.playing;
+    var prevYear = ST.year, prevDay = ST.day;
+
+    var prevAll = {}, prevOn = {};
+    $('filters').querySelectorAll('input[type=checkbox][data-key]').forEach(function (cb) {
+      var k = cb.dataset.key;
+      if (!prevAll[k]) { prevAll[k] = new Set(); prevOn[k] = new Set(); }
+      prevAll[k].add(cb.value);
+      if (cb.checked) prevOn[k].add(cb.value);
+    });
+
+    pause();
+    map.closePopup();
+    openPopupMid = null;
+
+    // Every layer is about to be discarded, so take them off the map first —
+    // otherwise the old polygons stay drawn on the canvas with nothing left
+    // holding a reference to them.
+    LAYERS.forEach(function (l) { if (map.hasLayer(l)) map.removeLayer(l); });
+    ST.visible = new Map();
+    SHAPES.clear();
+    LAYERS.clear();
+    OPS = [];
+    ST.unmappableTotal = 0;
+    MANIFEST = manifest || null;
+
+    ingest(opsDoc, geo, false);           // keep the viewer's current map view
+
+    buildFilters();                       // recreates every box, all checked
+    $('filters').querySelectorAll('input[type=checkbox][data-key]').forEach(function (cb) {
+      var k = cb.dataset.key;
+      // A value that did not exist before this refresh stays ON: leaving a
+      // brand-new product or region silently filtered out would hide exactly
+      // the thing the viewer pressed the button to see.
+      if (!prevAll[k] || !prevAll[k].has(cb.value)) return;
+      var on = prevOn[k].has(cb.value);
+      cb.checked = on;
+      if (on) ST.filters[k].add(cb.value); else ST.filters[k].delete(cb.value);
+    });
+    buildLegend();
+
+    var year = populateYearSelect(prevYear);
+    setPeriod(year);                      // rebuilds the calendar, re-buckets, renders
+    if (year === prevYear) setDay(prevDay, false);   // setDay clamps if the period shrank
+    renderManifest();
+    if (wasPlaying) play();
+  }
+
+  function reloadArchive(fallbackManifest) {
+    if (!APP_READY || !map) {
+      // No live app to rebuild into (see RELOAD STRATEGY above).
+      location.reload();
+      return Promise.resolve(null);
+    }
+    // Cache-bust: serve.py sends no-store for /data/, but the exe/pywebview
+    // shell and any other host in front of this page may not.
+    var bust = '?t=' + Date.now();
+    return Promise.all([
+      fetch('data/operations.json' + bust).then(okJson),
+      fetch('data/shapes.geojson' + bust).then(okJson),
+      fetch('data/manifest.json' + bust).then(okJson).catch(function () { return fallbackManifest; })
+    ]).then(function (res) {
+      applyReloadedArchive(res[0], res[1], res[2]);
+      return res[2];
+    });
+  }
+
+  function runUpdate() {
+    if (updBusy) return;
+    updBusy = true;
+
+    var btn = $('btn-update');
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    btn.textContent = 'Updating…';
+    btn.setAttribute('aria-label', 'Update in progress');
+    updStatus('Checking the district’s page… this can take 15 seconds or more.', '');
+    updTicker(true);
+
+    // Baseline for the fallback delta, taken before anything is overwritten.
+    var beforeOps = (MANIFEST && typeof MANIFEST.total_ops === 'number') ? MANIFEST.total_ops : OPS.length;
+    var beforeShapes = (MANIFEST && typeof MANIFEST.total_shapes === 'number') ? MANIFEST.total_shapes : SHAPES.size;
+
+    function done() {
+      updTicker(false);
+      updBusy = false;
+      btn.disabled = false;
+      btn.removeAttribute('aria-busy');
+      btn.textContent = 'Update maps';
+      btn.setAttribute('aria-label',
+        'Update maps: check the district’s page for spray operations published since this snapshot and add them to the archive');
+    }
+
+    fetch('refresh', { method: 'POST', headers: { 'Accept': 'application/json' }, cache: 'no-store' })
+      .then(function (r) {
+        // Read as text first: a 404 from a plain static server, or a crash
+        // before the JSON writer, would otherwise reject inside r.json() with
+        // a message that says nothing useful.
+        return r.text().then(function (txt) {
+          var body = null;
+          try { body = JSON.parse(txt); } catch (e) { /* left null on purpose */ }
+          return { code: r.status, body: body };
+        });
+      })
+      .then(function (res) {
+        var b = res.body;
+        if (b && b.status === 'busy') {
+          updStatus('An update is already running — give it a moment and try again. ' +
+                    'The archive on screen is unchanged.', 'warn');
+          return;
+        }
+        if (!b || b.status !== 'ok') {
+          updStatus('Update failed: ' + updErrorText(b, res.code) +
+                    '. Nothing was lost — the archive on screen is unchanged and still complete.', 'err');
+          return;
+        }
+        return reloadArchive(b.manifest || null).then(function (m) {
+          if (m === null && !APP_READY) return;      // a full page reload is under way
+          var s = updSummary(m, beforeOps, beforeShapes);
+          updStatus(s.msg, s.cls);
+        }, function (err) {
+          // The fetch succeeded and data/ was rewritten; only the in-page swap
+          // failed. Say so precisely — telling the user the update failed here
+          // would be wrong.
+          console.error(err);
+          updStatus('The archive on disk was updated, but this page could not load the new copy (' +
+                    (err && err.message ? err.message : err) + '). Reload the page to see it. ' +
+                    'Nothing was lost.', 'warn');
+        });
+      })
+      .catch(function (err) {
+        console.error(err);
+        var why = (err && err.name === 'TypeError')
+          ? 'could not reach the local update service (is the app still running?)'
+          : (err && err.message ? err.message : String(err));
+        updStatus('Update failed: ' + why +
+                  '. Nothing was lost — the archive on screen is unchanged and still complete.', 'err');
+      })
+      .then(done, done);
+  }
+
+  // Bound before the data load, and independently of it, so the button still
+  // works when the archive itself failed to load — that is precisely when a
+  // user most wants to fetch a fresh copy.
+  function initUpdater() {
+    var btn = $('btn-update');
+    if (!btn) return;
+    if (location.protocol === 'file:') {
+      // No server, so no /refresh endpoint. Say why rather than let the button
+      // fail with a bare network error.
+      btn.disabled = true;
+      updStatus('Updating needs the local app or "python serve.py" — this page was opened directly from disk.', 'warn');
+      return;
+    }
+    btn.addEventListener('click', runUpdate);
+  }
+
   /* ---------- wire up ---------------------------------------------------- */
 
   function buildUI() {
@@ -1663,19 +1991,8 @@
 
     // Year selector: default to the most recent year present in the data,
     // never a hardcoded year.
-    var years = yearsInData();
     var sel = $('sel-year');
-    var optAll = document.createElement('option');
-    optAll.value = 'all';
-    optAll.textContent = 'All years (' + years[0] + '–' + years[years.length - 1] + ')';
-    sel.appendChild(optAll);
-    years.slice().reverse().forEach(function (y) {
-      var o = document.createElement('option');
-      o.value = String(y); o.textContent = String(y);
-      sel.appendChild(o);
-    });
-    var defaultYear = years[years.length - 1];
-    sel.value = String(defaultYear);
+    var defaultYear = populateYearSelect(null);
 
     sel.addEventListener('change', function () {
       pause();
@@ -1770,6 +2087,11 @@
     ST.colorBy = $('color-by').value;
 
     setPeriod(defaultYear);
+
+    // From here the map, the panels and the one-time event wiring all exist,
+    // so an "update maps" run can rebuild the archive in place instead of
+    // reloading the page. See the RELOAD STRATEGY note above.
+    APP_READY = true;
 
     // prefers-reduced-motion: never autoplay. The map stays a fully usable,
     // scrubable static map; the user can still press Play deliberately.

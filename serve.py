@@ -1,29 +1,60 @@
 """
 Tiny static-file + refresh server. Replaces `python -m http.server`.
 
-  GET  /<path>              -> serves static files from the project directory
-  POST /refresh             -> runs fetch_data.py in a subprocess, returns JSON
+  GET  /<path>              -> index.html and friends, from the program bundle
+  GET  /data/<path>         -> the writable archive, wherever it actually lives
+  POST /refresh             -> runs the fetcher IN-PROCESS, returns JSON
   POST /refresh?backfill=1  -> same, but also sweeps the Wayback Machine
 
 Use:  python serve.py [port]   (default 8000)
+
+TWO ROOTS, ONE HANDLER
+----------------------
+SimpleHTTPRequestHandler has exactly one ``directory``. This server needs two:
+the read-only program bundle (index.html, icons) and the writable archive
+(operations.json, shapes.geojson, manifest.json). In a dev checkout they nest
+-- ``<repo>/data`` is inside ``<repo>`` -- which is why one root has always
+been enough. In a frozen build the bundle is a temp extraction directory that
+is deleted on exit and the archive is under %LOCALAPPDATA%, so they are
+unrelated trees. ``translate_path`` below does the mapping; see its docstring
+for the traversal argument.
+
+NO SUBPROCESS
+-------------
+/refresh used to shell out to ``python fetch_data.py``. Inside a frozen onefile
+app that is doubly broken: ``sys.executable`` is the app itself (so it would
+relaunch the whole GUI) and ``fetch_data.py`` does not exist on disk at all.
+The refresh therefore imports the fetcher and calls it directly.
 """
 
 from __future__ import annotations
 
+import io
 import json
 import os
-import subprocess
 import sys
 import threading
 import time
+import traceback
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-ROOT = Path(__file__).parent
-FETCH_SCRIPT = ROOT / "fetch_data.py"
-PYTHON = sys.executable  # same venv that's running this server
+from sjmvcd import paths
+
+# Imported at module scope on purpose, for two reasons:
+#   1. PyInstaller's static analysis has to SEE this import to pull the fetcher
+#      and its dependency tree into the bundle. A lazy `import fetch_data`
+#      inside the handler would build fine and then fail at the click of the
+#      update button.
+#   2. fetch_data reconfigures sys.stdout to UTF-8 at import time; doing that
+#      here, once, rather than in the middle of a redirected-stdout block.
+import fetch_data
+
+# The bundle root is resolved once so translate_path can compare against it
+# without re-resolving on every request.
+BUNDLE_ROOT = paths.bundle_dir().resolve()
 
 # A plain scrape finishes in well under a minute; a Wayback backfill walks
 # ~30 archived snapshots and can run for many minutes. Budget separately so a
@@ -31,6 +62,10 @@ PYTHON = sys.executable  # same venv that's running this server
 TIMEOUT_REFRESH_S = 600
 TIMEOUT_BACKFILL_S = 3600
 
+# Single-flight. Two writers racing on data/operations.json could interleave
+# archive writes, and the archive is not regenerable. Held for the whole life
+# of a fetch -- including one that has blown its timeout and is still running
+# in the background -- so a second click cannot start a concurrent writer.
 _refresh_lock = threading.Lock()
 
 
@@ -41,7 +76,146 @@ SimpleHTTPRequestHandler.extensions_map[".webmanifest"] = "application/manifest+
 SimpleHTTPRequestHandler.extensions_map[".geojson"] = "application/geo+json"
 
 
+class _Tee:
+    """
+    Write-through capture: forwards to the real stream, keeps a copy.
+
+    The refresh runs in-process, so the only way to fill ``stdout_tail`` is to
+    intercept the fetcher's prints. Teeing rather than swallowing means a user
+    who launched from a console still watches the run happen live.
+    """
+
+    def __init__(self, buffer: io.StringIO, passthrough) -> None:
+        self._buffer = buffer
+        self._passthrough = passthrough
+
+    def write(self, text: str) -> int:
+        self._buffer.write(text)
+        if self._passthrough is not None:
+            try:
+                self._passthrough.write(text)
+            except Exception:
+                # A frozen windowed build has no console; sys.__stdout__ can be
+                # None or a dead handle. Losing the echo must not lose the run.
+                self._passthrough = None
+        return len(text)
+
+    def flush(self) -> None:
+        if self._passthrough is not None:
+            try:
+                self._passthrough.flush()
+            except Exception:
+                pass
+
+    def isatty(self) -> bool:
+        return False
+
+
+def run_fetch_in_process(backfill: bool) -> dict:
+    """
+    Run the fetcher in this thread and return the /refresh payload.
+
+    Never raises: any exception the fetcher lets escape is turned into
+    ``status: "error"`` with the traceback in ``stderr_tail``. That matters
+    because fetch_data's own contract is already "a failed stage degrades the
+    run to 'no new data' and leaves the committed archive exactly as it was" --
+    so an error here means the archive on disk is untouched, which is the
+    outcome we want and the one we report.
+    """
+    argv = ["--backfill"] if backfill else []
+    out_buf, err_buf = io.StringIO(), io.StringIO()
+
+    # NOTE: sys.stdout/stderr are process-global, so a concurrent request's
+    # access-log line can land in these buffers. Harmless -- the tails are for
+    # display only -- and the single-flight lock means it is never another
+    # fetch's output.
+    prev_out, prev_err = sys.stdout, sys.stderr
+    sys.stdout = _Tee(out_buf, sys.__stdout__)
+    sys.stderr = _Tee(err_buf, sys.__stderr__)
+
+    t0 = time.time()
+    returncode = 1
+    try:
+        returncode = fetch_data.main(argv)
+    except SystemExit as exc:
+        # argparse calls sys.exit on a bad flag; in-process that must not kill
+        # the server thread.
+        returncode = exc.code if isinstance(exc.code, int) else 1
+    except BaseException:
+        err_buf.write(traceback.format_exc())
+        returncode = 1
+    finally:
+        sys.stdout, sys.stderr = prev_out, prev_err
+
+    duration = round(time.time() - t0, 1)
+    stdout_text, stderr_text = out_buf.getvalue(), err_buf.getvalue()
+
+    payload = {
+        "status": "ok" if returncode == 0 else "error",
+        "returncode": returncode,
+        "duration_s": duration,
+        "backfill": backfill,
+        # Tail the output so the client can show what happened without us
+        # streaming megabytes back.
+        "stdout_tail": "\n".join(stdout_text.splitlines()[-25:]),
+        "stderr_tail": "\n".join(stderr_text.splitlines()[-10:]),
+    }
+
+    # Try to attach the manifest so the client can show counts. Read from the
+    # writable archive, not the bundle.
+    manifest_path = paths.data_dir() / "manifest.json"
+    if manifest_path.exists():
+        try:
+            payload["manifest"] = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return payload
+
+
 class Handler(SimpleHTTPRequestHandler):
+    def translate_path(self, path: str) -> str:
+        """
+        Map a URL onto one of the two roots.
+
+        ``/data/...`` resolves under ``paths.data_dir()``; everything else under
+        ``paths.bundle_dir()``.
+
+        TRAVERSAL: the sanitising is done by the base implementation, which is
+        the part that has been audited by everyone. It strips the query and
+        fragment, unquotes, ``posixpath.normpath``s, then walks the components
+        and DISCARDS any that are ``.``, ``..``, or contain a path separator --
+        so ``/data/../../../etc/passwd`` collapses to ``etc/passwd`` before it
+        ever reaches us. We only ever re-root the already-sanitised *relative*
+        result, and we do it with ``Path.joinpath`` on individual components,
+        so no input can climb out of either tree. The one case we deliberately
+        do not inherit is the Windows drive-letter quirk described below, which
+        we close explicitly.
+        """
+        fs_path = super().translate_path(path)
+        # Preserve the trailing slash super() adds for directory URLs; Path()
+        # would strip it and send_head uses it for the redirect decision.
+        trailing = "/" if fs_path.endswith(("/", os.sep)) else ""
+
+        try:
+            relative = Path(fs_path).relative_to(BUNDLE_ROOT)
+        except ValueError:
+            # The base implementation builds its result by os.path.join-ing
+            # components onto self.directory, so it is normally guaranteed to
+            # stay inside. The one hole is Windows: os.path.join(root, "C:")
+            # returns "C:", because a bare drive letter is not a relative
+            # component -- so "/C:/Windows/win.ini" would land outside the
+            # tree. Anything that is not under the bundle root is refused
+            # outright by pointing at a name that cannot exist.
+            return str(BUNDLE_ROOT / "__forbidden__")
+
+        parts = relative.parts
+        if parts and parts[0] == "data":
+            # joinpath over the remaining components -- each already proven by
+            # the base implementation not to be '..' and not to contain a path
+            # separator, so this cannot climb out of the data root either.
+            return str(paths.data_dir().joinpath(*parts[1:])) + trailing
+        return fs_path
+
     def do_POST(self):
         parsed = urlparse(self.path)
         if parsed.path != "/refresh":
@@ -51,49 +225,40 @@ class Handler(SimpleHTTPRequestHandler):
         backfill = parse_qs(parsed.query).get("backfill", ["0"])[0] not in ("0", "", "false")
 
         # Prevent overlapping fetches; one user clicks twice or a watcher fires.
-        # This matters more here than in a pure-cache project: two writers
-        # racing on data/operations.json could interleave archive writes.
         if not _refresh_lock.acquire(blocking=False):
             self._json(409, {"status": "busy", "message": "a refresh is already running"})
             return
-        try:
-            cmd = [PYTHON, str(FETCH_SCRIPT)]
-            if backfill:
-                cmd.append("--backfill")
-            t0 = time.time()
-            proc = subprocess.run(
-                cmd,
-                capture_output=True, text=True, cwd=str(ROOT),
-                env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"},
-                timeout=TIMEOUT_BACKFILL_S if backfill else TIMEOUT_REFRESH_S,
-            )
-            dur = round(time.time() - t0, 1)
-            # Tail the output so the client can show what happened without us
-            # streaming megabytes back.
-            tail_lines = (proc.stdout or "").splitlines()[-25:]
-            payload = {
-                "status": "ok" if proc.returncode == 0 else "error",
-                "returncode": proc.returncode,
-                "duration_s": dur,
+
+        limit = TIMEOUT_BACKFILL_S if backfill else TIMEOUT_REFRESH_S
+        result: dict = {}
+
+        def _worker() -> None:
+            try:
+                result.update(run_fetch_in_process(backfill))
+            finally:
+                # Released by the worker, not by the request thread. If we time
+                # out below, the fetch is still running and still writing; the
+                # lock must stay held until it is genuinely finished or a second
+                # click would start a concurrent writer on the archive.
+                _refresh_lock.release()
+
+        # A thread rather than a straight call so a hung upstream still lets the
+        # endpoint answer. There is no way to kill a Python thread, so a timeout
+        # reports "still running" instead of pretending it was cancelled.
+        worker = threading.Thread(target=_worker, name="refresh", daemon=True)
+        worker.start()
+        worker.join(limit)
+
+        if worker.is_alive():
+            self._json(504, {
+                "status": "error",
                 "backfill": backfill,
-                "stdout_tail": "\n".join(tail_lines),
-                "stderr_tail": "\n".join((proc.stderr or "").splitlines()[-10:]),
-            }
-            # Try to attach the manifest so the client can show counts.
-            manifest_path = ROOT / "data" / "manifest.json"
-            if manifest_path.exists():
-                try:
-                    payload["manifest"] = json.loads(manifest_path.read_text(encoding="utf-8"))
-                except Exception:
-                    pass
-            self._json(200 if proc.returncode == 0 else 500, payload)
-        except subprocess.TimeoutExpired:
-            limit = TIMEOUT_BACKFILL_S if backfill else TIMEOUT_REFRESH_S
-            self._json(504, {"status": "error", "message": f"fetch timed out after {limit}s"})
-        except Exception as e:
-            self._json(500, {"status": "error", "message": repr(e)})
-        finally:
-            _refresh_lock.release()
+                "message": f"fetch exceeded {limit}s and is still running in the "
+                           f"background; the existing archive is unchanged so far",
+            })
+            return
+
+        self._json(200 if result.get("status") == "ok" else 500, result)
 
     def _json(self, code: int, body: dict) -> None:
         data = json.dumps(body).encode("utf-8")
@@ -112,11 +277,22 @@ class Handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
 
+def make_handler():
+    """Handler factory bound to the bundle root. Shared with app.py."""
+    return partial(Handler, directory=str(BUNDLE_ROOT))
+
+
 def main():
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
-    handler = partial(Handler, directory=str(ROOT))
-    with ThreadingHTTPServer(("", port), handler) as httpd:
-        print(f"serving {ROOT} on http://localhost:{port}/")
+    # Cheap in dev (source and destination are the same directory, detected and
+    # skipped); the thing that makes a frozen first run work at all.
+    copied, data_root = paths.seed_data_dir()
+    if copied:
+        print(f"seeded {copied} archive file(s) into {data_root}")
+
+    with ThreadingHTTPServer(("", port), make_handler()) as httpd:
+        print(f"serving {BUNDLE_ROOT} on http://localhost:{port}/")
+        print(f"  /data/* -> {data_root}")
         print(f"  POST http://localhost:{port}/refresh             re-scrape the live page")
         print(f"  POST http://localhost:{port}/refresh?backfill=1  also sweep the Wayback Machine")
         httpd.serve_forever()

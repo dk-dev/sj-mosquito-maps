@@ -32,10 +32,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 import traceback
-from pathlib import Path
 
 # Force UTF-8 stdout. Area names carry non-ASCII (accented street names, the
 # registered mark on product names) and the default Windows console codepage
@@ -46,20 +46,28 @@ try:
 except Exception:
     pass
 
-from sjmvcd import archive
+from sjmvcd import archive, paths
 
 # -----------------------------------------------------------------------------
 # Paths and constants
 # -----------------------------------------------------------------------------
-ROOT = Path(__file__).resolve().parent
-DATA_DIR = ROOT / "data"
+# Resolved through sjmvcd.paths rather than __file__ so that a frozen build
+# writes to a directory that still exists after the process exits. In a normal
+# dev checkout paths.data_dir() is <repo>/data, i.e. byte-identical behaviour
+# to the previous `Path(__file__).resolve().parent / "data"`.
+#
+# These are module-level constants because the whole file already reads them
+# that way; they are resolved once, at import, which also means an in-process
+# caller (serve.py's /refresh) gets a stable answer for the length of the run.
+ROOT = paths.bundle_dir()
+DATA_DIR = paths.data_dir()
 OPERATIONS_PATH = DATA_DIR / "operations.json"
 SHAPES_PATH = DATA_DIR / "shapes.geojson"
 MANIFEST_PATH = DATA_DIR / "manifest.json"
 
 # Raw Wayback captures land here. Gitignored: regenerable, and each capture is
 # a few hundred KB of DNN markup we only need once.
-CACHE_DIR = DATA_DIR / ".cache"
+CACHE_DIR = paths.cache_dir()
 
 PAGE_URL = "https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps"
 
@@ -264,6 +272,10 @@ def main(argv: list[str] | None = None) -> int:
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     print(f"sjmvcd spray-map refresh @ {now}")
+    # Only announce the layout when it is NOT the familiar dev one, so a normal
+    # checkout's run log stays exactly as it was.
+    if paths.is_frozen() or os.environ.get(paths.DATA_DIR_ENV):
+        print(f"  layout  : {paths.describe()}")
     print(f"  archive : {OPERATIONS_PATH}")
     print(f"  shapes  : {SHAPES_PATH}")
     if args.dry_run:

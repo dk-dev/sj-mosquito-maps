@@ -19,13 +19,25 @@ run tells you everything that is broken.
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from collections import Counter
 from datetime import date, timedelta
 from pathlib import Path
 
-DATA_DIR = Path(__file__).parent / "data"
+# Resolve the archive through the same single source of truth the fetcher uses
+# (sjmvcd.paths), so this gate always checks the file that was actually
+# written. Using __file__ here would, in a frozen build, verify the pristine
+# bundled seed instead of the user's real archive -- a check that can only ever
+# pass and therefore proves nothing.
+#
+# In a normal dev checkout paths.data_dir() is <repo>/data, so this is exactly
+# the directory the previous `Path(__file__).parent / "data"` produced.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sjmvcd import paths  # noqa: E402
+
+DATA_DIR = paths.data_dir()
 OPERATIONS_PATH = DATA_DIR / "operations.json"
 SHAPES_PATH = DATA_DIR / "shapes.geojson"
 
@@ -231,6 +243,11 @@ def verify_join(ops: list[dict], shape_mids: set[str], report: Report) -> None:
 
 def main() -> int:
     report = Report()
+
+    # Say which archive was checked only when it is NOT the familiar dev one,
+    # so a normal checkout's (and CI's) output stays exactly as it was.
+    if paths.is_frozen() or os.environ.get(paths.DATA_DIR_ENV):
+        print(f"  checking {DATA_DIR}")
 
     try:
         ops = json.loads(OPERATIONS_PATH.read_text(encoding="utf-8"))["operations"]

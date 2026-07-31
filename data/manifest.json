@@ -2,9 +2,9 @@
   "date_max": "2026-07-31",
   "date_min": "2020-05-04",
   "errors": [],
-  "generated_at": "2026-07-31T02:36:07Z",
-  "new_ops": 19,
-  "new_shapes": 4,
+  "generated_at": "2026-07-31T02:57:26Z",
+  "new_ops": 0,
+  "new_shapes": 0,
   "page_ops": 96,
   "shape_failures": 1,
   "sources": {
@@ -20,8 +20,8 @@
       "failed_mids": [
         "1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c"
       ],
-      "fetched": 4,
-      "requested": 5,
+      "fetched": 0,
+      "requested": 1,
       "status": "ok"
     },
     "wayback": {

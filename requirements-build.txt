@@ -1,0 +1,16 @@
+# Build-only dependency: turns this project into a standalone Windows .exe.
+# Nobody needs this to RUN the app -- it is for whoever produces the download.
+#
+#   .venv\Scripts\python -m pip install -r requirements-build.txt
+#   build-exe.cmd
+#
+# Pulls in requirements-desktop.txt (which itself pulls in requirements.txt)
+# because PyInstaller freezes what is importable in the environment it runs in:
+# if pywebview is missing at build time, the exe has no native window and
+# silently falls back to the browser.
+-r requirements-desktop.txt
+
+# 6.21 is the floor: it is the first release that supports Python 3.14, which
+# is what this project targets. <7 because the spec-file API is only stable
+# within a major version.
+pyinstaller>=6.21,<7
