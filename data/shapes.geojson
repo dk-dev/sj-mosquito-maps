@@ -12622,6 +12622,45 @@
         "coordinates": [
           [
             [
+              -121.4347068,
+              37.7251834
+            ],
+            [
+              -121.4346424,
+              37.710569
+            ],
+            [
+              -121.3981,
+              37.710552
+            ],
+            [
+              -121.3980786,
+              37.7251834
+            ],
+            [
+              -121.4347068,
+              37.7251834
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1SFf-OFsbPVoWdsHo6beY5md5oPEV6vk",
+      "properties": {
+        "area_sq_km": 5.2325,
+        "doc_description": ">North to Schulte Rd., > South to Valpico Rd., > East to S. Chrisman Rd., > West to S. Tracy Blvd.",
+        "doc_name": "T33-Portion of East Tracy",
+        "fetched_at": "2026-07-31T02:36:11Z",
+        "mid": "1SFf-OFsbPVoWdsHo6beY5md5oPEV6vk",
+        "zone_code": "T33"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -120.9505576,
               37.7941291
             ],
@@ -17300,6 +17339,57 @@
         "coordinates": [
           [
             [
+              -121.2698552,
+              38.0369611
+            ],
+            [
+              -121.2696407,
+              38.0273949
+            ],
+            [
+              -121.2716577,
+              38.0234396
+            ],
+            [
+              -121.2716792,
+              38.0212252
+            ],
+            [
+              -121.2688682,
+              38.0212421
+            ],
+            [
+              -121.2587831,
+              38.0281048
+            ],
+            [
+              -121.2588689,
+              38.0372315
+            ],
+            [
+              -121.2698552,
+              38.0369611
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1Z9I9hAMPAMKQKsp0_exbF-s4tR9wAxA",
+      "properties": {
+        "area_sq_km": 1.4285,
+        "doc_description": "N to E. Morada Ln., > S to Hammer Ln., > E to 99, > W to Holman Rd.",
+        "doc_name": "S61 - Portion of Stockton - Morada",
+        "fetched_at": "2026-07-31T02:36:12Z",
+        "mid": "1Z9I9hAMPAMKQKsp0_exbF-s4tR9wAxA",
+        "zone_code": "S61"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.4405881,
               37.725369
             ],
@@ -17750,6 +17840,65 @@
         "fetched_at": "2026-07-27T10:53:43Z",
         "mid": "1_VAtFfrt98vgNIop7if0fdim9wMjy0c",
         "zone_code": "R21"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -121.1985401,
+              37.8047094
+            ],
+            [
+              -121.2031642,
+              37.8047264
+            ],
+            [
+              -121.2049238,
+              37.8042517
+            ],
+            [
+              -121.2053744,
+              37.8042856
+            ],
+            [
+              -121.2056748,
+              37.8050824
+            ],
+            [
+              -121.2070481,
+              37.8047094
+            ],
+            [
+              -121.2168113,
+              37.8047603
+            ],
+            [
+              -121.2166182,
+              37.797385
+            ],
+            [
+              -121.1981539,
+              37.7974783
+            ],
+            [
+              -121.1985401,
+              37.8047094
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1_re7MaL_iSs4Oj-cZYdXu1HWLJyE9cA",
+      "properties": {
+        "area_sq_km": 1.3056,
+        "doc_description": ">North to E Alameda St, > South to Yosemite Ave., > East to Cottage Ave., > West to N. Main St.",
+        "doc_name": "M37-Portion of Central Manteca",
+        "fetched_at": "2026-07-31T02:36:12Z",
+        "mid": "1_re7MaL_iSs4Oj-cZYdXu1HWLJyE9cA",
+        "zone_code": "M37"
       },
       "type": "Feature"
     },
@@ -18371,6 +18520,61 @@
         "fetched_at": "2026-07-27T10:53:45Z",
         "mid": "1a_FqzNZDHOF58m_Vj9wSa4lSmnXmQCQ8",
         "zone_code": "R5b"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -120.9876361,
+              37.8003027
+            ],
+            [
+              -120.991241,
+              37.8003196
+            ],
+            [
+              -120.9911551,
+              37.7972677
+            ],
+            [
+              -120.9913054,
+              37.796954
+            ],
+            [
+              -120.9913053,
+              37.7964624
+            ],
+            [
+              -120.978259,
+              37.7962164
+            ],
+            [
+              -120.978302,
+              37.7988191
+            ],
+            [
+              -120.9790852,
+              37.8002561
+            ],
+            [
+              -120.9876361,
+              37.8003027
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1a_waJTVlj110soKPjVQznjzkURQmkmA",
+      "properties": {
+        "area_sq_km": 0.4931,
+        "doc_description": ">North to Mission St., >South to California St., >East to Campbell Ave., >West to Sierra Dr.",
+        "doc_name": "E50B-North Escalon",
+        "fetched_at": "2026-07-31T02:36:13Z",
+        "mid": "1a_waJTVlj110soKPjVQznjzkURQmkmA",
+        "zone_code": "E50B"
       },
       "type": "Feature"
     },
