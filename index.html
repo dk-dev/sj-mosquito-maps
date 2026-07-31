@@ -1987,13 +1987,27 @@
   // scheduled Action committing to the repo, so the data DOES keep moving --
   // just not on demand from the page. Saying that is more useful than a
   // disabled button with no reason attached.
+  //   hide  - the control does not belong here at all; say so neutrally
+  //   warn  - it could work, but the page is being served the wrong way
   function staticHostReason() {
     if (location.protocol === 'file:') {
-      return 'Updating needs the local app or "python serve.py" — this page was opened directly from disk.';
+      return {
+        mode: 'warn',
+        text: 'Updating needs the local app or "python serve.py" — this page was opened directly from disk.'
+      };
     }
     if (/\.github\.io$/i.test(location.hostname)) {
-      return 'This is the hosted copy — it refreshes automatically every few hours from the district’s page. ' +
-             'For an update on demand, run the desktop app or "python serve.py" from a clone.';
+      // Nothing is wrong here, so this must not look like a warning. The hosted
+      // copy genuinely stays current -- the scheduled Action commits new maps to
+      // the repository and Pages redeploys -- it just cannot scrape on demand,
+      // because a static host has no process behind it to run one. A disabled
+      // button plus an orange alert would imply a broken feature on the copy
+      // most visitors will ever see.
+      return {
+        mode: 'hide',
+        text: 'This archive updates automatically every few hours. To pull new maps on demand, ' +
+              'run the desktop app or "python serve.py" from a clone.'
+      };
     }
     return null;
   }
@@ -2002,14 +2016,21 @@
     var btn = $('btn-update');
     if (!btn) return;
     var reason = staticHostReason();
-    if (reason) {
-      btn.disabled = true;
-      btn.setAttribute('aria-disabled', 'true');
-      btn.title = reason;
-      updStatus(reason, 'warn');
+    if (!reason) {
+      btn.addEventListener('click', runUpdate);
       return;
     }
-    btn.addEventListener('click', runUpdate);
+    if (reason.mode === 'hide') {
+      // Removed rather than disabled: a control that can never be enabled is
+      // noise, and a disabled button is still announced to assistive tech.
+      btn.remove();
+      updStatus(reason.text);            // no class -> ordinary body text
+    } else {
+      btn.disabled = true;
+      btn.setAttribute('aria-disabled', 'true');
+      btn.title = reason.text;
+      updStatus(reason.text, 'warn');
+    }
   }
 
   /* ---------- wire up ---------------------------------------------------- */
