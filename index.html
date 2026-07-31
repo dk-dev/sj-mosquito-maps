@@ -1978,14 +1978,35 @@
   // Bound before the data load, and independently of it, so the button still
   // works when the archive itself failed to load — that is precisely when a
   // user most wants to fetch a fresh copy.
+  // A static host serves files and nothing else: there is no process behind it
+  // to run a scrape, so POST /refresh would 405 or 404 and the user would get a
+  // bare network error for a button that never could have worked. Detect the
+  // two static cases up front and explain instead.
+  //
+  // GitHub Pages is the deliberate one: the hosted copy is refreshed by the
+  // scheduled Action committing to the repo, so the data DOES keep moving --
+  // just not on demand from the page. Saying that is more useful than a
+  // disabled button with no reason attached.
+  function staticHostReason() {
+    if (location.protocol === 'file:') {
+      return 'Updating needs the local app or "python serve.py" — this page was opened directly from disk.';
+    }
+    if (/\.github\.io$/i.test(location.hostname)) {
+      return 'This is the hosted copy — it refreshes automatically every few hours from the district’s page. ' +
+             'For an update on demand, run the desktop app or "python serve.py" from a clone.';
+    }
+    return null;
+  }
+
   function initUpdater() {
     var btn = $('btn-update');
     if (!btn) return;
-    if (location.protocol === 'file:') {
-      // No server, so no /refresh endpoint. Say why rather than let the button
-      // fail with a bare network error.
+    var reason = staticHostReason();
+    if (reason) {
       btn.disabled = true;
-      updStatus('Updating needs the local app or "python serve.py" — this page was opened directly from disk.', 'warn');
+      btn.setAttribute('aria-disabled', 'true');
+      btn.title = reason;
+      updStatus(reason, 'warn');
       return;
     }
     btn.addEventListener('click', runUpdate);
