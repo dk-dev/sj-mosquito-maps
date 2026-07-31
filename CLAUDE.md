@@ -17,12 +17,16 @@ install takes seconds.
 ## Run
 
 ```bash
+python app.py                   # native window (or browser) — the normal way to view it
+python app.py --refresh         # re-scrape first, then open
 python fetch_data.py            # scrape + shapes (~15 s warm, ~3 min cold)
 python fetch_data.py --backfill # also sweep the Wayback Machine
 python verify_data.py           # archive integrity checks
 python serve.py                 # port 8000, also serves POST /refresh
 # open http://localhost:8000/
 ```
+
+On Windows, `view-map.cmd` is double-clickable and wraps `app.py`.
 
 ## Toolchain
 
@@ -33,6 +37,8 @@ python serve.py                 # port 8000, also serves POST /refresh
 ## File layout
 
 ```
+app.py                  Desktop launcher — native window via pywebview
+view-map.cmd            Double-clickable Windows wrapper around app.py
 fetch_data.py           CLI entry point; runs the stages, writes data/
 verify_data.py          Archive integrity checks (also a CI gate)
 serve.py                Static server + POST /refresh subprocess shim

@@ -1,5 +1,11 @@
 * text=auto eol=lf
 
+# Batch files must keep CRLF. cmd.exe mis-parses LF-only .cmd/.bat in ways that
+# only show up at runtime (notably around labels and multi-line blocks), so the
+# repo-wide eol=lf above must not apply to them.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
 *.xlsx binary
 *.xls  binary
 *.docx binary

@@ -88,12 +88,38 @@ py -3.14 -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt        # Windows
 source .venv/bin/activate && pip install -r requirements.txt   # macOS/Linux
 
-python serve.py
-# open http://localhost:8000/
+python app.py
 ```
 
 `data/` is committed, so the map works immediately after cloning — no fetch
 required.
+
+## Viewing it
+
+There is no hosted demo: the repo is private, and GitHub Pages does not serve
+private repositories without a paid plan. Everything below runs locally.
+
+| | |
+|---|---|
+| `python app.py` | Opens the map in a native window. **The normal way to use it.** |
+| `view-map.cmd` | Same thing, double-clickable on Windows. No terminal needed. |
+| `python app.py --refresh` | Re-scrapes the district's page, then opens |
+| `python app.py --browser` | Skips the native window, uses your default browser |
+| `python serve.py` | Just the server on port 8000, if you want a plain tab |
+
+The native window needs one optional extra:
+
+```bash
+pip install -r requirements-desktop.txt
+```
+
+Without it everything still works — `app.py` detects that pywebview is missing
+and falls back to your default browser, so the double-click path works on a
+bare clone. The window uses the OS's own webview (Edge WebView2 on Windows,
+WebKit on macOS, Qt on Linux), so there is no Chromium bundle to install.
+
+`app.py` picks a free port rather than a fixed one, so it never collides with
+whatever else is running.
 
 To refresh it yourself:
 
@@ -136,6 +162,8 @@ names — to be repaired in place.
 ## File layout
 
 ```
+app.py                Desktop launcher — native window, falls back to browser
+view-map.cmd          Double-clickable Windows wrapper around app.py
 fetch_data.py         CLI entry point; runs the stages, writes data/
 verify_data.py        Archive integrity checks (also a CI gate)
 serve.py              Static server + POST /refresh subprocess shim
@@ -167,8 +195,15 @@ Those checks were validated against nine deliberately corrupted archives —
 leaked prose in the product list, swapped lon/lat, an unclosed ring, a
 duplicated id, a blanked required field. All nine were caught.
 
-> The workflow is written and validated but **has never run**: this repo has no
-> remote yet. It will start on the first push to GitHub.
+> The workflow has been **verified green end-to-end** on a GitHub-hosted runner
+> (Python 3.14, archive guard and integrity gate both passing, and the
+> `GITHUB_TOKEN` correctly elevated to `Contents: write` despite a repository
+> default of `read`). That verification ran against a remote that has since
+> been deleted, so this repo currently has **no remote** and nothing is
+> scheduled. Push it to GitHub and the schedule starts on its own.
+>
+> Until then, `python fetch_data.py` — or `python app.py --refresh` — is the
+> way to bring the archive up to date.
 
 ## Data sources
 

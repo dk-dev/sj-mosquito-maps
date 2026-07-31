@@ -1,0 +1,11 @@
+# OPTIONAL extra for `python app.py` — gives the map a native window instead of
+# a browser tab. Everything works without it; app.py falls back to the default
+# browser if pywebview is missing or fails to start.
+#
+# Backends are the OS's own webview, so there is no Chromium bundle:
+#   Windows  Edge WebView2 (preinstalled on Win 10/11)   ~10 MB via pythonnet
+#   macOS    system WebKit                                ~5 MB
+#   Linux    needs the Qt extra:  pip install "pywebview[qt]"
+-r requirements.txt
+
+pywebview>=5.0
