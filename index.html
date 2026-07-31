@@ -893,7 +893,7 @@
      happens to be first in the array. This file used to do the latter
      (`if (j === 0) opts.attribution = def.attribution`) on the theory that a
      composite shares one credit. It does not: terrain-dark composites a CARTO
-     basemap with an Esri elevation service, two different licensors with
+     basemap with a USGS elevation service, two different licensors with
      disjoint provider lists, and two of its three layers were rendering
      uncredited. Worse, the binding was positional, so reordering the stack for
      a rendering reason -- exactly what the CARTO rebase below does -- would
@@ -902,30 +902,47 @@
      be structural. Leaflet's AttributionControl unions and de-duplicates, so
      layers that genuinely share a licensor still render one credit.
 
-     The strings are Esri's and CARTO's OWN machine-readable copyrightText,
-     copied verbatim, with two mechanical edits: `(c)` becomes `&copy;` and the
-     word OpenStreetMap becomes a link to openstreetmap.org/copyright. Do not
-     hand-curate the provider lists. Hand-curation is how this file came to
-     credit NOAA on a service that has never listed NOAA, omit OpenStreetMap
-     from two OSM-derived services (an ODbL breach, since attribution is a
-     licence condition and not a courtesy), and credit "Maxar" on World_Imagery
-     after Maxar became Vantor and Esri updated the service. A verbatim copy has
-     an authoritative source to diff against; a curated list drifts.
+     The strings are CARTO's and USGS's OWN machine-readable copyrightText,
+     copied verbatim, with three mechanical edits: `(c)` becomes `&copy;`, a
+     bare `&` becomes `&amp;` (these strings are inserted as HTML), and one
+     proper noun per string -- OpenStreetMap, The National Map -- becomes a
+     link to its source. Do not hand-curate the provider lists. Hand-curation
+     is how this file came to credit NOAA on a service that had never listed
+     NOAA, omit OpenStreetMap from two OSM-derived services (an ODbL breach,
+     since attribution is a licence condition and not a courtesy), and credit
+     "Maxar" on Esri's World_Imagery after Maxar became Vantor and Esri updated
+     the service. A verbatim copy has an authoritative source to diff against;
+     a curated list drifts. (NOAA does now appear, legitimately, in the USGS
+     Topo string below. That is not the old bug returning -- it is the whole
+     difference between copying a list and inventing one.)
 
      The one credit that must survive every switch is the district's, because it
      describes the DATA and not the tiles; that one is the attribution
      control's prefix, which no layer can remove.
 
-     maxNativeZoom is measured, not guessed. The ArcGIS service metadata claims
-     LOD 23 for all of them, and it is wrong: probed over Stockton, the Canvas
-     and Hillshade services answer 200 from z17 up with an identical
-     2,521-byte flat-grey "no data" tile, and only the imagery and topo
-     services carry real pixels past z16. A 200 with a plausible JPEG in it is
-     the worst kind of failure, so without maxNativeZoom the hillshade would
-     multiply a sheet of flat grey over the dark terrain view one zoom step
-     past its data instead of upsampling z16 the way it does now. (The Canvas
-     measurement is kept because the finding is about the services, not about
-     which of them this file happens to use today.)
+     maxNativeZoom is measured, not guessed. All three USGS services DECLARE
+     LOD 23 in their own metadata and not one of them means it. Probed tile by
+     tile over Stockton and Lodi: USGS Topo and USGS Imagery return 200 with
+     real pixels through z16 and 404 from z17; USGS Shaded Relief stops dead at
+     z13 and 404s from z14. Hence 16, 16 and 13 below. With the clamp Leaflet
+     upsamples the last real tile; without it the map draws blank squares one
+     step past the data.
+
+     And the ceiling is not the only lie. Probing the LOW end -- which is easy
+     to skip, because nobody expects a tile cache to be missing its coarse
+     levels -- found USGS Shaded Relief missing z9 ENTIRELY across the
+     continental US while z8 and z10 both answer. z9 is this map's opening
+     view. See the minZoom on that layer; a native-zoom clamp cannot express a
+     hole in the middle of a range, only a floor can. Probe both ends.
+
+     A 404 is the kind failure. The Esri services this file used until the
+     move to USGS did something worse: the Canvas and Hillshade endpoints
+     answered 200 from z17 up with an identical 2,521-byte flat-grey "no data"
+     tile, so an unclamped hillshade multiplied a sheet of flat grey over the
+     dark terrain view instead of upsampling. A 200 carrying a plausible JPEG
+     cannot be detected at runtime by any means available here, which is why
+     this number is probed by hand and written down rather than read from the
+     service that is lying about it.
 
      STYLE PROFILE, per basemap -- and WHY THE MARK IS NOW TWO STROKES.
 
@@ -950,9 +967,12 @@
      opaque white (on dark backdrops) or black (on light ones) stroke drawn
      wider and underneath, with the coloured core drawn on top of it. A fixed
      opaque luminance escapes the palette trap entirely, and it is the standard
-     cartographic answer for exactly this reason. Measured worst pixel of
-     262,144: 9.74:1 on Dark, 7.57:1 on Light, 3.01:1 on Terrain light, 3.03:1
-     on Terrain dark, 3.14:1 on Satellite. What identifies a spray zone is its
+     cartographic answer for exactly this reason. Measured worst backdrop
+     pixel: 9.74:1 on Dark, 7.57:1 on Light, 3.140:1 on Terrain light, 3.152:1
+     on Terrain dark, 3.042:1 on Satellite -- the last three re-solved over
+     1,900,544 px per basemap when those tiles moved from Esri to USGS, since
+     an alpha solved against one provider's tiles is not evidence about
+     another's. What identifies a spray zone is its
      boundary -- its shape and extent -- and the casing's outer edge is what
      meets the tile.
 
@@ -967,11 +987,15 @@
      strong enough to carry 1.4.11 on its own would need alpha 0.87-0.92 on
      three of the five, which is a grey rectangle, not a basemap. With the
      casing doing the work the scrim only has to clamp the extremes: CARTO's
-     white place labels, Esri Topo's black contour lines, satellite's specular
-     fields. Two basemaps need none at all. Satellite takes a BLACK scrim
-     rather than white even though both retain ~62% of the imagery's detail,
-     because a white scrim collapses the age fade to 1.01:1 -- dead -- while
-     black keeps it at 1.21:1.
+     white place labels, USGS Topo's black contour lines and type, satellite's
+     specular fields. Two basemaps need none at all. Satellite takes a BLACK
+     scrim rather than white even though BOTH reach 3:1 (3.042:1 black against
+     3.007:1 white) and white would even retain a little more of the imagery
+     (65.7% against 63.8%). The tiebreak is downstream: the white scrim that
+     passes leaves a milky fog over the photograph -- backdrop mean luminance
+     0.4162 against black's 0.0804 -- and flattens the age fade below the
+     1.2:1 just-noticeable floor on FOUR of the six palette colours, where
+     black leaves only two below it.
 
      The fill is deliberately NOT raised. Two 55% fills stacked on imagery are
      an opaque blob and the overlap information is gone. Fills reach 3:1 only on
@@ -1009,28 +1033,38 @@
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
     '&copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-  /* Esri's Terms of Use summary (April 2025) states the condition as "Provide
-     attribution to Esri AND ITS DATA PROVIDERS". "Tiles (c) Esri" alone does
-     not satisfy it -- the provider list is part of the condition. Each string
-     below is the verbatim copyrightText of that one service. */
-  var ESRI_PREFIX = 'Powered by <a href="https://www.esri.com/">Esri</a> &mdash; ';
-  var OSM_CREDIT =
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+  /* USGS National Map tiles replaced Esri's on the three basemaps that used
+     them. Nothing here was in breach -- this app caches nothing and re-hosts
+     nothing -- but Esri's current Terms of Use are written around holding an
+     ArcGIS subscription and prohibit systematically harvesting, redistributing
+     or self-hosting the tiles, and this map is about to be published and shown
+     to a public agency. A US government basemap is public domain: no licence
+     to accept, no subscription to reason about, no key, and no term that a
+     future maintainer can trip over.
+     Public domain is not the same as uncredited. The National Map asks for the
+     credit, and each service publishes the machine-readable list of the
+     datasets it is built from, so the verbatim rule above applies unchanged. */
+  var NATMAP =
+    '<a href="https://www.usgs.gov/programs/national-geospatial-program/national-map">' +
+    'The National Map</a>';
 
-  var ESRI_TOPO_ATTR = ESRI_PREFIX +
-    'Sources: Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, ' +
-    'NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, ' +
-    'Esri China (Hong Kong), ' + OSM_CREDIT + ', and the GIS User Community';
-  var ESRI_HILLSHADE_ATTR = ESRI_PREFIX +
-    'Sources: Esri, Vantor, Airbus DS, USGS, NGA, NASA, CGIAR, N Robinson, NCEAS, NLS, ' +
-    'OS, NMA, Geodatastyrelsen, Rijkswaterstaat, GSA, Geoland, FEMA, Intermap, ' +
-    'and the GIS user community';
-  // Vantor, not Maxar. Maxar Intelligence rebranded and Esri has already
-  // updated the live service; "Maxar" appears in no current World_Imagery or
-  // World_Hillshade record, so crediting it named a party the licensor has
-  // retired while omitting the one it now requires.
-  var ESRI_IMAGERY_ATTR = ESRI_PREFIX +
-    'Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community';
+  var USGS_TOPO_ATTR =
+    'USGS ' + NATMAP + ': National Boundaries Dataset, 3DEP Elevation Program, ' +
+    'Geographic Names Information System, National Hydrography Dataset, ' +
+    'National Land Cover Database, National Structures Dataset, and National ' +
+    'Transportation Dataset; USGS Global Ecosystems; U.S. Census Bureau ' +
+    'TIGER/Line data; USFS Road data; Natural Earth Data; U.S. Department of ' +
+    'State HIU; NOAA National Centers for Environmental Information. ' +
+    'Data refreshed October 27, 2025-v2.1';
+  var USGS_IMAGERY_ATTR =
+    'USDA, USGS ' + NATMAP + ': Orthoimagery. Data refreshed June, 2024.';
+  // The `&amp;` is the mechanical HTML edit. The service's own string carries a
+  // bare `&` in "Observation & Science", which is a parse error waiting to
+  // happen in a slot that is injected as markup.
+  var USGS_RELIEF_ATTR =
+    'USGS ' + NATMAP + ': 3D Elevation Program. USGS Earth Resources ' +
+    'Observation &amp; Science (EROS) Center: GMTED2010. ' +
+    'Data refreshed April, 2025.';
 
   var BASEMAPS = [
     {
@@ -1067,23 +1101,34 @@
     {
       id: 'terrain-light', label: 'Terrain (light)', bg: '#e6e2d8',
       layers: [{
-        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-        // Esri axis order is {z}/{y}/{x}. Getting it wrong does not error --
-        // it silently draws a different part of the world.
-        opts: { maxNativeZoom: 19, attribution: ESRI_TOPO_ATTR }
+        url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}',
+        // ArcGIS-server axis order is {z}/{y}/{x}, and USGS serves through the
+        // same software Esri does. Getting it wrong does not error -- it
+        // silently draws a different part of the world.
+        opts: { maxNativeZoom: 16, attribution: USGS_TOPO_ATTR }
       }],
       // A real topo: baked-in relief shading, contours, land cover and labels.
       // Its black contour lines and type are what a black casing has to beat,
       // and they are the reason this basemap needs the second-strongest scrim.
-      // 0.36, not the 0.35 first measured here. An independent re-measurement
-      // over 1,628,160 backdrop pixels put the worst pixel at 2.998:1, not the
-      // 3.01:1 originally claimed: a pure-black source pixel under 0.35 white
-      // composites to 89/255, relative luminance 0.09985, so the black casing
-      // gets (0.09985 + 0.05) / 0.05 = 2.998. That is a FAIL by 0.002, it lands
-      // exactly on Esri's black contour lines and type -- where a zone boundary
-      // can genuinely run -- and at that margin the verdict depends on the
-      // compositor's 8-bit rounding. 0.36 gives 3.09:1 and real headroom for a
-      // negligible loss of surviving detail.
+      //
+      // 0.36 -- unchanged from the Esri original, and that is a result, not a
+      // copy. USGS Topo is a DARKER, more textured tile than Esri's was over
+      // this county (mean luminance 0.8161 against 0.9049, p05 0.3778 against
+      // 0.6856, L* sd 11.08 against 7.17: land-cover tint and baked relief
+      // where Esri rendered the valley near paper-white). It solves to the same
+      // alpha because both contain saturated black pixels -- contour lines and
+      // type -- and once the binding pixel is clipped at 0 the required alpha
+      // is a property of the casing and the 8-bit compositor, not of the
+      // provider. That is why this number cannot be broken by a tile that went
+      // unsampled.
+      //
+      // 0.35 still fails, for the same arithmetic as before: a pure-black
+      // source pixel under a 0.35 white scrim composites to byte 89, relative
+      // luminance 0.09985, so the black casing gets (0.09985+0.05)/0.05 =
+      // 2.998:1 -- a FAIL by 0.002, landing exactly on the contour lines and
+      // type where a zone boundary can genuinely run. 0.36 gives 3.140:1 and
+      // still leaves 62.6% of the tile's lightness variation (L* sd 11.08 ->
+      // 6.93, i.e. more surviving texture than Esri Topo had before any scrim).
       scrim: { color: '#FFFFFF', alpha: 0.36 },
       style: { casing: '#000000', ring: 1.2,
                wFresh: 2.4, wAged: 1.6, sHi: 1.00, sLo: 0.30,
@@ -1099,50 +1144,131 @@
       // contrast (3.62:1 -> 1.95:1) in exchange for about 0.4% luminance
       // modulation over the sprayed area, because this county is valley floor
       // and its only real relief is in the western hills where no operations
-      // exist. Carto + multiplied hillshade measures 0.0038 mean luminance
-      // while keeping 95% of the composite's relief texture (L* sd 3.41 vs
-      // 3.59) and is still 38% more textured than plain Dark Matter. It gets
-      // the darkness and the relief.
+      // exist.
       //
-      // Order matters: unlabelled base, hillshade multiplied over it for the
-      // relief (see the .bm-blend-multiply note in the CSS), then the labels
-      // LAST so place names sit above the hillshade instead of being shaded by
-      // it. That reordering is precisely why attribution must not be bound to
-      // "layer 0" -- layer 0 is now CARTO, not Esri.
+      // THE RELIEF LAYER IS NEARLY A NO-OP HERE, AND IS KEPT ANYWAY. Say it
+      // plainly, because the earlier version of this comment did not: over San
+      // Joaquin County the USGS Shaded Relief tile multiplies by a factor of
+      // 0.961-0.987 (p05-p95) -- under 4% darkening -- so this basemap looks
+      // near-identical to plain Dark. Measured as L* standard deviation of the
+      // finished composite: dark_all 3.225; dark_nolabels + dark_only_labels
+      // with NO relief 5.239; with USGS relief 5.182; with the Esri hillshade
+      // it replaced 5.164. The relief layer does not add texture here, it
+      // removes about 1%, under either provider. The "+38% more textured than
+      // plain Dark Matter" this comment used to claim is real but is produced
+      // by the LABEL layer, not by the hillshade -- the old note credited the
+      // shading with an effect the labels were having.
+      //
+      // It stays for two reasons. It is doing real work on the western county
+      // edge where the Coast Ranges rise and the district's westernmost zones
+      // sit, which is the only part of the frame where "terrain" means
+      // anything. And dropping it would leave a basemap named Terrain (dark)
+      // that is byte-for-byte Dark with a different label, which is a worse
+      // lie than a subtle one. It is NOT faked up: no contrast stretch, no
+      // synthetic relief. The county is flat and the map says so.
+      //
+      // Order matters: unlabelled base, relief multiplied over it (see the
+      // .bm-blend-multiply note in the CSS), then the labels LAST so place
+      // names sit above the shading instead of being shaded by it. That
+      // reordering is precisely why attribution must not be bound to "layer 0"
+      // -- layer 0 is CARTO, the shading is USGS.
       layers: [
         { url: 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
           opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR } },
-        { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}',
+        { url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/{z}/{y}/{x}',
           // Full opacity: the multiply blend, not an alpha fade, is what keeps
           // the base visible underneath. Backing the opacity off only mixes
           // the unshaded base back in and flattens the relief.
-          opts: { maxNativeZoom: 16, className: 'bm-blend-multiply',
-                  attribution: ESRI_HILLSHADE_ATTR } },
+          //
+          // maxNativeZoom 13, not 16 and not the declared 23. This service
+          // 404s from z14 up -- by far the shallowest of the three.
+          //
+          // minZoom 10 IS NOT COSMETIC, and it is not a minNativeZoom. This
+          // service's cache has a HOLE: z9 is missing across the entire
+          // continental US -- z8 answers, z9 404s, z10 answers, at Stockton,
+          // Tracy, all four county corners, Denver and Seattle alike (Miami
+          // and Anchorage return the 2.4kB "outside coverage" fill at every
+          // level, which is the same thing wearing a 200). z9 happens to be
+          // the zoom this map opens at, so the first render of Terrain (dark)
+          // was firing six 404s before anything was done about it. A
+          // maxNativeZoom cannot express "z9 is missing but z8 and z10 are
+          // fine"; only a floor can.
+          //
+          // A floor, and not minNativeZoom, because of the order in Leaflet's
+          // GridLayer._setView: the RAW rounded map zoom is tested against
+          // options.minZoom/maxZoom FIRST, and _clampZoom (which is what reads
+          // minNativeZoom) only runs if that test passes. So minZoom 10 means
+          // the layer requests nothing at all below z10, whereas minNativeZoom
+          // 10 would mean the layer requests z10 tiles at EVERY zoom below it
+          // -- the whole world in z10 tiles at map zoom 0. That is the
+          // difference between a layer that stands down and a tile stampede.
+          //
+          // What it costs: below z10 -- which includes the default county
+          // view -- Terrain (dark) has no relief in it. Given the layer was
+          // measured to change this county's texture by -1.1%, that costs
+          // nothing visible, and it asks nothing of a public service for a
+          // layer that would have contributed nothing. The relief comes in at
+          // the zooms where a reader is actually looking at a zone.
+          //
+          // What it does not fix: the USGS credit still renders below z10,
+          // because Leaflet's attribution tracks whether a layer is ON THE
+          // MAP, not whether it drew any pixels. That is an over-credit, and
+          // over-crediting a public-domain federal source is the harmless
+          // direction to err in.
+          opts: { minZoom: 10, maxNativeZoom: 13,
+                  className: 'bm-blend-multiply',
+                  attribution: USGS_RELIEF_ATTR } },
         // Same string as the base layer, so Leaflet's attribution control
         // de-duplicates it and CARTO is credited once, not twice.
         { url: 'https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png',
           opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR } }
       ],
+      // Re-measured after the swap and left alone: the CARTO + USGS-relief
+      // composite is statistically indistinguishable from the CARTO + Esri
+      // one it replaced (mean luminance 0.0053 both, max 0.3564 both -- and
+      // that max is a CARTO label glyph, not the shading). White casing,
+      // 0.10 black, worst pixel 3.152:1.
       scrim: { color: '#000000', alpha: 0.10 },
       style: { casing: '#FFFFFF', ring: 1.1,
                wFresh: 2.2, wAged: 1.4, sHi: 1.00, sLo: 0.30,
                fHi: 0.50, fLo: 0.09, gHi: 0.17, gLo: 0.05, dash: 1.2 }
     },
     {
-      id: 'satellite', label: 'Satellite', bg: '#1c2118',
+      // bg is what shows for the fraction of a second before tiles land, so it
+      // wants to be the imagery's own mean, not a guess. #828677 is measured
+      // pre-scrim; under the 0.42 black it lands about where the loaded map
+      // does. The old #1c2118 was far darker than any imagery this county has
+      // and read as a hole opening under the polygons.
+      id: 'satellite', label: 'Satellite', bg: '#828677',
       layers: [{
-        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        opts: { maxNativeZoom: 19, attribution: ESRI_IMAGERY_ATTR }
+        url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}',
+        opts: { maxNativeZoom: 16, attribution: USGS_IMAGERY_ATTR }
       }],
       // The hardest background: a photograph has high local contrast at every
       // luminance, so no alpha makes a thin coloured line reliably visible --
       // it is destroyed by orchard rows and field edges rather than by the
       // average brightness. Heaviest casing of the five, and the strongest
-      // scrim: black 0.45 puts the worst of 262,144 pixels at 3.14:1 while
-      // retaining 62% of the imagery's lightness variation. Black rather than
-      // white because a white scrim of equal strength collapses the age fade
-      // to 1.01:1.
-      scrim: { color: '#000000', alpha: 0.45 },
+      // scrim.
+      //
+      // 0.42, down from the 0.45 solved against Esri's imagery. Both imagery
+      // services contain effectively saturated white, so as with topo the
+      // binding pixel is clipped and the alpha is a property of the casing and
+      // the compositor -- but USGS's orthoimagery is the brighter tile (mean
+      // 0.2558 against 0.2049) and the 8-bit solve lands three hundredths
+      // lower. Worst of 1,900,544 px: 3.042:1, and the three points bought
+      // back take the imagery's surviving lightness variation from 60.8% to
+      // 63.8%. 0.45 also passes (3.363:1) if margin is ever wanted back.
+      //
+      // KNOWN WEAK SPOT, documented rather than papered over: magenta #AA3377
+      // is a dark hue on a backdrop this scrim has also pushed dark, so 28% of
+      // backdrop pixels sit under the 1.2:1 just-noticeable floor against its
+      // CORE (16% on the outgoing Esri imagery at the same alpha). Its casing
+      // still clears 3:1 and its core age fade is 3.77:1, so which zone it is
+      // and how recent it is both still read -- only the hue goes faint over
+      // dark orchard blocks. Raising alpha to rescue it costs the imagery this
+      // basemap exists to show (0.45 -> 21% of px, 0.52 -> 8%, at 61.0% and
+      // 54.5% detail retained), which is the wrong trade for one hue.
+      scrim: { color: '#000000', alpha: 0.42 },
       style: { casing: '#FFFFFF', ring: 1.4,
                wFresh: 2.8, wAged: 1.8, sHi: 1.00, sLo: 0.30,
                fHi: 0.38, fLo: 0.12, gHi: 0.20, gLo: 0.08, dash: 1.8 }

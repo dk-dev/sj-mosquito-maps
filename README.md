@@ -53,8 +53,8 @@ record of it and cannot be re-derived.
 - **Color by** application method, target stage, or pesticide
 - **Five basemaps** — dark, light, terrain light, terrain dark and satellite,
   remembered between launches. No free provider hosts a dark terrain map, so
-  that one is composited in the browser from CARTO Dark Matter with Esri's
-  World Hillshade multiplied over it. Every layer of every stack carries its
+  that one is composited in the browser from CARTO Dark Matter with USGS
+  Shaded Relief multiplied over it. Every layer of every stack carries its
   own provider credit, taken verbatim from that service's own metadata, and
   the polygon styling is re-tuned per background: each zone outline is drawn
   twice — an opaque white or black casing under the coloured line — over a
@@ -80,7 +80,7 @@ record of it and cannot be re-derived.
 | Backfill   | Wayback Machine CDX API                                  |
 | Server     | `http.server` subclass with a `POST /refresh` endpoint   |
 | Frontend   | Leaflet 1.9.4, vendored, single file, no build step      |
-| Tiles      | CARTO (OpenStreetMap) + Esri ArcGIS Online — see below   |
+| Tiles      | CARTO (OpenStreetMap) + USGS The National Map — see below |
 
 No npm, no bundler, no build step. Two pure-Python dependencies; nothing
 compiles.
@@ -244,7 +244,7 @@ duplicated id, a blanked required field. All nine were caught.
 | Spray operations | [SJCMVCD Spray Alerts & Maps](https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps) |
 | Spray zone shapes| Google My Maps KML export (`maps/d/kml?mid=…`)            |
 | Historical pages | [Wayback Machine](https://web.archive.org/) CDX API       |
-| Basemaps         | CARTO and Esri ArcGIS Online (table below)                  |
+| Basemaps         | CARTO and USGS The National Map (table below)               |
 
 Spray zone geometry and operation details are published by the San Joaquin
 County Mosquito & Vector Control District. The scrapers identify themselves by
@@ -252,30 +252,46 @@ User-Agent and rate-limit themselves.
 
 ### Basemap tile services and their credits
 
-Five basemaps, eight tile services between them. Attribution is bound to each
-*layer*, not to each basemap, so a composite cannot silently drop a credit when
-its stack is reordered — Leaflet unions and de-duplicates whatever is on the
-map. Every string is that service's own `copyrightText`, copied verbatim, with
-`(c)` rendered as `©` and the word OpenStreetMap linked to
-`openstreetmap.org/copyright`.
+Five basemaps, seven tile services between them, from exactly two providers:
+**CARTO** and **USGS The National Map**. Attribution is bound to each *layer*,
+not to each basemap, so a composite cannot silently drop a credit when its
+stack is reordered — Leaflet unions and de-duplicates whatever is on the map.
+Every string is that service's own `copyrightText`, copied verbatim, with three
+mechanical edits: `(c)` rendered as `©`, a bare `&` escaped to `&amp;`, and one
+proper noun per string (OpenStreetMap, The National Map) linked to its source.
 
-| Basemap          | Tile layers                                                                                 | Credited to                                              |
-|------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------|
-| Dark             | CARTO `dark_all`                                                                              | © OpenStreetMap contributors, © CARTO                    |
-| Light            | CARTO `light_all`                                                                             | © OpenStreetMap contributors, © CARTO                    |
-| Terrain (light)  | Esri `World_Topo_Map`                                                                         | Esri and its data providers, incl. © OpenStreetMap contributors |
-| Terrain (dark)   | CARTO `dark_nolabels` + Esri `Elevation/World_Hillshade` (multiplied) + CARTO `dark_only_labels` | © OpenStreetMap contributors, © CARTO; and Esri and its data providers |
-| Satellite        | Esri `World_Imagery`                                                                          | Esri and its data providers (Vantor, Earthstar Geographics, …) |
+| Basemap          | Tile layers                                                                                          | Credited to                                                        |
+|------------------|------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| Dark             | CARTO `dark_all`                                                                                       | © OpenStreetMap contributors, © CARTO                              |
+| Light            | CARTO `light_all`                                                                                      | © OpenStreetMap contributors, © CARTO                              |
+| Terrain (light)  | USGS `USGSTopo`                                                                                        | USGS The National Map, and the 12 datasets it names                |
+| Terrain (dark)   | CARTO `dark_nolabels` + USGS `USGSShadedReliefOnly` (multiplied) + CARTO `dark_only_labels`             | © OpenStreetMap contributors, © CARTO; and USGS 3DEP / EROS GMTED2010 |
+| Satellite        | USGS `USGSImageryOnly`                                                                                 | USDA, USGS The National Map: Orthoimagery                          |
 
-Two conditions worth stating plainly. **OpenStreetMap**: Esri's World Topo Map
-and CARTO's basemaps are both rendered from OSM data, so the OSM credit is a
-licence condition under the ODbL, not a courtesy, and the link to the licence
-is part of it. **Esri**: the Terms of Use summary requires attribution to
-"Esri *and its data providers*", so the provider list is part of the condition
-and not decoration — which is why the lists are copied rather than curated.
-Esri's terms also forbid harvesting, redistributing or self-hosting their
-tiles: Leaflet is vendored under `vendor/`, Esri tiles are not, and nothing in
-the packaged `.exe` caches them.
+Base URL for all three USGS services is
+`https://basemap.nationalmap.gov/arcgis/rest/services/…/MapServer/tile/{z}/{y}/{x}`
+— note the ArcGIS-server `{z}/{y}/{x}` axis order, no subdomains, no retina
+variant, no API key. Their declared zoom depth is not their real one: all three
+advertise LOD 23, but probed tile by tile over this county Topo and Imagery
+serve real pixels only through **z16** and Shaded Relief only through **z13**,
+so each layer is clamped with `maxNativeZoom` and Leaflet upsamples past that.
+
+Two conditions worth stating plainly. **OpenStreetMap**: CARTO's basemaps are
+rendered from OSM data, so the OSM credit is a licence condition under the
+ODbL, not a courtesy, and the link to the licence is part of it. **USGS**: as
+work of the US federal government these tiles are public domain — no licence to
+accept, no key, no subscription, and nothing here needs permission. The credit
+is still owed and The National Map asks for it, which is why the dataset lists
+are copied verbatim from each service rather than curated by hand.
+
+The terrain and satellite layers used to come from **Esri ArcGIS Online**
+unauthenticated. Nothing in this project ever breached Esri's terms — it caches
+no tiles and re-hosts none — but those terms are framed around holding an
+ArcGIS subscription and prohibit systematically harvesting, redistributing or
+self-hosting the tiles, and this map is published publicly and shown to a
+public agency. Moving to public-domain federal sources removes the question
+instead of arguing it. No request from this app now reaches
+`server.arcgisonline.com`.
 
 ## Limitations (honest list)
 
