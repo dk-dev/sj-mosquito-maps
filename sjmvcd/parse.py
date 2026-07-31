@@ -69,6 +69,33 @@ INLINE_TAGS = frozenset({"span", "strong", "b", "em", "i", "u", "font", "mark"})
 
 MAP_URL_TEMPLATE = "https://www.google.com/maps/d/viewer?mid={mid}"
 
+#: Map ids the district linked in error, and what they should have been.
+#:
+#: This is a correction table, not an alias for convenience: the spray alert
+#: itself carried the wrong link, so every observation of that entry -- the live
+#: page at the time, and every Wayback capture of it since -- repeats the same
+#: mistake. Correcting at parse time is what makes the fix durable; patching the
+#: stored rows alone would be undone the next time --backfill re-read those
+#: captures.
+#:
+#: Each entry needs a provenance note. A wrong id here silently reassigns a
+#: spray to the wrong piece of ground, which is worse than having no polygon.
+MISLINKED_MIDS = {
+    # 2020-09-30 and 2020-11-04, Stockton Brookside area. The linked document
+    # 404s on every Google endpoint. Confirmed by the District (email from
+    # Sumiko, 2026-07-31) as a mislink rather than a deletion, with the correct
+    # map supplied. Corroborated independently: the replacement is zone S23,
+    # whose own description is character-for-character the boundary text in
+    # these two alerts, and which 5 later operations in this archive already
+    # use.
+    "1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c": "1JNoCNnTgawK0dNM7YpxQIOZZHDmI6jVQ",
+}
+
+
+def corrected_mid(mid: str | None) -> str | None:
+    """Map a known-mislinked id onto the right one; pass anything else through."""
+    return MISLINKED_MIDS.get(mid, mid) if mid else mid
+
 MONTHS = {
     "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
     "july": 7, "august": 8, "september": 9, "october": 10, "november": 11,
@@ -994,9 +1021,13 @@ def parse_operations(html: str, *, source: str) -> list[dict]:
                 stats["operations_skipped_no_date"] += 1
                 continue
 
+            # Apply the mislink correction before the id is derived from it, so
+            # a corrected operation has one stable identity everywhere.
+            mid = corrected_mid(area["mid"])
+
             rows.append(
                 {
-                    "id": f"{date}|{area['mid']}",
+                    "id": f"{date}|{mid}",
                     "date": date,
                     "method": header["method"],
                     "target": header["target"],
@@ -1007,8 +1038,8 @@ def parse_operations(html: str, *, source: str) -> list[dict]:
                     "time_end": header["time_end"],
                     "area_name": area["area_name"],
                     "boundary_text": area["boundary_text"],
-                    "mid": area["mid"],
-                    "map_url": MAP_URL_TEMPLATE.format(mid=area["mid"]),
+                    "mid": mid,
+                    "map_url": MAP_URL_TEMPLATE.format(mid=mid),
                     "status": status,
                     "status_text": status_text,
                     "section": section,

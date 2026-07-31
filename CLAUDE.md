@@ -101,10 +101,15 @@ data/.cache/            Raw archived HTML (gitignored, regenerable)
 - **`new Date("2026-07-24")` parses as UTC midnight** and renders as the
   previous day in US timezones. Date handling in `index.html` must construct
   local dates explicitly.
-- **One map is gone for good.** Map id `1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c`
-  404s on every Google endpoint; 2 operations from 2020 have no polygon. It
-  is listed in `verify_data.py::KNOWN_MISSING_SHAPES` so a *new* unresolvable
-  id still fails the build instead of blending in.
+- **A 404ing map id may be a MISLINK, not a deletion.** The district's alert
+  for the 2020 Stockton Brookside sprays pointed at
+  `1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c`, which 404s everywhere. Asking the
+  District produced the real map (zone S23) — the alert itself had the wrong
+  link. Corrections live in `sjmvcd/parse.py::MISLINKED_MIDS` and are applied
+  at PARSE time, not to the stored rows: every Wayback capture still contains
+  the wrong link, so a fix applied only to the archive would be undone by the
+  next `--backfill`. `verify_data.py::KNOWN_MISSING_SHAPES` is now empty, and
+  it fails the build if an id listed there starts resolving again.
 - **A map id is not unique per operation.** The same zone is sprayed many
   times, so `mid` repeats across dates. The operation key is `date|mid`.
 - **The district's own product spelling drifts** ("Evergreen 5-25" vs

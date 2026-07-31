@@ -244,10 +244,13 @@ themselves.
 
 ## Limitations (honest list)
 
-- **One map is gone for good.** Map id `1PG7iZX-…` 404s on every Google
-  endpoint, so 2 operations from 2020 have no polygon. They are still counted
-  and are disclosed in the UI. The id is listed explicitly in `verify_data.py`
-  so a *new* unresolvable id still fails the build instead of blending in.
+- **Every operation now resolves to a polygon.** One map id (the 2020 Stockton
+  Brookside alerts) 404s on every Google endpoint. Asking the District
+  established that the *alert* was mislinked rather than the map deleted, and
+  they supplied the correct one — zone S23, whose published description matches
+  the alert's boundary text word for word. The correction is applied when the
+  page is parsed, so re-reading the archived captures that contain the bad link
+  cannot reintroduce it. A *new* unresolvable id still fails the build.
 - **Coverage is uneven before 2025.** History depends on how often the Wayback
   Machine happened to crawl the page. 2022 has 58 operations and 2025 has 194;
   that gap is snapshot luck, not a change in spraying. Any year-over-year

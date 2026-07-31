@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T02:36:07Z",
+  "generated_at": "2026-07-31T18:24:17Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -2716,10 +2716,10 @@
       "boundary_text": "North to W. March Ln., South to Brookside Rd., East to Feather River Dr., West to Brookside Rd",
       "date": "2020-09-30",
       "first_seen": "2026-07-27T10:51:16Z",
-      "id": "2020-09-30|1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c",
-      "map_url": "https://www.google.com/maps/d/viewer?mid=1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c",
+      "id": "2020-09-30|1JNoCNnTgawK0dNM7YpxQIOZZHDmI6jVQ",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1JNoCNnTgawK0dNM7YpxQIOZZHDmI6jVQ",
       "method": "ground",
-      "mid": "1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c",
+      "mid": "1JNoCNnTgawK0dNM7YpxQIOZZHDmI6jVQ",
       "period": "morning",
       "products": [
         "VectoBac WDG"
@@ -3230,10 +3230,10 @@
       "boundary_text": "North to March Ln., South to Brookside Rd., West to Brookside Rd., East to Feather River Dr.",
       "date": "2020-11-04",
       "first_seen": "2026-07-27T10:51:16Z",
-      "id": "2020-11-04|1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c",
-      "map_url": "https://www.google.com/maps/d/viewer?mid=1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c",
+      "id": "2020-11-04|1JNoCNnTgawK0dNM7YpxQIOZZHDmI6jVQ",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1JNoCNnTgawK0dNM7YpxQIOZZHDmI6jVQ",
       "method": "ground",
-      "mid": "1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c",
+      "mid": "1JNoCNnTgawK0dNM7YpxQIOZZHDmI6jVQ",
       "period": "morning",
       "products": [
         "VectoBac WDG"
@@ -21067,10 +21067,10 @@
       "products_raw": [
         "Evergreen 5-25 ULV Air"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "cancelled",
+      "status_text": "CANCELLED - WILL BE RESCHEDULED",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"
@@ -21245,10 +21245,10 @@
       "products_raw": [
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "04:30"
@@ -21271,10 +21271,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21295,10 +21295,10 @@
       "products_raw": [
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "04:30"
@@ -21319,13 +21319,85 @@
       "products_raw": [
         "Altosid concentrate (SR-20)"
       ],
+      "section": "past",
+      "source": "live",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "larval",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portions of Shima Tract, Rindge Tract, Wright Tract",
+      "boundary_text": null,
+      "date": "2026-08-01",
+      "first_seen": "2026-07-31T18:24:18Z",
+      "id": "2026-08-01|151h4otrEYfexJiUy3PTMbUXzy7KvxVeE",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=151h4otrEYfexJiUy3PTMbUXzy7KvxVeE",
+      "method": "aerial",
+      "mid": "151h4otrEYfexJiUy3PTMbUXzy7KvxVeE",
+      "period": "evening",
+      "products": [
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "Evergreen 5-25 ULV Air"
+      ],
       "section": "current",
       "source": "live",
       "status": "scheduled",
       "status_text": null,
-      "target": "larval",
-      "time_end": "05:30",
-      "time_start": "03:30"
+      "target": "adult",
+      "time_end": "22:30",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "North Delta Area including portions of Canal Ranch Tract, Brack Tract, Terminous Track, and Staten Island",
+      "boundary_text": null,
+      "date": "2026-08-01",
+      "first_seen": "2026-07-31T18:24:18Z",
+      "id": "2026-08-01|1d0u0XCcosPdjR7NBuQL_HhcjmAdI1J0",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1d0u0XCcosPdjR7NBuQL_HhcjmAdI1J0",
+      "method": "aerial",
+      "mid": "1d0u0XCcosPdjR7NBuQL_HhcjmAdI1J0",
+      "period": "evening",
+      "products": [
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "Evergreen 5-25 ULV Air"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:30",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "Portions of McDonald Island, Lower Jones Tract and Roberts Island",
+      "boundary_text": null,
+      "date": "2026-08-01",
+      "first_seen": "2026-07-31T18:24:18Z",
+      "id": "2026-08-01|1y5Os-D-OO2hnmBl-y-MGDVtuP-MCWEU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1y5Os-D-OO2hnmBl-y-MGDVtuP-MCWEU",
+      "method": "aerial",
+      "mid": "1y5Os-D-OO2hnmBl-y-MGDVtuP-MCWEU",
+      "period": "evening",
+      "products": [
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "Evergreen 5-25 ULV Air"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:30",
+      "time_start": "20:30"
     }
   ]
 }

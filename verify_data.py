@@ -67,14 +67,19 @@ LAT_MIN, LAT_MAX = 37.2, 38.5
 # misparsed date, not history.
 EARLIEST_PLAUSIBLE = date(2015, 1, 1)
 
-# Google My Maps documents the district has DELETED. These map ids appear in
-# archived pages but 404 on every Google endpoint, so no polygon will ever
-# exist for them. Listed explicitly so the "every operation has a shape" check
-# stays strict: a NEW unresolvable id is a real failure worth investigating,
-# while these known-dead ones are upstream data loss we cannot fix.
-KNOWN_MISSING_SHAPES = {
-    "1PG7iZX-Eb0uV_kH6VfCE37SqwMoGj00c",  # 2020-09-30 and 2020-11-04, Brookside area
-}
+# Google My Maps documents that no polygon will ever exist for -- listed
+# explicitly so the "every operation has a shape" check stays strict: a NEW
+# unresolvable id is a real failure worth investigating, rather than something
+# that blends into a tolerated background of missing geometry.
+#
+# Currently EMPTY, and that is a result rather than an oversight. The one entry
+# this ever held (1PG7iZX-..., the 2020 Stockton Brookside alerts) turned out to
+# be a mislink rather than a deletion: the District supplied the correct map on
+# 2026-07-31 and sjmvcd.parse.MISLINKED_MIDS now redirects it, so every
+# operation in the archive resolves to a real polygon. The check below also
+# fails if an id listed here starts resolving again, which is what flagged this
+# one as fixed.
+KNOWN_MISSING_SHAPES: set[str] = set()
 
 ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
