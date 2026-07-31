@@ -69,11 +69,22 @@ TIMEOUT_BACKFILL_S = 3600
 _refresh_lock = threading.Lock()
 
 
-# Browsers require Content-Type: application/manifest+json for PWA manifests
-# to register correctly. SimpleHTTPRequestHandler doesn't know about this
-# extension by default.
-SimpleHTTPRequestHandler.extensions_map[".webmanifest"] = "application/manifest+json"
 SimpleHTTPRequestHandler.extensions_map[".geojson"] = "application/geo+json"
+
+# The access log is bound to whatever stderr was at import time, and is
+# deliberately NOT routed through sys.stderr at call time.
+#
+# run_fetch_in_process() swaps sys.stderr for a capture buffer, and the base
+# handler logs every request through sys.stderr -- so a GET that completed
+# while an update was running landed in the update's stderr_tail, and the
+# frontend, which shows the LAST stderr line as the reason a refresh failed,
+# would tell the user:
+#     Update failed: 127.0.0.1 - - [...] "GET /data/operations.json" 200 -
+# Binding the stream once here keeps request logging and fetch output in
+# separate places, which is where they belonged all along. In a frozen
+# windowed build this is the log file the runtime hook installed, so access
+# lines still get recorded.
+_ACCESS_LOG = sys.stderr
 
 
 class _Tee:
@@ -187,6 +198,33 @@ def run_fetch_in_process(backfill: bool) -> dict:
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def log_message(self, fmt: str, *args) -> None:
+        """Write the access log to the import-time stream, not sys.stderr.
+
+        See the _ACCESS_LOG note above: routing through sys.stderr let request
+        lines contaminate an in-flight fetch's captured output, and the UI
+        surfaces the last such line as the failure reason.
+        """
+        try:
+            _ACCESS_LOG.write("%s - - [%s] %s\n" % (
+                self.address_string(), self.log_date_time_string(), fmt % args))
+            _ACCESS_LOG.flush()
+        except Exception:
+            pass   # a windowed build with no console must not die on logging
+
+    def do_GET(self):
+        # A browser asks for /favicon.ico on every single launch. There is no
+        # icon to serve, and letting it 404 writes a spurious error line into
+        # the log a user would be asked to send in for support. 204 answers it
+        # truthfully -- nothing here -- without the noise.
+        if urlparse(self.path).path == "/favicon.ico":
+            self.send_response(204)
+            self.send_header("Content-Length", "0")
+            self.send_header("Cache-Control", "max-age=86400")
+            self.end_headers()
+            return
+        super().do_GET()
+
     def translate_path(self, path: str) -> str:
         """
         Map a URL onto one of the two roots.

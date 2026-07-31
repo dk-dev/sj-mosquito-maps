@@ -125,17 +125,19 @@ _TITLE = "San Joaquin County spray timelapse"
 
 def _log_dir():
     """
-    Beside the writable archive, never inside it.
+    Always <user app data>/sj-mosquito-maps/logs, never derived from the archive.
 
-    sjmvcd.paths is the authority on where "writable" is; it is bundled, it
-    imports nothing but the standard library, and it is safe to import this
-    early. Its data_dir() is the archive itself, so the log goes in a sibling
-    logs/ directory -- verify_data.py and the archive-merge code have opinions
-    about what lives in data/, and a log file is not one of them.
+    Deriving it from data_dir().parent looked tidier but followed
+    $SJMVCD_DATA_DIR wherever it pointed: with the archive overridden to a temp
+    folder, the app created a bare logs/ directory directly inside %TEMP%,
+    outside its own namespace entirely. The log belongs to the application, not
+    to whichever archive it happens to be showing, so it is anchored to the
+    app-data root on its own. verify_data.py and the archive-merge code have
+    opinions about what lives in data/, and a log file is not one of them.
     """
     try:
-        from sjmvcd.paths import data_dir
-        base = data_dir().parent / "logs"
+        from sjmvcd.paths import _user_data_root
+        base = _user_data_root() / _APP_NAME / "logs"
     except Exception:
         local = os.environ.get("LOCALAPPDATA")
         base = (Path(local) if local else Path.home()) / _APP_NAME / "logs"
@@ -237,14 +239,18 @@ HIDDEN_IMPORTS = [
     "webview.platforms.mshtml",         # legacy fallback when WebView2 is absent
     "webview.platforms.win32",
 
-    # The refresh path. serve.py currently shells out to fetch_data.py, which
-    # cannot work when frozen (sys.executable is this GUI exe and there is no
-    # .py file on disk), so the refresh has to run in-process. These are the
-    # modules that in-process call reaches; importing them by name means the
-    # exe carries the fetcher whether or not any statement in app.py or
-    # serve.py references it yet.
+    # The refresh path. The refresh runs IN-PROCESS -- shelling out cannot work
+    # when frozen, because sys.executable is this GUI exe and there is no .py
+    # file on disk -- so the fetcher and its dependency tree have to be in the
+    # bundle. serve.py and app.py both import it at module scope, but naming it
+    # here keeps that a build-time guarantee rather than something a future
+    # refactor to a lazy import could quietly break.
+    #
+    # verify_data is deliberately NOT listed. Nothing in the frozen app calls
+    # it, so bundling it only added dead weight behind a comment claiming it
+    # was part of this path. If a "check my archive" action is ever added to
+    # the UI, add it back with the code that uses it.
     "fetch_data",
-    "verify_data",
 ] + collect_submodules("sjmvcd")   # incl. sjmvcd.paths -- the frozen/dev router
 
 

@@ -1788,10 +1788,16 @@
     if (!body) return 'HTTP ' + code + ' — the server did not return JSON';
     var bits = [];
     if (body.message) bits.push(String(body.message));
-    var err = String(body.stderr_tail || '').split('\n').filter(Boolean);
+    // Drop request-log lines before picking a reason. The server no longer
+    // routes its access log through the captured stream, so these should not
+    // appear at all -- but this text is the one thing the user is told about a
+    // failure, and "Update failed: 127.0.0.1 - - [...] GET /data/... 200"
+    // explains nothing while looking authoritative. Cheap insurance.
+    var notAccessLog = function (line) { return !/^\S+ - - \[.*\] ".*" \d{3}/.test(line); };
+    var err = String(body.stderr_tail || '').split('\n').filter(Boolean).filter(notAccessLog);
     if (err.length) bits.push(err[err.length - 1]);
     if (!bits.length) {
-      var out = String(body.stdout_tail || '').split('\n').filter(Boolean);
+      var out = String(body.stdout_tail || '').split('\n').filter(Boolean).filter(notAccessLog);
       if (out.length) bits.push(out[out.length - 1]);
     }
     if (!bits.length && body.returncode != null) bits.push('the fetcher exited with code ' + body.returncode);
