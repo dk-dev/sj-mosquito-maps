@@ -3031,7 +3031,14 @@
         text: 'Updating needs the local app or "python serve.py" — this page was opened directly from disk.'
       };
     }
-    if (/\.github\.io$/i.test(location.hostname)) {
+    // Anything that is not the loopback is a static host. Testing for
+    // github.io was wrong: GitHub serves project pages under an account's
+    // custom domain when one is set, so the hosted copy can be on an arbitrary
+    // hostname and the check silently failed open -- leaving an Update button
+    // that looks live and cannot work. The backend only ever exists locally
+    // (serve.py, or the packaged app on 127.0.0.1), so loopback is the whole
+    // set of hosts where the button is real.
+    if (!/^(localhost|127\.0\.0\.1|\[::1\]|::1)$/i.test(location.hostname)) {
       // Nothing is wrong here, so this must not look like a warning. The hosted
       // copy genuinely stays current -- the scheduled Action commits new maps to
       // the repository and Pages redeploys -- it just cannot scrape on demand,
