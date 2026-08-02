@@ -6,6 +6,13 @@
 *.cmd text eol=crlf
 *.bat text eol=crlf
 
+# The published CSV export is a DOWNLOAD, so the bytes served have to be the
+# bytes generated. The repo-wide eol=lf above was rewriting its CRLF line
+# endings to LF, which RFC 4180 does not permit and which some spreadsheet and
+# GIS importers still trip over. -text disables normalisation entirely, so the
+# BOM and the CRLF both survive the round trip through git and GitHub Pages.
+data/exports/*.csv -text
+
 *.xlsx binary
 *.xls  binary
 *.docx binary
