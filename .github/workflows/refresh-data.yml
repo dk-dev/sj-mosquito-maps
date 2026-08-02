@@ -124,6 +124,13 @@ jobs:
       - name: Verify archive integrity
         run: python verify_data.py
 
+      # Rebuilt from the archive on every run, so the shareable copies can never
+      # drift behind the data they are derived from. They are committed rather
+      # than generated on demand because the people most likely to want them
+      # will download them from the site, not run Python.
+      - name: Rebuild the CSV and GeoJSON exports
+        run: python export_data.py
+
       - name: Detect changes in data/
         id: diff
         run: |

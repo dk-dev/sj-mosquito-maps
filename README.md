@@ -159,6 +159,23 @@ python verify_data.py             # archive integrity checks
 
 Or hit the refresh button in the UI, which does the same thing server-side.
 
+## Downloading the data
+
+Two ready-made exports, rebuilt automatically whenever the archive updates:
+
+| File | For |
+|---|---|
+| [`operations.csv`](https://dk-dev.github.io/sj-mosquito-maps/data/exports/operations.csv) | One row per operation. Opens directly in Excel — it carries a UTF-8 BOM so a double-click does not mangle the district's own punctuation. Includes a centroid, so it maps without the polygons. |
+| [`operations.geojson`](https://dk-dev.github.io/sj-mosquito-maps/data/exports/operations.geojson) | One feature per operation, with the attributes already joined onto the geometry. Opens directly in QGIS or ArcGIS. |
+
+The archive stores operations and geometry separately, because a zone is sprayed
+many times and storing its polygon once per spray would triple the repository.
+Both exports undo that: the GeoJSON deliberately repeats a zone's polygon on
+every operation that used it, so filtering to "August 2025, aerial, Dibrom"
+gives you features that each carry their own shape, with no join required.
+
+Regenerate them yourself with `python export_data.py`.
+
 ## How it works
 
 ```
