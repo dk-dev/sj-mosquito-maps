@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-31T18:24:17Z",
+  "generated_at": "2026-08-03T19:55:39Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -21345,8 +21345,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"
@@ -21369,8 +21369,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"
@@ -21393,8 +21393,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"
