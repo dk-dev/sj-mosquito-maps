@@ -862,6 +862,53 @@
         "coordinates": [
           [
             [
+              -121.4164249,
+              37.7216192
+            ],
+            [
+              -121.4164034,
+              37.710569
+            ],
+            [
+              -121.3981,
+              37.7105181
+            ],
+            [
+              -121.3982503,
+              37.7181227
+            ],
+            [
+              -121.41172,
+              37.7181485
+            ],
+            [
+              -121.4118864,
+              37.7216365
+            ],
+            [
+              -121.4164249,
+              37.7216192
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "11SqiRk2dVlpgLOI18yQ-KV3eymlB0yU",
+      "properties": {
+        "area_sq_km": 1.5119,
+        "doc_description": ">North to Yosemite Dr., Sentinel Dr., Tulloch Dr., and Biarritz St., > South to Valpico Rd., > East to S. Chrisman Rd., > West to S. MacArthur Dr.",
+        "doc_name": "T34-Portion of East Tracy",
+        "fetched_at": "2026-08-06T03:34:03Z",
+        "mid": "11SqiRk2dVlpgLOI18yQ-KV3eymlB0yU",
+        "zone_code": "T34"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.3381023,
               38.0182464
             ],
