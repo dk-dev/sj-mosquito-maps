@@ -9,7 +9,7 @@ if pywebview is not installed or cannot start.
   python app.py              open the map
   python app.py --refresh    re-scrape the district's page first, then open
 
-Unlike the sibling ca-grid-weather-map, this project COMMITS data/, so a fresh
+Unlike the sibling weather-map project, this one COMMITS data/, so a fresh
 clone already has the full archive and the map opens instantly with no fetch.
 
 FROZEN-BUILD NOTES

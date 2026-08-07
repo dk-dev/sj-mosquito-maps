@@ -8,7 +8,7 @@ PyInstaller spec -- one double-clickable Windows .exe.
 WHAT SHIPS INSIDE THE EXE
 -------------------------
   index.html          the entire frontend, at the bundle root
-  data/*.json         the seed archive: 842 operations, 314 shapes, ~1.3 MB
+  data/*.json         the seed archive: 863 operations, 316 shapes, ~1.4 MB
   data/*.geojson
 
 The seed archive is the reason this build is worth doing at all. `data/` is

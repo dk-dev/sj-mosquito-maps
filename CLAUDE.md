@@ -59,7 +59,7 @@ data/.cache/            Raw archived HTML (gitignored, regenerable)
 ## Conventions
 
 - **`data/` is committed, and that is the whole point.** This is the opposite
-  of the sibling `ca-grid-weather-map`, where `data/` is a gitignored cache.
+  of the sibling weather-map project, where `data/` is a gitignored cache.
   The district's page retains only ~2 months of operations; once an entry
   rolls off, this archive is the only remaining record of it and **cannot be
   re-derived from any upstream**. Treat it as primary data, never as a cache.
