@@ -1783,6 +1783,20 @@
         var n = document.createElement('span');
         n.className = 'n'; n.textContent = fmtNum(counts.get(v));
         lab.appendChild(cb); lab.appendChild(txt); lab.appendChild(n);
+
+        // Name the control explicitly rather than letting it be inferred from
+        // the label's text. The two spans are adjacent with no whitespace
+        // between them -- CSS separates them visually -- so accessible-name
+        // computation flattens them into one token and a screen reader says
+        // "Evergreen 5-25620", "Completed809", "Ground (truck)647". The count
+        // reads as part of the product name, which for a pesticide is worse
+        // than useless. Sighted users never see this; it only exists in the
+        // accessibility layer, which is why counting that a name EXISTS did
+        // not catch it.
+        // 2.5.3 Label in Name still holds: the visible text is contained in
+        // the accessible name, just punctuated.
+        cb.setAttribute('aria-label',
+          filterValueLabel(def.key, v) + ', ' + fmtNum(counts.get(v)) + ' operations');
         d.appendChild(lab);
       });
 
@@ -3146,9 +3160,20 @@
       acc = 0; lastTs = 0;
     });
 
+    // One helper for the label and the spoken value, so a slider drag cannot
+    // leave them disagreeing. Without aria-valuetext a range announces its raw
+    // number -- "7" -- and the unit lives only in a separate span the reader
+    // has already passed. The scrubber next to it speaks a date; this one
+    // should not be the odd one out.
+    function syncTrail() {
+      var t = ST.trail + (ST.trail === 1 ? ' day' : ' days');
+      $('trail-out').textContent = t;
+      $('rng-trail').setAttribute('aria-valuetext', t);
+    }
+
     $('rng-trail').addEventListener('input', function () {
       ST.trail = +$('rng-trail').value;
-      $('trail-out').textContent = ST.trail + (ST.trail === 1 ? ' day' : ' days');
+      syncTrail();
       render();
       announce();
     });
@@ -3198,6 +3223,7 @@
 
     ST.speed = +$('sel-speed').value;
     ST.trail = +$('rng-trail').value;
+    syncTrail();   // the slider ships with a value, so it needs one at boot too
     ST.skipEmpty = $('chk-skip').checked;
     ST.cumulative = $('chk-cumulative').checked;
     ST.colorBy = $('color-by').value;

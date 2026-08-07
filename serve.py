@@ -327,11 +327,18 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
-    # SimpleHTTPRequestHandler caches forever by default for static files;
-    # tell the browser data/* is volatile so a refresh actually re-loads it.
+    # SimpleHTTPRequestHandler caches forever by default. That was already
+    # wrong for data/, which changes under the page; it is just as wrong for
+    # index.html, which is the file being edited while this server runs.
+    #
+    # A cached index.html does not merely show stale pixels -- it silently
+    # invalidates testing. A change can be saved, the server can serve it, the
+    # page can be reloaded, and the browser can still be running the previous
+    # JavaScript, so a fix looks like it did not work and a bug looks fixed.
+    # Both happened here. Everything this server hands out is either the
+    # archive or the app itself, and neither is worth caching for a local run.
     def end_headers(self):
-        if self.path.startswith("/data/") or self.path == "/data":
-            self.send_header("Cache-Control", "no-store")
+        self.send_header("Cache-Control", "no-store, must-revalidate")
         super().end_headers()
 
 

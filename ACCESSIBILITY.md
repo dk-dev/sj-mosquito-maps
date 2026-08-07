@@ -36,12 +36,27 @@ than assuming a representative background colour.
 | Basemaps | all five, independently |
 | Assistive technology | **Not tested with a screen reader.** See below. |
 
-**Screen readers have not been used to test this.** ARIA roles, names, states and
-live-region behaviour were verified structurally and by scripted interaction, but
-no NVDA, JAWS or VoiceOver session has been run. California tests with JAWS and
+**No screen reader has been used to test this.** California tests with JAWS and
 NVDA in Chrome; until that is done, every claim here about how something is
-*announced* is an inference from markup, not an observation. This is the largest
-single gap in the report.
+*announced* is an inference, not an observation. This remains the largest single
+gap in the report, and is tracked as an open issue.
+
+A partial pass has been made against the **computed accessibility tree** — the
+representation a screen reader actually consumes, as opposed to the markup that
+produces it. That is a weaker check than listening, but it is a stronger one than
+reading HTML, and it found two defects that structural review had passed:
+
+- Filter checkboxes flattened their label and their count into a single token,
+  so the accessible name of one read `Evergreen 5-25620`. Every control "had a
+  name" — the earlier audit asked whether a name existed, not whether it was
+  intelligible. Names are now set explicitly: `Evergreen 5-25, 620 operations`.
+- The trail slider had no `aria-valuetext` and so announced a bare `7`, with
+  the unit living only in a neighbouring element. It now announces `7 days`,
+  matching the scrubber beside it.
+
+Both were invisible on screen, because CSS separated what the accessibility tree
+concatenated. That is the category of defect this gap exists to catch, and it is
+a reason to expect a real screen-reader session to find more.
 
 ---
 

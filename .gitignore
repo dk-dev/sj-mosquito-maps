@@ -29,3 +29,7 @@ data/.cache/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Working notes about account/domain layout. NEVER commit: this repo is public
+# and the file maps the separation between accounts that exists on purpose.
+HANDOFF-*.md
