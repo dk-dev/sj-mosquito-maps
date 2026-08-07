@@ -1,7 +1,7 @@
 # San Joaquin Mosquito Spray Timelapse
 
 Interactive timelapse of every mosquito spray operation the San Joaquin County
-Mosquito & Vector Control District has published — **823 operations across
+Mosquito & Vector Control District has published — **863 operations across
 2020–2026**, animated day by day over a full calendar year and looping.
 
 The district publishes each spray zone as a Google My Maps link on its
@@ -10,7 +10,7 @@ page. This project turns those scattered links into a single archived,
 searchable, animated map.
 
 ```
-[ 823 operations ] x [ 311 spray zones ] x [ 7 years ] x [ 6 pesticides ]
+[ 863 operations ] x [ 316 spray zones ] x [ 7 years ] x [ 6 pesticides ]
         animated over the calendar year, looping, filterable
 ```
 
@@ -29,7 +29,7 @@ Two facts make a multi-year archive possible anyway:
    scraped from a 2020 snapshot still returns KML today.
 
 So the Wayback Machine supplies the `(date, area, map-id)` tuples and Google
-still supplies the geometry. That is where 745 of the 823 operations come from
+still supplies the geometry. That is where 745 of the 863 operations come from
 — 19 archived snapshots — and it is why the timelapse has years of history at
 launch rather than after a year of scraping.
 
@@ -105,8 +105,13 @@ required.
 
 ## Viewing it
 
-There is no hosted demo: the repo is private, and GitHub Pages does not serve
-private repositories without a paid plan. Everything below runs locally.
+Hosted, with nothing to install:
+**<https://dk-dev.github.io/sj-mosquito-maps/>**. GitHub Pages serves the same
+`index.html` and the same committed archive, so the web version is never behind
+this repo. A Windows build is attached to the
+[latest release](https://github.com/dk-dev/sj-mosquito-maps/releases/latest).
+
+To run it locally instead:
 
 | | |
 |---|---|
@@ -219,8 +224,8 @@ vendor/               Leaflet 1.9.4, vendored so the app needs no CDN
 sjmvcd/paths.py       Resolves the two roots: read-only bundle vs writable archive
 sjmvcd/               Fetch/parse/merge package
 data/                 COMMITTED archive:
-  operations.json       823 operations
-  shapes.geojson        310 polygons, keyed by Google map id
+  operations.json       863 operations
+  shapes.geojson        316 polygons, keyed by Google map id
   manifest.json         run summary for the banner
   .cache/               raw archived HTML (gitignored, regenerable)
 ```
@@ -244,15 +249,15 @@ Those checks were validated against nine deliberately corrupted archives —
 leaked prose in the product list, swapped lon/lat, an unclosed ring, a
 duplicated id, a blanked required field. All nine were caught.
 
-> The workflow has been **verified green end-to-end** on a GitHub-hosted runner
-> (Python 3.14, archive guard and integrity gate both passing, and the
-> `GITHUB_TOKEN` correctly elevated to `Contents: write` despite a repository
-> default of `read`). That verification ran against a remote that has since
-> been deleted, so this repo currently has **no remote** and nothing is
-> scheduled. Push it to GitHub and the schedule starts on its own.
+> The workflow is **live and unattended**. It is verified green end-to-end on a
+> GitHub-hosted runner (Python 3.14, archive guard and integrity gate both
+> passing, and the `GITHUB_TOKEN` correctly elevated to `Contents: write`
+> despite a repository default of `read`), and it now commits on its own — most
+> of the recent archive growth arrived that way, with nobody running the
+> fetcher by hand.
 >
-> Until then, `python fetch_data.py` — or `python app.py --refresh` — is the
-> way to bring the archive up to date.
+> `python fetch_data.py` — or `python app.py --refresh` — brings a local
+> checkout up to date in between those runs.
 
 ## Data sources
 
@@ -326,7 +331,7 @@ instead of arguing it. No request from this app now reaches
 - **Winter is genuinely empty, not missing.** Jan–Apr and Dec have zero
   operations across all seven years. The district does not spray then.
 - **Announced, not verified.** Every record is what the district *published*
-  ahead of an operation. Sprays are cancelled for weather (14 are marked so);
+  ahead of an operation. Sprays are cancelled for weather (15 are marked so);
   a completed status is the district's own, not independent confirmation.
 - **Zone polygons are the district's own drawings**, at whatever precision
   they chose in Google My Maps. They are not parcel-accurate.
@@ -349,7 +354,8 @@ instead of arguing it. No request from this app now reaches
 
 ## Accessibility
 
-Built to WCAG 2.1 AA targets:
+Built to WCAG 2.2 AA targets — see [ACCESSIBILITY.md](ACCESSIBILITY.md) for the
+full conformance report, including the known gaps:
 
 - Semantic landmarks, skip link, visible `:focus-visible` rings
 - `prefers-reduced-motion` suppresses autoplay; the map stays fully usable as a

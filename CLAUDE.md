@@ -117,5 +117,7 @@ data/.cache/            Raw archived HTML (gitignored, regenerable)
   a closed 6-product vocabulary; `verify_data.py` fails the build if anything
   outside it appears, because prose leaking into the product list is exactly
   how the original parser bug showed up.
-- **The GitHub Action only runs once this repo has a remote.** It is written
-  and validated but has never executed; there is no remote by default.
+- **The GitHub Action is live and commits on its own.** It runs on schedule
+  against `dk-dev/sj-mosquito-maps` and pushes archive growth unattended, so
+  `main` can move without anyone touching it — pull before you start, or a
+  routine commit will land on a stale base.
