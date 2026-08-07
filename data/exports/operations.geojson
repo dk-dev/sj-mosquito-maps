@@ -96640,8 +96640,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Linden",
     "zone_code": "LN2",
     "region": "Linden",
@@ -96694,8 +96694,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of North Escalon",
     "zone_code": "E50B",
     "region": "Escalon",
@@ -96764,8 +96764,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of North Ripon",
     "zone_code": "R21",
     "region": "Ripon",
@@ -96850,8 +96850,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural East Escalon",
     "zone_code": "E39",
     "region": "Escalon",
@@ -96920,8 +96920,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural South Farmington",
     "zone_code": "E17",
     "region": "Escalon",
@@ -97026,8 +97026,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural West Lodi",
     "zone_code": "L10",
     "region": "Lodi",
@@ -97080,8 +97080,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Thornton",
     "zone_code": "TH-2a",
     "region": "Thornton",
@@ -97369,6 +97369,60 @@
       [
        -121.4164249,
        37.7216192
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-07|11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+   "properties": {
+    "date": "2026-08-07",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of North Manteca",
+    "zone_code": "M26",
+    "region": "Manteca",
+    "boundary_text": "North to Arbor Brook Dr., South to W. Lathrop Rd., East to Happy Valley Ln., West to Airport Way",
+    "area_sq_km": 4.0122,
+    "centroid_lat": 37.833527,
+    "centroid_lon": -121.240851,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+    "map_id": "11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+    "observed_via": "live",
+    "first_seen": "2026-08-07T00:14:01Z",
+    "operation_id": "2026-08-07|11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2547541,
+       37.8409385
+      ],
+      [
+       -121.2546254,
+       37.8262284
+      ],
+      [
+       -121.2268163,
+       37.8259572
+      ],
+      [
+       -121.22746,
+       37.8410741
+      ],
+      [
+       -121.2547541,
+       37.8409385
       ]
      ]
     ],
@@ -97745,6 +97799,246 @@
       [
        -120.9424808,
        37.8133412
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-08|1cyMmRytvRpbUVchyUvldRrrR-Mxx9mA",
+   "properties": {
+    "date": "2026-08-08",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "20:30",
+    "time_end": "22:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+    "zone_code": "D4(c)",
+    "region": "Delta",
+    "boundary_text": "",
+    "area_sq_km": 26.3284,
+    "centroid_lat": 38.157966,
+    "centroid_lon": -121.458645,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1cyMmRytvRpbUVchyUvldRrrR-Mxx9mA",
+    "map_id": "1cyMmRytvRpbUVchyUvldRrrR-Mxx9mA",
+    "observed_via": "live",
+    "first_seen": "2026-08-07T00:14:01Z",
+    "operation_id": "2026-08-08|1cyMmRytvRpbUVchyUvldRrrR-Mxx9mA"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.488848,
+       38.1772158
+      ],
+      [
+       -121.4948561,
+       38.136789
+      ],
+      [
+       -121.4285948,
+       38.1380042
+      ],
+      [
+       -121.4231017,
+       38.1799821
+      ],
+      [
+       -121.488848,
+       38.1772158
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-08|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+   "properties": {
+    "date": "2026-08-08",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "20:30",
+    "time_end": "22:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portions of Empire Tract and Terminous Tract",
+    "zone_code": "D29",
+    "region": "Delta",
+    "boundary_text": "",
+    "area_sq_km": 12.7919,
+    "centroid_lat": 38.080455,
+    "centroid_lon": -121.480218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "map_id": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "observed_via": "live",
+    "first_seen": "2026-08-07T00:14:01Z",
+    "operation_id": "2026-08-08|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4996014,
+       38.0980078
+      ],
+      [
+       -121.4983998,
+       38.0632814
+      ],
+      [
+       -121.4614926,
+       38.0623353
+      ],
+      [
+       -121.4616643,
+       38.0978727
+      ],
+      [
+       -121.4996014,
+       38.0980078
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-08|1f2Cc6vAndlrwjFSphksdRjUD4ZJL5NmU",
+   "properties": {
+    "date": "2026-08-08",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "20:30",
+    "time_end": "22:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portions of Shima Tract, Rindge Tract, Atlas Tract, Wright Tract",
+    "zone_code": "D7",
+    "region": "Delta",
+    "boundary_text": "",
+    "area_sq_km": 24.8479,
+    "centroid_lat": 38.014741,
+    "centroid_lon": -121.39736,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1f2Cc6vAndlrwjFSphksdRjUD4ZJL5NmU",
+    "map_id": "1f2Cc6vAndlrwjFSphksdRjUD4ZJL5NmU",
+    "observed_via": "live",
+    "first_seen": "2026-08-07T00:14:01Z",
+    "operation_id": "2026-08-08|1f2Cc6vAndlrwjFSphksdRjUD4ZJL5NmU"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.3739666,
+       38.0378299
+      ],
+      [
+       -121.4212593,
+       38.0449278
+      ],
+      [
+       -121.4231476,
+       37.9969878
+      ],
+      [
+       -121.3737092,
+       37.9806853
+      ],
+      [
+       -121.3739666,
+       38.0378299
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-08|1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+   "properties": {
+    "date": "2026-08-08",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "20:30",
+    "time_end": "22:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Woodward Island and portion of SE Bacon Island",
+    "zone_code": "D57",
+    "region": "Delta",
+    "boundary_text": "",
+    "area_sq_km": 8.7772,
+    "centroid_lat": 37.927208,
+    "centroid_lon": -121.543132,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+    "map_id": "1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+    "observed_via": "live",
+    "first_seen": "2026-08-07T00:14:01Z",
+    "operation_id": "2026-08-08|1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.5468377,
+       37.9479986
+      ],
+      [
+       -121.5462369,
+       37.9391993
+      ],
+      [
+       -121.5605706,
+       37.939267
+      ],
+      [
+       -121.55585,
+       37.9203109
+      ],
+      [
+       -121.564948,
+       37.9186182
+      ],
+      [
+       -121.5631456,
+       37.913472
+      ],
+      [
+       -121.5182561,
+       37.9142846
+      ],
+      [
+       -121.5201444,
+       37.920514
+      ],
+      [
+       -121.5323323,
+       37.9253889
+      ],
+      [
+       -121.5349931,
+       37.9480663
+      ],
+      [
+       -121.5468377,
+       37.9479986
       ]
      ]
     ],

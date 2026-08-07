@@ -10400,6 +10400,69 @@
         "coordinates": [
           [
             [
+              -121.5468377,
+              37.9479986
+            ],
+            [
+              -121.5462369,
+              37.9391993
+            ],
+            [
+              -121.5605706,
+              37.939267
+            ],
+            [
+              -121.55585,
+              37.9203109
+            ],
+            [
+              -121.564948,
+              37.9186182
+            ],
+            [
+              -121.5631456,
+              37.913472
+            ],
+            [
+              -121.5182561,
+              37.9142846
+            ],
+            [
+              -121.5201444,
+              37.920514
+            ],
+            [
+              -121.5323323,
+              37.9253889
+            ],
+            [
+              -121.5349931,
+              37.9480663
+            ],
+            [
+              -121.5468377,
+              37.9479986
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+      "properties": {
+        "area_sq_km": 8.7772,
+        "doc_description": "Woodward Island and portion of SE Bacon Island",
+        "doc_name": "D57 - Woodward Island and portion of SE Bacon Island",
+        "fetched_at": "2026-08-07T00:14:02Z",
+        "mid": "1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+        "zone_code": "D57"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.5242639,
               38.175399
             ],

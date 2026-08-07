@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06T03:34:02Z",
+  "generated_at": "2026-08-07T00:14:01Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -21417,10 +21417,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21443,10 +21443,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21469,10 +21469,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21495,10 +21495,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21519,10 +21519,10 @@
       "products_raw": [
         "VectoBac WDG"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21545,10 +21545,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21571,10 +21571,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -21600,6 +21600,32 @@
       "status": "scheduled",
       "status_text": null,
       "target": "larval",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of North Manteca",
+      "boundary_text": "North to Arbor Brook Dr., South to W. Lathrop Rd., East to Happy Valley Ln., West to Airport Way",
+      "date": "2026-08-07",
+      "first_seen": "2026-08-07T00:14:01Z",
+      "id": "2026-08-07|11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+      "method": "ground",
+      "mid": "11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
     },
@@ -21732,6 +21758,102 @@
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
+    },
+    {
+      "area_name": "Woodward Island and portion of SE Bacon Island",
+      "boundary_text": null,
+      "date": "2026-08-08",
+      "first_seen": "2026-08-07T00:14:01Z",
+      "id": "2026-08-08|1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+      "method": "aerial",
+      "mid": "1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:30",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "Portions of Empire Tract and Terminous Tract",
+      "boundary_text": null,
+      "date": "2026-08-08",
+      "first_seen": "2026-08-07T00:14:01Z",
+      "id": "2026-08-08|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "method": "aerial",
+      "mid": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:30",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+      "boundary_text": null,
+      "date": "2026-08-08",
+      "first_seen": "2026-08-07T00:14:01Z",
+      "id": "2026-08-08|1cyMmRytvRpbUVchyUvldRrrR-Mxx9mA",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1cyMmRytvRpbUVchyUvldRrrR-Mxx9mA",
+      "method": "aerial",
+      "mid": "1cyMmRytvRpbUVchyUvldRrrR-Mxx9mA",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:30",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "Portions of Shima Tract, Rindge Tract, Atlas Tract, Wright Tract",
+      "boundary_text": null,
+      "date": "2026-08-08",
+      "first_seen": "2026-08-07T00:14:01Z",
+      "id": "2026-08-08|1f2Cc6vAndlrwjFSphksdRjUD4ZJL5NmU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1f2Cc6vAndlrwjFSphksdRjUD4ZJL5NmU",
+      "method": "aerial",
+      "mid": "1f2Cc6vAndlrwjFSphksdRjUD4ZJL5NmU",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:30",
+      "time_start": "20:30"
     }
   ]
 }
