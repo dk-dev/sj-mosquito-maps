@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T19:13:42Z",
+  "generated_at": "2026-08-10T19:15:03Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -21595,7 +21595,7 @@
       "products_raw": [
         "VectoBac WDG"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21621,7 +21621,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21647,7 +21647,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21673,7 +21673,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21699,7 +21699,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21725,7 +21725,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21751,7 +21751,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21777,8 +21777,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"
@@ -21801,8 +21801,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"
@@ -21825,8 +21825,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"
@@ -21849,8 +21849,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:30"

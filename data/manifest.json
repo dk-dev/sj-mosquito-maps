@@ -3,14 +3,14 @@
   "date_max": "2026-08-08",
   "date_min": "2020-05-04",
   "errors": [],
-  "generated_at": "2026-08-09T07:14:28Z",
+  "generated_at": "2026-08-10T19:15:03Z",
   "new_ops": 0,
   "new_shapes": 0,
   "page_ops": 117,
   "shape_failures": 0,
   "sources": {
     "live": {
-      "html_bytes": 100275,
+      "html_bytes": 100522,
       "operations": 117,
       "status": "ok",
       "unique_mids": 73,
