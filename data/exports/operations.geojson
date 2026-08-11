@@ -98044,6 +98044,80 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-12|1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+   "properties": {
+    "date": "2026-08-12",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "evening",
+    "time_start": "20:30",
+    "time_end": "23:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of NE Acampo",
+    "zone_code": "L31",
+    "region": "Lodi",
+    "boundary_text": "North to Liberty Rd., South to Peltier Rd., East to N. Jack Tone Rd., West to N. Bruella Rd.",
+    "area_sq_km": 22.2225,
+    "centroid_lat": 38.21363,
+    "centroid_lon": -121.180228,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+    "map_id": "1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+    "observed_via": "live",
+    "first_seen": "2026-08-11T02:25:45Z",
+    "operation_id": "2026-08-12|1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2077614,
+       38.1968872
+      ],
+      [
+       -121.193771,
+       38.1969546
+      ],
+      [
+       -121.1935135,
+       38.1895344
+      ],
+      [
+       -121.1587092,
+       38.1906812
+      ],
+      [
+       -121.1588379,
+       38.197899
+      ],
+      [
+       -121.1590096,
+       38.2016425
+      ],
+      [
+       -121.1523577,
+       38.2018786
+      ],
+      [
+       -121.1530189,
+       38.2347669
+      ],
+      [
+       -121.2082084,
+       38.234294
+      ],
+      [
+       -121.2077614,
+       38.1968872
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }

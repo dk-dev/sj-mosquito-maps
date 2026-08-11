@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T19:15:03Z",
+  "generated_at": "2026-08-11T02:25:44Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -21775,7 +21775,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21799,7 +21799,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21823,7 +21823,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -21847,12 +21847,38 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "Portion of NE Acampo",
+      "boundary_text": "North to Liberty Rd., South to Peltier Rd., East to N. Jack Tone Rd., West to N. Bruella Rd.",
+      "date": "2026-08-12",
+      "first_seen": "2026-08-11T02:25:45Z",
+      "id": "2026-08-12|1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+      "method": "ground",
+      "mid": "1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+      "period": "evening",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "23:00",
       "time_start": "20:30"
     }
   ]
