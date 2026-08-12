@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12T02:42:10Z",
+  "generated_at": "2026-08-12T19:17:59Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -21908,6 +21908,58 @@
       "time_start": "20:30"
     },
     {
+      "area_name": "Rural East Ripon",
+      "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+      "date": "2026-08-13",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-13|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "method": "ground",
+      "mid": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Ripon Sewer area",
+      "boundary_text": "North to Doak Rd., South to Stanislaus County Line, East to Stockton Ave., West to Robert Ave.",
+      "date": "2026-08-13",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-13|1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "method": "ground",
+      "mid": "1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:00",
+      "time_start": "03:30"
+    },
+    {
       "area_name": "Portion of South Manteca - south of 120",
       "boundary_text": "North to E. Woodward Ave., South to Tannehill Dr., East to Pillsbury Rd., West to S. Main St.",
       "date": "2026-08-13",
@@ -21955,6 +22007,160 @@
       "status_text": null,
       "target": "larval",
       "time_end": "05:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural West Lodi",
+      "boundary_text": "North to Hwy 12, South to Telephone Cut, East to I-5, West to three miles west of I-5",
+      "date": "2026-08-14",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-14|10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+      "method": "ground",
+      "mid": "10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of SW Stockton - Weston Ranch",
+      "boundary_text": "North to Watercourse St., South to French Camp Rd., East to Pissarro Dr., West to San Joaquin River",
+      "date": "2026-08-14",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-14|12rbG343j-GoSbd-5aGSsHkRDEHCMtZY",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=12rbG343j-GoSbd-5aGSsHkRDEHCMtZY",
+      "method": "ground",
+      "mid": "12rbG343j-GoSbd-5aGSsHkRDEHCMtZY",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural East Lodi",
+      "boundary_text": "North to E. Sargent Rd., South to E. Harney Ln., East to one mile east of Tully Rd., West to Tully Rd.",
+      "date": "2026-08-14",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-14|1CcmBWbKNLi71Ywn0Ll8_JToDyRF1e86i",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1CcmBWbKNLi71Ywn0Ll8_JToDyRF1e86i",
+      "method": "ground",
+      "mid": "1CcmBWbKNLi71Ywn0Ll8_JToDyRF1e86i",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Lockeford",
+      "boundary_text": "North to Hwy 88, South to Brandt Rd., East to one mile east of Jack Tone Rd., West to Jack Tone Rd.",
+      "date": "2026-08-14",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-14|1QS2-HBcpX3Owbe7m5wVgAC7lve9gkmqN",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1QS2-HBcpX3Owbe7m5wVgAC7lve9gkmqN",
+      "method": "ground",
+      "mid": "1QS2-HBcpX3Owbe7m5wVgAC7lve9gkmqN",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of SW Stockton - Weston Ranch",
+      "boundary_text": "North to Decarli St., Lloyd Thayer Cir., Carrie St., South to William Moss Blvd., East to Manthey Rd., West to Carolyn Weston Blvd",
+      "date": "2026-08-14",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-14|1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "method": "ground",
+      "mid": "1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "period": "morning",
+      "products": [
+        "VectoBac WDG"
+      ],
+      "products_raw": [
+        "VectoBac WDG"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:00",
+      "time_start": "03:15"
+    },
+    {
+      "area_name": "Rural South Delta",
+      "boundary_text": "Portions of: Upper Jones Tract, Union Island and Drexler Tract",
+      "date": "2026-08-14",
+      "first_seen": "2026-08-12T19:18:00Z",
+      "id": "2026-08-14|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "method": "ground",
+      "mid": "1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
       "time_start": "03:30"
     }
   ]
