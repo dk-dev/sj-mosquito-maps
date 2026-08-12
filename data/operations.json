@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T02:25:44Z",
+  "generated_at": "2026-08-12T02:42:10Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -21880,6 +21880,82 @@
       "target": "adult",
       "time_end": "23:00",
       "time_start": "20:30"
+    },
+    {
+      "area_name": "West Roberts Island",
+      "boundary_text": "portion of West Roberts Island",
+      "date": "2026-08-12",
+      "first_seen": "2026-08-12T02:42:11Z",
+      "id": "2026-08-12|1tLFNWvooLxCsWS6xo4g5JBUGQ0y8XUtW",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1tLFNWvooLxCsWS6xo4g5JBUGQ0y8XUtW",
+      "method": "ground",
+      "mid": "1tLFNWvooLxCsWS6xo4g5JBUGQ0y8XUtW",
+      "period": "evening",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "23:00",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "Portion of South Manteca - south of 120",
+      "boundary_text": "North to E. Woodward Ave., South to Tannehill Dr., East to Pillsbury Rd., West to S. Main St.",
+      "date": "2026-08-13",
+      "first_seen": "2026-08-12T02:42:11Z",
+      "id": "2026-08-13|1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "method": "ground",
+      "mid": "1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of South Manteca - north of 120",
+      "boundary_text": "North to Wawona St., South to Hwy 120, East to S. Union Rd., West to Airport Way",
+      "date": "2026-08-13",
+      "first_seen": "2026-08-12T02:42:11Z",
+      "id": "2026-08-13|1vJPXrGdeZDKi648eJfgEEa0EeonEwzc3",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1vJPXrGdeZDKi648eJfgEEa0EeonEwzc3",
+      "method": "ground",
+      "mid": "1vJPXrGdeZDKi648eJfgEEa0EeonEwzc3",
+      "period": "morning",
+      "products": [
+        "VectoBac WDG"
+      ],
+      "products_raw": [
+        "VectoBac WDG"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:00",
+      "time_start": "03:30"
     }
   ]
 }
