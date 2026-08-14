@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T19:18:11Z",
+  "generated_at": "2026-08-14T19:12:05Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22029,8 +22029,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -22055,8 +22055,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -22081,8 +22081,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -22107,8 +22107,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -22131,8 +22131,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:00",
       "time_start": "03:15"
@@ -22157,8 +22157,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
