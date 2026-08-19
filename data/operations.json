@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T19:12:05Z",
+  "generated_at": "2026-08-19T18:51:45Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22027,7 +22027,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22053,7 +22053,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22079,7 +22079,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22105,7 +22105,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22129,7 +22129,7 @@
       "products_raw": [
         "VectoBac WDG"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22155,12 +22155,192 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of NW Stockton",
+      "boundary_text": "North to Eight Mile Rd., South to White Slough, East to Trinity Parkway, West to Rio Blanco Rd.",
+      "date": "2026-08-20",
+      "first_seen": "2026-08-19T18:51:46Z",
+      "id": "2026-08-20|16uaUBGu4DvYpfaewQMyCxxJ90fVDSIw",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=16uaUBGu4DvYpfaewQMyCxxJ90fVDSIw",
+      "method": "ground",
+      "mid": "16uaUBGu4DvYpfaewQMyCxxJ90fVDSIw",
+      "period": "morning",
+      "products": [
+        "VectoBac WDG"
+      ],
+      "products_raw": [
+        "VectoBac WDG"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:30",
+      "time_start": "03:15"
+    },
+    {
+      "area_name": "Stockton Portion of Brookside",
+      "boundary_text": "North to Riverbrook Dr., South to Brookview Dr. and Shadowbrook Dr., East to Brookside Rd., West to Riverbrook Dr.",
+      "date": "2026-08-20",
+      "first_seen": "2026-08-19T18:51:46Z",
+      "id": "2026-08-20|1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+      "method": "ground",
+      "mid": "1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:15"
+    },
+    {
+      "area_name": "Portion of North Manteca",
+      "boundary_text": "North to Arbor Brook Dr., South to W. Lathrop Rd., East to Happy Valley Ln., West to Airport Way",
+      "date": "2026-08-21",
+      "first_seen": "2026-08-19T18:51:46Z",
+      "id": "2026-08-21|11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+      "method": "ground",
+      "mid": "11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Northeast Acampo",
+      "boundary_text": "North to Liberty Rd., South to Peltier Rd., East to N. Jack Tone Rd., West to N. Bruella Rd.",
+      "date": "2026-08-21",
+      "first_seen": "2026-08-19T18:51:46Z",
+      "id": "2026-08-21|1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+      "method": "ground",
+      "mid": "1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural South Delta",
+      "boundary_text": "Portions of: Upper Jones Tract, Union Island and Drexler Tract",
+      "date": "2026-08-21",
+      "first_seen": "2026-08-19T18:51:46Z",
+      "id": "2026-08-21|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "method": "ground",
+      "mid": "1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of North Ripon",
+      "boundary_text": "North to E. River Rd. and Cindy Dr., South to SR 99, East to Ripon Rd., West to Fulton Ave. and Arc Way",
+      "date": "2026-08-21",
+      "first_seen": "2026-08-19T18:51:46Z",
+      "id": "2026-08-21|1y1mS4buUHyjA-Argsco7uayDNj_Bdxo",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1y1mS4buUHyjA-Argsco7uayDNj_Bdxo",
+      "method": "ground",
+      "mid": "1y1mS4buUHyjA-Argsco7uayDNj_Bdxo",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Farmington Area",
+      "boundary_text": null,
+      "date": "2026-08-21",
+      "first_seen": "2026-08-19T18:51:46Z",
+      "id": "2026-08-21|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "method": "ground",
+      "mid": "1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
       "time_start": "03:30"
     }
   ]

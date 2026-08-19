@@ -99836,6 +99836,836 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-20|16uaUBGu4DvYpfaewQMyCxxJ90fVDSIw",
+   "properties": {
+    "date": "2026-08-20",
+    "method": "ground",
+    "target": "larval",
+    "products": "VectoBac WDG",
+    "period": "morning",
+    "time_start": "03:15",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of NW Stockton",
+    "zone_code": "S60",
+    "region": "Stockton",
+    "boundary_text": "North to Eight Mile Rd., South to White Slough, East to Trinity Parkway, West to Rio Blanco Rd.",
+    "area_sq_km": 5.3683,
+    "centroid_lat": 38.051419,
+    "centroid_lon": -121.396948,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=16uaUBGu4DvYpfaewQMyCxxJ90fVDSIw",
+    "map_id": "16uaUBGu4DvYpfaewQMyCxxJ90fVDSIw",
+    "observed_via": "live",
+    "first_seen": "2026-08-19T18:51:46Z",
+    "operation_id": "2026-08-20|16uaUBGu4DvYpfaewQMyCxxJ90fVDSIw"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4176187,
+       38.0583378
+      ],
+      [
+       -121.4184771,
+       38.0440429
+      ],
+      [
+       -121.4170179,
+       38.0435359
+      ],
+      [
+       -121.4158592,
+       38.0439753
+      ],
+      [
+       -121.4146147,
+       38.0438401
+      ],
+      [
+       -121.4133272,
+       38.0442457
+      ],
+      [
+       -121.4116535,
+       38.0433331
+      ],
+      [
+       -121.4097223,
+       38.0437049
+      ],
+      [
+       -121.4070187,
+       38.0449892
+      ],
+      [
+       -121.4070187,
+       38.0466791
+      ],
+      [
+       -121.4061604,
+       38.0470846
+      ],
+      [
+       -121.3954315,
+       38.0449892
+      ],
+      [
+       -121.3887796,
+       38.0452258
+      ],
+      [
+       -121.3873634,
+       38.0447188
+      ],
+      [
+       -121.3852606,
+       38.044685
+      ],
+      [
+       -121.3835869,
+       38.0454624
+      ],
+      [
+       -121.3755188,
+       38.0464087
+      ],
+      [
+       -121.3712702,
+       38.0462397
+      ],
+      [
+       -121.371871,
+       38.0472874
+      ],
+      [
+       -121.3751755,
+       38.0506331
+      ],
+      [
+       -121.3753042,
+       38.05408
+      ],
+      [
+       -121.3761625,
+       38.0565469
+      ],
+      [
+       -121.3762484,
+       38.0577634
+      ],
+      [
+       -121.4065466,
+       38.0579323
+      ],
+      [
+       -121.4176187,
+       38.0583378
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-20|1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+   "properties": {
+    "date": "2026-08-20",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:15",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Stockton Portion of Brookside",
+    "zone_code": "S32",
+    "region": "Stockton",
+    "boundary_text": "North to Riverbrook Dr., South to Brookview Dr. and Shadowbrook Dr., East to Brookside Rd., West to Riverbrook Dr.",
+    "area_sq_km": 0.4913,
+    "centroid_lat": 37.988331,
+    "centroid_lon": -121.359817,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+    "map_id": "1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+    "observed_via": "live",
+    "first_seen": "2026-08-19T18:51:46Z",
+    "operation_id": "2026-08-20|1PgUCI5L267GhPiahg5GpoJV1eCizX1A"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.366394,
+       37.9864759
+      ],
+      [
+       -121.36604,
+       37.9863068
+      ],
+      [
+       -121.3655142,
+       37.9861462
+      ],
+      [
+       -121.3649134,
+       37.9860362
+      ],
+      [
+       -121.3645272,
+       37.9860278
+      ],
+      [
+       -121.3638405,
+       37.9860616
+      ],
+      [
+       -121.3632183,
+       37.9861462
+      ],
+      [
+       -121.3626389,
+       37.9861715
+      ],
+      [
+       -121.3622956,
+       37.9861462
+      ],
+      [
+       -121.361448,
+       37.9861123
+      ],
+      [
+       -121.3608794,
+       37.9860616
+      ],
+      [
+       -121.3603537,
+       37.9860024
+      ],
+      [
+       -121.3598065,
+       37.9860278
+      ],
+      [
+       -121.3593344,
+       37.9860616
+      ],
+      [
+       -121.3588624,
+       37.9860954
+      ],
+      [
+       -121.3583903,
+       37.98618
+      ],
+      [
+       -121.3581221,
+       37.9862815
+      ],
+      [
+       -121.3578109,
+       37.986552
+      ],
+      [
+       -121.3575105,
+       37.986459
+      ],
+      [
+       -121.3571028,
+       37.9863745
+      ],
+      [
+       -121.3565449,
+       37.9863745
+      ],
+      [
+       -121.3560407,
+       37.986366
+      ],
+      [
+       -121.355515,
+       37.9863406
+      ],
+      [
+       -121.3551502,
+       37.9862899
+      ],
+      [
+       -121.3547318,
+       37.9861715
+      ],
+      [
+       -121.3545065,
+       37.9867465
+      ],
+      [
+       -121.3540988,
+       37.987516
+      ],
+      [
+       -121.3537769,
+       37.9882517
+      ],
+      [
+       -121.3536803,
+       37.9887421
+      ],
+      [
+       -121.3538413,
+       37.9894862
+      ],
+      [
+       -121.3542597,
+       37.9901035
+      ],
+      [
+       -121.3549034,
+       37.9906193
+      ],
+      [
+       -121.3555472,
+       37.9908645
+      ],
+      [
+       -121.3563089,
+       37.991042
+      ],
+      [
+       -121.3570492,
+       37.9910336
+      ],
+      [
+       -121.3585405,
+       37.9906869
+      ],
+      [
+       -121.3597314,
+       37.9903402
+      ],
+      [
+       -121.3609974,
+       37.9901796
+      ],
+      [
+       -121.3615124,
+       37.9902388
+      ],
+      [
+       -121.362478,
+       37.9904248
+      ],
+      [
+       -121.3630681,
+       37.9904502
+      ],
+      [
+       -121.3637762,
+       37.9903741
+      ],
+      [
+       -121.364377,
+       37.9902049
+      ],
+      [
+       -121.3649349,
+       37.9898667
+      ],
+      [
+       -121.3653962,
+       37.9894778
+      ],
+      [
+       -121.3657932,
+       37.9886322
+      ],
+      [
+       -121.3660078,
+       37.9871101
+      ],
+      [
+       -121.366394,
+       37.9864759
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-21|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+   "properties": {
+    "date": "2026-08-21",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Farmington Area",
+    "zone_code": "E35",
+    "region": "Escalon",
+    "boundary_text": "",
+    "area_sq_km": 10.0923,
+    "centroid_lat": 37.930079,
+    "centroid_lon": -120.997812,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+    "map_id": "1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+    "observed_via": "live",
+    "first_seen": "2026-08-19T18:51:46Z",
+    "operation_id": "2026-08-21|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0152209,
+       37.9154609
+      ],
+      [
+       -120.9796012,
+       37.9157317
+      ],
+      [
+       -120.9802449,
+       37.9446395
+      ],
+      [
+       -121.016165,
+       37.9444026
+      ],
+      [
+       -121.0152209,
+       37.9154609
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-21|1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+   "properties": {
+    "date": "2026-08-21",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Northeast Acampo",
+    "zone_code": "L31",
+    "region": "Lodi",
+    "boundary_text": "North to Liberty Rd., South to Peltier Rd., East to N. Jack Tone Rd., West to N. Bruella Rd.",
+    "area_sq_km": 22.2225,
+    "centroid_lat": 38.21363,
+    "centroid_lon": -121.180228,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+    "map_id": "1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+    "observed_via": "live",
+    "first_seen": "2026-08-19T18:51:46Z",
+    "operation_id": "2026-08-21|1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2077614,
+       38.1968872
+      ],
+      [
+       -121.193771,
+       38.1969546
+      ],
+      [
+       -121.1935135,
+       38.1895344
+      ],
+      [
+       -121.1587092,
+       38.1906812
+      ],
+      [
+       -121.1588379,
+       38.197899
+      ],
+      [
+       -121.1590096,
+       38.2016425
+      ],
+      [
+       -121.1523577,
+       38.2018786
+      ],
+      [
+       -121.1530189,
+       38.2347669
+      ],
+      [
+       -121.2082084,
+       38.234294
+      ],
+      [
+       -121.2077614,
+       38.1968872
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-21|11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+   "properties": {
+    "date": "2026-08-21",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of North Manteca",
+    "zone_code": "M26",
+    "region": "Manteca",
+    "boundary_text": "North to Arbor Brook Dr., South to W. Lathrop Rd., East to Happy Valley Ln., West to Airport Way",
+    "area_sq_km": 4.0122,
+    "centroid_lat": 37.833527,
+    "centroid_lon": -121.240851,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+    "map_id": "11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns",
+    "observed_via": "live",
+    "first_seen": "2026-08-19T18:51:46Z",
+    "operation_id": "2026-08-21|11elzfP0nIMwj1uElg_gxyDWoVlQi5Ns"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2547541,
+       37.8409385
+      ],
+      [
+       -121.2546254,
+       37.8262284
+      ],
+      [
+       -121.2268163,
+       37.8259572
+      ],
+      [
+       -121.22746,
+       37.8410741
+      ],
+      [
+       -121.2547541,
+       37.8409385
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-21|1y1mS4buUHyjA-Argsco7uayDNj_Bdxo",
+   "properties": {
+    "date": "2026-08-21",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of North Ripon",
+    "zone_code": "R10A",
+    "region": "Ripon",
+    "boundary_text": "North to E. River Rd. and Cindy Dr., South to SR 99, East to Ripon Rd., West to Fulton Ave. and Arc Way",
+    "area_sq_km": 1.2548,
+    "centroid_lat": 37.752459,
+    "centroid_lon": -121.127846,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1y1mS4buUHyjA-Argsco7uayDNj_Bdxo",
+    "map_id": "1y1mS4buUHyjA-Argsco7uayDNj_Bdxo",
+    "observed_via": "live",
+    "first_seen": "2026-08-19T18:51:46Z",
+    "operation_id": "2026-08-21|1y1mS4buUHyjA-Argsco7uayDNj_Bdxo"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1305477,
+       37.7463618
+      ],
+      [
+       -121.1301748,
+       37.7454137
+      ],
+      [
+       -121.1273987,
+       37.7435155
+      ],
+      [
+       -121.1240783,
+       37.741755
+      ],
+      [
+       -121.1240942,
+       37.7486437
+      ],
+      [
+       -121.1241343,
+       37.7495429
+      ],
+      [
+       -121.124325,
+       37.7576356
+      ],
+      [
+       -121.124529,
+       37.7611514
+      ],
+      [
+       -121.1300168,
+       37.7611789
+      ],
+      [
+       -121.1299779,
+       37.7586835
+      ],
+      [
+       -121.1335223,
+       37.7587074
+      ],
+      [
+       -121.133404,
+       37.7575089
+      ],
+      [
+       -121.1330281,
+       37.7564121
+      ],
+      [
+       -121.1324587,
+       37.7549057
+      ],
+      [
+       -121.1313845,
+       37.7512651
+      ],
+      [
+       -121.1312987,
+       37.7506628
+      ],
+      [
+       -121.1311914,
+       37.7503065
+      ],
+      [
+       -121.1311914,
+       37.7500266
+      ],
+      [
+       -121.1312021,
+       37.7497212
+      ],
+      [
+       -121.1314274,
+       37.7491019
+      ],
+      [
+       -121.1317708,
+       37.748542
+      ],
+      [
+       -121.1321892,
+       37.74805
+      ],
+      [
+       -121.1317815,
+       37.7477615
+      ],
+      [
+       -121.1312665,
+       37.747507
+      ],
+      [
+       -121.131009,
+       37.7473034
+      ],
+      [
+       -121.1309446,
+       37.7470659
+      ],
+      [
+       -121.1308588,
+       37.7467266
+      ],
+      [
+       -121.130773,
+       37.7463533
+      ],
+      [
+       -121.1305477,
+       37.7463618
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-21|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+   "properties": {
+    "date": "2026-08-21",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural South Delta",
+    "zone_code": "D30",
+    "region": "Delta",
+    "boundary_text": "Portions of: Upper Jones Tract, Union Island and Drexler Tract",
+    "area_sq_km": 16.8895,
+    "centroid_lat": 37.892875,
+    "centroid_lon": -121.477942,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+    "map_id": "1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+    "observed_via": "live",
+    "first_seen": "2026-08-19T18:51:46Z",
+    "operation_id": "2026-08-21|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.5157351,
+       37.9207975
+      ],
+      [
+       -121.5112719,
+       37.9148389
+      ],
+      [
+       -121.5155635,
+       37.9132137
+      ],
+      [
+       -121.5157351,
+       37.9118594
+      ],
+      [
+       -121.5080104,
+       37.9106405
+      ],
+      [
+       -121.5059504,
+       37.9072545
+      ],
+      [
+       -121.5018305,
+       37.9087444
+      ],
+      [
+       -121.4959941,
+       37.9042748
+      ],
+      [
+       -121.4956507,
+       37.8995339
+      ],
+      [
+       -121.4925608,
+       37.8981794
+      ],
+      [
+       -121.4913592,
+       37.89398
+      ],
+      [
+       -121.487411,
+       37.8934382
+      ],
+      [
+       -121.488441,
+       37.8904578
+      ],
+      [
+       -121.485866,
+       37.889645
+      ],
+      [
+       -121.4856944,
+       37.886529
+      ],
+      [
+       -121.4810595,
+       37.886258
+      ],
+      [
+       -121.480802,
+       37.8626807
+      ],
+      [
+       -121.4496455,
+       37.8628162
+      ],
+      [
+       -121.4565119,
+       37.8853097
+      ],
+      [
+       -121.4563403,
+       37.8927608
+      ],
+      [
+       -121.4587435,
+       37.8950638
+      ],
+      [
+       -121.4633784,
+       37.8989921
+      ],
+      [
+       -121.46664,
+       37.9030557
+      ],
+      [
+       -121.475223,
+       37.8995339
+      ],
+      [
+       -121.4756522,
+       37.9205266
+      ],
+      [
+       -121.5157351,
+       37.9207975
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }
