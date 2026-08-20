@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T18:51:45Z",
+  "generated_at": "2026-08-20T18:57:37Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22179,10 +22179,10 @@
       "products_raw": [
         "VectoBac WDG"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:30",
       "time_start": "03:15"
@@ -22205,10 +22205,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:15"
@@ -22240,6 +22240,58 @@
       "time_start": "03:30"
     },
     {
+      "area_name": "Central Tracy",
+      "boundary_text": "North to W. 11th St., South to W. Schulte Rd., East to N. Tracy Blvd., West to N. Corral Hollow Rd.",
+      "date": "2026-08-21",
+      "first_seen": "2026-08-20T18:57:38Z",
+      "id": "2026-08-21|1A4oHOOixxEl7bJPdKsM0-uGEHlYiGZ4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1A4oHOOixxEl7bJPdKsM0-uGEHlYiGZ4",
+      "method": "ground",
+      "mid": "1A4oHOOixxEl7bJPdKsM0-uGEHlYiGZ4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "North Acampo",
+      "boundary_text": "North to Bill Rd., South to Collier Rd., East to N. Cherokee Rd., West to N. Lower Sacramento Rd.",
+      "date": "2026-08-21",
+      "first_seen": "2026-08-20T18:57:38Z",
+      "id": "2026-08-21|1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "method": "ground",
+      "mid": "1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
       "area_name": "Northeast Acampo",
       "boundary_text": "North to Liberty Rd., South to Peltier Rd., East to N. Jack Tone Rd., West to N. Bruella Rd.",
       "date": "2026-08-21",
@@ -22248,6 +22300,32 @@
       "map_url": "https://www.google.com/maps/d/viewer?mid=1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
       "method": "ground",
       "mid": "1Oq1y3HUZrBPRHpbY2OhmZaMhrcHm-JA",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Ripon Sewer",
+      "boundary_text": "North to Doak Rd., South to Stanislaus County Line, East to Stockton Ave., West to Robert Ave.",
+      "date": "2026-08-21",
+      "first_seen": "2026-08-20T18:57:38Z",
+      "id": "2026-08-21|1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "method": "ground",
+      "mid": "1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
       "period": "morning",
       "products": [
         "Evergreen 5-25",
@@ -22342,6 +22420,54 @@
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural East Ripon",
+      "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+      "date": "2026-08-23",
+      "first_seen": "2026-08-20T18:57:38Z",
+      "id": "2026-08-23|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "method": "aerial",
+      "mid": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:00",
+      "time_start": "20:30"
+    },
+    {
+      "area_name": "Portion of Rural South County",
+      "boundary_text": "Rural South County- South of Manteca to San Joaquin and Stanislaus Rivers and East to ~1 mile East of Austin Rd.",
+      "date": "2026-08-23",
+      "first_seen": "2026-08-20T18:57:38Z",
+      "id": "2026-08-23|1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+      "method": "aerial",
+      "mid": "1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:00",
+      "time_start": "20:30"
     }
   ]
 }

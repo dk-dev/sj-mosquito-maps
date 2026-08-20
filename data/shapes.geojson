@@ -5265,6 +5265,93 @@
         "coordinates": [
           [
             [
+              -121.4530392,
+              37.7391584
+            ],
+            [
+              -121.4530821,
+              37.728603
+            ],
+            [
+              -121.4476748,
+              37.728603
+            ],
+            [
+              -121.4459582,
+              37.7286369
+            ],
+            [
+              -121.4439841,
+              37.7274829
+            ],
+            [
+              -121.4428254,
+              37.7260233
+            ],
+            [
+              -121.4413233,
+              37.7253784
+            ],
+            [
+              -121.440465,
+              37.7254123
+            ],
+            [
+              -121.438963,
+              37.7254123
+            ],
+            [
+              -121.4379759,
+              37.7251068
+            ],
+            [
+              -121.4347144,
+              37.7251747
+            ],
+            [
+              -121.4348002,
+              37.7355269
+            ],
+            [
+              -121.4363022,
+              37.7369524
+            ],
+            [
+              -121.4367314,
+              37.7368845
+            ],
+            [
+              -121.437418,
+              37.7371221
+            ],
+            [
+              -121.4446707,
+              37.739362
+            ],
+            [
+              -121.4530392,
+              37.7391584
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1A4oHOOixxEl7bJPdKsM0-uGEHlYiGZ4",
+      "properties": {
+        "area_sq_km": 2.0531,
+        "doc_description": ">North to W. 11th St., >South to W. Schulte Rd., >East to N. Tracy Blvd., >West to N. Corral Hollow Rd.",
+        "doc_name": "T34-Central Tracy",
+        "fetched_at": "2026-08-20T18:57:38Z",
+        "mid": "1A4oHOOixxEl7bJPdKsM0-uGEHlYiGZ4",
+        "zone_code": "T34"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.4734778,
               38.2071414
             ],
@@ -8098,6 +8185,61 @@
         "fetched_at": "2026-07-27T10:52:43Z",
         "mid": "1HT2qwVHbN9k8GVX6E6p2dkRa91virreA",
         "zone_code": "S18"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -121.2839674,
+              38.2403647
+            ],
+            [
+              -121.2852549,
+              38.2405332
+            ],
+            [
+              -121.2815213,
+              38.2345332
+            ],
+            [
+              -121.2813925,
+              38.2294092
+            ],
+            [
+              -121.2911343,
+              38.2293418
+            ],
+            [
+              -121.290791,
+              38.2182498
+            ],
+            [
+              -121.2630248,
+              38.2182835
+            ],
+            [
+              -121.2636256,
+              38.2402635
+            ],
+            [
+              -121.2839674,
+              38.2403647
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "properties": {
+        "area_sq_km": 5.0145,
+        "doc_description": ">North to Bill Rd., >South to Collier Rd., >East to N. Cherokee Rd., West to N. Lower Sacramento Rd.",
+        "doc_name": "North Acampo",
+        "fetched_at": "2026-08-20T18:57:39Z",
+        "mid": "1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+        "zone_code": null
       },
       "type": "Feature"
     },
