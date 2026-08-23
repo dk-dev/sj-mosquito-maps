@@ -3,7 +3,7 @@
   "date_max": "2026-08-23",
   "date_min": "2020-05-04",
   "errors": [],
-  "generated_at": "2026-08-23T05:04:56Z",
+  "generated_at": "2026-08-23T06:59:02Z",
   "new_ops": 0,
   "new_shapes": 0,
   "page_ops": 141,
@@ -23,12 +23,8 @@
       "status": "ok"
     },
     "wayback": {
-      "operations": 838,
-      "snapshot_first": "20200814043508",
-      "snapshot_last": "20260730134439",
-      "snapshots": 26,
-      "status": "ok",
-      "unique_mids": 314
+      "reason": "no --backfill",
+      "status": "skipped"
     }
   },
   "total_ops": 887,
