@@ -101632,6 +101632,412 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-26|1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+   "properties": {
+    "date": "2026-08-26",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:15",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "North Acampo",
+    "zone_code": "",
+    "region": "Unknown",
+    "boundary_text": "North to Bill Rd., South to Collier Rd., East to N. Cherokee Rd., West to N. Lower Sacramento Rd.",
+    "area_sq_km": 5.0145,
+    "centroid_lat": 38.228324,
+    "centroid_lon": -121.275446,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+    "map_id": "1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+    "observed_via": "live",
+    "first_seen": "2026-08-25T18:55:27Z",
+    "operation_id": "2026-08-26|1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2839674,
+       38.2403647
+      ],
+      [
+       -121.2852549,
+       38.2405332
+      ],
+      [
+       -121.2815213,
+       38.2345332
+      ],
+      [
+       -121.2813925,
+       38.2294092
+      ],
+      [
+       -121.2911343,
+       38.2293418
+      ],
+      [
+       -121.290791,
+       38.2182498
+      ],
+      [
+       -121.2630248,
+       38.2182835
+      ],
+      [
+       -121.2636256,
+       38.2402635
+      ],
+      [
+       -121.2839674,
+       38.2403647
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-26|1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+   "properties": {
+    "date": "2026-08-26",
+    "method": "ground",
+    "target": "larval",
+    "products": "Altosid",
+    "period": "morning",
+    "time_start": "03:15",
+    "time_end": "05:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Northwest Stockton - portion of N. Brookside",
+    "zone_code": "S32",
+    "region": "Stockton",
+    "boundary_text": "North to Riverbrook Dr., South to Brookview Dr. and Shadowbrook Dr., East to Brookside Rd., West to Riverbrook Dr.",
+    "area_sq_km": 0.4913,
+    "centroid_lat": 37.988331,
+    "centroid_lon": -121.359817,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+    "map_id": "1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+    "observed_via": "live",
+    "first_seen": "2026-08-25T18:55:27Z",
+    "operation_id": "2026-08-26|1PgUCI5L267GhPiahg5GpoJV1eCizX1A"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.366394,
+       37.9864759
+      ],
+      [
+       -121.36604,
+       37.9863068
+      ],
+      [
+       -121.3655142,
+       37.9861462
+      ],
+      [
+       -121.3649134,
+       37.9860362
+      ],
+      [
+       -121.3645272,
+       37.9860278
+      ],
+      [
+       -121.3638405,
+       37.9860616
+      ],
+      [
+       -121.3632183,
+       37.9861462
+      ],
+      [
+       -121.3626389,
+       37.9861715
+      ],
+      [
+       -121.3622956,
+       37.9861462
+      ],
+      [
+       -121.361448,
+       37.9861123
+      ],
+      [
+       -121.3608794,
+       37.9860616
+      ],
+      [
+       -121.3603537,
+       37.9860024
+      ],
+      [
+       -121.3598065,
+       37.9860278
+      ],
+      [
+       -121.3593344,
+       37.9860616
+      ],
+      [
+       -121.3588624,
+       37.9860954
+      ],
+      [
+       -121.3583903,
+       37.98618
+      ],
+      [
+       -121.3581221,
+       37.9862815
+      ],
+      [
+       -121.3578109,
+       37.986552
+      ],
+      [
+       -121.3575105,
+       37.986459
+      ],
+      [
+       -121.3571028,
+       37.9863745
+      ],
+      [
+       -121.3565449,
+       37.9863745
+      ],
+      [
+       -121.3560407,
+       37.986366
+      ],
+      [
+       -121.355515,
+       37.9863406
+      ],
+      [
+       -121.3551502,
+       37.9862899
+      ],
+      [
+       -121.3547318,
+       37.9861715
+      ],
+      [
+       -121.3545065,
+       37.9867465
+      ],
+      [
+       -121.3540988,
+       37.987516
+      ],
+      [
+       -121.3537769,
+       37.9882517
+      ],
+      [
+       -121.3536803,
+       37.9887421
+      ],
+      [
+       -121.3538413,
+       37.9894862
+      ],
+      [
+       -121.3542597,
+       37.9901035
+      ],
+      [
+       -121.3549034,
+       37.9906193
+      ],
+      [
+       -121.3555472,
+       37.9908645
+      ],
+      [
+       -121.3563089,
+       37.991042
+      ],
+      [
+       -121.3570492,
+       37.9910336
+      ],
+      [
+       -121.3585405,
+       37.9906869
+      ],
+      [
+       -121.3597314,
+       37.9903402
+      ],
+      [
+       -121.3609974,
+       37.9901796
+      ],
+      [
+       -121.3615124,
+       37.9902388
+      ],
+      [
+       -121.362478,
+       37.9904248
+      ],
+      [
+       -121.3630681,
+       37.9904502
+      ],
+      [
+       -121.3637762,
+       37.9903741
+      ],
+      [
+       -121.364377,
+       37.9902049
+      ],
+      [
+       -121.3649349,
+       37.9898667
+      ],
+      [
+       -121.3653962,
+       37.9894778
+      ],
+      [
+       -121.3657932,
+       37.9886322
+      ],
+      [
+       -121.3660078,
+       37.9871101
+      ],
+      [
+       -121.366394,
+       37.9864759
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-26|1fjdYqg1Ce91ktWIkZu8PV02Z1ZuppPbB",
+   "properties": {
+    "date": "2026-08-26",
+    "method": "ground",
+    "target": "larval",
+    "products": "Altosid",
+    "period": "morning",
+    "time_start": "03:15",
+    "time_end": "05:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Northwest Stockton - portion of S. Brookside",
+    "zone_code": "S1",
+    "region": "Stockton",
+    "boundary_text": "North to W. March Ln., South to Brookside Rd., East to I-5, West to Brookside Rd",
+    "area_sq_km": 0.8876,
+    "centroid_lat": 37.980372,
+    "centroid_lon": -121.348798,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1fjdYqg1Ce91ktWIkZu8PV02Z1ZuppPbB",
+    "map_id": "1fjdYqg1Ce91ktWIkZu8PV02Z1ZuppPbB",
+    "observed_via": "live",
+    "first_seen": "2026-08-25T18:55:27Z",
+    "operation_id": "2026-08-26|1fjdYqg1Ce91ktWIkZu8PV02Z1ZuppPbB"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.3551411,
+       37.9836722
+      ],
+      [
+       -121.3552055,
+       37.9829788
+      ],
+      [
+       -121.3552913,
+       37.9826744
+      ],
+      [
+       -121.3556132,
+       37.9811015
+      ],
+      [
+       -121.3556132,
+       37.9806448
+      ],
+      [
+       -121.355463,
+       37.9798329
+      ],
+      [
+       -121.3551197,
+       37.9792579
+      ],
+      [
+       -121.3540682,
+       37.9782769
+      ],
+      [
+       -121.3496909,
+       37.9755199
+      ],
+      [
+       -121.3491544,
+       37.9753
+      ],
+      [
+       -121.3485107,
+       37.9752323
+      ],
+      [
+       -121.3479314,
+       37.9752831
+      ],
+      [
+       -121.3471803,
+       37.9755199
+      ],
+      [
+       -121.3467083,
+       37.975892
+      ],
+      [
+       -121.346322,
+       37.9762979
+      ],
+      [
+       -121.3453564,
+       37.9771775
+      ],
+      [
+       -121.3417301,
+       37.9795454
+      ],
+      [
+       -121.3436184,
+       37.9844671
+      ],
+      [
+       -121.3551411,
+       37.9836722
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }

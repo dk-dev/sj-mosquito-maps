@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T18:57:48Z",
+  "generated_at": "2026-08-25T18:55:27Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22437,7 +22437,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22461,13 +22461,87 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:00",
       "time_start": "20:30"
+    },
+    {
+      "area_name": "North Acampo",
+      "boundary_text": "North to Bill Rd., South to Collier Rd., East to N. Cherokee Rd., West to N. Lower Sacramento Rd.",
+      "date": "2026-08-26",
+      "first_seen": "2026-08-25T18:55:27Z",
+      "id": "2026-08-26|1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "method": "ground",
+      "mid": "1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:15"
+    },
+    {
+      "area_name": "Northwest Stockton - portion of N. Brookside",
+      "boundary_text": "North to Riverbrook Dr., South to Brookview Dr. and Shadowbrook Dr., East to Brookside Rd., West to Riverbrook Dr.",
+      "date": "2026-08-26",
+      "first_seen": "2026-08-25T18:55:27Z",
+      "id": "2026-08-26|1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+      "method": "ground",
+      "mid": "1PgUCI5L267GhPiahg5GpoJV1eCizX1A",
+      "period": "morning",
+      "products": [
+        "Altosid"
+      ],
+      "products_raw": [
+        "Altosid liquid concentrate (SR-20)"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:00",
+      "time_start": "03:15"
+    },
+    {
+      "area_name": "Northwest Stockton - portion of S. Brookside",
+      "boundary_text": "North to W. March Ln., South to Brookside Rd., East to I-5, West to Brookside Rd",
+      "date": "2026-08-26",
+      "first_seen": "2026-08-25T18:55:27Z",
+      "id": "2026-08-26|1fjdYqg1Ce91ktWIkZu8PV02Z1ZuppPbB",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1fjdYqg1Ce91ktWIkZu8PV02Z1ZuppPbB",
+      "method": "ground",
+      "mid": "1fjdYqg1Ce91ktWIkZu8PV02Z1ZuppPbB",
+      "period": "morning",
+      "products": [
+        "Altosid"
+      ],
+      "products_raw": [
+        "Altosid liquid concentrate (SR-20)"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:00",
+      "time_start": "03:15"
     }
   ]
 }
