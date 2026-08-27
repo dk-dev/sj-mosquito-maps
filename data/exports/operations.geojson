@@ -102050,8 +102050,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "06:00",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural South Delta",
     "zone_code": "D30",
     "region": "Delta",
@@ -102188,8 +102188,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of S. Tracy",
     "zone_code": "T33",
     "region": "Tracy",
@@ -102242,8 +102242,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "06:00",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Rural East Escalon",
     "zone_code": "E29",
     "region": "Escalon",
@@ -102296,8 +102296,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "06:00",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Rural East Ripon",
     "zone_code": "R6b",
     "region": "Ripon",
@@ -102771,6 +102771,80 @@
       [
        -121.0779947,
        38.1940498
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Northwest Tracy",
+    "zone_code": "T21",
+    "region": "Tracy",
+    "boundary_text": "North to Bethany Rd., South to HWY 205 and W. Grant Line Rd., East to N. Tracy Blvd., West to San Jose Rd",
+    "area_sq_km": 13.4599,
+    "centroid_lat": 37.769363,
+    "centroid_lon": -121.464051,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+    "map_id": "13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T22:14:18Z",
+    "operation_id": "2026-08-28|13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4905146,
+       37.7578498
+      ],
+      [
+       -121.4841632,
+       37.7538461
+      ],
+      [
+       -121.4645938,
+       37.753914
+      ],
+      [
+       -121.4436511,
+       37.7626676
+      ],
+      [
+       -121.4349822,
+       37.7633461
+      ],
+      [
+       -121.4351538,
+       37.7832245
+      ],
+      [
+       -121.4639071,
+       37.7831566
+      ],
+      [
+       -121.4638213,
+       37.7807145
+      ],
+      [
+       -121.4907721,
+       37.7805789
+      ],
+      [
+       -121.4905146,
+       37.7578498
       ]
      ]
     ],

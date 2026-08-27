@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T09:43:40Z",
+  "generated_at": "2026-08-27T22:14:17Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22561,10 +22561,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -22585,10 +22585,10 @@
       "products_raw": [
         "Altosid liquid concentrate (SR-20)"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22611,10 +22611,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -22637,12 +22637,38 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
+      "section": "past",
+      "source": "live",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Northwest Tracy",
+      "boundary_text": "North to Bethany Rd., South to HWY 205 and W. Grant Line Rd., East to N. Tracy Blvd., West to San Jose Rd",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T22:14:18Z",
+      "id": "2026-08-28|13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+      "method": "ground",
+      "mid": "13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
       "section": "current",
       "source": "live",
       "status": "scheduled",
       "status_text": null,
       "target": "adult",
-      "time_end": "06:00",
+      "time_end": "05:30",
       "time_start": "03:30"
     },
     {
