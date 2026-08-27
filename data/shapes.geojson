@@ -25630,6 +25630,53 @@
         "coordinates": [
           [
             [
+              -121.2265337,
+              38.2184813
+            ],
+            [
+              -121.2257979,
+              38.1964298
+            ],
+            [
+              -121.193805,
+              38.1969762
+            ],
+            [
+              -121.1935542,
+              38.1897021
+            ],
+            [
+              -121.189081,
+              38.1896552
+            ],
+            [
+              -121.1896684,
+              38.2188169
+            ],
+            [
+              -121.2265337,
+              38.2184813
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+      "properties": {
+        "area_sq_km": 8.14,
+        "doc_description": ">North to Collier Rd. E. > South to Peltier Rd. > East to Sowles Rd. > West to Dustin Rd.",
+        "doc_name": "L33 - Portion of Acampo",
+        "fetched_at": "2026-08-27T09:43:42Z",
+        "mid": "1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+        "zone_code": "L33"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -120.9787046,
               37.8141569
             ],

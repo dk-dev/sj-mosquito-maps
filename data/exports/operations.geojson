@@ -102038,6 +102038,1238 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-27|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+   "properties": {
+    "date": "2026-08-27",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural South Delta",
+    "zone_code": "D30",
+    "region": "Delta",
+    "boundary_text": "Portions of: Upper Jones Tract, Union Island and Drexler Tract",
+    "area_sq_km": 16.8895,
+    "centroid_lat": 37.892875,
+    "centroid_lon": -121.477942,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+    "map_id": "1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-27|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.5157351,
+       37.9207975
+      ],
+      [
+       -121.5112719,
+       37.9148389
+      ],
+      [
+       -121.5155635,
+       37.9132137
+      ],
+      [
+       -121.5157351,
+       37.9118594
+      ],
+      [
+       -121.5080104,
+       37.9106405
+      ],
+      [
+       -121.5059504,
+       37.9072545
+      ],
+      [
+       -121.5018305,
+       37.9087444
+      ],
+      [
+       -121.4959941,
+       37.9042748
+      ],
+      [
+       -121.4956507,
+       37.8995339
+      ],
+      [
+       -121.4925608,
+       37.8981794
+      ],
+      [
+       -121.4913592,
+       37.89398
+      ],
+      [
+       -121.487411,
+       37.8934382
+      ],
+      [
+       -121.488441,
+       37.8904578
+      ],
+      [
+       -121.485866,
+       37.889645
+      ],
+      [
+       -121.4856944,
+       37.886529
+      ],
+      [
+       -121.4810595,
+       37.886258
+      ],
+      [
+       -121.480802,
+       37.8626807
+      ],
+      [
+       -121.4496455,
+       37.8628162
+      ],
+      [
+       -121.4565119,
+       37.8853097
+      ],
+      [
+       -121.4563403,
+       37.8927608
+      ],
+      [
+       -121.4587435,
+       37.8950638
+      ],
+      [
+       -121.4633784,
+       37.8989921
+      ],
+      [
+       -121.46664,
+       37.9030557
+      ],
+      [
+       -121.475223,
+       37.8995339
+      ],
+      [
+       -121.4756522,
+       37.9205266
+      ],
+      [
+       -121.5157351,
+       37.9207975
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-27|1OGe7S0FTnc-i2kN8--7RatRAWjFpN8k",
+   "properties": {
+    "date": "2026-08-27",
+    "method": "ground",
+    "target": "larval",
+    "products": "Altosid",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of S. Tracy",
+    "zone_code": "T33",
+    "region": "Tracy",
+    "boundary_text": "North to Valpico Rd., South to W. Linne Rd., East to S. MacArthur Dr., West to S. Tracy Blvd.",
+    "area_sq_km": 2.6065,
+    "centroid_lat": 37.703331,
+    "centroid_lon": -121.425513,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1OGe7S0FTnc-i2kN8--7RatRAWjFpN8k",
+    "map_id": "1OGe7S0FTnc-i2kN8--7RatRAWjFpN8k",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-27|1OGe7S0FTnc-i2kN8--7RatRAWjFpN8k"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4164483,
+       37.710714
+      ],
+      [
+       -121.4345602,
+       37.7106299
+      ],
+      [
+       -121.4346444,
+       37.6959949
+      ],
+      [
+       -121.4164269,
+       37.6960119
+      ],
+      [
+       -121.4164483,
+       37.710714
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-27|1YdE4wGmIItr1fDrb1unsnlFVmpL_Tx5f",
+   "properties": {
+    "date": "2026-08-27",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Rural East Escalon",
+    "zone_code": "E29",
+    "region": "Escalon",
+    "boundary_text": "North to OID Canal, South to Hwy 120, East to Victory Ave., West to Henry Rd.",
+    "area_sq_km": 3.7529,
+    "centroid_lat": 37.803345,
+    "centroid_lon": -120.932621,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YdE4wGmIItr1fDrb1unsnlFVmpL_Tx5f",
+    "map_id": "1YdE4wGmIItr1fDrb1unsnlFVmpL_Tx5f",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-27|1YdE4wGmIItr1fDrb1unsnlFVmpL_Tx5f"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -120.9424808,
+       37.8133412
+      ],
+      [
+       -120.9420087,
+       37.793471
+      ],
+      [
+       -120.9227397,
+       37.7932336
+      ],
+      [
+       -120.9233405,
+       37.8133751
+      ],
+      [
+       -120.9424808,
+       37.8133412
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-27|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+   "properties": {
+    "date": "2026-08-27",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Rural East Ripon",
+    "zone_code": "R6b",
+    "region": "Ripon",
+    "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+    "area_sq_km": 5.2528,
+    "centroid_lat": 37.747065,
+    "centroid_lon": -121.060768,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+    "map_id": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-27|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0874365,
+       37.752352
+      ],
+      [
+       -121.0872649,
+       37.7494678
+      ],
+      [
+       -121.0871362,
+       37.7448528
+      ],
+      [
+       -121.0870933,
+       37.7430542
+      ],
+      [
+       -121.0871577,
+       37.7409502
+      ],
+      [
+       -121.0863637,
+       37.7411538
+      ],
+      [
+       -121.0848187,
+       37.7409502
+      ],
+      [
+       -121.0841321,
+       37.7421719
+      ],
+      [
+       -121.0829304,
+       37.7419004
+      ],
+      [
+       -121.082158,
+       37.7406108
+      ],
+      [
+       -121.0802697,
+       37.7405429
+      ],
+      [
+       -121.0787247,
+       37.7382352
+      ],
+      [
+       -121.0767506,
+       37.7376243
+      ],
+      [
+       -121.0752057,
+       37.7391854
+      ],
+      [
+       -121.0718583,
+       37.7381673
+      ],
+      [
+       -121.0691117,
+       37.7398642
+      ],
+      [
+       -121.0673093,
+       37.7402714
+      ],
+      [
+       -121.0680817,
+       37.7433257
+      ],
+      [
+       -121.0672234,
+       37.7452939
+      ],
+      [
+       -121.0646485,
+       37.7442759
+      ],
+      [
+       -121.0642194,
+       37.7449546
+      ],
+      [
+       -121.0657643,
+       37.7459048
+      ],
+      [
+       -121.0649918,
+       37.7471264
+      ],
+      [
+       -121.0631894,
+       37.7461762
+      ],
+      [
+       -121.0615586,
+       37.7469228
+      ],
+      [
+       -121.0612153,
+       37.7490946
+      ],
+      [
+       -121.0602711,
+       37.7499768
+      ],
+      [
+       -121.0589837,
+       37.7489588
+      ],
+      [
+       -121.0576104,
+       37.7492303
+      ],
+      [
+       -121.0572671,
+       37.7506555
+      ],
+      [
+       -121.0560654,
+       37.7505197
+      ],
+      [
+       -121.0557221,
+       37.7495696
+      ],
+      [
+       -121.0540913,
+       37.7496375
+      ],
+      [
+       -121.0512589,
+       37.7484159
+      ],
+      [
+       -121.0512589,
+       37.7476015
+      ],
+      [
+       -121.0528897,
+       37.7465156
+      ],
+      [
+       -121.0528039,
+       37.7456333
+      ],
+      [
+       -121.0504864,
+       37.7458369
+      ],
+      [
+       -121.050229,
+       37.744751
+      ],
+      [
+       -121.0515164,
+       37.7432578
+      ],
+      [
+       -121.0508298,
+       37.7419004
+      ],
+      [
+       -121.049199,
+       37.7429185
+      ],
+      [
+       -121.047139,
+       37.74319
+      ],
+      [
+       -121.0457658,
+       37.7419683
+      ],
+      [
+       -121.0447358,
+       37.7393212
+      ],
+      [
+       -121.0433625,
+       37.7385067
+      ],
+      [
+       -121.043105,
+       37.7395927
+      ],
+      [
+       -121.0443066,
+       37.7414253
+      ],
+      [
+       -121.0426759,
+       37.7422397
+      ],
+      [
+       -121.0413884,
+       37.7414253
+      ],
+      [
+       -121.0396718,
+       37.7399999
+      ],
+      [
+       -121.0383843,
+       37.7391175
+      ],
+      [
+       -121.0378693,
+       37.7406787
+      ],
+      [
+       -121.0370969,
+       37.7433936
+      ],
+      [
+       -121.0346078,
+       37.7433936
+      ],
+      [
+       -121.0316037,
+       37.742104
+      ],
+      [
+       -121.0323761,
+       37.7530308
+      ],
+      [
+       -121.0383843,
+       37.7529628
+      ],
+      [
+       -121.0415171,
+       37.7529289
+      ],
+      [
+       -121.0511302,
+       37.7528271
+      ],
+      [
+       -121.0739612,
+       37.7524199
+      ],
+      [
+       -121.0874365,
+       37.752352
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|1LiLKEic3St02vvCbqMwliplcxXW-HPU",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Linden",
+    "zone_code": "LN2",
+    "region": "Linden",
+    "boundary_text": "North to Monte Vista Dr., South to Hwy 26, West to Archerdale Rd., East to Cox Rd.",
+    "area_sq_km": 1.8677,
+    "centroid_lat": 38.021893,
+    "centroid_lon": -121.094932,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1LiLKEic3St02vvCbqMwliplcxXW-HPU",
+    "map_id": "1LiLKEic3St02vvCbqMwliplcxXW-HPU",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|1LiLKEic3St02vvCbqMwliplcxXW-HPU"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1047956,
+       38.0142745
+      ],
+      [
+       -121.0818144,
+       38.0217802
+      ],
+      [
+       -121.0819432,
+       38.0267497
+      ],
+      [
+       -121.1050316,
+       38.0258877
+      ],
+      [
+       -121.1047956,
+       38.0142745
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Acampo",
+    "zone_code": "L33",
+    "region": "Lodi",
+    "boundary_text": "North to Collier Rd. E., South to Peltier Rd., East to Sowles Rd., West to Dustin Rd.",
+    "area_sq_km": 8.14,
+    "centroid_lat": 38.207141,
+    "centroid_lon": -121.207198,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+    "map_id": "1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2265337,
+       38.2184813
+      ],
+      [
+       -121.2257979,
+       38.1964298
+      ],
+      [
+       -121.193805,
+       38.1969762
+      ],
+      [
+       -121.1935542,
+       38.1897021
+      ],
+      [
+       -121.189081,
+       38.1896552
+      ],
+      [
+       -121.1896684,
+       38.2188169
+      ],
+      [
+       -121.2265337,
+       38.2184813
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|1a-s99-9JjYhfRdTtYYH9xaMsyuJebPif",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Clements",
+    "zone_code": "L17",
+    "region": "Lodi",
+    "boundary_text": "North to Hwy 88, South to E. Stampede Rd., East to Clements Rd., West to Atkins Rd.",
+    "area_sq_km": 3.5494,
+    "centroid_lat": 38.181492,
+    "centroid_lon": -121.086978,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1a-s99-9JjYhfRdTtYYH9xaMsyuJebPif",
+    "map_id": "1a-s99-9JjYhfRdTtYYH9xaMsyuJebPif",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|1a-s99-9JjYhfRdTtYYH9xaMsyuJebPif"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0779947,
+       38.1940498
+      ],
+      [
+       -121.0845607,
+       38.1920598
+      ],
+      [
+       -121.0895818,
+       38.1905083
+      ],
+      [
+       -121.0914272,
+       38.1895301
+      ],
+      [
+       -121.097092,
+       38.1865618
+      ],
+      [
+       -121.0975212,
+       38.1804561
+      ],
+      [
+       -121.0968774,
+       38.1779597
+      ],
+      [
+       -121.0968774,
+       38.1709087
+      ],
+      [
+       -121.0962766,
+       38.1709761
+      ],
+      [
+       -121.0929721,
+       38.1717184
+      ],
+      [
+       -121.0886806,
+       38.1714822
+      ],
+      [
+       -121.0876077,
+       38.1715834
+      ],
+      [
+       -121.0815567,
+       38.1727643
+      ],
+      [
+       -121.0775655,
+       38.1728317
+      ],
+      [
+       -121.0779947,
+       38.1940498
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural East Lodi",
+    "zone_code": "L21",
+    "region": "Lodi",
+    "boundary_text": "North to Sargent Rd., South to Harney Ln., East to Atkins Rd., West to Tully Rd.",
+    "area_sq_km": 10.8497,
+    "centroid_lat": 38.117644,
+    "centroid_lon": -121.114956,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+    "map_id": "152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|152qbbYUgMZxcmP-6JmeRi_fpS--LCjs"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1332264,
+       38.1023738
+      ],
+      [
+       -121.0960617,
+       38.1033193
+      ],
+      [
+       -121.0962334,
+       38.1329297
+      ],
+      [
+       -121.1336127,
+       38.1320857
+      ],
+      [
+       -121.1338701,
+       38.1023062
+      ],
+      [
+       -121.1332264,
+       38.1023738
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural East Lodi",
+    "zone_code": "L22",
+    "region": "Lodi",
+    "boundary_text": "North to Kettleman Ln., South to Tokay Colony Rd., East to Jack Tone Rd., West to Hibbard Rd.",
+    "area_sq_km": 5.4858,
+    "centroid_lat": 38.100661,
+    "centroid_lon": -121.158786,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+    "map_id": "16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.150604,
+       38.1187006
+      ],
+      [
+       -121.1573518,
+       38.1177514
+      ],
+      [
+       -121.1670078,
+       38.1168736
+      ],
+      [
+       -121.1673302,
+       38.0837096
+      ],
+      [
+       -121.1504752,
+       38.083849
+      ],
+      [
+       -121.150604,
+       38.1187006
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "larval",
+    "products": "VectoBac WDG",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of S Manteca (S of 120)",
+    "zone_code": "M25",
+    "region": "Manteca",
+    "boundary_text": "North to E. Woodward Ave., South to Tannehill Dr., East to Pillsbury Rd., West to S. Main St.",
+    "area_sq_km": 1.2471,
+    "centroid_lat": 37.772554,
+    "centroid_lon": -121.20643,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+    "map_id": "1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2160113,
+       37.776044
+      ],
+      [
+       -121.2160542,
+       37.7700737
+      ],
+      [
+       -121.2153676,
+       37.7700737
+      ],
+      [
+       -121.214638,
+       37.7699719
+      ],
+      [
+       -121.2137368,
+       37.7697005
+      ],
+      [
+       -121.2122777,
+       37.7693952
+      ],
+      [
+       -121.211076,
+       37.7692595
+      ],
+      [
+       -121.2096169,
+       37.7693273
+      ],
+      [
+       -121.2082865,
+       37.7692595
+      ],
+      [
+       -121.2063554,
+       37.7691916
+      ],
+      [
+       -121.2056687,
+       37.7690559
+      ],
+      [
+       -121.2045958,
+       37.7686149
+      ],
+      [
+       -121.2026217,
+       37.768581
+      ],
+      [
+       -121.2008622,
+       37.7686828
+      ],
+      [
+       -121.199446,
+       37.769022
+      ],
+      [
+       -121.1972573,
+       37.7691238
+      ],
+      [
+       -121.1973431,
+       37.7759083
+      ],
+      [
+       -121.2160113,
+       37.776044
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "SW Stockton - Weston Ranch area",
+    "zone_code": "S55a",
+    "region": "Stockton",
+    "boundary_text": "North to Decarli St., Lloyd Thayer Cir., Carrie St., South to William Moss Blvd., East to Manthey Rd., West to Carolyn Weston Blvd",
+    "area_sq_km": 1.9604,
+    "centroid_lat": 37.910049,
+    "centroid_lon": -121.305008,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+    "map_id": "1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2897334,
+       37.9073547
+      ],
+      [
+       -121.2907526,
+       37.9091662
+      ],
+      [
+       -121.2914178,
+       37.9098265
+      ],
+      [
+       -121.2930915,
+       37.9107576
+      ],
+      [
+       -121.2934777,
+       37.9111639
+      ],
+      [
+       -121.2942502,
+       37.9121119
+      ],
+      [
+       -121.2945292,
+       37.9125013
+      ],
+      [
+       -121.2963102,
+       37.9116548
+      ],
+      [
+       -121.2972972,
+       37.9115025
+      ],
+      [
+       -121.2975762,
+       37.9123997
+      ],
+      [
+       -121.2982843,
+       37.9126537
+      ],
+      [
+       -121.2997219,
+       37.91328
+      ],
+      [
+       -121.3019321,
+       37.9149729
+      ],
+      [
+       -121.3032839,
+       37.9150068
+      ],
+      [
+       -121.3040564,
+       37.9149051
+      ],
+      [
+       -121.3081334,
+       37.9157347
+      ],
+      [
+       -121.3126395,
+       37.9157347
+      ],
+      [
+       -121.3126019,
+       37.9134601
+      ],
+      [
+       -121.3149891,
+       37.913369
+      ],
+      [
+       -121.3167594,
+       37.9125099
+      ],
+      [
+       -121.3177249,
+       37.9116379
+      ],
+      [
+       -121.3189695,
+       37.909454
+      ],
+      [
+       -121.3175318,
+       37.9089292
+      ],
+      [
+       -121.3160298,
+       37.9081843
+      ],
+      [
+       -121.3126395,
+       37.9068807
+      ],
+      [
+       -121.3096998,
+       37.9054415
+      ],
+      [
+       -121.3083265,
+       37.9048151
+      ],
+      [
+       -121.306921,
+       37.9047304
+      ],
+      [
+       -121.3054189,
+       37.9049506
+      ],
+      [
+       -121.3036379,
+       37.90534
+      ],
+      [
+       -121.3022647,
+       37.9056278
+      ],
+      [
+       -121.3009987,
+       37.9058648
+      ],
+      [
+       -121.2998614,
+       37.9061188
+      ],
+      [
+       -121.29881,
+       37.9063558
+      ],
+      [
+       -121.2981448,
+       37.9063389
+      ],
+      [
+       -121.2971148,
+       37.906305
+      ],
+      [
+       -121.2955269,
+       37.9062881
+      ],
+      [
+       -121.2933812,
+       37.9063389
+      ],
+      [
+       -121.2915144,
+       37.9066775
+      ],
+      [
+       -121.2897334,
+       37.9073547
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-28|1GqNcfaM-1hqwblWoG0y46w-FIL2lA_g",
+   "properties": {
+    "date": "2026-08-28",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "West Escalon",
+    "zone_code": "E66",
+    "region": "Escalon",
+    "boundary_text": "North to Yosemite Ave., South to Valdapena Wy, Thompson Way, Zinfandel Dr. and Daniels Ave., East to McHenry Ave., West to Brennan Rd.",
+    "area_sq_km": 1.353,
+    "centroid_lat": 37.795018,
+    "centroid_lon": -121.005923,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1GqNcfaM-1hqwblWoG0y46w-FIL2lA_g",
+    "map_id": "1GqNcfaM-1hqwblWoG0y46w-FIL2lA_g",
+    "observed_via": "live",
+    "first_seen": "2026-08-27T09:43:41Z",
+    "operation_id": "2026-08-28|1GqNcfaM-1hqwblWoG0y46w-FIL2lA_g"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -120.9967833,
+       37.7976991
+      ],
+      [
+       -120.9987145,
+       37.7990216
+      ],
+      [
+       -121.015237,
+       37.7987843
+      ],
+      [
+       -121.0151082,
+       37.7923071
+      ],
+      [
+       -121.0103446,
+       37.7923749
+      ],
+      [
+       -121.0103017,
+       37.7896957
+      ],
+      [
+       -121.0071259,
+       37.7883052
+      ],
+      [
+       -121.007083,
+       37.7916967
+      ],
+      [
+       -121.0009032,
+       37.7916967
+      ],
+      [
+       -120.99644,
+       37.7914932
+      ],
+      [
+       -120.9967833,
+       37.7976991
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }

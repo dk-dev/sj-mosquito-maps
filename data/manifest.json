@@ -1,25 +1,26 @@
 {
   "archive_written": true,
-  "date_max": "2026-08-26",
+  "date_max": "2026-08-28",
   "date_min": "2020-05-04",
   "errors": [],
-  "generated_at": "2026-08-26T20:01:29Z",
-  "new_ops": 0,
-  "new_shapes": 0,
-  "page_ops": 144,
+  "generated_at": "2026-08-27T09:43:40Z",
+  "new_ops": 12,
+  "new_shapes": 1,
+  "page_ops": 156,
   "shape_failures": 0,
   "sources": {
     "live": {
-      "html_bytes": 114187,
-      "operations": 144,
+      "html_bytes": 118913,
+      "operations": 156,
       "status": "ok",
-      "unique_mids": 85,
+      "unique_mids": 89,
       "url": "https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps"
     },
     "shapes": {
+      "failed": 0,
       "failed_mids": [],
-      "fetched": 0,
-      "requested": 0,
+      "fetched": 1,
+      "requested": 1,
       "status": "ok"
     },
     "wayback": {
@@ -27,6 +28,6 @@
       "status": "skipped"
     }
   },
-  "total_ops": 890,
-  "total_shapes": 320
+  "total_ops": 902,
+  "total_shapes": 321
 }

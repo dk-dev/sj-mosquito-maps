@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T20:01:29Z",
+  "generated_at": "2026-08-27T09:43:40Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22487,7 +22487,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22511,7 +22511,7 @@
       "products_raw": [
         "Altosid liquid concentrate (SR-20)"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22535,13 +22535,321 @@
       "products_raw": [
         "Altosid liquid concentrate (SR-20)"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:00",
       "time_start": "03:15"
+    },
+    {
+      "area_name": "Rural East Ripon",
+      "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+      "date": "2026-08-27",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-27|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "method": "ground",
+      "mid": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of S. Tracy",
+      "boundary_text": "North to Valpico Rd., South to W. Linne Rd., East to S. MacArthur Dr., West to S. Tracy Blvd.",
+      "date": "2026-08-27",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-27|1OGe7S0FTnc-i2kN8--7RatRAWjFpN8k",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1OGe7S0FTnc-i2kN8--7RatRAWjFpN8k",
+      "method": "ground",
+      "mid": "1OGe7S0FTnc-i2kN8--7RatRAWjFpN8k",
+      "period": "morning",
+      "products": [
+        "Altosid"
+      ],
+      "products_raw": [
+        "Altosid liquid concentrate (SR-20)"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural East Escalon",
+      "boundary_text": "North to OID Canal, South to Hwy 120, East to Victory Ave., West to Henry Rd.",
+      "date": "2026-08-27",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-27|1YdE4wGmIItr1fDrb1unsnlFVmpL_Tx5f",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YdE4wGmIItr1fDrb1unsnlFVmpL_Tx5f",
+      "method": "ground",
+      "mid": "1YdE4wGmIItr1fDrb1unsnlFVmpL_Tx5f",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural South Delta",
+      "boundary_text": "Portions of: Upper Jones Tract, Union Island and Drexler Tract",
+      "date": "2026-08-27",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-27|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "method": "ground",
+      "mid": "1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural East Lodi",
+      "boundary_text": "North to Sargent Rd., South to Harney Ln., East to Atkins Rd., West to Tully Rd.",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+      "method": "ground",
+      "mid": "152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural East Lodi",
+      "boundary_text": "North to Kettleman Ln., South to Tokay Colony Rd., East to Jack Tone Rd., West to Hibbard Rd.",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+      "method": "ground",
+      "mid": "16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "West Escalon",
+      "boundary_text": "North to Yosemite Ave., South to Valdapena Wy, Thompson Way, Zinfandel Dr. and Daniels Ave., East to McHenry Ave., West to Brennan Rd.",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|1GqNcfaM-1hqwblWoG0y46w-FIL2lA_g",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1GqNcfaM-1hqwblWoG0y46w-FIL2lA_g",
+      "method": "ground",
+      "mid": "1GqNcfaM-1hqwblWoG0y46w-FIL2lA_g",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Linden",
+      "boundary_text": "North to Monte Vista Dr., South to Hwy 26, West to Archerdale Rd., East to Cox Rd.",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|1LiLKEic3St02vvCbqMwliplcxXW-HPU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1LiLKEic3St02vvCbqMwliplcxXW-HPU",
+      "method": "ground",
+      "mid": "1LiLKEic3St02vvCbqMwliplcxXW-HPU",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "SW Stockton - Weston Ranch area",
+      "boundary_text": "North to Decarli St., Lloyd Thayer Cir., Carrie St., South to William Moss Blvd., East to Manthey Rd., West to Carolyn Weston Blvd",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "method": "ground",
+      "mid": "1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of S Manteca (S of 120)",
+      "boundary_text": "North to E. Woodward Ave., South to Tannehill Dr., East to Pillsbury Rd., West to S. Main St.",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "method": "ground",
+      "mid": "1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "period": "morning",
+      "products": [
+        "VectoBac WDG"
+      ],
+      "products_raw": [
+        "VectoBac WDG"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Clements",
+      "boundary_text": "North to Hwy 88, South to E. Stampede Rd., East to Clements Rd., West to Atkins Rd.",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|1a-s99-9JjYhfRdTtYYH9xaMsyuJebPif",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1a-s99-9JjYhfRdTtYYH9xaMsyuJebPif",
+      "method": "ground",
+      "mid": "1a-s99-9JjYhfRdTtYYH9xaMsyuJebPif",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Acampo",
+      "boundary_text": "North to Collier Rd. E., South to Peltier Rd., East to Sowles Rd., West to Dustin Rd.",
+      "date": "2026-08-28",
+      "first_seen": "2026-08-27T09:43:41Z",
+      "id": "2026-08-28|1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+      "method": "ground",
+      "mid": "1sGz9ZiZBUtAX7P2BKEpBoWHgz4r9xNg",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
     }
   ]
 }
