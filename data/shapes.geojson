@@ -5528,6 +5528,45 @@
         "coordinates": [
           [
             [
+              -121.4816559,
+              37.9546235
+            ],
+            [
+              -121.4571722,
+              37.9492098
+            ],
+            [
+              -121.4447766,
+              38.0138943
+            ],
+            [
+              -121.4702893,
+              38.0165871
+            ],
+            [
+              -121.4816559,
+              37.9546235
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+      "properties": {
+        "area_sq_km": 15.8963,
+        "doc_description": "Portion of McDonald Island, Roberts Island, and Lower Jones Tract",
+        "doc_name": "D58 - Portion of McDonald Island, Roberts Island, and Lower Jones Tract",
+        "fetched_at": "2026-08-28T22:16:38Z",
+        "mid": "1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+        "zone_code": "D58"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.5250525,
               38.0426144
             ],

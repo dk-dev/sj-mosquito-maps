@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T22:14:17Z",
+  "generated_at": "2026-08-28T22:16:37Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22663,10 +22663,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22689,10 +22689,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22715,10 +22715,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22741,10 +22741,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22767,10 +22767,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22793,10 +22793,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22817,10 +22817,10 @@
       "products_raw": [
         "VectoBac WDG"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22843,10 +22843,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -22869,13 +22869,85 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
+      "section": "past",
+      "source": "live",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of McDonald Island, Roberts Island, and Lower Jones Tract",
+      "boundary_text": null,
+      "date": "2026-08-30",
+      "first_seen": "2026-08-28T22:16:38Z",
+      "id": "2026-08-30|1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+      "method": "aerial",
+      "mid": "1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
       "section": "current",
       "source": "live",
       "status": "scheduled",
       "status_text": null,
       "target": "adult",
-      "time_end": "05:30",
-      "time_start": "03:30"
+      "time_end": "22:00",
+      "time_start": "20:15"
+    },
+    {
+      "area_name": "Delta Area - Portions of Empire Tract and Terminous Tract",
+      "boundary_text": null,
+      "date": "2026-08-30",
+      "first_seen": "2026-08-28T22:16:38Z",
+      "id": "2026-08-30|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "method": "aerial",
+      "mid": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:00",
+      "time_start": "20:15"
+    },
+    {
+      "area_name": "Portion of Rural South County",
+      "boundary_text": "South of Manteca to San Joaquin and Stanislaus Rivers and East to ~1 mile East of Austin Rd.",
+      "date": "2026-08-30",
+      "first_seen": "2026-08-28T22:16:38Z",
+      "id": "2026-08-30|1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+      "method": "aerial",
+      "mid": "1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "22:00",
+      "time_start": "20:15"
     }
   ]
 }

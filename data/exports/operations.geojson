@@ -102578,8 +102578,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Linden",
     "zone_code": "LN2",
     "region": "Linden",
@@ -102632,8 +102632,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Acampo",
     "zone_code": "L33",
     "region": "Lodi",
@@ -102694,8 +102694,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Clements",
     "zone_code": "L17",
     "region": "Lodi",
@@ -102788,8 +102788,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Northwest Tracy",
     "zone_code": "T21",
     "region": "Tracy",
@@ -102862,8 +102862,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural East Lodi",
     "zone_code": "L21",
     "region": "Lodi",
@@ -102920,8 +102920,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural East Lodi",
     "zone_code": "L22",
     "region": "Lodi",
@@ -102978,8 +102978,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of S Manteca (S of 120)",
     "zone_code": "M25",
     "region": "Manteca",
@@ -103084,8 +103084,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "SW Stockton - Weston Ranch area",
     "zone_code": "S55a",
     "region": "Stockton",
@@ -103278,8 +103278,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "West Escalon",
     "zone_code": "E66",
     "region": "Escalon",
@@ -103339,6 +103339,436 @@
       [
        -120.9967833,
        37.7976991
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-30|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+   "properties": {
+    "date": "2026-08-30",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "20:15",
+    "time_end": "22:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Delta Area - Portions of Empire Tract and Terminous Tract",
+    "zone_code": "D29",
+    "region": "Delta",
+    "boundary_text": "",
+    "area_sq_km": 12.7919,
+    "centroid_lat": 38.080455,
+    "centroid_lon": -121.480218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "map_id": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "observed_via": "live",
+    "first_seen": "2026-08-28T22:16:38Z",
+    "operation_id": "2026-08-30|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4996014,
+       38.0980078
+      ],
+      [
+       -121.4983998,
+       38.0632814
+      ],
+      [
+       -121.4614926,
+       38.0623353
+      ],
+      [
+       -121.4616643,
+       38.0978727
+      ],
+      [
+       -121.4996014,
+       38.0980078
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-30|1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+   "properties": {
+    "date": "2026-08-30",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "20:15",
+    "time_end": "22:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of McDonald Island, Roberts Island, and Lower Jones Tract",
+    "zone_code": "D58",
+    "region": "Delta",
+    "boundary_text": "",
+    "area_sq_km": 15.8963,
+    "centroid_lat": 37.98367,
+    "centroid_lon": -121.463361,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+    "map_id": "1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0",
+    "observed_via": "live",
+    "first_seen": "2026-08-28T22:16:38Z",
+    "operation_id": "2026-08-30|1Be7a-OgWUIVSWvOAL7bKm88rvN-inK0"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4816559,
+       37.9546235
+      ],
+      [
+       -121.4571722,
+       37.9492098
+      ],
+      [
+       -121.4447766,
+       38.0138943
+      ],
+      [
+       -121.4702893,
+       38.0165871
+      ],
+      [
+       -121.4816559,
+       37.9546235
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-08-30|1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+   "properties": {
+    "date": "2026-08-30",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "20:15",
+    "time_end": "22:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural South County",
+    "zone_code": "SC10a",
+    "region": "South County",
+    "boundary_text": "South of Manteca to San Joaquin and Stanislaus Rivers and East to ~1 mile East of Austin Rd.",
+    "area_sq_km": 11.7836,
+    "centroid_lat": 37.691484,
+    "centroid_lon": -121.212921,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+    "map_id": "1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48",
+    "observed_via": "live",
+    "first_seen": "2026-08-28T22:16:38Z",
+    "operation_id": "2026-08-30|1vQh5GvLtdaJPHTTtk6J_cjGKFwxMn48"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2061588,
+       37.7056405
+      ],
+      [
+       -121.248446,
+       37.6827718
+      ],
+      [
+       -121.2482921,
+       37.6813176
+      ],
+      [
+       -121.2478808,
+       37.6802711
+      ],
+      [
+       -121.2475198,
+       37.6789371
+      ],
+      [
+       -121.2469675,
+       37.6776939
+      ],
+      [
+       -121.2464516,
+       37.6764712
+      ],
+      [
+       -121.2456365,
+       37.67569
+      ],
+      [
+       -121.244994,
+       37.6747733
+      ],
+      [
+       -121.2443078,
+       37.674094
+      ],
+      [
+       -121.2443508,
+       37.6733467
+      ],
+      [
+       -121.2436858,
+       37.672158
+      ],
+      [
+       -121.2432246,
+       37.6712919
+      ],
+      [
+       -121.242865,
+       37.6704851
+      ],
+      [
+       -121.2421703,
+       37.6697759
+      ],
+      [
+       -121.2414601,
+       37.6689871
+      ],
+      [
+       -121.2410933,
+       37.6681982
+      ],
+      [
+       -121.2406838,
+       37.6668321
+      ],
+      [
+       -121.2392445,
+       37.6656699
+      ],
+      [
+       -121.2376141,
+       37.6649223
+      ],
+      [
+       -121.2357264,
+       37.6641749
+      ],
+      [
+       -121.2334515,
+       37.6634274
+      ],
+      [
+       -121.2312841,
+       37.6631895
+      ],
+      [
+       -121.2293421,
+       37.663682
+      ],
+      [
+       -121.2297173,
+       37.6678434
+      ],
+      [
+       -121.2288161,
+       37.6696776
+      ],
+      [
+       -121.2273355,
+       37.6698474
+      ],
+      [
+       -121.2250825,
+       37.6701532
+      ],
+      [
+       -121.2235804,
+       37.6706286
+      ],
+      [
+       -121.2217994,
+       37.6715458
+      ],
+      [
+       -121.2227971,
+       37.6748577
+      ],
+      [
+       -121.2231084,
+       37.6772184
+      ],
+      [
+       -121.2231942,
+       37.6791202
+      ],
+      [
+       -121.2233659,
+       37.6802071
+      ],
+      [
+       -121.2234089,
+       37.6825845
+      ],
+      [
+       -121.2237738,
+       37.6844524
+      ],
+      [
+       -121.2215637,
+       37.6841467
+      ],
+      [
+       -121.2193322,
+       37.6861845
+      ],
+      [
+       -121.2180449,
+       37.6873392
+      ],
+      [
+       -121.2165,
+       37.688426
+      ],
+      [
+       -121.2145689,
+       37.6872372
+      ],
+      [
+       -121.2110928,
+       37.6867956
+      ],
+      [
+       -121.2092045,
+       37.6870332
+      ],
+      [
+       -121.2080887,
+       37.6888331
+      ],
+      [
+       -121.2069732,
+       37.6908028
+      ],
+      [
+       -121.2057716,
+       37.6926365
+      ],
+      [
+       -121.2073168,
+       37.6946402
+      ],
+      [
+       -121.2030252,
+       37.6960495
+      ],
+      [
+       -121.2004503,
+       37.6968899
+      ],
+      [
+       -121.1985622,
+       37.6969153
+      ],
+      [
+       -121.1980257,
+       37.6972549
+      ],
+      [
+       -121.1973498,
+       37.6970851
+      ],
+      [
+       -121.1957298,
+       37.6963041
+      ],
+      [
+       -121.1949146,
+       37.6960326
+      ],
+      [
+       -121.1945928,
+       37.695625
+      ],
+      [
+       -121.1903229,
+       37.6951496
+      ],
+      [
+       -121.1884346,
+       37.6967792
+      ],
+      [
+       -121.1841432,
+       37.6996314
+      ],
+      [
+       -121.1818035,
+       37.7027037
+      ],
+      [
+       -121.1776296,
+       37.7069563
+      ],
+      [
+       -121.173354,
+       37.7047365
+      ],
+      [
+       -121.1677828,
+       37.7066145
+      ],
+      [
+       -121.1646538,
+       37.7091833
+      ],
+      [
+       -121.1654928,
+       37.7135232
+      ],
+      [
+       -121.1669424,
+       37.7158289
+      ],
+      [
+       -121.1695556,
+       37.71542
+      ],
+      [
+       -121.1740378,
+       37.7140612
+      ],
+      [
+       -121.1753347,
+       37.7139929
+      ],
+      [
+       -121.1796356,
+       37.7129739
+      ],
+      [
+       -121.1820501,
+       37.7127008
+      ],
+      [
+       -121.1912716,
+       37.7098143
+      ],
+      [
+       -121.2061588,
+       37.7056405
       ]
      ]
     ],
