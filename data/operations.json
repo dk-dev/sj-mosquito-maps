@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T22:48:19Z",
+  "generated_at": "2026-09-01T21:00:19Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22893,7 +22893,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22917,7 +22917,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -22941,13 +22941,39 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:00",
       "time_start": "20:15"
+    },
+    {
+      "area_name": "Portion of Stockton - Morada area",
+      "boundary_text": "North to E. Ashley Ln., South to E. Morada Ln., East to Alhambra Ave., West to 99",
+      "date": "2026-09-02",
+      "first_seen": "2026-09-01T21:00:20Z",
+      "id": "2026-09-02|1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+      "method": "ground",
+      "mid": "1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
     }
   ]
 }

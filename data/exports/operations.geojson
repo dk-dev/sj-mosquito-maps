@@ -103774,6 +103774,60 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-02|1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+   "properties": {
+    "date": "2026-09-02",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Stockton - Morada area",
+    "zone_code": "S62",
+    "region": "Stockton",
+    "boundary_text": "North to E. Ashley Ln., South to E. Morada Ln., East to Alhambra Ave., West to 99",
+    "area_sq_km": 0.8478,
+    "centroid_lat": 38.040121,
+    "centroid_lon": -121.25017,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+    "map_id": "1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+    "observed_via": "live",
+    "first_seen": "2026-09-01T21:00:20Z",
+    "operation_id": "2026-09-02|1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2581499,
+       38.0428299
+      ],
+      [
+       -121.257982,
+       38.0372898
+      ],
+      [
+       -121.2421282,
+       38.0374581
+      ],
+      [
+       -121.2423418,
+       38.042914
+      ],
+      [
+       -121.2581499,
+       38.0428299
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }

@@ -5352,6 +5352,45 @@
         "coordinates": [
           [
             [
+              -121.2581499,
+              38.0428299
+            ],
+            [
+              -121.257982,
+              38.0372898
+            ],
+            [
+              -121.2421282,
+              38.0374581
+            ],
+            [
+              -121.2423418,
+              38.042914
+            ],
+            [
+              -121.2581499,
+              38.0428299
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+      "properties": {
+        "area_sq_km": 0.8478,
+        "doc_description": "N to E. Ashley Ln., > S to E. Morada Ln., > E to Alhambra Ave., > W to 99",
+        "doc_name": "S62 - Portion of Stockton - Morada",
+        "fetched_at": "2026-09-01T21:00:20Z",
+        "mid": "1ABhZmg2vdFiCZFAc8209eF4wL8uNBuI",
+        "zone_code": "S62"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.4734778,
               38.2071414
             ],
