@@ -103786,8 +103786,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Stockton - Morada area",
     "zone_code": "S62",
     "region": "Stockton",
@@ -103823,6 +103823,548 @@
       [
        -121.2581499,
        38.0428299
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-03|131d_6NZcLE9QNjCkeG9DiEmueQg1OnU",
+   "properties": {
+    "date": "2026-09-03",
+    "method": "ground",
+    "target": "larval",
+    "products": "VectoBac WDG",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of NW Manteca",
+    "zone_code": "M38",
+    "region": "Manteca",
+    "boundary_text": "North to Northgate Dr., S to Pheasant Hollow Way, Linden Way, London Ave. & Primavera Ave., East to Union Rd., West to Airport Way",
+    "area_sq_km": 0.7467,
+    "centroid_lat": 37.818075,
+    "centroid_lon": -121.244203,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=131d_6NZcLE9QNjCkeG9DiEmueQg1OnU",
+    "map_id": "131d_6NZcLE9QNjCkeG9DiEmueQg1OnU",
+    "observed_via": "live",
+    "first_seen": "2026-09-02T21:00:43Z",
+    "operation_id": "2026-09-03|131d_6NZcLE9QNjCkeG9DiEmueQg1OnU"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2534378,
+       37.8194748
+      ],
+      [
+       -121.2533768,
+       37.8172931
+      ],
+      [
+       -121.2501725,
+       37.8151474
+      ],
+      [
+       -121.2493485,
+       37.8158707
+      ],
+      [
+       -121.2486313,
+       37.8155934
+      ],
+      [
+       -121.24767,
+       37.8155211
+      ],
+      [
+       -121.2466477,
+       37.8158104
+      ],
+      [
+       -121.2440384,
+       37.8158345
+      ],
+      [
+       -121.2412919,
+       37.8157984
+      ],
+      [
+       -121.2412461,
+       37.8163649
+      ],
+      [
+       -121.2390183,
+       37.816389
+      ],
+      [
+       -121.2387894,
+       37.8158948
+      ],
+      [
+       -121.2354477,
+       37.8159189
+      ],
+      [
+       -121.2355698,
+       37.8198726
+      ],
+      [
+       -121.2360581,
+       37.8199208
+      ],
+      [
+       -121.2374619,
+       37.8204873
+      ],
+      [
+       -121.2495774,
+       37.8203427
+      ],
+      [
+       -121.250737,
+       37.819523
+      ],
+      [
+       -121.2534378,
+       37.8194748
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-03|13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+   "properties": {
+    "date": "2026-09-03",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Northwest Tracy",
+    "zone_code": "T21",
+    "region": "Tracy",
+    "boundary_text": "North to Bethany Rd., South to HWY 205 and W. Grant Line Rd., East to N. Tracy Blvd., West to San Jose Rd",
+    "area_sq_km": 13.4599,
+    "centroid_lat": 37.769363,
+    "centroid_lon": -121.464051,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+    "map_id": "13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+    "observed_via": "live",
+    "first_seen": "2026-09-02T21:00:43Z",
+    "operation_id": "2026-09-03|13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4905146,
+       37.7578498
+      ],
+      [
+       -121.4841632,
+       37.7538461
+      ],
+      [
+       -121.4645938,
+       37.753914
+      ],
+      [
+       -121.4436511,
+       37.7626676
+      ],
+      [
+       -121.4349822,
+       37.7633461
+      ],
+      [
+       -121.4351538,
+       37.7832245
+      ],
+      [
+       -121.4639071,
+       37.7831566
+      ],
+      [
+       -121.4638213,
+       37.7807145
+      ],
+      [
+       -121.4907721,
+       37.7805789
+      ],
+      [
+       -121.4905146,
+       37.7578498
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-03|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+   "properties": {
+    "date": "2026-09-03",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of South County",
+    "zone_code": "SC1",
+    "region": "South County",
+    "boundary_text": "North to one mile N. of E. McMullin Rd., South to Perrin Rd., East to Airport Way, West to S. Hays Rd.",
+    "area_sq_km": 4.7947,
+    "centroid_lat": 37.735918,
+    "centroid_lon": -121.263435,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+    "map_id": "1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+    "observed_via": "live",
+    "first_seen": "2026-09-02T21:00:43Z",
+    "operation_id": "2026-09-03|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2520919,
+       37.7466492
+      ],
+      [
+       -121.2750516,
+       37.7465813
+      ],
+      [
+       -121.2751803,
+       37.7290692
+      ],
+      [
+       -121.274322,
+       37.7280169
+      ],
+      [
+       -121.27282,
+       37.7272702
+      ],
+      [
+       -121.2711463,
+       37.7249281
+      ],
+      [
+       -121.2522206,
+       37.7247923
+      ],
+      [
+       -121.2520919,
+       37.7466492
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-04|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+   "properties": {
+    "date": "2026-09-04",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Farmington area",
+    "zone_code": "E35",
+    "region": "Escalon",
+    "boundary_text": "North to ~1 mile N of Hwy 4, South to ~1 mile S of Hwy 4, East to ~1 mile E of Escalon-Bellota Rd., West to ~1 mile W of Escalon-Bellota Rd.",
+    "area_sq_km": 10.0923,
+    "centroid_lat": 37.930079,
+    "centroid_lon": -120.997812,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+    "map_id": "1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+    "observed_via": "live",
+    "first_seen": "2026-09-02T21:00:43Z",
+    "operation_id": "2026-09-04|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0152209,
+       37.9154609
+      ],
+      [
+       -120.9796012,
+       37.9157317
+      ],
+      [
+       -120.9802449,
+       37.9446395
+      ],
+      [
+       -121.016165,
+       37.9444026
+      ],
+      [
+       -121.0152209,
+       37.9154609
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-04|1BgHieQE80w5Os9jhjzIaynIg7yA_kLQT",
+   "properties": {
+    "date": "2026-09-04",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of North Stockton",
+    "zone_code": "S12",
+    "region": "Stockton",
+    "boundary_text": "North to Hammer Ln., South to Hazelwood Ave., Bonniebrook Dr., and W. Lincoln Rd., East to Pershing Ave., West to Westland Ave.",
+    "area_sq_km": 1.4693,
+    "centroid_lat": 38.017443,
+    "centroid_lon": -121.339968,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1BgHieQE80w5Os9jhjzIaynIg7yA_kLQT",
+    "map_id": "1BgHieQE80w5Os9jhjzIaynIg7yA_kLQT",
+    "observed_via": "live",
+    "first_seen": "2026-09-02T21:00:43Z",
+    "operation_id": "2026-09-04|1BgHieQE80w5Os9jhjzIaynIg7yA_kLQT"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.336028,
+       38.021183
+      ],
+      [
+       -121.3501042,
+       38.0212506
+      ],
+      [
+       -121.3501042,
+       38.0191713
+      ],
+      [
+       -121.3500828,
+       38.0171766
+      ],
+      [
+       -121.3500399,
+       38.0137787
+      ],
+      [
+       -121.3454908,
+       38.0138124
+      ],
+      [
+       -121.3453729,
+       38.0140576
+      ],
+      [
+       -121.3399762,
+       38.0139646
+      ],
+      [
+       -121.339869,
+       38.0127981
+      ],
+      [
+       -121.3398475,
+       38.0126545
+      ],
+      [
+       -121.3398153,
+       38.0124769
+      ],
+      [
+       -121.3372297,
+       38.013542
+      ],
+      [
+       -121.3353629,
+       38.013711
+      ],
+      [
+       -121.3298911,
+       38.0136941
+      ],
+      [
+       -121.3299769,
+       38.0210985
+      ],
+      [
+       -121.336028,
+       38.021183
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-04|1lDRoiglEVg0ngBQCRT2yKNHazC0GAsU",
+   "properties": {
+    "date": "2026-09-04",
+    "method": "ground",
+    "target": "larval",
+    "products": "Altosid",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Northwest Tracy",
+    "zone_code": "T35",
+    "region": "Tracy",
+    "boundary_text": "North to Grant Line Rd., South to 11th St., East to Lincoln Blvd., West to Corral Hollow Rd.",
+    "area_sq_km": 1.3533,
+    "centroid_lat": 37.747051,
+    "centroid_lon": -121.447978,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1lDRoiglEVg0ngBQCRT2yKNHazC0GAsU",
+    "map_id": "1lDRoiglEVg0ngBQCRT2yKNHazC0GAsU",
+    "observed_via": "live",
+    "first_seen": "2026-09-02T21:00:43Z",
+    "operation_id": "2026-09-04|1lDRoiglEVg0ngBQCRT2yKNHazC0GAsU"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4531479,
+       37.7542003
+      ],
+      [
+       -121.4532395,
+       37.7419661
+      ],
+      [
+       -121.4458848,
+       37.7395287
+      ],
+      [
+       -121.4415818,
+       37.7396011
+      ],
+      [
+       -121.4415818,
+       37.7408319
+      ],
+      [
+       -121.441948,
+       37.7417489
+      ],
+      [
+       -121.4433823,
+       37.7426418
+      ],
+      [
+       -121.4435044,
+       37.7445965
+      ],
+      [
+       -121.4432297,
+       37.7461168
+      ],
+      [
+       -121.4434433,
+       37.7475646
+      ],
+      [
+       -121.4435044,
+       37.7541279
+      ],
+      [
+       -121.4531479,
+       37.7542003
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-04|1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+   "properties": {
+    "date": "2026-09-04",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "South of Linden - Peters area",
+    "zone_code": "LN1",
+    "region": "Linden",
+    "boundary_text": "North to Milton Rd., South to Dietrich Rd., East to S. Hewitt Rd., West to Dietrich Rd.",
+    "area_sq_km": 6.8929,
+    "centroid_lat": 37.969293,
+    "centroid_lon": -121.048624,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+    "map_id": "1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+    "observed_via": "live",
+    "first_seen": "2026-09-02T21:00:43Z",
+    "operation_id": "2026-09-04|1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0585235,
+       37.9873798
+      ],
+      [
+       -121.0576652,
+       37.9505029
+      ],
+      [
+       -121.0384391,
+       37.9509766
+      ],
+      [
+       -121.0398553,
+       37.9882254
+      ],
+      [
+       -121.0586952,
+       37.9878195
+      ],
+      [
+       -121.0585235,
+       37.9873798
       ]
      ]
     ],

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T21:00:19Z",
+  "generated_at": "2026-09-02T21:00:42Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22967,12 +22967,190 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
+      "section": "past",
+      "source": "live",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of NW Manteca",
+      "boundary_text": "North to Northgate Dr., S to Pheasant Hollow Way, Linden Way, London Ave. & Primavera Ave., East to Union Rd., West to Airport Way",
+      "date": "2026-09-03",
+      "first_seen": "2026-09-02T21:00:43Z",
+      "id": "2026-09-03|131d_6NZcLE9QNjCkeG9DiEmueQg1OnU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=131d_6NZcLE9QNjCkeG9DiEmueQg1OnU",
+      "method": "ground",
+      "mid": "131d_6NZcLE9QNjCkeG9DiEmueQg1OnU",
+      "period": "morning",
+      "products": [
+        "VectoBac WDG"
+      ],
+      "products_raw": [
+        "VectoBac WDG"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Northwest Tracy",
+      "boundary_text": "North to Bethany Rd., South to HWY 205 and W. Grant Line Rd., East to N. Tracy Blvd., West to San Jose Rd",
+      "date": "2026-09-03",
+      "first_seen": "2026-09-02T21:00:43Z",
+      "id": "2026-09-03|13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+      "method": "ground",
+      "mid": "13Mq_i6MzHtjRMN6hco5Yv2bWqc2hDrSr",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
       "section": "current",
       "source": "live",
       "status": "scheduled",
       "status_text": null,
       "target": "adult",
-      "time_end": "05:30",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of South County",
+      "boundary_text": "North to one mile N. of E. McMullin Rd., South to Perrin Rd., East to Airport Way, West to S. Hays Rd.",
+      "date": "2026-09-03",
+      "first_seen": "2026-09-02T21:00:43Z",
+      "id": "2026-09-03|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "method": "ground",
+      "mid": "1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of North Stockton",
+      "boundary_text": "North to Hammer Ln., South to Hazelwood Ave., Bonniebrook Dr., and W. Lincoln Rd., East to Pershing Ave., West to Westland Ave.",
+      "date": "2026-09-04",
+      "first_seen": "2026-09-02T21:00:43Z",
+      "id": "2026-09-04|1BgHieQE80w5Os9jhjzIaynIg7yA_kLQT",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1BgHieQE80w5Os9jhjzIaynIg7yA_kLQT",
+      "method": "ground",
+      "mid": "1BgHieQE80w5Os9jhjzIaynIg7yA_kLQT",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "South of Linden - Peters area",
+      "boundary_text": "North to Milton Rd., South to Dietrich Rd., East to S. Hewitt Rd., West to Dietrich Rd.",
+      "date": "2026-09-04",
+      "first_seen": "2026-09-02T21:00:43Z",
+      "id": "2026-09-04|1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+      "method": "ground",
+      "mid": "1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Northwest Tracy",
+      "boundary_text": "North to Grant Line Rd., South to 11th St., East to Lincoln Blvd., West to Corral Hollow Rd.",
+      "date": "2026-09-04",
+      "first_seen": "2026-09-02T21:00:43Z",
+      "id": "2026-09-04|1lDRoiglEVg0ngBQCRT2yKNHazC0GAsU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1lDRoiglEVg0ngBQCRT2yKNHazC0GAsU",
+      "method": "ground",
+      "mid": "1lDRoiglEVg0ngBQCRT2yKNHazC0GAsU",
+      "period": "morning",
+      "products": [
+        "Altosid"
+      ],
+      "products_raw": [
+        "Altosid liquid concentrate (SR-20)"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Farmington area",
+      "boundary_text": "North to ~1 mile N of Hwy 4, South to ~1 mile S of Hwy 4, East to ~1 mile E of Escalon-Bellota Rd., West to ~1 mile W of Escalon-Bellota Rd.",
+      "date": "2026-09-04",
+      "first_seen": "2026-09-02T21:00:43Z",
+      "id": "2026-09-04|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "method": "ground",
+      "mid": "1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
       "time_start": "03:30"
     }
   ]
