@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T21:00:42Z",
+  "generated_at": "2026-09-03T16:23:15Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -22991,10 +22991,10 @@
       "products_raw": [
         "VectoBac WDG"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:00",
       "time_start": "03:30"
@@ -23017,10 +23017,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -23043,10 +23043,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
