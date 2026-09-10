@@ -1008,13 +1008,28 @@ def parse_operations(html: str, *, source: str) -> list[dict]:
 
             # Area status wins; otherwise the area inherits the operation's
             # status (one aerial operation is postponed as a whole and its two
-            # areas say nothing); otherwise "scheduled".
+            # areas say nothing); otherwise the heading decides.
             if area["status_text"]:
                 status, status_text = area["status"], area["status_text"]
             elif header["status_text"]:
                 status, status_text = header["status"], header["status_text"]
             else:
-                status, status_text = "scheduled", None
+                # Nothing anywhere on the page spoke to this row's status, so
+                # the heading it sits under is the only evidence available --
+                # and "Past Completed Spray Operations:" is evidence. Hardcoding
+                # "scheduled" here filed 11 rows from 2021 and 2025 as pending
+                # sprays that had already happened: they came from Wayback
+                # captures whose rows carried no shouted COMPLETE, and the
+                # district's page rolled them off before any later run could
+                # correct them.
+                #
+                # status_text stays None deliberately. It is the verbatim phrase
+                # the page used, and the page used none -- leaving it empty is
+                # what separates "the district said COMPLETE" from "we inferred
+                # it from the heading", and it keeps this inference from ever
+                # being mistaken for a quote.
+                status = "complete" if section == "past" else "scheduled"
+                status_text = None
 
             date = _resolve_date(header["date"], status, status_text)
             if not date:
