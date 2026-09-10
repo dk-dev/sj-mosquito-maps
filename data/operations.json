@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T07:59:46Z",
+  "generated_at": "2026-09-10T20:49:29Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -23151,6 +23151,266 @@
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural East Lodi",
+      "boundary_text": "North to Sargent Rd., South to Harney Ln., East to Atkins Rd., West to Tully Rd.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+      "method": "ground",
+      "mid": "152qbbYUgMZxcmP-6JmeRi_fpS--LCjs",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural East Lodi",
+      "boundary_text": "North to Kettleman Ln., South to Tokay Colony Rd., East to Jack Tone Rd., West to Hibbard Rd.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+      "method": "ground",
+      "mid": "16_lYcyvjPL2kIYFjBYw5h-_JXxaV1y4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "North Acampo",
+      "boundary_text": "North to Bill Rd., South to Collier Rd., East to N. Cherokee Rd., West to N. Lower Sacramento Rd.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "method": "ground",
+      "mid": "1HYjCLA1h3iAOqp72Nx0lcEyzN60g7H4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Lockeford",
+      "boundary_text": "North to Hwy 88, South to Brandt Rd., East to one mile east of Jack Tone Rd., West to Jack Tone Rd.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1QS2-HBcpX3Owbe7m5wVgAC7lve9gkmqN",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1QS2-HBcpX3Owbe7m5wVgAC7lve9gkmqN",
+      "method": "ground",
+      "mid": "1QS2-HBcpX3Owbe7m5wVgAC7lve9gkmqN",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Ripon Sewer",
+      "boundary_text": "North to Doak Rd., South to Stanislaus County Line, East to Stockton Ave., West to Robert Ave.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "method": "ground",
+      "mid": "1UVI-M5eTIEkrLZvrJx2Qwxb6K_VYNYkN",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "South Tracy",
+      "boundary_text": "North to Valpico Rd., South to Ridgeview Dr., East to MacArthur Dr., West to Glenbriar Cir.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1Wmkc_XT8bgfBYxkcvsdXMq5tGQRQVzk",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1Wmkc_XT8bgfBYxkcvsdXMq5tGQRQVzk",
+      "method": "ground",
+      "mid": "1Wmkc_XT8bgfBYxkcvsdXMq5tGQRQVzk",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Southeast Roberts Island",
+      "boundary_text": "North to Howard Rd., South to W. Carlin Rd., East to San Joaquin River, West to S. Roberts Rd.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1YmOOt6vEkI6M9F-H7Mtsj89AgAhXZBs",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YmOOt6vEkI6M9F-H7Mtsj89AgAhXZBs",
+      "method": "ground",
+      "mid": "1YmOOt6vEkI6M9F-H7Mtsj89AgAhXZBs",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural South County",
+      "boundary_text": "North to one mile north of E. McMullin Rd., South to Perrin Rd., East to Airport Way, West to S. Hays Rd.",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "method": "ground",
+      "mid": "1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural South Delta",
+      "boundary_text": "Upper Jones Tract, Union Island and Drexler Tract",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "method": "ground",
+      "mid": "1i5uFt65faYfsvGRy9wf93xfhVs3QmKj_",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural West Lodi",
+      "boundary_text": "North to Hwy 12, South to White Sough, East to 1/2 mile west of I5, West to 2 & 1/3 miles west of I-5",
+      "date": "2026-09-11",
+      "first_seen": "2026-09-10T20:49:30Z",
+      "id": "2026-09-11|1sYH5f6uQ2kZKy3FfeC0zkGhtJW60FURz",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1sYH5f6uQ2kZKy3FfeC0zkGhtJW60FURz",
+      "method": "ground",
+      "mid": "1sYH5f6uQ2kZKy3FfeC0zkGhtJW60FURz",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
       "time_start": "03:30"
     }
   ]
