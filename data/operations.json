@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T20:49:29Z",
+  "generated_at": "2026-09-11T16:25:54Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -23171,9 +23171,9 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
+      "status": "complete",
       "status_text": null,
       "target": "adult",
       "time_end": "05:30",
@@ -23197,9 +23197,9 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
+      "status": "complete",
       "status_text": null,
       "target": "adult",
       "time_end": "05:30",
@@ -23223,9 +23223,9 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
+      "status": "complete",
       "status_text": null,
       "target": "adult",
       "time_end": "05:30",
@@ -23249,9 +23249,9 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
+      "status": "complete",
       "status_text": null,
       "target": "adult",
       "time_end": "05:30",
@@ -23275,10 +23275,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23301,10 +23301,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23327,10 +23327,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23353,10 +23353,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23379,10 +23379,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23405,9 +23405,9 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
+      "status": "complete",
       "status_text": null,
       "target": "adult",
       "time_end": "05:30",
