@@ -735,7 +735,7 @@
        - Operations are bucketed once per filter change into ST.byDay, an
          array indexed by "day offset within the current period". Rendering a
          day therefore touches only the buckets inside the trail window, never
-         all 823 operations.
+         the whole archive.
        - The requestAnimationFrame loop only advances a clock. render() runs
          only when the integer day index actually changes — a few times per
          second at most, not 60.
@@ -1688,7 +1688,7 @@
 
     // Fit the map to the archive footprint rather than a hardcoded box.
     // Bounds are walked straight off the coordinates so we do not build a
-    // second set of 310 Leaflet layers just to ask for an extent.
+    // second set of Leaflet layers (one per zone) just to ask for an extent.
     var minLat = 90, maxLat = -90, minLon = 180, maxLon = -180, sawPoint = false;
     function walk(c) {
       if (typeof c[0] === 'number') {
@@ -2318,8 +2318,9 @@
      CANCELLED -- was pointer-only.
 
      Rebuilt only while the disclosure is open, so the normal cost is a Boolean
-     test per frame. Capped because cumulative all-years mode can hold all 310
-     zones and a 310-button rebuild per animation step would be wasteful; the
+     test per frame. Capped because cumulative all-years mode can hold every
+     zone in the archive (300+), and rebuilding that many buttons per animation
+     step would be wasteful; the
      cap is disclosed rather than silently truncating. */
   var ZONE_LIST_CAP = 60;
   function renderZoneList() {
@@ -2420,8 +2421,8 @@
     $('cur-dow').textContent = DOW[new Date(ms).getUTCDay()];
 
     // Cumulative totals for the period up to and including today. Worst case
-    // this walks 823 operations, and it only runs on a day change, so it is
-    // nowhere near the per-frame hot path.
+    // this walks the whole archive (900+ operations), and it only runs on a
+    // day change, so it is nowhere near the per-frame hot path.
     var cumT = 0, zones = new Set(), tArea = 0, cumUnmapped = 0;
     for (var i = 0; i <= d; i++) {
       var arr = ST.byDay[i];

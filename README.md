@@ -197,7 +197,7 @@ other stages, and never truncates the archive.
 
 The merge distinguishes two kinds of field:
 
-- **Lifecycle fields** (`status`, `section`) — the operation genuinely changed;
+- **Lifecycle fields** (`status`, `status_text`, `section`) — the operation genuinely changed;
   a scheduled spray becomes complete.
 - **Derived fields** (products, times, area names…) — our *reading* of source
   text that has not changed. A better parser is allowed to correct these on
@@ -334,7 +334,8 @@ instead of arguing it. No request from this app now reaches
 - **Winter is genuinely empty, not missing.** Jan–Apr and Dec have zero
   operations across all seven years. The district does not spray then.
 - **Announced, not verified.** Every record is what the district *published*
-  ahead of an operation. Sprays are cancelled for weather (15 are marked so);
+  ahead of an operation. Some sprays are cancelled (15 as of September 2026,
+  eight of them for smoke, wind or weather);
   a completed status is the district's own word, not independent confirmation —
   except where the district printed no status at all (11 historical rows as of
   September 2026). There, "complete" is our reading of the *Past Completed Spray
