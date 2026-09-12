@@ -22,6 +22,7 @@ python app.py --refresh         # re-scrape first, then open
 python fetch_data.py            # scrape + shapes (~15 s warm, ~3 min cold)
 python fetch_data.py --backfill # also sweep the Wayback Machine
 python verify_data.py           # archive integrity checks
+python export_data.py           # rebuild data/exports/ (CSV + GeoJSON)
 python serve.py                 # port 8000, also serves POST /refresh
 # open http://localhost:8000/
 ```
@@ -31,7 +32,7 @@ On Windows, `view-map.cmd` is double-clickable and wraps `app.py`.
 ## Toolchain
 
 - Python 3.14 (3.11+ works)
-- Frontend is Leaflet 1.9.4 from CDN, no npm, no bundler
+- Frontend is Leaflet 1.9.4, vendored under `vendor/` (no CDN at runtime), no npm, no bundler
 - No test framework: `verify_data.py` is the test suite and runs in CI
 
 ## File layout
@@ -43,6 +44,7 @@ build-exe.cmd           One-step build -> dist/sj-mosquito-maps.exe
 sj-mosquito-maps.spec   PyInstaller build definition (committed, not generated)
 fetch_data.py           CLI entry point; runs the stages, writes the archive
 verify_data.py          Archive integrity checks (also a CI gate)
+export_data.py          Rebuilds data/exports/ (CSV + GeoJSON) from the archive
 serve.py                Static server + POST /refresh (fetch runs IN-PROCESS)
 index.html              Entire frontend, single file
 vendor/                 Leaflet 1.9.4, vendored — no CDN at runtime
@@ -53,6 +55,7 @@ sjmvcd/shapes.py        Google My Maps KML -> GeoJSON
 sjmvcd/backfill.py      Wayback CDX -> historical operations
 sjmvcd/archive.py       Append-only merge policy
 data/                   COMMITTED archive (see below)
+data/exports/           operations.csv + operations.geojson, rebuilt each run
 data/.cache/            Raw archived HTML (gitignored, regenerable)
 ```
 

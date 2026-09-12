@@ -2,7 +2,7 @@
 
 **Product:** San Joaquin Mosquito Spray Timelapse (`index.html`, single-page map application)
 **Standard:** Web Content Accessibility Guidelines (WCAG) 2.2, Level AA
-**Report date:** 2026-07-31
+**Report date:** 2026-07-31 (revised 2026-08-06 to add the accessibility-tree pass below)
 **Status:** Conforms to WCAG 2.2 Level AA, with the documented exception and
 open items listed under [Known limitations](#known-limitations).
 
@@ -49,7 +49,9 @@ reading HTML, and it found two defects that structural review had passed:
 - Filter checkboxes flattened their label and their count into a single token,
   so the accessible name of one read `Evergreen 5-25620`. Every control "had a
   name" — the earlier audit asked whether a name existed, not whether it was
-  intelligible. Names are now set explicitly: `Evergreen 5-25, 620 operations`.
+  intelligible. Names are now set explicitly, in the form
+  `Evergreen 5-25, <count> operations`, with the count computed live from the
+  archive.
 - The trail slider had no `aria-valuetext` and so announced a bare `7`, with
   the unit living only in a neighbouring element. It now announces `7 days`,
   matching the scrubber beside it.

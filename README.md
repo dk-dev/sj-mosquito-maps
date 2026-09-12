@@ -1,8 +1,8 @@
 # San Joaquin Mosquito Spray Timelapse
 
 Interactive timelapse of every mosquito spray operation the San Joaquin County
-Mosquito & Vector Control District has published — **863 operations across
-2020–2026**, animated day by day over a full calendar year and looping.
+Mosquito & Vector Control District has published — **more than 900 operations
+across 2020–2026**, animated day by day over a full calendar year and looping.
 
 The district publishes each spray zone as a Google My Maps link on its
 [Spray Alerts & Maps](https://www.sjmosquito.org/News-Spray-Alerts/Spray-Alerts-Maps)
@@ -10,7 +10,7 @@ page. This project turns those scattered links into a single archived,
 searchable, animated map.
 
 ```
-[ 863 operations ] x [ 316 spray zones ] x [ 7 years ] x [ 6 pesticides ]
+[ 900+ operations ] x [ 300+ spray zones ] x [ 7 years ] x [ 6 pesticides ]
         animated over the calendar year, looping, filterable
 ```
 
@@ -29,7 +29,7 @@ Two facts make a multi-year archive possible anyway:
    scraped from a 2020 snapshot still returns KML today.
 
 So the Wayback Machine supplies the `(date, area, map-id)` tuples and Google
-still supplies the geometry. That is where 745 of the 863 operations come from
+still supplies the geometry. That is where 745 of the operations come from
 — 19 archived snapshots — and it is why the timelapse has years of history at
 launch rather than after a year of scraping.
 
@@ -60,8 +60,9 @@ record of it and cannot be re-derived.
   twice — an opaque white or black casing under the coloured line — over a
   tuned per-basemap tint, so the outline clears WCAG's 3:1 on every measured
   pixel of all five backgrounds and the age fade survives the move off black
-- **Filters** — method, target stage, status, pesticide, and all 12 district
-  regions; filters drive the map, the calendar strip and the stats together
+- **Filters** — method, target stage, status, pesticide, and all 11 district
+  regions (plus an "unknown" bucket for zones with no code); filters drive the
+  map, the calendar strip and the stats together
 - **Honest statistics** — distinguishes *treatments* from *distinct zones*, and
   says plainly that neither area figure is a treated footprint (the district's
   zones overlap, so both add the same ground more than once)
@@ -127,7 +128,7 @@ To run it locally instead:
 build-exe.cmd
 ```
 
-Produces `dist\sj-mosquito-maps.exe` (~14 MB) — a single file you can hand to
+Produces `dist\sj-mosquito-maps.exe` (~15 MB) — a single file you can hand to
 someone who has no Python. It carries the whole archive and a vendored copy of
 Leaflet, so it opens and draws the spray zones with no network at all; only the
 basemap tiles need internet. **Update maps** in the app re-scrapes the district's
@@ -218,15 +219,17 @@ build-exe.cmd         One-step Windows build -> dist/sj-mosquito-maps.exe
 sj-mosquito-maps.spec PyInstaller build definition (committed, hand-written)
 fetch_data.py         CLI entry point; runs the stages, writes the archive
 verify_data.py        Archive integrity checks (also a CI gate)
+export_data.py        Rebuilds data/exports/ (CSV + GeoJSON) from the archive
 serve.py              Static server + POST /refresh (runs the fetch in-process)
 index.html            The entire frontend. Single file, no build step
 vendor/               Leaflet 1.9.4, vendored so the app needs no CDN
 sjmvcd/paths.py       Resolves the two roots: read-only bundle vs writable archive
 sjmvcd/               Fetch/parse/merge package
 data/                 COMMITTED archive:
-  operations.json       863 operations
-  shapes.geojson        316 polygons, keyed by Google map id
+  operations.json       every operation, append-only (never shrinks)
+  shapes.geojson        one polygon per Google map id
   manifest.json         run summary for the banner
+  exports/              operations.csv + operations.geojson, rebuilt each run
   .cache/               raw archived HTML (gitignored, regenerable)
 ```
 
@@ -332,13 +335,18 @@ instead of arguing it. No request from this app now reaches
   operations across all seven years. The district does not spray then.
 - **Announced, not verified.** Every record is what the district *published*
   ahead of an operation. Sprays are cancelled for weather (15 are marked so);
-  a completed status is the district's own, not independent confirmation.
+  a completed status is the district's own word, not independent confirmation —
+  except where the district printed no status at all (11 historical rows as of
+  September 2026). There, "complete" is our reading of the *Past Completed Spray
+  Operations* heading the row sat under, and the row carries an empty
+  `status_text`, so an inferred status can always be told from a quoted one.
 - **Zone polygons are the district's own drawings**, at whatever precision
   they chose in Google My Maps. They are not parcel-accurate.
-- **Spray zones overlap, so no area figure here is a footprint.** 334 zone
-  pairs sit more than 90% inside another, and four pairs are byte-identical
-  polygons published under different map ids. Summing zone areas for the whole
-  archive gives ~2,498 km², where the true union is closer to **918 km²**. The
+- **Spray zones overlap, so no area figure here is a footprint.** More than 350
+  zone pairs sit more than 90% inside another, and at least four pairs are
+  byte-identical polygons published under different map ids. As of September
+  2026, summing zone areas for the whole archive gives about 2,570 km², where
+  the true union is closer to **960 km²**. The
   UI labels its figures for what they actually compute ("Zone areas summed",
   "Treatment-area sum"); computing a real union would need a polygon-clipping
   library, which this project deliberately does not carry.

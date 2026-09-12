@@ -676,10 +676,11 @@
         <!-- Wording matters here: spraying the same zone eight times is eight
              treatments, not eight new square kilometres. And neither area figure
              is the county's treated FOOTPRINT: the district's zones overlap and
-             nest heavily (334 pairs sit >90% inside another, and four pairs are
-             byte-identical polygons under different ids), so even counting each
-             zone once sums the same ground repeatedly. The true union for the
-             whole archive is roughly 918 km2 against the 2,498 km2 sum. Naming
+             nest heavily (as of Sept 2026, more than 350 pairs sit >90% inside
+             another, and at least four pairs are byte-identical polygons under
+             different ids), so even counting each zone once sums the same ground
+             repeatedly. At that date the true union for the whole archive was
+             roughly 960 km2 against a ~2,570 km2 sum. Naming
              the figure for what it does -- adding up zone areas -- is honest;
              calling it "distinct-zone area" invited it to be read as a
              footprint. Computing a real union in-browser would need a polygon
@@ -2128,7 +2129,7 @@
   /* Which product represents an operation when colouring by product.
 
      NOT products[0]. That is the order the district happened to write the two
-     names in the alert, and it drifted over the years: of 542 ground operations
+     names in the alert, and it drifted over the years: among ground operations
      using the identical Evergreen 5-25 + DeltaGard tank mix, the alerts put
      Evergreen first 64 times in 2020 and DeltaGard first 139 times in 2025.
      Colouring on source order made the all-years animation flip wholesale from
