@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T20:55:53Z",
+  "generated_at": "2026-09-13T00:44:39Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -5815,6 +5815,7 @@
       "source": "wayback:20210902093910",
       "status": "scheduled",
       "status_text": null,
+      "superseded_by": "2021-09-03|12pIzSEWaFB7oKf8CyTs4Ubweu52hngAB",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "19:30"
@@ -20059,8 +20060,8 @@
       ],
       "section": "past",
       "source": "live",
-      "status": "postponed",
-      "status_text": "POSTPONED TO FRIDAY, JULY 10, 2026",
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:00",
       "time_start": "03:15"
@@ -20589,6 +20590,7 @@
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
+      "superseded_by": "2026-07-27|1VcIBhYONU108kaWiCJ389vHXrj6qdsg",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:40"
@@ -20639,6 +20641,7 @@
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
+      "superseded_by": "2026-07-27|1w4m0HR6_JrxOswRP87KSFQ6pt7llvfG7",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:40"
@@ -20865,10 +20868,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "postponed",
-      "status_text": "POSTPONED TO MONDAY, JULY 27, 2026",
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:40"
@@ -20889,10 +20892,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "postponed",
-      "status_text": "POSTPONED TO MONDAY, JULY 27, 2026",
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "22:30",
       "time_start": "20:40"

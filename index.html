@@ -686,7 +686,8 @@
              footprint. Computing a real union in-browser would need a polygon
              clipping library and is deliberately out of scope here. -->
         <span class="stat" style="flex-basis:100%">
-          A &ldquo;treatment&rdquo; is one operation on one zone. Neither area figure is the county footprint:
+          A &ldquo;treatment&rdquo; is one completed operation on one zone; cancelled, postponed and scheduled
+          operations are drawn but not counted. Neither area figure is the county footprint:
           spray zones overlap, so both add the same ground more than once. The zone sum counts each zone
           once however often it was sprayed; the treatment sum re-counts it on every repeat spray.
         </span>
@@ -1672,7 +1673,11 @@
     });
 
     // --- operations ------------------------------------------------------
-    OPS = (opsDoc.operations || []).slice();
+    // A record marked superseded_by another is the same spray filed twice (see
+    // sjmvcd/archive.py::SUPERSEDED_IDS). It stays in the data and the exports,
+    // carrying the marker, but the map, calendar, filters and stats use only the
+    // record that replaced it.
+    OPS = (opsDoc.operations || []).filter(function (op) { return !op.superseded_by; });
     OPS.forEach(function (op) {
       op._ms = dateToMs(op.date);
       op._year = +op.date.slice(0, 4);
@@ -2244,7 +2249,7 @@
     var from = ST.cumulative ? 0 : Math.max(0, d - ST.trail + 1);
 
     var next = new Map();
-    var visTreatments = 0, visUnmapped = 0;
+    var visTreatments = 0, visUnmapped = 0, treatedZones = new Set();
 
     for (var i = from; i <= d; i++) {
       var arr = ST.byDay[i];
@@ -2252,8 +2257,13 @@
       var age = d - i;
       for (var k = 0; k < arr.length; k++) {
         var op = arr[k];
-        visTreatments++;
-        if (!op._hasShape) { visUnmapped++; continue; }
+        // Only a completed operation is a treatment. Cancelled, postponed and
+        // scheduled operations are still drawn (dashed or dotted) and listed,
+        // but counting them put sprays that never happened into the totals.
+        var treated = op.status === 'complete';
+        if (treated) visTreatments++;
+        if (!op._hasShape) { if (treated) visUnmapped++; continue; }
+        if (treated) treatedZones.add(op.mid);
         var e = next.get(op.mid);
         if (!e) { next.set(op.mid, { age: age, ops: [op], top: op }); }
         else {
@@ -2289,7 +2299,7 @@
     refreshOpenPopup();
     renderZoneList();
     updateCalendarMarks(from, d);
-    updateStats(d, visTreatments, visUnmapped, next.size);
+    updateStats(d, visTreatments, visUnmapped, treatedZones.size);
   }
 
   /* An open popup describes the operations in view for one polygon AND their
@@ -2429,6 +2439,7 @@
       if (!arr) continue;
       for (var k = 0; k < arr.length; k++) {
         var op = arr[k];
+        if (op.status !== 'complete') continue;   // treatments only -- see render()
         cumT++;
         if (!op._hasShape) { cumUnmapped++; continue; }
         zones.add(op.mid);
@@ -2706,9 +2717,14 @@
     var delay = Math.max(0, 1200 - (now - annLast));
     annTimer = setTimeout(function () {
       annLast = Date.now();
-      var vis = 0;
-      ST.visible.forEach(function (e) { vis += e.ops.length; });
-      var zones = ST.visible.size;
+      // Same definition as the stats: treatments are completed operations, and
+      // a zone counts only if at least one of them is in view.
+      var vis = 0, zones = 0;
+      ST.visible.forEach(function (e) {
+        var done = e.ops.filter(function (o) { return o.status === 'complete'; }).length;
+        vis += done;
+        if (done) zones++;
+      });
       var today = ST.counts[ST.day] || 0;
       $('live').textContent =
         fmtLong(msOfDay(ST.day)) + '. ' +
@@ -2752,7 +2768,7 @@
       lines.push('<span class="warn">' + ST.unmappableTotal + ' operation' +
         (ST.unmappableTotal === 1 ? '' : 's') +
         ' cannot be mapped</span> — the district deleted the Google map for that zone and it now 404s. ' +
-        'They are still counted in the treatment totals and flagged as &ldquo;unmappable&rdquo; there.');
+        'Completed ones are still counted in the treatment totals and flagged as &ldquo;unmappable&rdquo; there.');
     }
     $('meta').innerHTML = lines.join('<br/>');
   }

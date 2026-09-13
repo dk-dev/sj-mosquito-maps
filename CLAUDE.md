@@ -113,6 +113,19 @@ data/.cache/            Raw archived HTML (gitignored, regenerable)
   the wrong link, so a fix applied only to the archive would be undone by the
   next `--backfill`. `verify_data.py::KNOWN_MISSING_SHAPES` is now empty, and
   it fails the build if an id listed there starts resolving again.
+- **One spray can be filed under two ids, and re-parsing won't always fix
+  it.** An entry the district rewrites with a new date — or, before e152adf, a
+  postponed spray whose completion was filed under the postponed-from date —
+  leaves a stale record no re-observation will ever correct. Known cases live
+  in `sjmvcd/archive.py::SUPERSEDED_IDS` and are stamped as `superseded_by` at
+  MERGE time, not parse time, because some stale ids are no longer produced by
+  any page and exist only in the stored archive. Never delete them: that
+  shrinks the archive, and a Wayback-derived one returns on the next
+  `--backfill`. The frontend drops superseded rows; exports keep them, with
+  the column set. `verify_data.py` checks every entry.
+- **Only completed operations are treatments.** Cancelled, postponed and
+  scheduled operations are drawn and listed, but never added to treatment
+  counts or area sums.
 - **A map id is not unique per operation.** The same zone is sprayed many
   times, so `mid` repeats across dates. The operation key is `date|mid`.
 - **The district's own product spelling drifts** ("Evergreen 5-25" vs

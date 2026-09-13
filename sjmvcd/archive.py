@@ -75,6 +75,32 @@ DERIVED_FIELDS = (
     "time_start", "time_end", "area_name", "boundary_text", "map_url",
 )
 
+# Known duplicates: one spray filed under two ids, where the stale id can no
+# longer be corrected by re-observation. Each maps the stale id to the record
+# that describes what actually happened. merge_operations stamps
+# ``superseded_by`` on the stale record on every run.
+#
+# Applied at MERGE time, not parse time -- unlike sjmvcd.parse.MISLINKED_MIDS.
+# Two of these ids are no longer emitted by any page (the parser fix in e152adf
+# stopped producing them), so they exist only in the stored archive and a
+# parse-time rule would never see them. The third is still emitted by its Wayback
+# capture, so deleting it would only last until the next --backfill. Rows are
+# never removed: the archive stays append-only and the shrink guard stays honest.
+#
+# verify_data.py fails the build if a stale id is missing, unmarked, or points at
+# anything other than a completed operation on the same zone.
+SUPERSEDED_IDS: dict[str, str] = {
+    # Announced in the Current section for the evening of Thu 2021-09-02. Every
+    # later capture lists the same zone rewritten to the morning of Fri
+    # 2021-09-03, COMPLETE, with nothing on the page linking the two dates.
+    "2021-09-02|12pIzSEWaFB7oKf8CyTs4Ubweu52hngAB": "2021-09-03|12pIzSEWaFB7oKf8CyTs4Ubweu52hngAB",
+    # Announced for 2026-07-23, POSTPONED TO MONDAY, JULY 27, then marked
+    # COMPLETE. Before e152adf the completion was filed under July 23, the day
+    # the spray was postponed FROM.
+    "2026-07-23|1VcIBhYONU108kaWiCJ389vHXrj6qdsg": "2026-07-27|1VcIBhYONU108kaWiCJ389vHXrj6qdsg",
+    "2026-07-23|1w4m0HR6_JrxOswRP87KSFQ6pt7llvfG7": "2026-07-27|1w4m0HR6_JrxOswRP87KSFQ6pt7llvfG7",
+}
+
 # Provenance markers used in the Operation ``source`` field.
 LIVE_SOURCE = "live"
 WAYBACK_PREFIX = "wayback:"
@@ -179,6 +205,15 @@ def merge_operations(
             if op.get(field):
                 current[field] = op[field]
         # first_seen deliberately untouched.
+
+    # Stamp the known duplicates on every run, and clear a marker whose entry has
+    # been removed from the table, so SUPERSEDED_IDS is the single source of truth.
+    for op in merged.values():
+        target = SUPERSEDED_IDS.get(op["id"])
+        if target:
+            op["superseded_by"] = target
+        else:
+            op.pop("superseded_by", None)
 
     ordered = sorted(merged.values(), key=_sort_key)
     return ordered, len(merged) - n_before

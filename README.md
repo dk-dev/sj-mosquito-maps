@@ -63,7 +63,8 @@ record of it and cannot be re-derived.
 - **Filters** — method, target stage, status, pesticide, and all 11 district
   regions (plus an "unknown" bucket for zones with no code); filters drive the
   map, the calendar strip and the stats together
-- **Honest statistics** — distinguishes *treatments* from *distinct zones*, and
+- **Honest statistics** — counts only *completed* operations as treatments,
+  distinguishes *treatments* from *distinct zones*, and
   says plainly that neither area figure is a treated footprint (the district's
   zones overlap, so both add the same ground more than once)
 - **Click any zone** for area name, date, method, pesticides, boundary
@@ -341,6 +342,13 @@ instead of arguing it. No request from this app now reaches
   September 2026). There, "complete" is our reading of the *Past Completed Spray
   Operations* heading the row sat under, and the row carries an empty
   `status_text`, so an inferred status can always be told from a quoted one.
+- **A re-dated spray can be filed twice.** When the district rewrites an entry's
+  date without saying so, the archive ends up with two records for one spray,
+  and the stale one can never be corrected by re-reading the page. Known cases
+  are listed in `sjmvcd/archive.py::SUPERSEDED_IDS` (3 records as of September
+  2026). Each stale record stays in the data and the exports with a
+  `superseded_by` field naming the real one; the map, calendar and stats use
+  only the real one.
 - **Zone polygons are the district's own drawings**, at whatever precision
   they chose in Google My Maps. They are not parcel-accurate.
 - **Spray zones overlap, so no area figure here is a footprint.** More than 350

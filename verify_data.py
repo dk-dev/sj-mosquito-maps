@@ -165,6 +165,36 @@ def verify_operations(ops: list[dict], report: Report) -> None:
                     f"{dates[0]} .. {dates[-1]}")
 
 
+def verify_supersessions(ops: list[dict], report: Report) -> None:
+    """Every known duplicate is present, marked, and points at a real completion."""
+    from sjmvcd.archive import SUPERSEDED_IDS
+
+    by_id = {op.get("id"): op for op in ops}
+    problems: list[str] = []
+    for stale, target in SUPERSEDED_IDS.items():
+        row = by_id.get(stale)
+        if row is None:
+            problems.append(f"{stale}: listed in SUPERSEDED_IDS but not in the archive")
+            continue
+        if row.get("superseded_by") != target:
+            problems.append(f"{stale}: superseded_by={row.get('superseded_by')!r}, expected {target!r}")
+        real = by_id.get(target)
+        if real is None:
+            problems.append(f"{stale}: replacement {target} is not in the archive")
+        elif real.get("mid") != row.get("mid"):
+            problems.append(f"{stale}: replacement {target} is a different zone")
+        elif real.get("status") != "complete" or real.get("superseded_by"):
+            problems.append(f"{stale}: replacement {target} is status={real.get('status')!r}, "
+                            f"superseded_by={real.get('superseded_by')!r}")
+    stray = [op.get("id") for op in ops
+             if op.get("superseded_by") and op.get("id") not in SUPERSEDED_IDS]
+    if stray:
+        problems.append(f"superseded_by set on ids not in SUPERSEDED_IDS: {stray[:3]}")
+    report.check(not problems, f"{len(problems)} supersession problem(s): {problems[:3]}")
+    if SUPERSEDED_IDS:
+        report.note(f"{len(SUPERSEDED_IDS)} known duplicate record(s) marked superseded")
+
+
 def verify_shapes(shapes: dict, report: Report) -> set[str]:
     """Geometry validity, ring closure and in-county coordinates."""
     features = shapes.get("features") or []
@@ -266,6 +296,7 @@ def main() -> int:
         return 1
 
     verify_operations(ops, report)
+    verify_supersessions(ops, report)
     shape_mids = verify_shapes(shapes, report)
     verify_join(ops, shape_mids, report)
 

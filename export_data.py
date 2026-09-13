@@ -50,6 +50,9 @@ COLUMNS = [
     "status", "status_text", "area_name", "zone_code", "region", "boundary_text",
     "area_sq_km", "centroid_lat", "centroid_lon", "map_url", "map_id",
     "observed_via", "first_seen",
+    # Appended last, not placed beside status, so a consumer reading columns by
+    # position is not shifted. Empty for all but the known duplicates.
+    "superseded_by",
 ]
 
 
@@ -133,6 +136,7 @@ def row_for(op: dict, feature: dict | None) -> dict:
         "map_id": op["mid"],
         "observed_via": op.get("source") or "",
         "first_seen": op.get("first_seen") or "",
+        "superseded_by": op.get("superseded_by") or "",
     }
 
 
