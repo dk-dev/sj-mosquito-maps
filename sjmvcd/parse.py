@@ -1032,6 +1032,17 @@ def parse_operations(html: str, *, source: str) -> list[dict]:
                 status_text = None
 
             date = _resolve_date(header["date"], status, status_text)
+            if date == header["date"] and header["status_text"]:
+                # A postponement in the header moves the operation even after
+                # the area line has gone on to say COMPLETE. The district
+                # appends "POSTPONED TO MONDAY, JULY 27, 2026" to the header and,
+                # once the spray has run, adds COMPLETE to the area. Area status
+                # wins, so resolving the date from the winning status alone filed
+                # two completed aerial sprays under July 23 -- the day they were
+                # postponed FROM -- and stranded their July 27 rows as
+                # "postponed". The date belongs to the entry, not to whichever
+                # status line happened to win.
+                date = _resolve_date(header["date"], header["status"], header["status_text"])
             if not date:
                 stats["operations_skipped_no_date"] += 1
                 continue
@@ -1062,6 +1073,25 @@ def parse_operations(html: str, *, source: str) -> list[dict]:
                     "first_seen": first_seen,
                 }
             )
+
+    # One page can list the same operation twice. The district leaves the
+    # original entry in place ("Oak Grove Regional Park: See Map POSTPONED TO
+    # FRIDAY, JULY 10, 2026") and adds a second entry for the day it actually
+    # ran ("(rescheduled from Thursday, July 9, 2026) See Map COMPLETE"). The
+    # postponement resolves to the new date, so both rows carry the same id,
+    # and because the merge is last-one-wins and the original entry is listed
+    # after the new one, a completed spray was stored as postponed. Collapse
+    # duplicates here: the most final status wins, and a tie keeps the later
+    # row, which is exactly what the merge already did for the harmless case of
+    # a zone simply listed twice with the same status.
+    precedence = {"scheduled": 0, "postponed": 1, "cancelled": 2, "complete": 3}
+    best: dict[str, dict] = {}
+    for row in rows:
+        kept = best.get(row["id"])
+        if kept is None or precedence.get(row["status"], 0) >= precedence.get(kept["status"], 0):
+            best[row["id"]] = row
+    stats["duplicate_ids_collapsed"] = len(rows) - len(best)
+    rows = [row for row in rows if best[row["id"]] is row]
 
     stats["rows"] = len(rows)
     LAST_PARSE_STATS.clear()
