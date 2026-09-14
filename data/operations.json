@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T00:44:39Z",
+  "generated_at": "2026-09-14T21:47:33Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -23415,6 +23415,30 @@
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
+    },
+    {
+      "area_name": "Delta area- Portions of Empire Tract and Terminous Tract",
+      "boundary_text": null,
+      "date": "2026-09-14",
+      "first_seen": "2026-09-14T21:47:34Z",
+      "id": "2026-09-14|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "method": "aerial",
+      "mid": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "21:30",
+      "time_start": "19:30"
     }
   ]
 }

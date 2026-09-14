@@ -106254,6 +106254,61 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-14|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+   "properties": {
+    "date": "2026-09-14",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "19:30",
+    "time_end": "21:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Delta area- Portions of Empire Tract and Terminous Tract",
+    "zone_code": "D29",
+    "region": "Delta",
+    "boundary_text": "",
+    "area_sq_km": 12.7919,
+    "centroid_lat": 38.080455,
+    "centroid_lon": -121.480218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "map_id": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "observed_via": "live",
+    "first_seen": "2026-09-14T21:47:34Z",
+    "superseded_by": "",
+    "operation_id": "2026-09-14|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4996014,
+       38.0980078
+      ],
+      [
+       -121.4983998,
+       38.0632814
+      ],
+      [
+       -121.4614926,
+       38.0623353
+      ],
+      [
+       -121.4616643,
+       38.0978727
+      ],
+      [
+       -121.4996014,
+       38.0980078
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }
