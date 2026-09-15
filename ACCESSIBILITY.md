@@ -282,6 +282,10 @@ controls that do conform, so no function is available only through it.
 6. **Basemap tiles require a network connection.** Everything else, including the
    full archive and Leaflet itself, is local; only the backdrop needs the
    internet. With no connection the spray polygons draw on an empty background.
+   The Dark, Light and Terrain (dark) basemaps also show that background
+   wherever CARTO refuses the site's API key, which includes the desktop app,
+   because the key is restricted to the hosted site. The fallback is a plain
+   background, never a substitute provider's tiles.
 
 ## Feedback
 

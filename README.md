@@ -302,6 +302,18 @@ advertise LOD 23, but probed tile by tile over this county Topo and Imagery
 serve real pixels only through **z16** and Shaded Relief only through **z13**,
 so each layer is clamped with `maxNativeZoom` and Leaflet upsamples past that.
 
+Three of the CARTO layers — `dark_all`, `light_all` and `dark_nolabels` — need
+a **CARTO API key**. It lives in `index.html`, public by design, and is
+restricted in CARTO's dashboard to `dk-dev.github.io`, so CARTO refuses it from
+anywhere else. A missing or refused key does not error: CARTO still returns a
+normal tile, stamped "API KEY REQUIRED". The page therefore checks the key from
+its own origin before adding those layers, and wherever it is refused leaves
+them out and shows the basemap's background colour instead. In practice the
+**hosted map shows all five basemaps, while the desktop app and local
+`serve.py` runs show Dark and Light as a plain background, and Terrain (dark) as
+relief and labels on a plain background.** `dark_only_labels` is not gated and
+stays keyless.
+
 Two conditions worth stating plainly. **OpenStreetMap**: CARTO's basemaps are
 rendered from OSM data, so the OSM credit is a licence condition under the
 ODbL, not a courtesy, and the link to the licence is part of it. **USGS**: as

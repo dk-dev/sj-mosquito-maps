@@ -126,6 +126,15 @@ data/.cache/            Raw archived HTML (gitignored, regenerable)
 - **Only completed operations are treatments.** Cancelled, postponed and
   scheduled operations are drawn and listed, but never added to treatment
   counts or area sums.
+- **CARTO tiles need an API key, and a bad key never errors.** Missing or
+  invalid, CARTO still returns HTTP 200 with "API KEY REQUIRED" drawn across
+  the tile. `CARTO_KEY` in `index.html` is restricted to `dk-dev.github.io`, so
+  it is refused (403) on `127.0.0.1`: the desktop app and `serve.py` show the
+  bg colour for Dark, Light and Terrain (dark) by design. Never add the key to
+  `dark_only_labels` (it is ungated, and keyed it breaks off-site), never use
+  that layer as the probe tile, and never fall back to Esri — this project left
+  Esri on purpose. Whether a key works depends on the referer, so confirm it
+  from the hosted page itself.
 - **A map id is not unique per operation.** The same zone is sprayed many
   times, so `mid` repeats across dates. The operation key is `date|mid`.
 - **The district's own product spelling drifts** ("Evergreen 5-25" vs

@@ -1035,6 +1035,28 @@
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
     '&copy; <a href="https://carto.com/attributions">CARTO</a>';
 
+  /* CARTO requires an API key for its raster basemaps, and a missing or invalid
+     key does NOT fail: the tile still arrives as an HTTP 200 with "API KEY
+     REQUIRED" drawn across it, so nothing errors and the watermark just shows.
+
+     This key is restricted in CARTO's dashboard to dk-dev.github.io. It is
+     public by design -- it ships in this page's source -- and the restriction
+     is what protects it: CARTO refuses it (403) from any other referer,
+     including 127.0.0.1, where the desktop app and serve.py run.
+
+     Only dark_all, light_all and dark_nolabels are gated. dark_only_labels is
+     not, and must stay keyless: keyed, it is refused off dk-dev.github.io and
+     would take the labels out of Terrain (dark) in the desktop app for no gain.
+     Gated layers are marked `gated: true` and are only added once
+     probeCartoKey() has shown the key is accepted from this page's origin.
+     Until then, and wherever the key is refused, the basemap shows its bg
+     colour -- the degraded state ACCESSIBILITY.md already documents -- rather
+     than a watermark or some other provider's tiles. */
+  var CARTO_KEY = 'cb1_3lgq_2_1541daf813dc6d92a061b8db';
+  function cartoUrl(style) {
+    return 'https://{s}.basemaps.cartocdn.com/' + style + '/{z}/{x}/{y}{r}.png?key=' + CARTO_KEY;
+  }
+
   /* USGS National Map tiles replaced Esri's on the three basemaps that used
      them. Nothing here was in breach -- this app caches nothing and re-hosts
      nothing -- but Esri's current Terms of Use are written around holding an
@@ -1072,7 +1094,7 @@
     {
       id: 'dark', label: 'Dark', bg: '#0b0e13',
       layers: [{
-        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        url: cartoUrl('dark_all'), gated: true,
         opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR }
       }],
       // Dark Matter is genuinely near-black (mean relative luminance 0.0034),
@@ -1087,7 +1109,7 @@
     {
       id: 'light', label: 'Light', bg: '#eceef1',
       layers: [{
-        url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        url: cartoUrl('light_all'), gated: true,
         opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR }
       }],
       // Positron is near-white and almost featureless, so a black casing clears
@@ -1175,7 +1197,7 @@
       // reordering is precisely why attribution must not be bound to "layer 0"
       // -- layer 0 is CARTO, the shading is USGS.
       layers: [
-        { url: 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+        { url: cartoUrl('dark_nolabels'), gated: true,
           opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR } },
         { url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/{z}/{y}/{x}',
           // Full opacity: the multiply blend, not an alpha fade, is what keeps
@@ -1323,13 +1345,106 @@
     });
   }
 
+  /* ---------- CARTO key verdict ------------------------------------------ */
+
+  /* cartoKeyOk is true once the key is shown to work from this origin, false
+     once it is shown not to, null while unknown. The verdict is cached per key
+     with a TTL, so a normal visit does not re-probe and a rotated key (a
+     different CARTO_KEY) is re-tested straight away. */
+  var LS_CARTO = 'sjmvcd.cartoKey';
+  var CARTO_VERDICT_TTL_MS = 24 * 60 * 60 * 1000;
+  var CARTO_ERROR_LIMIT = 6;
+  var CARTO_PROBE = 'https://a.basemaps.cartocdn.com/dark_all/6/10/24.png';
+  var cartoKeyOk = null, cartoErrors = 0, cartoProbing = false;
+
+  function readCartoVerdict() {
+    var raw = lsGet(LS_CARTO);
+    if (!raw) return null;
+    try {
+      var v = JSON.parse(raw);
+      if (v && v.key === CARTO_KEY && typeof v.ok === 'boolean' &&
+          Date.now() - v.t < CARTO_VERDICT_TTL_MS) return v.ok;
+    } catch (err) { /* unreadable: treat as unknown */ }
+    return null;
+  }
+
+  function setCartoVerdict(ok, persist) {
+    if (persist) lsSet(LS_CARTO, JSON.stringify({ key: CARTO_KEY, ok: ok, t: Date.now() }));
+    if (ok === cartoKeyOk) return;
+    cartoKeyOk = ok;
+    cartoErrors = 0;
+    if (map && ST.basemap && currentBasemap().layers.some(function (s) { return s.gated; })) {
+      setBasemap(ST.basemap, false, true);
+    }
+  }
+
+  function sameBytes(a, b) {
+    if (a.byteLength !== b.byteLength) return false;
+    var x = new Uint8Array(a), y = new Uint8Array(b);
+    for (var i = 0; i < x.length; i++) if (x[i] !== y[i]) return false;
+    return true;
+  }
+
+  /* Whether the key works depends on the request's referer, so only the page
+     itself can answer it. Fetch one tile of a GATED style with and without the
+     key:
+
+       keyless loads, keyed refused  -> network fine, key refused here  -> false
+       keyless refused, keyed loads  -> key works                       -> true
+       both refused                  -> offline or CARTO down: no verdict
+       both load, identical bytes    -> key invalid (both watermarked)  -> false
+       both load, bytes differ       -> key works                       -> true
+
+     A refused key is a 403 with no CORS headers, which fetch() cannot read --
+     it only rejects, exactly like being offline -- so "refused" exists only as
+     one request failing while the other succeeds. That is why this needs
+     allSettled. Never probe with dark_only_labels: it is ungated, so keyed and
+     keyless are always identical and it would always read "invalid". */
+  function probeCartoKey() {
+    if (cartoProbing || !window.fetch || !window.Promise || !Promise.allSettled) return;
+    cartoProbing = true;
+    function get(url) {
+      return fetch(url, { cache: 'no-store', credentials: 'omit' }).then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.arrayBuffer();
+      });
+    }
+    Promise.allSettled([get(CARTO_PROBE), get(CARTO_PROBE + '?key=' + CARTO_KEY)])
+      .then(function (res) {
+        var bare = res[0], keyed = res[1], verdict = null;
+        if (bare.status === 'fulfilled' && keyed.status === 'rejected') verdict = false;
+        else if (bare.status === 'rejected' && keyed.status === 'fulfilled') verdict = true;
+        else if (bare.status === 'fulfilled' && keyed.status === 'fulfilled') {
+          verdict = !sameBytes(bare.value, keyed.value);
+        }
+        if (verdict !== null) setCartoVerdict(verdict, true);
+      })
+      .then(function () { cartoProbing = false; }, function () { cartoProbing = false; });
+  }
+
+  /* Runtime backstop for what a probe cannot pre-empt: a browser that strips
+     referers (keyed tiles then 403 once the layer is live) or CARTO failing
+     mid-session. Past a few errors the gated layers stand down for the rest of
+     the session. That is not persisted, because a flaky connection looks the
+     same; a fresh probe decides whether to remember it. */
+  function onCartoTileError() {
+    if (cartoKeyOk !== true) return;
+    cartoErrors++;
+    if (cartoErrors === CARTO_ERROR_LIMIT) {
+      setCartoVerdict(false, false);
+      probeCartoKey();
+    }
+  }
+
   /* Swap the whole tile stack. The old layers are removed BEFORE the new ones
      are added, and baseLayers is the only reference to them, so nothing can
      accumulate: after any number of switches map._layers holds exactly the
      current basemap's tile layers plus the polygon layers on screen. */
-  function setBasemap(id, announceIt) {
+  function setBasemap(id, announceIt, force) {
     var def = basemapById(id) || basemapById(DEFAULT_BASEMAP) || BASEMAPS[0];
-    if (def.id === ST.basemap) return;
+    // force rebuilds the current basemap in place, when the CARTO key verdict
+    // changes which of its layers belong on the map.
+    if (def.id === ST.basemap && !force) return;
 
     for (var i = 0; i < baseLayers.length; i++) map.removeLayer(baseLayers[i]);
     baseLayers.length = 0;
@@ -1342,11 +1457,15 @@
     // the tiles it describes.
     for (var j = 0; j < def.layers.length; j++) {
       var spec = def.layers[j];
+      // A CARTO layer that needs the key is only added once the key is known to
+      // work from this origin; otherwise the bg colour shows. See CARTO_KEY.
+      if (spec.gated && cartoKeyOk !== true) continue;
       var opts = { maxZoom: MAX_ZOOM };
       for (var k in spec.opts) {
         if (Object.prototype.hasOwnProperty.call(spec.opts, k)) opts[k] = spec.opts[k];
       }
       var layer = L.tileLayer(spec.url, opts);
+      if (spec.gated) layer.on('tileerror', onCartoTileError);
       layer.addTo(map);
       baseLayers.push(layer);
     }
@@ -1386,7 +1505,11 @@
     var start = basemapById(saved) ? saved : DEFAULT_BASEMAP;
     sel.value = start;
     sel.addEventListener('change', function () { setBasemap(sel.value, true); });
+    // A cached verdict is used as-is until it expires. An unknown one starts on
+    // the bg fallback and probes, so a watermark is never shown while it runs.
+    cartoKeyOk = readCartoVerdict();
     setBasemap(start, false);
+    if (cartoKeyOk === null) probeCartoKey();
   }
 
   /* Four buttons that pan by a click each: the single-pointer alternative to
