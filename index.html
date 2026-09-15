@@ -1200,6 +1200,14 @@
         { url: cartoUrl('dark_nolabels'), gated: true,
           opts: { subdomains: 'abcd', maxNativeZoom: 19, attribution: CARTO_ATTR } },
         { url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/{z}/{y}/{x}',
+          // needsBase: this layer only works multiplied over the CARTO base
+          // beneath it. Where that gated base is left out (the key is refused,
+          // as in the desktop app), multiply has nothing inside the tile pane to
+          // darken and the relief draws at its own near-white brightness -- a
+          // pale grey sheet under a "dark" basemap, where the white casing
+          // measured about 1.36:1. So it is left out with its base, and
+          // Terrain (dark) falls back to its keyless labels on bg.
+          needsBase: true,
           // Full opacity: the multiply blend, not an alpha fade, is what keeps
           // the base visible underneath. Backing the opacity off only mixes
           // the unshaded base back in and flattens the relief.
@@ -1455,11 +1463,14 @@
     // strings of whatever layers are currently on the map, and drops each one
     // when its layer is removed, so a credit can neither outlive nor precede
     // the tiles it describes.
+    var skippedBase = false;
     for (var j = 0; j < def.layers.length; j++) {
       var spec = def.layers[j];
       // A CARTO layer that needs the key is only added once the key is known to
       // work from this origin; otherwise the bg colour shows. See CARTO_KEY.
-      if (spec.gated && cartoKeyOk !== true) continue;
+      // A layer that blends over that base (needsBase) is dropped along with it.
+      if (spec.gated && cartoKeyOk !== true) { skippedBase = true; continue; }
+      if (spec.needsBase && skippedBase) continue;
       var opts = { maxZoom: MAX_ZOOM };
       for (var k in spec.opts) {
         if (Object.prototype.hasOwnProperty.call(spec.opts, k)) opts[k] = spec.opts[k];

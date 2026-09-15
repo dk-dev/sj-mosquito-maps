@@ -311,7 +311,9 @@ its own origin before adding those layers, and wherever it is refused leaves
 them out and shows the basemap's background colour instead. In practice the
 **hosted map shows all five basemaps, while the desktop app and local
 `serve.py` runs show Dark and Light as a plain background, and Terrain (dark) as
-relief and labels on a plain background.** `dark_only_labels` is not gated and
+its place labels on a plain background.** (Terrain (dark)'s relief is dropped
+with its base: it is multiplied over that base, and on its own it would turn the
+map pale grey and wash out the zone outlines.) `dark_only_labels` is not gated and
 stays keyless.
 
 Two conditions worth stating plainly. **OpenStreetMap**: CARTO's basemaps are

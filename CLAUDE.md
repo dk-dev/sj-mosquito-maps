@@ -130,7 +130,9 @@ data/.cache/            Raw archived HTML (gitignored, regenerable)
   invalid, CARTO still returns HTTP 200 with "API KEY REQUIRED" drawn across
   the tile. `CARTO_KEY` in `index.html` is restricted to `dk-dev.github.io`, so
   it is refused (403) on `127.0.0.1`: the desktop app and `serve.py` show the
-  bg colour for Dark, Light and Terrain (dark) by design. Never add the key to
+  bg colour for Dark, Light and Terrain (dark) by design. Terrain (dark) keeps
+  only its labels there: its relief multiplies over the gated base, so it is
+  marked `needsBase` and dropped with it — alone it draws as a near-white sheet. Never add the key to
   `dark_only_labels` (it is ungated, and keyed it breaks off-site), never use
   that layer as the probe tile, and never fall back to Esri — this project left
   Esri on purpose. Whether a key works depends on the referer, so confirm it
