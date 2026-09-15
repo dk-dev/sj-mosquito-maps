@@ -304,8 +304,9 @@ so each layer is clamped with `maxNativeZoom` and Leaflet upsamples past that.
 
 Three of the CARTO layers — `dark_all`, `light_all` and `dark_nolabels` — need
 a **CARTO API key**. It lives in `index.html`, public by design, and is
-restricted in CARTO's dashboard to `dk-dev.github.io`, so CARTO refuses it from
-anywhere else. A missing or refused key does not error: CARTO still returns a
+restricted in CARTO's dashboard to `dk-dev.github.io`, so web pages on other
+sites cannot use it. (It is not a secret: outside a browser a referer can be set
+by hand.) A missing or invalid key does not error: CARTO still returns a
 normal tile, stamped "API KEY REQUIRED". The page therefore checks the key from
 its own origin before adding those layers, and wherever it is refused leaves
 them out and shows the basemap's background colour instead. In practice the
