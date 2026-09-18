@@ -106455,8 +106455,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Farmington area",
     "zone_code": "E35",
     "region": "Escalon",
@@ -106510,8 +106510,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:00",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Northwest Stockton",
     "zone_code": "S60",
     "region": "Stockton",
@@ -106645,8 +106645,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural South County",
     "zone_code": "SC2",
     "region": "South County",
@@ -106716,8 +106716,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Southwest Tracy",
     "zone_code": "T32",
     "region": "Tracy",
@@ -106827,8 +106827,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Stockton - Morada area",
     "zone_code": "S59",
     "region": "Stockton",
@@ -106890,8 +106890,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Rural North Escalon",
     "zone_code": "E21",
     "region": "Escalon",
@@ -106945,8 +106945,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Rural North Escalon",
     "zone_code": "E8",
     "region": "Escalon",
@@ -107000,8 +107000,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "South of Linden - Peters area",
     "zone_code": "LN1",
     "region": "Linden",
@@ -107042,6 +107042,364 @@
       [
        -121.0585235,
        37.9873798
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-20|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+   "properties": {
+    "date": "2026-09-20",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "19:30",
+    "time_end": "21:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Rural East Ripon",
+    "zone_code": "R6b",
+    "region": "Ripon",
+    "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+    "area_sq_km": 5.2528,
+    "centroid_lat": 37.747065,
+    "centroid_lon": -121.060768,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+    "map_id": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+    "observed_via": "live",
+    "first_seen": "2026-09-18T16:21:43Z",
+    "superseded_by": "",
+    "operation_id": "2026-09-20|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0874365,
+       37.752352
+      ],
+      [
+       -121.0872649,
+       37.7494678
+      ],
+      [
+       -121.0871362,
+       37.7448528
+      ],
+      [
+       -121.0870933,
+       37.7430542
+      ],
+      [
+       -121.0871577,
+       37.7409502
+      ],
+      [
+       -121.0863637,
+       37.7411538
+      ],
+      [
+       -121.0848187,
+       37.7409502
+      ],
+      [
+       -121.0841321,
+       37.7421719
+      ],
+      [
+       -121.0829304,
+       37.7419004
+      ],
+      [
+       -121.082158,
+       37.7406108
+      ],
+      [
+       -121.0802697,
+       37.7405429
+      ],
+      [
+       -121.0787247,
+       37.7382352
+      ],
+      [
+       -121.0767506,
+       37.7376243
+      ],
+      [
+       -121.0752057,
+       37.7391854
+      ],
+      [
+       -121.0718583,
+       37.7381673
+      ],
+      [
+       -121.0691117,
+       37.7398642
+      ],
+      [
+       -121.0673093,
+       37.7402714
+      ],
+      [
+       -121.0680817,
+       37.7433257
+      ],
+      [
+       -121.0672234,
+       37.7452939
+      ],
+      [
+       -121.0646485,
+       37.7442759
+      ],
+      [
+       -121.0642194,
+       37.7449546
+      ],
+      [
+       -121.0657643,
+       37.7459048
+      ],
+      [
+       -121.0649918,
+       37.7471264
+      ],
+      [
+       -121.0631894,
+       37.7461762
+      ],
+      [
+       -121.0615586,
+       37.7469228
+      ],
+      [
+       -121.0612153,
+       37.7490946
+      ],
+      [
+       -121.0602711,
+       37.7499768
+      ],
+      [
+       -121.0589837,
+       37.7489588
+      ],
+      [
+       -121.0576104,
+       37.7492303
+      ],
+      [
+       -121.0572671,
+       37.7506555
+      ],
+      [
+       -121.0560654,
+       37.7505197
+      ],
+      [
+       -121.0557221,
+       37.7495696
+      ],
+      [
+       -121.0540913,
+       37.7496375
+      ],
+      [
+       -121.0512589,
+       37.7484159
+      ],
+      [
+       -121.0512589,
+       37.7476015
+      ],
+      [
+       -121.0528897,
+       37.7465156
+      ],
+      [
+       -121.0528039,
+       37.7456333
+      ],
+      [
+       -121.0504864,
+       37.7458369
+      ],
+      [
+       -121.050229,
+       37.744751
+      ],
+      [
+       -121.0515164,
+       37.7432578
+      ],
+      [
+       -121.0508298,
+       37.7419004
+      ],
+      [
+       -121.049199,
+       37.7429185
+      ],
+      [
+       -121.047139,
+       37.74319
+      ],
+      [
+       -121.0457658,
+       37.7419683
+      ],
+      [
+       -121.0447358,
+       37.7393212
+      ],
+      [
+       -121.0433625,
+       37.7385067
+      ],
+      [
+       -121.043105,
+       37.7395927
+      ],
+      [
+       -121.0443066,
+       37.7414253
+      ],
+      [
+       -121.0426759,
+       37.7422397
+      ],
+      [
+       -121.0413884,
+       37.7414253
+      ],
+      [
+       -121.0396718,
+       37.7399999
+      ],
+      [
+       -121.0383843,
+       37.7391175
+      ],
+      [
+       -121.0378693,
+       37.7406787
+      ],
+      [
+       -121.0370969,
+       37.7433936
+      ],
+      [
+       -121.0346078,
+       37.7433936
+      ],
+      [
+       -121.0316037,
+       37.742104
+      ],
+      [
+       -121.0323761,
+       37.7530308
+      ],
+      [
+       -121.0383843,
+       37.7529628
+      ],
+      [
+       -121.0415171,
+       37.7529289
+      ],
+      [
+       -121.0511302,
+       37.7528271
+      ],
+      [
+       -121.0739612,
+       37.7524199
+      ],
+      [
+       -121.0874365,
+       37.752352
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-20|10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+   "properties": {
+    "date": "2026-09-20",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "19:30",
+    "time_end": "21:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Rural West Lodi",
+    "zone_code": "L1",
+    "region": "Lodi",
+    "boundary_text": "North to Hwy 12, South to Telephone Cut, East to I-5, West to three miles west of I-5",
+    "area_sq_km": 20.1046,
+    "centroid_lat": 38.092664,
+    "centroid_lon": -121.40989,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+    "map_id": "10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+    "observed_via": "live",
+    "first_seen": "2026-09-18T16:21:43Z",
+    "superseded_by": "",
+    "operation_id": "2026-09-20|10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.3775847,
+       38.0726089
+      ],
+      [
+       -121.3821337,
+       38.0869996
+      ],
+      [
+       -121.3931201,
+       38.1086141
+      ],
+      [
+       -121.3968966,
+       38.112396
+      ],
+      [
+       -121.3984416,
+       38.1160426
+      ],
+      [
+       -121.4268515,
+       38.1162452
+      ],
+      [
+       -121.4290831,
+       38.1156374
+      ],
+      [
+       -121.4338038,
+       38.1154349
+      ],
+      [
+       -121.4343188,
+       38.0725414
+      ],
+      [
+       -121.3775847,
+       38.0726089
       ]
      ]
     ],

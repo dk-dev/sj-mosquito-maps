@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T16:57:26Z",
+  "generated_at": "2026-09-18T16:21:43Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -23506,10 +23506,10 @@
       "products_raw": [
         "Altosid liquid concentrate (SR-20)"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:00",
       "time_start": "03:30"
@@ -23532,10 +23532,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23558,10 +23558,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23584,10 +23584,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23610,10 +23610,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23636,10 +23636,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23662,10 +23662,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -23688,13 +23688,61 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
+      "section": "past",
+      "source": "live",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural West Lodi",
+      "boundary_text": "North to Hwy 12, South to Telephone Cut, East to I-5, West to three miles west of I-5",
+      "date": "2026-09-20",
+      "first_seen": "2026-09-18T16:21:43Z",
+      "id": "2026-09-20|10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+      "method": "aerial",
+      "mid": "10gIMbuxlqr42DMKl4R2gFASKxx5RV0hS",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
       "section": "current",
       "source": "live",
       "status": "scheduled",
       "status_text": null,
       "target": "adult",
-      "time_end": "05:30",
-      "time_start": "03:30"
+      "time_end": "21:00",
+      "time_start": "19:30"
+    },
+    {
+      "area_name": "Rural East Ripon",
+      "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+      "date": "2026-09-20",
+      "first_seen": "2026-09-18T16:21:43Z",
+      "id": "2026-09-20|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "method": "aerial",
+      "mid": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "21:00",
+      "time_start": "19:30"
     }
   ]
 }
