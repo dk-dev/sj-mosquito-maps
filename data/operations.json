@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-22T21:15:53Z",
+  "generated_at": "2026-09-23T21:28:05Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -23712,7 +23712,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -23736,13 +23736,163 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "21:00",
       "time_start": "19:30"
+    },
+    {
+      "area_name": "North Delta area",
+      "boundary_text": "Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+      "date": "2026-09-25",
+      "first_seen": "2026-09-23T21:28:06Z",
+      "id": "2026-09-25|1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "method": "aerial",
+      "mid": "1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "21:00",
+      "time_start": "19:00"
+    },
+    {
+      "area_name": "Delta area",
+      "boundary_text": "Portions of Empire Tract and Terminous Tract",
+      "date": "2026-09-25",
+      "first_seen": "2026-09-23T21:28:06Z",
+      "id": "2026-09-25|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "method": "aerial",
+      "mid": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "21:00",
+      "time_start": "19:00"
+    },
+    {
+      "area_name": "Portion of Southwest Tracy",
+      "boundary_text": "North to W. Schulte Rd, South to W. Central, East to Tracy Blvd., West to Sycamore Pkwy.",
+      "date": "2026-09-25",
+      "first_seen": "2026-09-23T21:28:06Z",
+      "id": "2026-09-25|1ZAm6imfHYl-XE4SJbGGW936NYT6-HeY",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1ZAm6imfHYl-XE4SJbGGW936NYT6-HeY",
+      "method": "ground",
+      "mid": "1ZAm6imfHYl-XE4SJbGGW936NYT6-HeY",
+      "period": "morning",
+      "products": [
+        "VectoBac WDG"
+      ],
+      "products_raw": [
+        "VectoBac WDG"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural South County",
+      "boundary_text": "North to one mile north of E. McMullin Rd., South to Perrin Rd., East to Airport Way, West to S. Hays Rd.",
+      "date": "2026-09-25",
+      "first_seen": "2026-09-23T21:28:06Z",
+      "id": "2026-09-25|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "method": "ground",
+      "mid": "1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Acampo",
+      "boundary_text": "North to E. Jahant Rd., South to Acampo Rd., East to Dustin Rd., West to Kennefick Rd.",
+      "date": "2026-09-25",
+      "first_seen": "2026-09-23T21:28:06Z",
+      "id": "2026-09-25|1fsWafG885o4s2ltqsqSjeMeCinxjfAE",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1fsWafG885o4s2ltqsqSjeMeCinxjfAE",
+      "method": "ground",
+      "mid": "1fsWafG885o4s2ltqsqSjeMeCinxjfAE",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural South County - Division Rd. area",
+      "boundary_text": "North to Division Rd., South to San Joaquin and Stanislaus Rivers, East to Stanislaus River, West to Two Rivers Rd.",
+      "date": "2026-09-25",
+      "first_seen": "2026-09-23T21:28:06Z",
+      "id": "2026-09-25|1zR43QiilWe_TRZveFZagCaWv3wJJuHY1",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1zR43QiilWe_TRZveFZagCaWv3wJJuHY1",
+      "method": "ground",
+      "mid": "1zR43QiilWe_TRZveFZagCaWv3wJJuHY1",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
     }
   ]
 }

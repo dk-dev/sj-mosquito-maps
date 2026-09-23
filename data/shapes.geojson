@@ -14366,6 +14366,49 @@
         "coordinates": [
           [
             [
+              -121.4714244,
+              38.1702659
+            ],
+            [
+              -121.4775183,
+              38.1373291
+            ],
+            [
+              -121.4482501,
+              38.1383443
+            ],
+            [
+              -121.4275648,
+              38.1448897
+            ],
+            [
+              -121.4237025,
+              38.1767435
+            ],
+            [
+              -121.4714244,
+              38.1702659
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "properties": {
+        "area_sq_km": 15.8714,
+        "doc_description": "Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+        "doc_name": "D4(d)- North Delta Area - Brack-Canal Ranch-Terminous",
+        "fetched_at": "2026-09-23T21:28:06Z",
+        "mid": "1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+        "zone_code": "D4(d)"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.2061792,
               38.1534548
             ],
@@ -21953,6 +21996,45 @@
         "fetched_at": "2026-07-27T10:54:07Z",
         "mid": "1fnfPftS2lUz0ihOiis6AGPhYI-JBXLw",
         "zone_code": "M27"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -121.2446368,
+              38.2036022
+            ],
+            [
+              -121.2433551,
+              38.1741472
+            ],
+            [
+              -121.2251055,
+              38.1743392
+            ],
+            [
+              -121.22596,
+              38.20389
+            ],
+            [
+              -121.2446368,
+              38.2036022
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1fsWafG885o4s2ltqsqSjeMeCinxjfAE",
+      "properties": {
+        "area_sq_km": 5.2961,
+        "doc_description": ">North to E. Jahant Rd. > South to Acampo Rd. > East to Dustin Rd. > West to Kennefick Rd.",
+        "doc_name": "L34 - Portion of Acampo",
+        "fetched_at": "2026-09-23T21:28:07Z",
+        "mid": "1fsWafG885o4s2ltqsqSjeMeCinxjfAE",
+        "zone_code": "L34"
       },
       "type": "Feature"
     },
