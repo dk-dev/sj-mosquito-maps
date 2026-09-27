@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T21:32:39Z",
+  "generated_at": "2026-09-27T10:10:21Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -13674,7 +13674,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -13698,7 +13698,7 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -13802,7 +13802,7 @@
         "DeltaGard",
         "Evergreen 525"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -13828,7 +13828,7 @@
         "DeltaGard",
         "Evergreen 525"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -13854,7 +13854,7 @@
         "DeltaGard",
         "Evergreen 525"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -13880,7 +13880,7 @@
         "DeltaGard",
         "Evergreen 525"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -13906,7 +13906,7 @@
         "DeltaGard",
         "Evergreen 525"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -13932,12 +13932,190 @@
         "DeltaGard",
         "Evergreen 525"
       ],
-      "section": "current",
+      "section": "past",
       "source": "wayback:20241012031703",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "West Ripon & Rural South County including SJ River Club",
+      "boundary_text": null,
+      "date": "2024-10-23",
+      "first_seen": "2026-09-27T10:12:06Z",
+      "id": "2024-10-23|14tOWxS1vaMrc3vGP7SQAnFcsaY3hNNBH",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=14tOWxS1vaMrc3vGP7SQAnFcsaY3hNNBH",
+      "method": "aerial",
+      "mid": "14tOWxS1vaMrc3vGP7SQAnFcsaY3hNNBH",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "past",
+      "source": "wayback:20250218130130",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "20:30",
+      "time_start": "18:30"
+    },
+    {
+      "area_name": "Portion of West Manteca",
+      "boundary_text": "North to Louise Ave., South to the southern part of Manteca Golf Course., East Foxfire Dr. and Union Rd., West to N. Airport Way.",
+      "date": "2024-10-24",
+      "first_seen": "2026-09-27T10:12:06Z",
+      "id": "2024-10-24|16BxBJhBkjvFw_bUnoe1MJsOQ_2MtlHQ",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=16BxBJhBkjvFw_bUnoe1MJsOQ_2MtlHQ",
+      "method": "ground",
+      "mid": "16BxBJhBkjvFw_bUnoe1MJsOQ_2MtlHQ",
+      "period": "morning",
+      "products": [
+        "Altosid"
+      ],
+      "products_raw": [
+        "Altosid Liquid larvacide"
+      ],
+      "section": "past",
+      "source": "wayback:20250218130130",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "larval",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of West Manteca",
+      "boundary_text": "North to Louise Ave., South to W. Alameda St., East to N. Main St., West to N. Union Rd.",
+      "date": "2024-10-24",
+      "first_seen": "2026-09-27T10:12:06Z",
+      "id": "2024-10-24|1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+      "method": "ground",
+      "mid": "1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+      "period": "morning",
+      "products": [
+        "DeltaGard",
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "DeltaGard",
+        "Evergreen 525"
+      ],
+      "section": "past",
+      "source": "wayback:20250218130130",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of South Manteca",
+      "boundary_text": "North to E. Woodward Ave., South to Tannehill Dr., East to Pillsbury Rd., West to S. Main St.",
+      "date": "2024-10-24",
+      "first_seen": "2026-09-27T10:12:06Z",
+      "id": "2024-10-24|1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "method": "ground",
+      "mid": "1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+      "period": "morning",
+      "products": [
+        "DeltaGard",
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "DeltaGard",
+        "Evergreen 525"
+      ],
+      "section": "past",
+      "source": "wayback:20250218130130",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of North Ripon",
+      "boundary_text": "North to E. River Rd. and SSJ Canal, South to E. Milgeo Ave., East to S. Murphy Rd., West Fulton Ave.",
+      "date": "2024-10-24",
+      "first_seen": "2026-09-27T10:12:06Z",
+      "id": "2024-10-24|1YOOEm8XqO1MU3sYNQFNHz9FO-R_QVjU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YOOEm8XqO1MU3sYNQFNHz9FO-R_QVjU",
+      "method": "ground",
+      "mid": "1YOOEm8XqO1MU3sYNQFNHz9FO-R_QVjU",
+      "period": "morning",
+      "products": [
+        "DeltaGard",
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "DeltaGard",
+        "Evergreen 525"
+      ],
+      "section": "past",
+      "source": "wayback:20250218130130",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural South County",
+      "boundary_text": null,
+      "date": "2024-10-24",
+      "first_seen": "2026-09-27T10:12:06Z",
+      "id": "2024-10-24|1f0-bFLjD5HOZiYHtBvIRbEUokEX27sXW",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1f0-bFLjD5HOZiYHtBvIRbEUokEX27sXW",
+      "method": "ground",
+      "mid": "1f0-bFLjD5HOZiYHtBvIRbEUokEX27sXW",
+      "period": "morning",
+      "products": [
+        "DeltaGard",
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "DeltaGard",
+        "Evergreen 525"
+      ],
+      "section": "past",
+      "source": "wayback:20250218130130",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of East Manteca",
+      "boundary_text": "North to E. Louise Ave. and Hwy 99, South to E. North St., East to Cottage Ave. and Hwy 99, West to Powers Ave. and Placer Ave.",
+      "date": "2024-10-24",
+      "first_seen": "2026-09-27T10:12:06Z",
+      "id": "2024-10-24|1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+      "method": "ground",
+      "mid": "1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+      "period": "morning",
+      "products": [
+        "DeltaGard",
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "DeltaGard",
+        "Evergreen 525"
+      ],
+      "section": "past",
+      "source": "wayback:20250218130130",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
       "time_start": "03:30"
     },
     {

@@ -62328,6 +62328,687 @@
   },
   {
    "type": "Feature",
+   "id": "2024-10-23|14tOWxS1vaMrc3vGP7SQAnFcsaY3hNNBH",
+   "properties": {
+    "date": "2024-10-23",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "18:30",
+    "time_end": "20:30",
+    "status": "complete",
+    "status_text": "COMPLETE",
+    "area_name": "West Ripon & Rural South County including SJ River Club",
+    "zone_code": "SC14",
+    "region": "South County",
+    "boundary_text": "",
+    "area_sq_km": 38.8553,
+    "centroid_lat": 37.699878,
+    "centroid_lon": -121.212319,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=14tOWxS1vaMrc3vGP7SQAnFcsaY3hNNBH",
+    "map_id": "14tOWxS1vaMrc3vGP7SQAnFcsaY3hNNBH",
+    "observed_via": "wayback:20250218130130",
+    "first_seen": "2026-09-27T10:12:06Z",
+    "superseded_by": "",
+    "operation_id": "2024-10-23|14tOWxS1vaMrc3vGP7SQAnFcsaY3hNNBH"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1475174,
+       37.7396007
+      ],
+      [
+       -121.1646835,
+       37.7396007
+      ],
+      [
+       -121.2836448,
+       37.6821562
+      ],
+      [
+       -121.2445061,
+       37.6585136
+      ],
+      [
+       -121.2197868,
+       37.6714228
+      ],
+      [
+       -121.2223617,
+       37.6821562
+      ],
+      [
+       -121.215152,
+       37.6860959
+      ],
+      [
+       -121.2094871,
+       37.6854166
+      ],
+      [
+       -121.2058822,
+       37.6916654
+      ],
+      [
+       -121.1748115,
+       37.7029391
+      ],
+      [
+       -121.1681167,
+       37.6995436
+      ],
+      [
+       -121.1470024,
+       37.7287399
+      ],
+      [
+       -121.1475174,
+       37.7396007
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2024-10-24|1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+   "properties": {
+    "date": "2024-10-24",
+    "method": "ground",
+    "target": "adult",
+    "products": "DeltaGard; Evergreen 5-25",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "complete",
+    "status_text": "COMPLETE",
+    "area_name": "Portion of East Manteca",
+    "zone_code": "M32",
+    "region": "Manteca",
+    "boundary_text": "North to E. Louise Ave. and Hwy 99, South to E. North St., East to Cottage Ave. and Hwy 99, West to Powers Ave. and Placer Ave.",
+    "area_sq_km": 0.7797,
+    "centroid_lat": 37.804942,
+    "centroid_lon": -121.201118,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+    "map_id": "1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+    "observed_via": "wayback:20250218130130",
+    "first_seen": "2026-09-27T10:12:06Z",
+    "superseded_by": "",
+    "operation_id": "2024-10-24|1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2075669,
+       37.8121054
+      ],
+      [
+       -121.2076528,
+       37.8102237
+      ],
+      [
+       -121.2059576,
+       37.8101897
+      ],
+      [
+       -121.2051637,
+       37.8096812
+      ],
+      [
+       -121.2038118,
+       37.8085284
+      ],
+      [
+       -121.2037904,
+       37.806494
+      ],
+      [
+       -121.2061078,
+       37.8064601
+      ],
+      [
+       -121.2061078,
+       37.8056972
+      ],
+      [
+       -121.2058932,
+       37.8052903
+      ],
+      [
+       -121.2057001,
+       37.8046461
+      ],
+      [
+       -121.2056787,
+       37.8041713
+      ],
+      [
+       -121.2058718,
+       37.803561
+      ],
+      [
+       -121.2059791,
+       37.8030185
+      ],
+      [
+       -121.2058289,
+       37.8025098
+      ],
+      [
+       -121.2054212,
+       37.8016452
+      ],
+      [
+       -121.2053997,
+       37.80095
+      ],
+      [
+       -121.1968166,
+       37.80095
+      ],
+      [
+       -121.1925895,
+       37.8008313
+      ],
+      [
+       -121.1929113,
+       37.8014248
+      ],
+      [
+       -121.1944563,
+       37.8032897
+      ],
+      [
+       -121.2050135,
+       37.8120545
+      ],
+      [
+       -121.2075669,
+       37.8121054
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2024-10-24|1YOOEm8XqO1MU3sYNQFNHz9FO-R_QVjU",
+   "properties": {
+    "date": "2024-10-24",
+    "method": "ground",
+    "target": "adult",
+    "products": "DeltaGard; Evergreen 5-25",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "complete",
+    "status_text": "COMPLETE",
+    "area_name": "Portion of North Ripon",
+    "zone_code": "R16",
+    "region": "Ripon",
+    "boundary_text": "North to E. River Rd. and SSJ Canal, South to E. Milgeo Ave., East to S. Murphy Rd., West Fulton Ave.",
+    "area_sq_km": 1.9818,
+    "centroid_lat": 37.752192,
+    "centroid_lon": -121.124082,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YOOEm8XqO1MU3sYNQFNHz9FO-R_QVjU",
+    "map_id": "1YOOEm8XqO1MU3sYNQFNHz9FO-R_QVjU",
+    "observed_via": "wayback:20250218130130",
+    "first_seen": "2026-09-27T10:12:06Z",
+    "superseded_by": "",
+    "operation_id": "2024-10-24|1YOOEm8XqO1MU3sYNQFNHz9FO-R_QVjU"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1245089,
+       37.7613062
+      ],
+      [
+       -121.1340361,
+       37.7613401
+      ],
+      [
+       -121.1337357,
+       37.7582526
+      ],
+      [
+       -121.1333494,
+       37.7565562
+      ],
+      [
+       -121.1326199,
+       37.7553347
+      ],
+      [
+       -121.1321049,
+       37.7539096
+      ],
+      [
+       -121.1312466,
+       37.7504316
+      ],
+      [
+       -121.1312466,
+       37.7494476
+      ],
+      [
+       -121.1331349,
+       37.7468516
+      ],
+      [
+       -121.1321693,
+       37.7463766
+      ],
+      [
+       -121.1053043,
+       37.7465802
+      ],
+      [
+       -121.1055832,
+       37.7499057
+      ],
+      [
+       -121.1058622,
+       37.749227
+      ],
+      [
+       -121.1062055,
+       37.7487859
+      ],
+      [
+       -121.1068921,
+       37.7485314
+      ],
+      [
+       -121.1074715,
+       37.7484465
+      ],
+      [
+       -121.107965,
+       37.7485823
+      ],
+      [
+       -121.1083298,
+       37.7487859
+      ],
+      [
+       -121.108995,
+       37.7487689
+      ],
+      [
+       -121.1096387,
+       37.7488707
+      ],
+      [
+       -121.1100679,
+       37.7490743
+      ],
+      [
+       -121.1121063,
+       37.7491422
+      ],
+      [
+       -121.1127501,
+       37.7490404
+      ],
+      [
+       -121.1132221,
+       37.7490913
+      ],
+      [
+       -121.1136084,
+       37.7495833
+      ],
+      [
+       -121.1142092,
+       37.7498039
+      ],
+      [
+       -121.1145311,
+       37.7504655
+      ],
+      [
+       -121.1197238,
+       37.7524675
+      ],
+      [
+       -121.1201744,
+       37.7524675
+      ],
+      [
+       -121.1230283,
+       37.7535024
+      ],
+      [
+       -121.1244445,
+       37.753706
+      ],
+      [
+       -121.124187,
+       37.7613062
+      ],
+      [
+       -121.1245089,
+       37.7613062
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2024-10-24|1f0-bFLjD5HOZiYHtBvIRbEUokEX27sXW",
+   "properties": {
+    "date": "2024-10-24",
+    "method": "ground",
+    "target": "adult",
+    "products": "DeltaGard; Evergreen 5-25",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "complete",
+    "status_text": "COMPLETE",
+    "area_name": "Portion of Rural South County",
+    "zone_code": "SC6",
+    "region": "South County",
+    "boundary_text": "",
+    "area_sq_km": 9.4377,
+    "centroid_lat": 37.731836,
+    "centroid_lon": -121.264245,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1f0-bFLjD5HOZiYHtBvIRbEUokEX27sXW",
+    "map_id": "1f0-bFLjD5HOZiYHtBvIRbEUokEX27sXW",
+    "observed_via": "wayback:20250218130130",
+    "first_seen": "2026-09-27T10:12:06Z",
+    "superseded_by": "",
+    "operation_id": "2024-10-24|1f0-bFLjD5HOZiYHtBvIRbEUokEX27sXW"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2745396,
+       37.7101098
+      ],
+      [
+       -121.2529961,
+       37.7099739
+      ],
+      [
+       -121.2532107,
+       37.7533846
+      ],
+      [
+       -121.2759988,
+       37.7532489
+      ],
+      [
+       -121.2747971,
+       37.7096344
+      ],
+      [
+       -121.2745396,
+       37.7101098
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2024-10-24|1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+   "properties": {
+    "date": "2024-10-24",
+    "method": "ground",
+    "target": "adult",
+    "products": "DeltaGard; Evergreen 5-25",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "complete",
+    "status_text": "COMPLETE",
+    "area_name": "Portion of South Manteca",
+    "zone_code": "M25",
+    "region": "Manteca",
+    "boundary_text": "North to E. Woodward Ave., South to Tannehill Dr., East to Pillsbury Rd., West to S. Main St.",
+    "area_sq_km": 1.2471,
+    "centroid_lat": 37.772554,
+    "centroid_lon": -121.20643,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+    "map_id": "1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA",
+    "observed_via": "wayback:20250218130130",
+    "first_seen": "2026-09-27T10:12:06Z",
+    "superseded_by": "",
+    "operation_id": "2024-10-24|1VakL58Y9x5GUM36bEuYm8HwbDgCBHaA"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2160113,
+       37.776044
+      ],
+      [
+       -121.2160542,
+       37.7700737
+      ],
+      [
+       -121.2153676,
+       37.7700737
+      ],
+      [
+       -121.214638,
+       37.7699719
+      ],
+      [
+       -121.2137368,
+       37.7697005
+      ],
+      [
+       -121.2122777,
+       37.7693952
+      ],
+      [
+       -121.211076,
+       37.7692595
+      ],
+      [
+       -121.2096169,
+       37.7693273
+      ],
+      [
+       -121.2082865,
+       37.7692595
+      ],
+      [
+       -121.2063554,
+       37.7691916
+      ],
+      [
+       -121.2056687,
+       37.7690559
+      ],
+      [
+       -121.2045958,
+       37.7686149
+      ],
+      [
+       -121.2026217,
+       37.768581
+      ],
+      [
+       -121.2008622,
+       37.7686828
+      ],
+      [
+       -121.199446,
+       37.769022
+      ],
+      [
+       -121.1972573,
+       37.7691238
+      ],
+      [
+       -121.1973431,
+       37.7759083
+      ],
+      [
+       -121.2160113,
+       37.776044
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2024-10-24|16BxBJhBkjvFw_bUnoe1MJsOQ_2MtlHQ",
+   "properties": {
+    "date": "2024-10-24",
+    "method": "ground",
+    "target": "larval",
+    "products": "Altosid",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "complete",
+    "status_text": "COMPLETE",
+    "area_name": "Portion of West Manteca",
+    "zone_code": "M23B",
+    "region": "Manteca",
+    "boundary_text": "North to Louise Ave., South to the southern part of Manteca Golf Course., East Foxfire Dr. and Union Rd., West to N. Airport Way.",
+    "area_sq_km": 1.5707,
+    "centroid_lat": 37.806061,
+    "centroid_lon": -121.245227,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=16BxBJhBkjvFw_bUnoe1MJsOQ_2MtlHQ",
+    "map_id": "16BxBJhBkjvFw_bUnoe1MJsOQ_2MtlHQ",
+    "observed_via": "wayback:20250218130130",
+    "first_seen": "2026-09-27T10:12:06Z",
+    "superseded_by": "",
+    "operation_id": "2024-10-24|16BxBJhBkjvFw_bUnoe1MJsOQ_2MtlHQ"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2531762,
+       37.8120691
+      ],
+      [
+       -121.2534552,
+       37.8119505
+      ],
+      [
+       -121.2528114,
+       37.8016089
+      ],
+      [
+       -121.2481766,
+       37.8014394
+      ],
+      [
+       -121.2401085,
+       37.8011681
+      ],
+      [
+       -121.2350874,
+       37.8009985
+      ],
+      [
+       -121.2346153,
+       37.8008629
+      ],
+      [
+       -121.2346154,
+       37.8041859
+      ],
+      [
+       -121.2447648,
+       37.8122047
+      ],
+      [
+       -121.2531762,
+       37.8120691
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2024-10-24|1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+   "properties": {
+    "date": "2024-10-24",
+    "method": "ground",
+    "target": "adult",
+    "products": "DeltaGard; Evergreen 5-25",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "complete",
+    "status_text": "COMPLETE",
+    "area_name": "Portion of West Manteca",
+    "zone_code": "M31",
+    "region": "Manteca",
+    "boundary_text": "North to Louise Ave., South to W. Alameda St., East to N. Main St., West to N. Union Rd.",
+    "area_sq_km": 1.3786,
+    "centroid_lat": 37.808372,
+    "centroid_lon": -121.226022,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+    "map_id": "1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+    "observed_via": "wayback:20250218130130",
+    "first_seen": "2026-09-27T10:12:06Z",
+    "superseded_by": "",
+    "operation_id": "2024-10-24|1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2356642,
+       37.8121279
+      ],
+      [
+       -121.2354926,
+       37.8061944
+      ],
+      [
+       -121.2327889,
+       37.804533
+      ],
+      [
+       -121.230214,
+       37.804533
+      ],
+      [
+       -121.2167171,
+       37.8044312
+      ],
+      [
+       -121.2169102,
+       37.8121618
+      ],
+      [
+       -121.2356642,
+       37.8121279
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
    "id": "2025-06-23|1VQCdEsr5wEYNH4He8NAKNOc2Tjdrns2O",
    "properties": {
     "date": "2025-06-23",

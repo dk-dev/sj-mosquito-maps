@@ -11421,6 +11421,53 @@
         "coordinates": [
           [
             [
+              -121.2356642,
+              37.8121279
+            ],
+            [
+              -121.2354926,
+              37.8061944
+            ],
+            [
+              -121.2327889,
+              37.804533
+            ],
+            [
+              -121.230214,
+              37.804533
+            ],
+            [
+              -121.2167171,
+              37.8044312
+            ],
+            [
+              -121.2169102,
+              37.8121618
+            ],
+            [
+              -121.2356642,
+              37.8121279
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+      "properties": {
+        "area_sq_km": 1.3786,
+        "doc_description": ">North to Louise Ave., >South to W. Alameda St., >East to N. Main St., >West to N. Union Rd.",
+        "doc_name": "M31- Portion of West Manteca",
+        "fetched_at": "2026-09-27T10:12:19Z",
+        "mid": "1P6MndQuO3tNRx5rhGyxmZ5mPzsae5_Q",
+        "zone_code": "M31"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.4771995,
               37.7808329
             ],
@@ -24862,6 +24909,113 @@
         "fetched_at": "2026-07-27T10:54:26Z",
         "mid": "1noHqDetJPH9IdUhmKzfmMCFgi9S8Dm4b",
         "zone_code": "L18"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              -121.2075669,
+              37.8121054
+            ],
+            [
+              -121.2076528,
+              37.8102237
+            ],
+            [
+              -121.2059576,
+              37.8101897
+            ],
+            [
+              -121.2051637,
+              37.8096812
+            ],
+            [
+              -121.2038118,
+              37.8085284
+            ],
+            [
+              -121.2037904,
+              37.806494
+            ],
+            [
+              -121.2061078,
+              37.8064601
+            ],
+            [
+              -121.2061078,
+              37.8056972
+            ],
+            [
+              -121.2058932,
+              37.8052903
+            ],
+            [
+              -121.2057001,
+              37.8046461
+            ],
+            [
+              -121.2056787,
+              37.8041713
+            ],
+            [
+              -121.2058718,
+              37.803561
+            ],
+            [
+              -121.2059791,
+              37.8030185
+            ],
+            [
+              -121.2058289,
+              37.8025098
+            ],
+            [
+              -121.2054212,
+              37.8016452
+            ],
+            [
+              -121.2053997,
+              37.80095
+            ],
+            [
+              -121.1968166,
+              37.80095
+            ],
+            [
+              -121.1925895,
+              37.8008313
+            ],
+            [
+              -121.1929113,
+              37.8014248
+            ],
+            [
+              -121.1944563,
+              37.8032897
+            ],
+            [
+              -121.2050135,
+              37.8120545
+            ],
+            [
+              -121.2075669,
+              37.8121054
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+      "properties": {
+        "area_sq_km": 0.7797,
+        "doc_description": ">North to E. Louise Ave. and Hwy 99, >South to E. North St., >East to Cottage Ave. and Hwy 99, >West to Powers Ave. and Placer Ave.",
+        "doc_name": "M32- Portion of East Manteca",
+        "fetched_at": "2026-09-27T10:12:19Z",
+        "mid": "1nqcKrYFcj-iabcS-pzkdMEHtyFAvS50",
+        "zone_code": "M32"
       },
       "type": "Feature"
     },
