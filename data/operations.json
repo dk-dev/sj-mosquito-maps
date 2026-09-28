@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T10:10:21Z",
+  "generated_at": "2026-09-28T23:14:10Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24071,6 +24071,54 @@
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
+    },
+    {
+      "area_name": "North Delta area",
+      "boundary_text": "Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+      "date": "2026-09-30",
+      "first_seen": "2026-09-28T23:14:11Z",
+      "id": "2026-09-30|1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "method": "aerial",
+      "mid": "1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "postponed",
+      "status_text": "RESCHEDULED FOR WEDNESDAY, SEPTEMBER 30, 2026",
+      "target": "adult",
+      "time_end": "21:00",
+      "time_start": "19:00"
+    },
+    {
+      "area_name": "Delta area",
+      "boundary_text": "Portions of Empire Tract and Terminous Tract",
+      "date": "2026-09-30",
+      "first_seen": "2026-09-28T23:14:11Z",
+      "id": "2026-09-30|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "method": "aerial",
+      "mid": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "postponed",
+      "status_text": "RESCHEDULED FOR WEDNESDAY, SEPTEMBER 30, 2026",
+      "target": "adult",
+      "time_end": "21:00",
+      "time_start": "19:00"
     }
   ]
 }

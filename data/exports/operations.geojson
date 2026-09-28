@@ -108780,6 +108780,120 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-30|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+   "properties": {
+    "date": "2026-09-30",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "19:00",
+    "time_end": "21:00",
+    "status": "postponed",
+    "status_text": "RESCHEDULED FOR WEDNESDAY, SEPTEMBER 30, 2026",
+    "area_name": "Delta area",
+    "zone_code": "D29",
+    "region": "Delta",
+    "boundary_text": "Portions of Empire Tract and Terminous Tract",
+    "area_sq_km": 12.7919,
+    "centroid_lat": 38.080455,
+    "centroid_lon": -121.480218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "map_id": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "observed_via": "live",
+    "first_seen": "2026-09-28T23:14:11Z",
+    "superseded_by": "",
+    "operation_id": "2026-09-30|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4996014,
+       38.0980078
+      ],
+      [
+       -121.4983998,
+       38.0632814
+      ],
+      [
+       -121.4614926,
+       38.0623353
+      ],
+      [
+       -121.4616643,
+       38.0978727
+      ],
+      [
+       -121.4996014,
+       38.0980078
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-09-30|1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+   "properties": {
+    "date": "2026-09-30",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "19:00",
+    "time_end": "21:00",
+    "status": "postponed",
+    "status_text": "RESCHEDULED FOR WEDNESDAY, SEPTEMBER 30, 2026",
+    "area_name": "North Delta area",
+    "zone_code": "D4(d)",
+    "region": "Delta",
+    "boundary_text": "Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+    "area_sq_km": 15.8714,
+    "centroid_lat": 38.156289,
+    "centroid_lon": -121.450218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+    "map_id": "1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+    "observed_via": "live",
+    "first_seen": "2026-09-28T23:14:11Z",
+    "superseded_by": "",
+    "operation_id": "2026-09-30|1V4C61pI9QtgKTAd0mzGx1kUroEejZqc"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4714244,
+       38.1702659
+      ],
+      [
+       -121.4775183,
+       38.1373291
+      ],
+      [
+       -121.4482501,
+       38.1383443
+      ],
+      [
+       -121.4275648,
+       38.1448897
+      ],
+      [
+       -121.4237025,
+       38.1767435
+      ],
+      [
+       -121.4714244,
+       38.1702659
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }
