@@ -108906,8 +108906,8 @@
     "period": "morning",
     "time_start": "04:00",
     "time_end": "06:00",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Northwest Tracy",
     "zone_code": "T21",
     "region": "Tracy",
@@ -108964,6 +108964,458 @@
       [
        -121.4905146,
        37.7578498
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-02|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+   "properties": {
+    "date": "2026-10-02",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Farmington area",
+    "zone_code": "E35",
+    "region": "Escalon",
+    "boundary_text": "",
+    "area_sq_km": 10.0923,
+    "centroid_lat": 37.930079,
+    "centroid_lon": -120.997812,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+    "map_id": "1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+    "observed_via": "live",
+    "first_seen": "2026-09-30T22:12:54Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-02|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0152209,
+       37.9154609
+      ],
+      [
+       -120.9796012,
+       37.9157317
+      ],
+      [
+       -120.9802449,
+       37.9446395
+      ],
+      [
+       -121.016165,
+       37.9444026
+      ],
+      [
+       -121.0152209,
+       37.9154609
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-02|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+   "properties": {
+    "date": "2026-10-02",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Rural East Ripon",
+    "zone_code": "R6b",
+    "region": "Ripon",
+    "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+    "area_sq_km": 5.2528,
+    "centroid_lat": 37.747065,
+    "centroid_lon": -121.060768,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+    "map_id": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+    "observed_via": "live",
+    "first_seen": "2026-09-30T22:12:54Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-02|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0874365,
+       37.752352
+      ],
+      [
+       -121.0872649,
+       37.7494678
+      ],
+      [
+       -121.0871362,
+       37.7448528
+      ],
+      [
+       -121.0870933,
+       37.7430542
+      ],
+      [
+       -121.0871577,
+       37.7409502
+      ],
+      [
+       -121.0863637,
+       37.7411538
+      ],
+      [
+       -121.0848187,
+       37.7409502
+      ],
+      [
+       -121.0841321,
+       37.7421719
+      ],
+      [
+       -121.0829304,
+       37.7419004
+      ],
+      [
+       -121.082158,
+       37.7406108
+      ],
+      [
+       -121.0802697,
+       37.7405429
+      ],
+      [
+       -121.0787247,
+       37.7382352
+      ],
+      [
+       -121.0767506,
+       37.7376243
+      ],
+      [
+       -121.0752057,
+       37.7391854
+      ],
+      [
+       -121.0718583,
+       37.7381673
+      ],
+      [
+       -121.0691117,
+       37.7398642
+      ],
+      [
+       -121.0673093,
+       37.7402714
+      ],
+      [
+       -121.0680817,
+       37.7433257
+      ],
+      [
+       -121.0672234,
+       37.7452939
+      ],
+      [
+       -121.0646485,
+       37.7442759
+      ],
+      [
+       -121.0642194,
+       37.7449546
+      ],
+      [
+       -121.0657643,
+       37.7459048
+      ],
+      [
+       -121.0649918,
+       37.7471264
+      ],
+      [
+       -121.0631894,
+       37.7461762
+      ],
+      [
+       -121.0615586,
+       37.7469228
+      ],
+      [
+       -121.0612153,
+       37.7490946
+      ],
+      [
+       -121.0602711,
+       37.7499768
+      ],
+      [
+       -121.0589837,
+       37.7489588
+      ],
+      [
+       -121.0576104,
+       37.7492303
+      ],
+      [
+       -121.0572671,
+       37.7506555
+      ],
+      [
+       -121.0560654,
+       37.7505197
+      ],
+      [
+       -121.0557221,
+       37.7495696
+      ],
+      [
+       -121.0540913,
+       37.7496375
+      ],
+      [
+       -121.0512589,
+       37.7484159
+      ],
+      [
+       -121.0512589,
+       37.7476015
+      ],
+      [
+       -121.0528897,
+       37.7465156
+      ],
+      [
+       -121.0528039,
+       37.7456333
+      ],
+      [
+       -121.0504864,
+       37.7458369
+      ],
+      [
+       -121.050229,
+       37.744751
+      ],
+      [
+       -121.0515164,
+       37.7432578
+      ],
+      [
+       -121.0508298,
+       37.7419004
+      ],
+      [
+       -121.049199,
+       37.7429185
+      ],
+      [
+       -121.047139,
+       37.74319
+      ],
+      [
+       -121.0457658,
+       37.7419683
+      ],
+      [
+       -121.0447358,
+       37.7393212
+      ],
+      [
+       -121.0433625,
+       37.7385067
+      ],
+      [
+       -121.043105,
+       37.7395927
+      ],
+      [
+       -121.0443066,
+       37.7414253
+      ],
+      [
+       -121.0426759,
+       37.7422397
+      ],
+      [
+       -121.0413884,
+       37.7414253
+      ],
+      [
+       -121.0396718,
+       37.7399999
+      ],
+      [
+       -121.0383843,
+       37.7391175
+      ],
+      [
+       -121.0378693,
+       37.7406787
+      ],
+      [
+       -121.0370969,
+       37.7433936
+      ],
+      [
+       -121.0346078,
+       37.7433936
+      ],
+      [
+       -121.0316037,
+       37.742104
+      ],
+      [
+       -121.0323761,
+       37.7530308
+      ],
+      [
+       -121.0383843,
+       37.7529628
+      ],
+      [
+       -121.0415171,
+       37.7529289
+      ],
+      [
+       -121.0511302,
+       37.7528271
+      ],
+      [
+       -121.0739612,
+       37.7524199
+      ],
+      [
+       -121.0874365,
+       37.752352
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-02|17IuM-w_PCk035PUSWuG1KnD7ACJ5KN_3",
+   "properties": {
+    "date": "2026-10-02",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Rural North Escalon",
+    "zone_code": "E21",
+    "region": "Escalon",
+    "boundary_text": "North to 1/2 mile north of Skiff Rd., South to 1/2 mile south of Skiff Rd., East to Escalon Bellota Rd., West to Biederman Way",
+    "area_sq_km": 4.9576,
+    "centroid_lat": 37.871587,
+    "centroid_lon": -121.015321,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=17IuM-w_PCk035PUSWuG1KnD7ACJ5KN_3",
+    "map_id": "17IuM-w_PCk035PUSWuG1KnD7ACJ5KN_3",
+    "observed_via": "live",
+    "first_seen": "2026-09-30T22:12:54Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-02|17IuM-w_PCk035PUSWuG1KnD7ACJ5KN_3"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -120.9985051,
+       37.8638329
+      ],
+      [
+       -120.9991704,
+       37.8793146
+      ],
+      [
+       -121.0322152,
+       37.8792299
+      ],
+      [
+       -121.03155,
+       37.8639684
+      ],
+      [
+       -120.9985051,
+       37.8638329
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-02|1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+   "properties": {
+    "date": "2026-10-02",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "06:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "South of Linden - Peters area",
+    "zone_code": "LN1",
+    "region": "Linden",
+    "boundary_text": "North to Milton Rd., South to Dietrich Rd., East to S. Hewitt Rd., West to Dietrich Rd.",
+    "area_sq_km": 6.8929,
+    "centroid_lat": 37.969293,
+    "centroid_lon": -121.048624,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+    "map_id": "1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+    "observed_via": "live",
+    "first_seen": "2026-09-30T22:12:54Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-02|1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.0585235,
+       37.9873798
+      ],
+      [
+       -121.0576652,
+       37.9505029
+      ],
+      [
+       -121.0384391,
+       37.9509766
+      ],
+      [
+       -121.0398553,
+       37.9882254
+      ],
+      [
+       -121.0586952,
+       37.9878195
+      ],
+      [
+       -121.0585235,
+       37.9873798
       ]
      ]
     ],

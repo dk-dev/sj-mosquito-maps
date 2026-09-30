@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-29T22:12:27Z",
+  "generated_at": "2026-09-30T22:12:52Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24090,10 +24090,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "04:00"
@@ -24145,6 +24145,110 @@
       "target": "adult",
       "time_end": "21:00",
       "time_start": "19:00"
+    },
+    {
+      "area_name": "Rural North Escalon",
+      "boundary_text": "North to 1/2 mile north of Skiff Rd., South to 1/2 mile south of Skiff Rd., East to Escalon Bellota Rd., West to Biederman Way",
+      "date": "2026-10-02",
+      "first_seen": "2026-09-30T22:12:54Z",
+      "id": "2026-10-02|17IuM-w_PCk035PUSWuG1KnD7ACJ5KN_3",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=17IuM-w_PCk035PUSWuG1KnD7ACJ5KN_3",
+      "method": "ground",
+      "mid": "17IuM-w_PCk035PUSWuG1KnD7ACJ5KN_3",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Rural East Ripon",
+      "boundary_text": "North to .6 mile south of Greenleaf Rd., South to Stanislaus River, East to Sexton Rd., West to Wagner Rd.",
+      "date": "2026-10-02",
+      "first_seen": "2026-09-30T22:12:54Z",
+      "id": "2026-10-02|1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "method": "ground",
+      "mid": "1LbMmKcckTL0-yCdEYBd5mEiHab4yhFg",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "South of Linden - Peters area",
+      "boundary_text": "North to Milton Rd., South to Dietrich Rd., East to S. Hewitt Rd., West to Dietrich Rd.",
+      "date": "2026-10-02",
+      "first_seen": "2026-09-30T22:12:54Z",
+      "id": "2026-10-02|1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+      "method": "ground",
+      "mid": "1R_RiNEfMd4G8SeShcRgdl-KMMcDs82Q4",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Farmington area",
+      "boundary_text": null,
+      "date": "2026-10-02",
+      "first_seen": "2026-09-30T22:12:54Z",
+      "id": "2026-10-02|1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "method": "ground",
+      "mid": "1zDW-f0OOPngjsPgBrDDq67vgWi5bX6T6",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "06:00",
+      "time_start": "03:30"
     }
   ]
 }
