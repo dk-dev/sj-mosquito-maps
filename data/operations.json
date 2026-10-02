@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T22:12:52Z",
+  "generated_at": "2026-10-02T22:10:49Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24114,10 +24114,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "postponed",
-      "status_text": "RESCHEDULED FOR WEDNESDAY, SEPTEMBER 30, 2026",
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "21:00",
       "time_start": "19:00"
@@ -24138,10 +24138,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "postponed",
-      "status_text": "RESCHEDULED FOR WEDNESDAY, SEPTEMBER 30, 2026",
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "21:00",
       "time_start": "19:00"
@@ -24166,8 +24166,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -24192,8 +24192,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -24218,8 +24218,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
@@ -24244,8 +24244,8 @@
       ],
       "section": "current",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
       "time_start": "03:30"
