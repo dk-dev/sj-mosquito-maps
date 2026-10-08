@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T22:10:49Z",
+  "generated_at": "2026-10-08T23:18:39Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24164,7 +24164,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -24190,7 +24190,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -24216,7 +24216,7 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -24242,12 +24242,140 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "06:00",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of East Manteca",
+      "boundary_text": "North to Southland Rd., South to E. Yosemite Ave., East to S. Austin Rd., West to Cottage Ave. and Hwy. 99",
+      "date": "2026-10-09",
+      "first_seen": "2026-10-08T23:18:40Z",
+      "id": "2026-10-09|11uHnTTjd1bai9WEuM5kOHPCEqWFKXUM",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=11uHnTTjd1bai9WEuM5kOHPCEqWFKXUM",
+      "method": "ground",
+      "mid": "11uHnTTjd1bai9WEuM5kOHPCEqWFKXUM",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural Southeast Lodi",
+      "boundary_text": "North to E. Kettleman Ln., South to Tokay Colony Rd., East to Jack Tone Rd., West to Hibbard Rd.",
+      "date": "2026-10-09",
+      "first_seen": "2026-10-08T23:18:40Z",
+      "id": "2026-10-09|1DUWhMyDnPVNar92IhLuoouhPFlUDXvpK",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1DUWhMyDnPVNar92IhLuoouhPFlUDXvpK",
+      "method": "ground",
+      "mid": "1DUWhMyDnPVNar92IhLuoouhPFlUDXvpK",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of South Manteca",
+      "boundary_text": "North to Wawona St., South to Mission Ridge Dr., East to Main St., West to Union Rd.",
+      "date": "2026-10-09",
+      "first_seen": "2026-10-08T23:18:40Z",
+      "id": "2026-10-09|1H944sZAeWQ1yzJc9Hw_HoHCmO70E0lU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1H944sZAeWQ1yzJc9Hw_HoHCmO70E0lU",
+      "method": "ground",
+      "mid": "1H944sZAeWQ1yzJc9Hw_HoHCmO70E0lU",
+      "period": "morning",
+      "products": [
+        "Altosid"
+      ],
+      "products_raw": [
+        "Altosid liquid concentrate (SR-20)"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "larval",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Southwest Stockton - Weston Ranch area",
+      "boundary_text": "North to Decarli St., Lloyd Thayer Cir., Carrie St., South to William Moss Blvd., East to Manthey Rd., West to Carolyn Weston Blvd",
+      "date": "2026-10-09",
+      "first_seen": "2026-10-08T23:18:40Z",
+      "id": "2026-10-09|1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "method": "ground",
+      "mid": "1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Portion of Rural South County",
+      "boundary_text": "North to one mile north of E. McMullin Rd., South to Perrin Rd., East to Airport Way, West to S. Hays Rd.",
+      "date": "2026-10-09",
+      "first_seen": "2026-10-08T23:18:40Z",
+      "id": "2026-10-09|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "method": "ground",
+      "mid": "1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+      "period": "morning",
+      "products": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "products_raw": [
+        "Evergreen 5-25",
+        "DeltaGard"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "05:30",
       "time_start": "03:30"
     }
   ]

@@ -109421,6 +109421,541 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-09|11uHnTTjd1bai9WEuM5kOHPCEqWFKXUM",
+   "properties": {
+    "date": "2026-10-09",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of East Manteca",
+    "zone_code": "M30B",
+    "region": "Manteca",
+    "boundary_text": "North to Southland Rd., South to E. Yosemite Ave., East to S. Austin Rd., West to Cottage Ave. and Hwy. 99",
+    "area_sq_km": 3.5296,
+    "centroid_lat": 37.809384,
+    "centroid_lon": -121.188689,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=11uHnTTjd1bai9WEuM5kOHPCEqWFKXUM",
+    "map_id": "11uHnTTjd1bai9WEuM5kOHPCEqWFKXUM",
+    "observed_via": "live",
+    "first_seen": "2026-10-08T23:18:40Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-09|11uHnTTjd1bai9WEuM5kOHPCEqWFKXUM"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1904105,
+       37.7972833
+      ],
+      [
+       -121.1797246,
+       37.797402
+      ],
+      [
+       -121.1806688,
+       37.8194239
+      ],
+      [
+       -121.1993369,
+       37.819373
+      ],
+      [
+       -121.198822,
+       37.8075746
+      ],
+      [
+       -121.1957324,
+       37.8050317
+      ],
+      [
+       -121.1937583,
+       37.803438
+      ],
+      [
+       -121.1922562,
+       37.8015052
+      ],
+      [
+       -121.1914409,
+       37.7994028
+      ],
+      [
+       -121.1904105,
+       37.7972833
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-09|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+   "properties": {
+    "date": "2026-10-09",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural South County",
+    "zone_code": "SC1",
+    "region": "South County",
+    "boundary_text": "North to one mile north of E. McMullin Rd., South to Perrin Rd., East to Airport Way, West to S. Hays Rd.",
+    "area_sq_km": 4.7947,
+    "centroid_lat": 37.735918,
+    "centroid_lon": -121.263435,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+    "map_id": "1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C",
+    "observed_via": "live",
+    "first_seen": "2026-10-08T23:18:40Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-09|1dcvrXM7RFuFpl8saR2Bwl08cXfA3CU-C"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2520919,
+       37.7466492
+      ],
+      [
+       -121.2750516,
+       37.7465813
+      ],
+      [
+       -121.2751803,
+       37.7290692
+      ],
+      [
+       -121.274322,
+       37.7280169
+      ],
+      [
+       -121.27282,
+       37.7272702
+      ],
+      [
+       -121.2711463,
+       37.7249281
+      ],
+      [
+       -121.2522206,
+       37.7247923
+      ],
+      [
+       -121.2520919,
+       37.7466492
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-09|1DUWhMyDnPVNar92IhLuoouhPFlUDXvpK",
+   "properties": {
+    "date": "2026-10-09",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural Southeast Lodi",
+    "zone_code": "L16",
+    "region": "Lodi",
+    "boundary_text": "North to E. Kettleman Ln., South to Tokay Colony Rd., East to Jack Tone Rd., West to Hibbard Rd.",
+    "area_sq_km": 5.4487,
+    "centroid_lat": 38.100392,
+    "centroid_lon": -121.158371,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1DUWhMyDnPVNar92IhLuoouhPFlUDXvpK",
+    "map_id": "1DUWhMyDnPVNar92IhLuoouhPFlUDXvpK",
+    "observed_via": "live",
+    "first_seen": "2026-10-08T23:18:40Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-09|1DUWhMyDnPVNar92IhLuoouhPFlUDXvpK"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1670132,
+       38.0833849
+      ],
+      [
+       -121.1499115,
+       38.084145
+      ],
+      [
+       -121.150008,
+       38.1013935
+      ],
+      [
+       -121.1504479,
+       38.1186419
+      ],
+      [
+       -121.1555334,
+       38.1175447
+      ],
+      [
+       -121.1665196,
+       38.1164474
+      ],
+      [
+       -121.1668416,
+       38.0946494
+      ],
+      [
+       -121.1670132,
+       38.0833849
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-09|1H944sZAeWQ1yzJc9Hw_HoHCmO70E0lU",
+   "properties": {
+    "date": "2026-10-09",
+    "method": "ground",
+    "target": "larval",
+    "products": "Altosid",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of South Manteca",
+    "zone_code": "M39",
+    "region": "Manteca",
+    "boundary_text": "North to Wawona St., South to Mission Ridge Dr., East to Main St., West to Union Rd.",
+    "area_sq_km": 0.82,
+    "centroid_lat": 37.787028,
+    "centroid_lon": -121.225833,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1H944sZAeWQ1yzJc9Hw_HoHCmO70E0lU",
+    "map_id": "1H944sZAeWQ1yzJc9Hw_HoHCmO70E0lU",
+    "observed_via": "live",
+    "first_seen": "2026-10-08T23:18:40Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-09|1H944sZAeWQ1yzJc9Hw_HoHCmO70E0lU"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2160461,
+       37.7893655
+      ],
+      [
+       -121.2160461,
+       37.7894898
+      ],
+      [
+       -121.2289636,
+       37.7894672
+      ],
+      [
+       -121.2319677,
+       37.7899307
+      ],
+      [
+       -121.2344854,
+       37.7898742
+      ],
+      [
+       -121.2343423,
+       37.7877488
+      ],
+      [
+       -121.2332927,
+       37.7876287
+      ],
+      [
+       -121.2325864,
+       37.7874069
+      ],
+      [
+       -121.2330191,
+       37.7872175
+      ],
+      [
+       -121.2330119,
+       37.7847642
+      ],
+      [
+       -121.2312095,
+       37.7848434
+      ],
+      [
+       -121.2305479,
+       37.7842216
+      ],
+      [
+       -121.2296717,
+       37.7838032
+      ],
+      [
+       -121.2215464,
+       37.7838202
+      ],
+      [
+       -121.2208204,
+       37.7841282
+      ],
+      [
+       -121.220275,
+       37.7845112
+      ],
+      [
+       -121.2200086,
+       37.7848942
+      ],
+      [
+       -121.2197296,
+       37.7859457
+      ],
+      [
+       -121.2195902,
+       37.7865929
+      ],
+      [
+       -121.2189787,
+       37.7871214
+      ],
+      [
+       -121.2184744,
+       37.7873305
+      ],
+      [
+       -121.2177985,
+       37.7875397
+      ],
+      [
+       -121.2160175,
+       37.787534
+      ],
+      [
+       -121.2160461,
+       37.7893655
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-09|1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+   "properties": {
+    "date": "2026-10-09",
+    "method": "ground",
+    "target": "adult",
+    "products": "Evergreen 5-25; DeltaGard",
+    "period": "morning",
+    "time_start": "03:30",
+    "time_end": "05:30",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Southwest Stockton - Weston Ranch area",
+    "zone_code": "S55a",
+    "region": "Stockton",
+    "boundary_text": "North to Decarli St., Lloyd Thayer Cir., Carrie St., South to William Moss Blvd., East to Manthey Rd., West to Carolyn Weston Blvd",
+    "area_sq_km": 1.9604,
+    "centroid_lat": 37.910049,
+    "centroid_lon": -121.305008,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+    "map_id": "1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM",
+    "observed_via": "live",
+    "first_seen": "2026-10-08T23:18:40Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-09|1TW296wXbCz-3fNTa3Oxv3T5GkiQjaQM"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.2897334,
+       37.9073547
+      ],
+      [
+       -121.2907526,
+       37.9091662
+      ],
+      [
+       -121.2914178,
+       37.9098265
+      ],
+      [
+       -121.2930915,
+       37.9107576
+      ],
+      [
+       -121.2934777,
+       37.9111639
+      ],
+      [
+       -121.2942502,
+       37.9121119
+      ],
+      [
+       -121.2945292,
+       37.9125013
+      ],
+      [
+       -121.2963102,
+       37.9116548
+      ],
+      [
+       -121.2972972,
+       37.9115025
+      ],
+      [
+       -121.2975762,
+       37.9123997
+      ],
+      [
+       -121.2982843,
+       37.9126537
+      ],
+      [
+       -121.2997219,
+       37.91328
+      ],
+      [
+       -121.3019321,
+       37.9149729
+      ],
+      [
+       -121.3032839,
+       37.9150068
+      ],
+      [
+       -121.3040564,
+       37.9149051
+      ],
+      [
+       -121.3081334,
+       37.9157347
+      ],
+      [
+       -121.3126395,
+       37.9157347
+      ],
+      [
+       -121.3126019,
+       37.9134601
+      ],
+      [
+       -121.3149891,
+       37.913369
+      ],
+      [
+       -121.3167594,
+       37.9125099
+      ],
+      [
+       -121.3177249,
+       37.9116379
+      ],
+      [
+       -121.3189695,
+       37.909454
+      ],
+      [
+       -121.3175318,
+       37.9089292
+      ],
+      [
+       -121.3160298,
+       37.9081843
+      ],
+      [
+       -121.3126395,
+       37.9068807
+      ],
+      [
+       -121.3096998,
+       37.9054415
+      ],
+      [
+       -121.3083265,
+       37.9048151
+      ],
+      [
+       -121.306921,
+       37.9047304
+      ],
+      [
+       -121.3054189,
+       37.9049506
+      ],
+      [
+       -121.3036379,
+       37.90534
+      ],
+      [
+       -121.3022647,
+       37.9056278
+      ],
+      [
+       -121.3009987,
+       37.9058648
+      ],
+      [
+       -121.2998614,
+       37.9061188
+      ],
+      [
+       -121.29881,
+       37.9063558
+      ],
+      [
+       -121.2981448,
+       37.9063389
+      ],
+      [
+       -121.2971148,
+       37.906305
+      ],
+      [
+       -121.2955269,
+       37.9062881
+      ],
+      [
+       -121.2933812,
+       37.9063389
+      ],
+      [
+       -121.2915144,
+       37.9066775
+      ],
+      [
+       -121.2897334,
+       37.9073547
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }
