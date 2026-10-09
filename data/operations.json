@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T23:18:39Z",
+  "generated_at": "2026-10-09T22:35:41Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24268,10 +24268,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -24294,10 +24294,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -24318,10 +24318,10 @@
       "products_raw": [
         "Altosid liquid concentrate (SR-20)"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "larval",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -24344,10 +24344,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "05:30",
       "time_start": "03:30"
@@ -24370,13 +24370,61 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
+      "section": "past",
+      "source": "live",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "05:30",
+      "time_start": "03:30"
+    },
+    {
+      "area_name": "Delta area",
+      "boundary_text": "- Medford Island",
+      "date": "2026-10-11",
+      "first_seen": "2026-10-09T22:35:41Z",
+      "id": "2026-10-11|1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+      "method": "aerial",
+      "mid": "1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+      "period": "evening",
+      "products": [
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "Evergreen 5-25 ULV Air"
+      ],
       "section": "current",
       "source": "live",
       "status": "scheduled",
       "status_text": null,
       "target": "adult",
-      "time_end": "05:30",
-      "time_start": "03:30"
+      "time_end": "21:00",
+      "time_start": "19:00"
+    },
+    {
+      "area_name": "Delta area -",
+      "boundary_text": "Portions of Empire Tract and Terminous Tract",
+      "date": "2026-10-11",
+      "first_seen": "2026-10-09T22:35:41Z",
+      "id": "2026-10-11|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "method": "aerial",
+      "mid": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "period": "evening",
+      "products": [
+        "Evergreen 5-25"
+      ],
+      "products_raw": [
+        "Evergreen 5-25 ULV Air"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "21:00",
+      "time_start": "19:00"
     }
   ]
 }

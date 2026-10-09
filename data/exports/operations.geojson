@@ -109433,8 +109433,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of East Manteca",
     "zone_code": "M30B",
     "region": "Manteca",
@@ -109508,8 +109508,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural South County",
     "zone_code": "SC1",
     "region": "South County",
@@ -109575,8 +109575,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Rural Southeast Lodi",
     "zone_code": "L16",
     "region": "Lodi",
@@ -109642,8 +109642,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of South Manteca",
     "zone_code": "M39",
     "region": "Manteca",
@@ -109773,8 +109773,8 @@
     "period": "morning",
     "time_start": "03:30",
     "time_end": "05:30",
-    "status": "scheduled",
-    "status_text": "",
+    "status": "complete",
+    "status_text": "COMPLETE",
     "area_name": "Portion of Southwest Stockton - Weston Ranch area",
     "zone_code": "S55a",
     "region": "Stockton",
@@ -109951,6 +109951,116 @@
       [
        -121.2897334,
        37.9073547
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-11|1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+   "properties": {
+    "date": "2026-10-11",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Evergreen 5-25",
+    "period": "evening",
+    "time_start": "19:00",
+    "time_end": "21:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Delta area",
+    "zone_code": "D59",
+    "region": "Delta",
+    "boundary_text": "- Medford Island",
+    "area_sq_km": 8.8661,
+    "centroid_lat": 38.039509,
+    "centroid_lon": -121.512605,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+    "map_id": "1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+    "observed_via": "live",
+    "first_seen": "2026-10-09T22:35:41Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-11|1GMqv9S7ItWsobE6-JFkxCueF9VilR_8"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.5312412,
+       38.0551564
+      ],
+      [
+       -121.5272129,
+       38.0238625
+      ],
+      [
+       -121.4912727,
+       38.0301713
+      ],
+      [
+       -121.4948738,
+       38.0492056
+      ],
+      [
+       -121.5312412,
+       38.0551564
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-11|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+   "properties": {
+    "date": "2026-10-11",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Evergreen 5-25",
+    "period": "evening",
+    "time_start": "19:00",
+    "time_end": "21:00",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Delta area -",
+    "zone_code": "D29",
+    "region": "Delta",
+    "boundary_text": "Portions of Empire Tract and Terminous Tract",
+    "area_sq_km": 12.7919,
+    "centroid_lat": 38.080455,
+    "centroid_lon": -121.480218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "map_id": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "observed_via": "live",
+    "first_seen": "2026-10-09T22:35:41Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-11|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4996014,
+       38.0980078
+      ],
+      [
+       -121.4983998,
+       38.0632814
+      ],
+      [
+       -121.4614926,
+       38.0623353
+      ],
+      [
+       -121.4616643,
+       38.0978727
+      ],
+      [
+       -121.4996014,
+       38.0980078
       ]
      ]
     ],

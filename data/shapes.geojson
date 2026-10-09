@@ -7271,6 +7271,45 @@
         "coordinates": [
           [
             [
+              -121.5312412,
+              38.0551564
+            ],
+            [
+              -121.5272129,
+              38.0238625
+            ],
+            [
+              -121.4912727,
+              38.0301713
+            ],
+            [
+              -121.4948738,
+              38.0492056
+            ],
+            [
+              -121.5312412,
+              38.0551564
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+      "properties": {
+        "area_sq_km": 8.8661,
+        "doc_description": "Delta area - Medford Island",
+        "doc_name": "D59 - Delta area - Medford Island",
+        "fetched_at": "2026-10-09T22:35:41Z",
+        "mid": "1GMqv9S7ItWsobE6-JFkxCueF9VilR_8",
+        "zone_code": "D59"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.4472064,
               38.2544993
             ],
