@@ -23106,6 +23106,53 @@
         "coordinates": [
           [
             [
+              -121.5343311,
+              38.0556971
+            ],
+            [
+              -121.5539921,
+              37.9884245
+            ],
+            [
+              -121.5263865,
+              37.9860785
+            ],
+            [
+              -121.5179982,
+              38.0243133
+            ],
+            [
+              -121.4988258,
+              38.0304417
+            ],
+            [
+              -121.4948738,
+              38.0492056
+            ],
+            [
+              -121.5343311,
+              38.0556971
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+      "properties": {
+        "area_sq_km": 20.7398,
+        "doc_description": "Delta area - Medford Island and portions of Mandeville and Bacon Islands",
+        "doc_name": "D60 - Delta area - Medford Island and portions of Mandeville and Bacon Islands",
+        "fetched_at": "2026-10-14T21:38:24Z",
+        "mid": "1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+        "zone_code": "D60"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.2523533,
               37.7760159
             ],

@@ -110066,6 +110066,278 @@
     ],
     "type": "Polygon"
    }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-17|1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+   "properties": {
+    "date": "2026-10-17",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "18:45",
+    "time_end": "20:45",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Delta area",
+    "zone_code": "D4(d)",
+    "region": "Delta",
+    "boundary_text": "- Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+    "area_sq_km": 15.8714,
+    "centroid_lat": 38.156289,
+    "centroid_lon": -121.450218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+    "map_id": "1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+    "observed_via": "live",
+    "first_seen": "2026-10-14T21:38:24Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-17|1V4C61pI9QtgKTAd0mzGx1kUroEejZqc"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4714244,
+       38.1702659
+      ],
+      [
+       -121.4775183,
+       38.1373291
+      ],
+      [
+       -121.4482501,
+       38.1383443
+      ],
+      [
+       -121.4275648,
+       38.1448897
+      ],
+      [
+       -121.4237025,
+       38.1767435
+      ],
+      [
+       -121.4714244,
+       38.1702659
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-17|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+   "properties": {
+    "date": "2026-10-17",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "18:45",
+    "time_end": "20:45",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Delta area -",
+    "zone_code": "D29",
+    "region": "Delta",
+    "boundary_text": "Portions of Empire Tract and Terminous Tract",
+    "area_sq_km": 12.7919,
+    "centroid_lat": 38.080455,
+    "centroid_lon": -121.480218,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "map_id": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+    "observed_via": "live",
+    "first_seen": "2026-10-14T21:38:24Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-17|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.4996014,
+       38.0980078
+      ],
+      [
+       -121.4983998,
+       38.0632814
+      ],
+      [
+       -121.4614926,
+       38.0623353
+      ],
+      [
+       -121.4616643,
+       38.0978727
+      ],
+      [
+       -121.4996014,
+       38.0980078
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-17|1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+   "properties": {
+    "date": "2026-10-17",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "18:45",
+    "time_end": "20:45",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Delta area -",
+    "zone_code": "D60",
+    "region": "Delta",
+    "boundary_text": "Medford Island and portions of Mandeville and Bacon Islands",
+    "area_sq_km": 20.7398,
+    "centroid_lat": 38.023273,
+    "centroid_lon": -121.527048,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+    "map_id": "1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+    "observed_via": "live",
+    "first_seen": "2026-10-14T21:38:24Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-17|1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.5343311,
+       38.0556971
+      ],
+      [
+       -121.5539921,
+       37.9884245
+      ],
+      [
+       -121.5263865,
+       37.9860785
+      ],
+      [
+       -121.5179982,
+       38.0243133
+      ],
+      [
+       -121.4988258,
+       38.0304417
+      ],
+      [
+       -121.4948738,
+       38.0492056
+      ],
+      [
+       -121.5343311,
+       38.0556971
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "2026-10-17|1nm6ZRXdv7KkBsNjAEMUgXhR1m7-TmmY",
+   "properties": {
+    "date": "2026-10-17",
+    "method": "aerial",
+    "target": "adult",
+    "products": "Dibrom",
+    "period": "evening",
+    "time_start": "18:45",
+    "time_end": "20:45",
+    "status": "scheduled",
+    "status_text": "",
+    "area_name": "Portion of Rural South County",
+    "zone_code": "SC17",
+    "region": "South County",
+    "boundary_text": "",
+    "area_sq_km": 16.4236,
+    "centroid_lat": 37.682602,
+    "centroid_lon": -121.233493,
+    "map_url": "https://www.google.com/maps/d/viewer?mid=1nm6ZRXdv7KkBsNjAEMUgXhR1m7-TmmY",
+    "map_id": "1nm6ZRXdv7KkBsNjAEMUgXhR1m7-TmmY",
+    "observed_via": "live",
+    "first_seen": "2026-10-14T21:38:24Z",
+    "superseded_by": "",
+    "operation_id": "2026-10-17|1nm6ZRXdv7KkBsNjAEMUgXhR1m7-TmmY"
+   },
+   "geometry": {
+    "coordinates": [
+     [
+      [
+       -121.1849529,
+       37.6975758
+      ],
+      [
+       -121.1991579,
+       37.709918
+      ],
+      [
+       -121.216796,
+       37.7008356
+      ],
+      [
+       -121.2242204,
+       37.7037726
+      ],
+      [
+       -121.2719851,
+       37.6724436
+      ],
+      [
+       -121.2558489,
+       37.6565448
+      ],
+      [
+       -121.222375,
+       37.6689108
+      ],
+      [
+       -121.2227183,
+       37.6795087
+      ],
+      [
+       -121.2240925,
+       37.6837204
+      ],
+      [
+       -121.2163679,
+       37.688
+      ],
+      [
+       -121.2109602,
+       37.6863358
+      ],
+      [
+       -121.2067539,
+       37.6914634
+      ],
+      [
+       -121.2065822,
+       37.695131
+      ],
+      [
+       -121.2019474,
+       37.696625
+      ],
+      [
+       -121.1849529,
+       37.6975758
+      ]
+     ]
+    ],
+    "type": "Polygon"
+   }
   }
  ]
 }

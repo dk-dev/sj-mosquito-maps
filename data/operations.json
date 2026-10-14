@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T22:41:11Z",
+  "generated_at": "2026-10-14T21:38:23Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24394,7 +24394,7 @@
       "products_raw": [
         "Evergreen 5-25 ULV Air"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
@@ -24418,13 +24418,109 @@
       "products_raw": [
         "Evergreen 5-25 ULV Air"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
       "status": "complete",
       "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "21:00",
       "time_start": "19:00"
+    },
+    {
+      "area_name": "Delta area",
+      "boundary_text": "- Portions of Brack Tract, Canal Ranch, and Terminous Tract",
+      "date": "2026-10-17",
+      "first_seen": "2026-10-14T21:38:24Z",
+      "id": "2026-10-17|1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "method": "aerial",
+      "mid": "1V4C61pI9QtgKTAd0mzGx1kUroEejZqc",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "20:45",
+      "time_start": "18:45"
+    },
+    {
+      "area_name": "Delta area -",
+      "boundary_text": "Portions of Empire Tract and Terminous Tract",
+      "date": "2026-10-17",
+      "first_seen": "2026-10-14T21:38:24Z",
+      "id": "2026-10-17|1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "method": "aerial",
+      "mid": "1YxdmeEmftJ1kSIV8yZiuneMI0UHy7d3p",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "20:45",
+      "time_start": "18:45"
+    },
+    {
+      "area_name": "Delta area -",
+      "boundary_text": "Medford Island and portions of Mandeville and Bacon Islands",
+      "date": "2026-10-17",
+      "first_seen": "2026-10-14T21:38:24Z",
+      "id": "2026-10-17|1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+      "method": "aerial",
+      "mid": "1i9pMS0vlg4HYzcCJb7Kfxq-N3S4Zsco",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "20:45",
+      "time_start": "18:45"
+    },
+    {
+      "area_name": "Portion of Rural South County",
+      "boundary_text": null,
+      "date": "2026-10-17",
+      "first_seen": "2026-10-14T21:38:24Z",
+      "id": "2026-10-17|1nm6ZRXdv7KkBsNjAEMUgXhR1m7-TmmY",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1nm6ZRXdv7KkBsNjAEMUgXhR1m7-TmmY",
+      "method": "aerial",
+      "mid": "1nm6ZRXdv7KkBsNjAEMUgXhR1m7-TmmY",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "20:45",
+      "time_start": "18:45"
     }
   ]
 }
