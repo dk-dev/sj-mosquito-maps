@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T21:38:23Z",
+  "generated_at": "2026-10-20T16:59:29Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24442,10 +24442,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "20:45",
       "time_start": "18:45"
@@ -24466,10 +24466,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "20:45",
       "time_start": "18:45"
@@ -24490,10 +24490,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "20:45",
       "time_start": "18:45"
@@ -24514,12 +24514,60 @@
       "products_raw": [
         "Dibrom"
       ],
+      "section": "past",
+      "source": "live",
+      "status": "complete",
+      "status_text": "COMPLETE",
+      "target": "adult",
+      "time_end": "20:45",
+      "time_start": "18:45"
+    },
+    {
+      "area_name": "Delta area -",
+      "boundary_text": "Woodward Island and portion of SE Bacon Island",
+      "date": "2026-10-21",
+      "first_seen": "2026-10-20T16:59:30Z",
+      "id": "2026-10-21|1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+      "method": "aerial",
+      "mid": "1MefuIjTjdjFB0PDJ7alJI9imAmI0wzs",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
       "section": "current",
       "source": "live",
       "status": "scheduled",
       "status_text": null,
       "target": "adult",
-      "time_end": "20:45",
+      "time_end": "20:30",
+      "time_start": "18:45"
+    },
+    {
+      "area_name": "Delta area -",
+      "boundary_text": "Portions of McDonald Island, Lower Jones Tract and Roberts Island",
+      "date": "2026-10-21",
+      "first_seen": "2026-10-20T16:59:30Z",
+      "id": "2026-10-21|1y5Os-D-OO2hnmBl-y-MGDVtuP-MCWEU",
+      "map_url": "https://www.google.com/maps/d/viewer?mid=1y5Os-D-OO2hnmBl-y-MGDVtuP-MCWEU",
+      "method": "aerial",
+      "mid": "1y5Os-D-OO2hnmBl-y-MGDVtuP-MCWEU",
+      "period": "evening",
+      "products": [
+        "Dibrom"
+      ],
+      "products_raw": [
+        "Dibrom"
+      ],
+      "section": "current",
+      "source": "live",
+      "status": "scheduled",
+      "status_text": null,
+      "target": "adult",
+      "time_end": "20:30",
       "time_start": "18:45"
     }
   ]
