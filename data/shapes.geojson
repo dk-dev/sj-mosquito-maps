@@ -22850,6 +22850,45 @@
         "coordinates": [
           [
             [
+              -121.4033132,
+              38.0801756
+            ],
+            [
+              -121.404429,
+              38.1175951
+            ],
+            [
+              -121.4301782,
+              38.1177976
+            ],
+            [
+              -121.429481,
+              38.0804936
+            ],
+            [
+              -121.4033132,
+              38.0801756
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "id": "1hA8B4ao2yXHMwag6Bmztd42ErQTx2Bw",
+      "properties": {
+        "area_sq_km": 9.4345,
+        "doc_description": "Portions of Terminous Tract, Shin Kee Tract, Bishop Tract, Rio Blanco Tract, and King Island.",
+        "doc_name": "D43- Delta Area West of Lodi",
+        "fetched_at": "2026-10-21T21:39:14Z",
+        "mid": "1hA8B4ao2yXHMwag6Bmztd42ErQTx2Bw",
+        "zone_code": "D43"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          [
+            [
               -121.0152638,
               37.8094269
             ],
