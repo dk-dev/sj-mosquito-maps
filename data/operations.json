@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T21:39:13Z",
+  "generated_at": "2026-10-22T17:07:13Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24588,10 +24588,10 @@
         "Evergreen 5-25",
         "DeltaGard"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "cancelled",
+      "status_text": "CANCELLED",
       "target": "adult",
       "time_end": "07:30",
       "time_start": "06:00"
