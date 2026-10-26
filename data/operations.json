@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T17:07:13Z",
+  "generated_at": "2026-10-26T22:37:35Z",
   "operations": [
     {
       "area_name": "Rural East Escalon",
@@ -24538,10 +24538,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "20:30",
       "time_start": "18:45"
@@ -24562,10 +24562,10 @@
       "products_raw": [
         "Dibrom"
       ],
-      "section": "current",
+      "section": "past",
       "source": "live",
-      "status": "scheduled",
-      "status_text": null,
+      "status": "complete",
+      "status_text": "COMPLETE",
       "target": "adult",
       "time_end": "20:30",
       "time_start": "18:45"
